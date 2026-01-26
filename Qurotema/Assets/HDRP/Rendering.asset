@@ -1655,10 +1655,10 @@ MonoBehaviour:
     m_Value: 1
   planetRadius:
     m_OverrideState: 1
-    m_Value: 20
+    m_Value: 6000
   renderingSpace:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   centerMode:
     m_OverrideState: 0
     m_Value: 0

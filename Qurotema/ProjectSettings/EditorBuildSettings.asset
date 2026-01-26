@@ -8,4 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Qurotema.unity
     guid: cbfe36cfddfde964d9dfce63a355d5dd
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 78b50a8090300874f8777da090a1b1ca,
+      type: 2}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: c6dc60d21bedf81459a680103a4fb527,
+      type: 3}
+  m_UseUCBPForAssetBundles: 0
