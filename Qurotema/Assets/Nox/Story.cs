@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿/*
+
+Holds and triggers different story beats when gameplay conditions are met.
+Also manages monolith text interaction.
+
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;

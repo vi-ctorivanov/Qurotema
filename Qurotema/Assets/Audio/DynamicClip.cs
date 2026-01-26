@@ -21,7 +21,7 @@ as it will be desynchronized from the rest of the track.
 
 public class DynamicClip : MonoBehaviour {
 
-	public string name;
+	public string clipName;
 	public bool isOneShot = false;
 
 	public bool playingLo = false;
@@ -43,7 +43,7 @@ public class DynamicClip : MonoBehaviour {
 		isOneShot = oneShot;
 		clipsLo = audLo;
 		clipsHi = audHi;
-		name = n;
+		clipName = n;
 
 		sourceLo.volume = 0f;
 		sourceHi.volume = 0f;

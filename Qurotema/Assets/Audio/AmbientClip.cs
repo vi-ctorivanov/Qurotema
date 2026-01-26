@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AmbientClip : MonoBehaviour {
 
-	public string name;
+	public string clipName;
 	public AudioClip clip;
 	public AudioSource source;
 	private Coroutine mod;
@@ -15,7 +15,7 @@ public class AmbientClip : MonoBehaviour {
 
 	public void init(AudioClip audio, string n) {
 		clip = audio;
-		name = n;
+		clipName = n;
 
 		source.clip = clip;
 		source.volume = 0f;

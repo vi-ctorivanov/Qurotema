@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+
+Manages flying behavior.
+
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

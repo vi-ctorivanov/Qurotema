@@ -1,4 +1,22 @@
-﻿using System.Collections;
+﻿/*
+
+Manages player movement:
+- Moving
+- Sprinting
+- Jumping
+- Flying
+- Acceleration and deceleration
+- Collision
+- FOV dynamics
+
+All done using a custom physics system, since we want a very
+particular feel to the character movement, where they slide
+across the surface smoothly and have large floaty jumps when
+combined with existing momentum.
+
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;

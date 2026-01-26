@@ -7,10 +7,15 @@ public class GatesStory : MonoBehaviour {
 	public GameObject Quro;
 	public GameObject Tema;
 	public GameObject sphere;
+	public Story s;
 
 	void Start() {
 		Quro.SetActive(false);
 		Tema.SetActive(false);
+	}
+
+	private void OnTriggerEnter(Collider other) {
+		if (other.tag == "Player") s.endGame();
 	}
 
 	public void activateEnd() {

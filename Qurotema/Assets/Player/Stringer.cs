@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+
+Manages string instrument.
+
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

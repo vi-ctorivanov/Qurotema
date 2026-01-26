@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+
+Camera controls and animation.
+
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

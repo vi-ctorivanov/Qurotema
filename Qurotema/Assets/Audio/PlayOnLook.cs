@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+
+Plays various sounds depending on the object being looked at.
+
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

@@ -1,3 +1,9 @@
+/*
+
+Animate terrain shader.
+
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

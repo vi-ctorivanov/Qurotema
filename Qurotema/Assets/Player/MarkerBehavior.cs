@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+
+Creates marker on mouse look location when trigger button is held.
+
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: HDShadowSettings
   m_EditorClassIdentifier: 
   active: 1
+  interCascadeBorders: 1
   maxShadowDistance:
     m_OverrideState: 1
     m_Value: 500
@@ -68,6 +69,11 @@ MonoBehaviour:
   rayMiss:
     m_OverrideState: 0
     m_Value: 3
+  adaptiveProbeVolumesLayerMask:
+    m_OverrideState: 0
+    m_Value:
+      serializedVersion: 0
+      m_Bits: 1
   depthBufferThickness:
     m_OverrideState: 0
     m_Value: 0.2
@@ -225,13 +231,13 @@ MonoBehaviour:
       m_OverrideState: 1
       m_Value: {fileID: 2800000, guid: 57a33fc2476a01644865bfde5f06e2f4, type: 3}
     lighting:
-      m_OverrideState: 1
+      m_OverrideState: 0
       m_Value: 1
     steps:
-      m_OverrideState: 1
+      m_OverrideState: 0
       m_Value: 16
     thickness:
-      m_OverrideState: 1
+      m_OverrideState: 0
       m_Value: 1
     ambientProbeDimmer:
       m_OverrideState: 0
@@ -620,9 +626,9 @@ MonoBehaviour:
   m_DenoiserRadius:
     m_OverrideState: 1
     m_Value: 12
-  m_AffectSmoothSurfaces:
+  m_DenoiserAntiFlickeringStrength:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: 1
   mode:
     m_OverrideState: 1
     m_Value: 2
@@ -638,6 +644,11 @@ MonoBehaviour:
   m_RayMaxIterationsRT:
     m_OverrideState: 0
     m_Value: 48
+  adaptiveProbeVolumesLayerMask:
+    m_OverrideState: 0
+    m_Value:
+      serializedVersion: 0
+      m_Bits: 1
 --- !u!114 &-1619800299139218169
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -926,6 +937,18 @@ MonoBehaviour:
   skyAmbientMode:
     m_OverrideState: 1
     m_Value: 1
+  planetRadius:
+    m_OverrideState: 0
+    m_Value: 6378.1
+  renderingSpace:
+    m_OverrideState: 0
+    m_Value: 1
+  centerMode:
+    m_OverrideState: 0
+    m_Value: 0
+  planetCenter:
+    m_OverrideState: 0
+    m_Value: {x: 0, y: -6378.1, z: 0}
   windOrientation:
     m_OverrideState: 0
     m_Value: 0
@@ -935,6 +958,7 @@ MonoBehaviour:
   fogType:
     m_OverrideState: 1
     m_Value: 3
+  m_Version: 1
 --- !u!114 &114527594671542966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -948,6 +972,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 1
+  interCascadeBorders: 1
   maxShadowDistance:
     m_OverrideState: 1
     m_Value: 150
@@ -1048,6 +1073,9 @@ MonoBehaviour:
   sliceDistributionUniformity:
     m_OverrideState: 0
     m_Value: 0.75
+  multipleScatteringIntensity:
+    m_OverrideState: 0
+    m_Value: 0
   m_FogControlMode:
     m_OverrideState: 0
     m_Value: 0
@@ -1135,6 +1163,12 @@ MonoBehaviour:
       customValue: 100
       additiveValue: 0
       multiplyValue: 1
+  sunInitialRotation:
+    m_OverrideState: 0
+    m_Value: -Infinity
+  lockSun:
+    m_OverrideState: 0
+    m_Value: 0
   enableBackplate:
     m_OverrideState: 0
     m_Value: 0
@@ -1286,9 +1320,9 @@ MonoBehaviour:
   m_DenoiserRadius:
     m_OverrideState: 0
     m_Value: 8
-  m_AffectSmoothSurfaces:
+  m_DenoiserAntiFlickeringStrength:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: 1
   mode:
     m_OverrideState: 1
     m_Value: 2
@@ -1304,6 +1338,11 @@ MonoBehaviour:
   m_RayMaxIterationsRT:
     m_OverrideState: 0
     m_Value: 48
+  adaptiveProbeVolumesLayerMask:
+    m_OverrideState: 0
+    m_Value:
+      serializedVersion: 0
+      m_Bits: 1
 --- !u!114 &2868718912602383256
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1388,7 +1427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   quality:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 3
   enabled:
     m_OverrideState: 1
@@ -1424,17 +1463,17 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 2000
   enableVolumetricFog:
-    m_OverrideState: 1
-    m_Value: 0
+    m_OverrideState: 0
+    m_Value: 1
   albedo:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   globalLightProbeDimmer:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1
   depthExtent:
-    m_OverrideState: 1
-    m_Value: 500
+    m_OverrideState: 0
+    m_Value: 64
   denoisingMode:
     m_OverrideState: 0
     m_Value: 3
@@ -1444,6 +1483,9 @@ MonoBehaviour:
   sliceDistributionUniformity:
     m_OverrideState: 0
     m_Value: 0.75
+  multipleScatteringIntensity:
+    m_OverrideState: 0
+    m_Value: 0
   m_FogControlMode:
     m_OverrideState: 1
     m_Value: 0
@@ -1531,6 +1573,12 @@ MonoBehaviour:
       customValue: 100
       additiveValue: 0
       multiplyValue: 1
+  sunInitialRotation:
+    m_OverrideState: 0
+    m_Value: -Infinity
+  lockSun:
+    m_OverrideState: 0
+    m_Value: 0
   enableBackplate:
     m_OverrideState: 0
     m_Value: 0
@@ -1605,6 +1653,18 @@ MonoBehaviour:
   skyAmbientMode:
     m_OverrideState: 1
     m_Value: 1
+  planetRadius:
+    m_OverrideState: 1
+    m_Value: 20
+  renderingSpace:
+    m_OverrideState: 1
+    m_Value: 0
+  centerMode:
+    m_OverrideState: 0
+    m_Value: 0
+  planetCenter:
+    m_OverrideState: 0
+    m_Value: {x: 0, y: -6378.1, z: 0}
   windOrientation:
     m_OverrideState: 0
     m_Value: 0
@@ -1614,6 +1674,7 @@ MonoBehaviour:
   fogType:
     m_OverrideState: 0
     m_Value: 0
+  m_Version: 1
 --- !u!114 &4772978920607070779
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1632,10 +1693,10 @@ MonoBehaviour:
     m_Value: 2
   threshold:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 15
   intensity:
     m_OverrideState: 1
-    m_Value: 0.8
+    m_Value: 0.4
   scatter:
     m_OverrideState: 1
     m_Value: 0.5

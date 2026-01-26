@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+
+Holds some global variables and functions.
+
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

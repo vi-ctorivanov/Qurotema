@@ -1,4 +1,12 @@
-﻿using System.Collections;
+﻿/*
+
+Creates sound emitters for each sound, tracks bpm,
+manages energy, holds functions for playing audio sources,
+triggers different audio depending on energy levels.
+
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -222,7 +230,7 @@ public class Sound : MonoBehaviour {
 
 	private DynamicClip findDynamic(string sound) {
 		for (int i = 0; i < dynamicClips.Length; i++) {
-			if (dynamicClips[i].name == sound) return dynamicClips[i];
+			if (dynamicClips[i].clipName == sound) return dynamicClips[i];
 		}
 
 		Debug.Log("couldn't find dynamic sound");
@@ -231,7 +239,7 @@ public class Sound : MonoBehaviour {
 
 	private AmbientClip findAmbient(string sound) {
 		for (int i = 0; i < ambientClips.Length; i++) {
-			if (ambientClips[i].name == sound) return ambientClips[i];
+			if (ambientClips[i].clipName == sound) return ambientClips[i];
 		}
 
 		Debug.Log("couldn't find ambient sound");

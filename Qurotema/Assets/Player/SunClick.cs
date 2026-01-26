@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿/*
+
+Manages sun click behavior, playing an animation and
+altering post processing and audio.
+
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
