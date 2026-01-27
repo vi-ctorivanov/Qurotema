@@ -68,7 +68,7 @@ MonoBehaviour:
     supportDecalLayers: 0
     supportSurfaceGradient: 0
     decalNormalBufferHP: 0
-    supportHighQualityLineRendering: 0
+    supportHighQualityLineRendering: 1
     highQualityLineRenderingMemoryBudget: 128
     msaaSampleCount: 1
     supportMotionVectors: 1
@@ -104,7 +104,7 @@ MonoBehaviour:
       reflectionProbeTexLastValidCubeMip: 3
       reflectionProbeTexLastValidPlanarMip: 0
       reflectionProbeDecreaseResToFit: 1
-      skyReflectionSize: 4096
+      skyReflectionSize: 2048
       skyLightingOverrideLayerMask:
         serializedVersion: 2
         m_Bits: 0

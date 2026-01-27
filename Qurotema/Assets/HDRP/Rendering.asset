@@ -202,7 +202,7 @@ MonoBehaviour:
       m_OverrideState: 1
       m_Value: 1000
     rotation:
-      m_OverrideState: 1
+      m_OverrideState: 0
       m_Value: 0
     tint:
       m_OverrideState: 1
@@ -231,19 +231,19 @@ MonoBehaviour:
       m_OverrideState: 1
       m_Value: {fileID: 2800000, guid: 57a33fc2476a01644865bfde5f06e2f4, type: 3}
     lighting:
-      m_OverrideState: 0
+      m_OverrideState: 1
       m_Value: 1
     steps:
-      m_OverrideState: 0
-      m_Value: 16
+      m_OverrideState: 1
+      m_Value: 2
     thickness:
-      m_OverrideState: 0
-      m_Value: 1
+      m_OverrideState: 1
+      m_Value: 0.5
     ambientProbeDimmer:
-      m_OverrideState: 0
+      m_OverrideState: 1
       m_Value: 1
     castShadows:
-      m_OverrideState: 0
+      m_OverrideState: 1
       m_Value: 0
   layerB:
     cloudMap:
@@ -664,16 +664,16 @@ MonoBehaviour:
   active: 1
   quality:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 2
   intensity:
     m_OverrideState: 1
     m_Value: 2
   maximumVelocity:
     m_OverrideState: 1
-    m_Value: 200
+    m_Value: 64
   minimumVelocity:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 1.8
   cameraMotionBlur:
     m_OverrideState: 1
     m_Value: 1
@@ -694,7 +694,7 @@ MonoBehaviour:
     m_Value: 1
   m_SampleCount:
     m_OverrideState: 1
-    m_Value: 16
+    m_Value: 12
 --- !u!114 &-1096855453507253556
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1130,7 +1130,7 @@ MonoBehaviour:
     m_Value: 20000
   updateMode:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 1
   updatePeriod:
     m_OverrideState: 1
     m_Value: 0
@@ -1142,7 +1142,7 @@ MonoBehaviour:
     m_Value: {fileID: 8900000, guid: 329f2e555c9826c4797003762c453370, type: 3}
   distortionMode:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   flowmap:
     m_OverrideState: 0
     m_Value: {fileID: 0}
@@ -1167,7 +1167,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: -Infinity
   lockSun:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   enableBackplate:
     m_OverrideState: 0
@@ -1443,7 +1443,7 @@ MonoBehaviour:
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   maxFogDistance:
     m_OverrideState: 1
-    m_Value: 5000
+    m_Value: 20000
   mipFogMaxMip:
     m_OverrideState: 0
     m_Value: 0.5
@@ -1455,7 +1455,7 @@ MonoBehaviour:
     m_Value: 1000
   baseHeight:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: -50
   maximumHeight:
     m_OverrideState: 1
     m_Value: 500
@@ -1652,13 +1652,13 @@ MonoBehaviour:
     m_Value: 1
   skyAmbientMode:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   planetRadius:
     m_OverrideState: 1
     m_Value: 6000
   renderingSpace:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   centerMode:
     m_OverrideState: 0
     m_Value: 0

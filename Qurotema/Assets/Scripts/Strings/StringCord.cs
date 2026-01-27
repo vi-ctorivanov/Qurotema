@@ -20,7 +20,7 @@ public class StringCord : MonoBehaviour {
 	private bool ready = true;
 	private float waitTime = 1f;
 	private float ringTick = 0.01f;
-	private float sustainDecay = 0.0006f;
+	private float sustainDecay = 0.0004f;
 
 	[Header("Coroutines")]
 	private Coroutine ringRoutine;
@@ -48,14 +48,14 @@ public class StringCord : MonoBehaviour {
 			StartCoroutine(Refresh());
 			soundSystem.addEnergy(0.2f);
 
-			if(frequency < 300f) soundSystem.shootSound("strings", 1);
-			else if (frequency < 400f) soundSystem.shootSound("strings", 2);
-			else if (frequency < 500f) soundSystem.shootSound("strings", 3);
-			else if (frequency < 600f) soundSystem.shootSound("strings", 4);
-			else if (frequency < 700f) soundSystem.shootSound("strings", 5);
-			else if (frequency < 800f) soundSystem.shootSound("strings", 6);
-			else if (frequency < 900f) soundSystem.shootSound("strings", 7);
-			else soundSystem.shootSound("strings", 8);
+			if(frequency < 300f) soundSystem.shootSound("strings", 0);
+			else if (frequency < 400f) soundSystem.shootSound("strings", 1);
+			else if (frequency < 500f) soundSystem.shootSound("strings", 2);
+			else if (frequency < 600f) soundSystem.shootSound("strings", 3);
+			else if (frequency < 700f) soundSystem.shootSound("strings", 4);
+			else if (frequency < 800f) soundSystem.shootSound("strings", 5);
+			else if (frequency < 900f) soundSystem.shootSound("strings", 6);
+			else soundSystem.shootSound("strings", 7);
 
 			s.stringPlayed();
 		}

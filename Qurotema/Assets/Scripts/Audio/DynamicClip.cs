@@ -69,7 +69,7 @@ public class DynamicClip : MonoBehaviour {
 	public void shootClip(int index = 100, bool energy = false) {
 		if (isOneShot) {
 			if (index == 100) {
-				int randomIndex = Random.Range(0, clipsLo.Length);
+				int randomIndex = Random.Range(0, clipsLo.Length-1);
 				if (!energy) sourceLo.PlayOneShot(clipsLo[randomIndex], 1f);
 				else sourceHi.PlayOneShot(clipsHi[randomIndex], 1f);
 			} else {

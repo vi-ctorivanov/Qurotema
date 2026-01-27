@@ -28,6 +28,7 @@ public class Pad : MonoBehaviour {
 		soundSystem = GameObject.Find("Nox").GetComponent<Sound>();
 		s = GameObject.Find("Nox").GetComponent<Story>();
 		lightMat = lightObject.GetComponent<Renderer>().material;
+		lightMat.SetColor("_Base_Color", new Color(1f, 1f, 1f, 0f));
 
 		//move platform down and align to normal so that it matches terrain topology
 		RaycastHit hit;
@@ -55,11 +56,11 @@ public class Pad : MonoBehaviour {
 
 			if (active) {
 				if (glowRoutine != null) StopCoroutine(glowRoutine);
-				lightMat.SetColor("_BaseColor", new Color(1f, 1f, 1f, minAlpha));
+				lightMat.SetColor("_Base_Color", new Color(1f, 1f, 1f, minAlpha));
 				s.padPlayed();
 			} else {
 				if (glowRoutine != null) StopCoroutine(glowRoutine);
-				lightMat.SetColor("_BaseColor", new Color(1f, 1f, 1f, 0f));
+				lightMat.SetColor("_Base_Color", new Color(1f, 1f, 1f, 0f));
 			}
 		}
 	}
@@ -78,7 +79,7 @@ public class Pad : MonoBehaviour {
 		while (alpha > minAlpha) {
 			yield return new WaitForSeconds(0.01f);
 			alpha = Mathf.Lerp(alpha, minAlpha, 2f * Time.deltaTime);
-			lightMat.SetColor("_BaseColor", new Color(1f, 1f, 1f, alpha));
+			lightMat.SetColor("_Base_Color", new Color(1f, 1f, 1f, alpha));
 		}
 	}
 
