@@ -6,6 +6,7 @@ public class Pad : MonoBehaviour {
 
 	[Header("References")]
 	public GameObject lightObject;
+	public Transform platform;
 	private Material lightMat;
 	private Sound soundSystem;
 	private Story s;
@@ -38,6 +39,9 @@ public class Pad : MonoBehaviour {
 			//in order to avoid any grid pattern breaking on y axis, the pads parent needs to be aligned to the y axis (0, 180, -180, etc.)
 			transform.up = hit.normal;
 		}
+
+		//rotate platform randomly to vary up texture
+		platform.localEulerAngles = new Vector3(platform.localEulerAngles.x, Random.Range(0, 3) * 90f, platform.localEulerAngles.z);
 	}
 
 	void Update() {

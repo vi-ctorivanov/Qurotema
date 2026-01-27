@@ -103,6 +103,7 @@ public class UIFollow : MonoBehaviour {
 		Vector3 targetPosition = Camera.main.transform.position + (Camera.main.transform.forward * targetDistance);
 
 		transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
+		//transform.position = targetPosition;
 		transform.rotation = Camera.main.transform.rotation;
 	}
 

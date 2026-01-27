@@ -19,6 +19,7 @@ public class AnimateTerrain : MonoBehaviour {
 	[Header("Dynamics")]
 	public float mixerSpeed = 0.1f;
 	public float ribbonEaseSpeed = 0.1f;
+	public float ribbonFeedbackAmount = 3.0f;
 
 	[Header("States")]
 	private float[] mixers = new float[5];
@@ -59,7 +60,7 @@ public class AnimateTerrain : MonoBehaviour {
 
 	IEnumerator Feedback() {
 		//set initial state instead of easing for added impact
-		float UV = 10f;
+		float UV = ribbonFeedbackAmount;
 		ribbonLowMaterial.SetVector("_DistortionUV", new Vector2(UV, 1f));
 
 		bool done = false;
