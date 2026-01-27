@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f1b918fc5de4f448a14402d08e1f332, type: 3}
+  m_Name: StoryContent
+  m_EditorClassIdentifier: Assembly-CSharp::StoryContent
+  introductionText:
+  - Stable port to Qurotema, all nominal. RO, your vision should come in soon.
+  - Reminder, because of the Gates, this is a one-way only communication channel.
+  - We'll keep watch and study Qurotema alongside you, Operator.
+  - Your vessel is equipped with a control module.\nFeels weird at first, I know.
+    Experiment, you'll get used to it.
+  - And Di... Make Sino proud.
+  monolithText:
+  - We've got a feed of the characters. So this is the "i-tema" Sino spoke about.\nSaid
+    there's no way to speak it, it's a writing-only language.
+  - 'Actually, this looks like our set of translated text.\nIt say: ''The night will
+    flow when black time''s sand knows foreign touch.'
+  - The writing on the gates shares two of those words, "Quro" and "Tema". Those
+    are our only translations.\nThe origin of our station's name.
+  - I'm not sure how Sino felt so confident understanding i-tema, it looks incomprehensible
+    to me.\nFind more Monoliths, it'll help us fill a database for linguistic analysis.
+  instrumentText:
+  - We hav. signals of faint acit.vity aw.y from your vessel's current pos.tion.
+  - We've l.st sight .f your fe.d, but we are st..l getting al. oth.r r.adings. Ke.p
+    up the research.
+  - Our co..ection is bec.ming unreli.ble. Begin..ng pu.l, s.ay c.lm.
+  endText:
+  - Lo.ing co..ection fas., Di, wh.t's ..ing on?
+  - RO? Di? B.dy .. ... la... .. ..resp.n.ive. ........ ret.r. pro.ocol ...........
+    .. .. ... .....cit.te.
+  - Qur..ema .. ...., .... ... ..... ... .... ves.el .. .. ... Vo.d.
+  - Aban.on.ng ...... ... s..ry. ...
+  uniqueTextID:
+  - monolith discovery
+  - instrument discovery
+  uniqueText:
+  - Right there, in front of you is one of the Monoliths Dr. Sino spoke about. There
+    should be a sort of writing 'eminating' from it.\nDo you see anything? Maybe
+    it needs to be activated.
+  - What is that? Nothing like that was documented in Sino's notes.
+  monolithGraphics:
+  - {fileID: 21300000, guid: 009b7b77115537843b2ad2e8417e06cf, type: 3}
+  - {fileID: 21300000, guid: b214fc2f37b8a9b45ab39cb0e4b693a7, type: 3}
+  - {fileID: 21300000, guid: 0cedf8590552b21428f137d986f8c3f4, type: 3}
+  - {fileID: 21300000, guid: 2014a9c8f9922f84aaeafcbcc16dd1b5, type: 3}
+  - {fileID: 21300000, guid: d30b7639fa743bd46a7c808c9fb154e3, type: 3}
+  - {fileID: 21300000, guid: d89a10353bbf7894da129a076e4195d1, type: 3}
+  - {fileID: 21300000, guid: ad1013554fd4d114b9e08877fcabbcf3, type: 3}
+  - {fileID: 21300000, guid: 363f21e582bbdba468cd84a1bfc8ef3d, type: 3}
+  - {fileID: 21300000, guid: 88af63cd6cbc60e4fb5f8d776c2eb4aa, type: 3}

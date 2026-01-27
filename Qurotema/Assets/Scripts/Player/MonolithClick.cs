@@ -10,9 +10,6 @@ using UnityEngine;
 
 public class MonolithClick : MonoBehaviour {
 
-	[Header("References")]
-	public Sound soundSystem;
-
 	[Header("Dynamics")]
 	public LayerMask mask;
 
@@ -24,7 +21,7 @@ public class MonolithClick : MonoBehaviour {
 			if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~mask)) {
 				if (hit.collider.tag == "MonolithEye") {
 					if (!hit.collider.gameObject.GetComponent<MonolithBehavior>().active) {
-						soundSystem.addEnergy(5f);
+						Sound.Instance.addEnergy(5f);
 						hit.collider.gameObject.GetComponent<MonolithBehavior>().makeActive();
 					}
 				}

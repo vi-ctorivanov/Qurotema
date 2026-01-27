@@ -1,0 +1,152 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47f1f19cb978194408bb6f660f791980, type: 3}
+  m_Name: AudioClips
+  m_EditorClassIdentifier: Assembly-CSharp::AudioClips
+  ambientSoundEmitter: {fileID: 1940475542757626201, guid: 1ca1f28dafd7ae54eb38978c626f8036,
+    type: 3}
+  dynamicSoundEmitter: {fileID: 6795656644235646544, guid: 6ce8f24a1702b3e4f9b2bdcf7d482973,
+    type: 3}
+  ambiences:
+  - audio: {fileID: 8300000, guid: 5573f7c48b8683b4d9b0aa065eba8c78, type: 3}
+  - audio: {fileID: 8300000, guid: 54c5b468584f86341a5321eabc2d4265, type: 3}
+  - audio: {fileID: 8300000, guid: cf51f89d24af92a4cb339ee94609cbf1, type: 3}
+  - audio: {fileID: 8300000, guid: e9cfc19a7d16d2345a43c16082450205, type: 3}
+  - audio: {fileID: 8300000, guid: 477cfd46bf5e9a74b8bf8a285fe22b46, type: 3}
+  - audio: {fileID: 8300000, guid: a40240a031b8aa946bab072292875d89, type: 3}
+  - audio: {fileID: 8300000, guid: 558db8ba901934540a1e44989c627b4b, type: 3}
+  - audio: {fileID: 8300000, guid: 49d257f7db5c0c246b896f4c383aae05, type: 3}
+  - audio: {fileID: 8300000, guid: 0cc0a3e88f4cf11459d9298bf1d8daf6, type: 3}
+  - audio: {fileID: 8300000, guid: 7e8fb5a300bc8f249864ffe2d85a335b, type: 3}
+  - audio: {fileID: 8300000, guid: a7f9a2664003fd049aea39e49b9a3287, type: 3}
+  - audio: {fileID: 8300000, guid: 866c89b2841eac94fa3253024acfd9e5, type: 3}
+  dynamics:
+  - oneShot: 0
+    audiosLo:
+    - {fileID: 8300000, guid: 77e5b1da5dea56b4196335955e67c6bc, type: 3}
+    audiosHi:
+    - {fileID: 8300000, guid: e31bed4ed1f53514f85f4ac38cfd60b5, type: 3}
+    name: harmonies
+  - oneShot: 0
+    audiosLo:
+    - {fileID: 8300000, guid: feb96866f9609604f99f3381fa7e9c52, type: 3}
+    audiosHi:
+    - {fileID: 8300000, guid: 4806d7706e419514fab7a1f93e5e09d5, type: 3}
+    name: percussion
+  - oneShot: 1
+    audiosLo:
+    - {fileID: 8300000, guid: 93ec05246fdc81443a0a91e9fbee0301, type: 3}
+    - {fileID: 8300000, guid: 89e90ef30a429634f9185561cd5068ac, type: 3}
+    - {fileID: 8300000, guid: 64f2a8544d85ef4468f37188a36ff2f8, type: 3}
+    - {fileID: 8300000, guid: b745c7c5a650a5f4e8ef032116d2cb2f, type: 3}
+    audiosHi:
+    - {fileID: 8300000, guid: b7b1ab753c1e77e409c4df5d4915663c, type: 3}
+    - {fileID: 8300000, guid: 5c887232ad380ef4cbc6577f593cccad, type: 3}
+    - {fileID: 8300000, guid: 8067d8a22bf2a2a4c8a6052bf050f004, type: 3}
+    - {fileID: 8300000, guid: c68ebe06badad144e9d4aec0f82c3b1f, type: 3}
+    name: whips
+  - oneShot: 0
+    audiosLo:
+    - {fileID: 8300000, guid: 0399f44c2fd64ad47b0cecbf94114e1e, type: 3}
+    audiosHi:
+    - {fileID: 8300000, guid: cfe78cad0e383cd44a74c2d34f3d11b5, type: 3}
+    name: droplets
+  - oneShot: 0
+    audiosLo:
+    - {fileID: 8300000, guid: 0cafd70e269a6b84798121c1a5f09ca0, type: 3}
+    audiosHi:
+    - {fileID: 8300000, guid: 3232511ac1ef4f742875cb07cc73c69a, type: 3}
+    name: pads
+  - oneShot: 0
+    audiosLo:
+    - {fileID: 8300000, guid: e2bd6f57b82c8d1409ebf6b265c3a9e1, type: 3}
+    audiosHi:
+    - {fileID: 8300000, guid: 477d2bd707ce7934d8f926d0cc32528c, type: 3}
+    name: rhythms
+  - oneShot: 1
+    audiosLo:
+    - {fileID: 8300000, guid: c7a6ba65fa49c9847b1fe00fd4243d75, type: 3}
+    - {fileID: 8300000, guid: 10213c4a7adc7f844ab6f98324114f8a, type: 3}
+    - {fileID: 8300000, guid: d676a08c2aaed504482e27a63f6624ed, type: 3}
+    - {fileID: 8300000, guid: cacf925251873cb4ba01aa57dfb3b9ef, type: 3}
+    - {fileID: 8300000, guid: 827ab4110893be347971be717e45b1c2, type: 3}
+    - {fileID: 8300000, guid: e6ed5e1a0db1b834b899ec2d9f1eab5b, type: 3}
+    - {fileID: 8300000, guid: fce829a1853b7ac4182f0112a7d12c6d, type: 3}
+    - {fileID: 8300000, guid: 9541560f2e2ce744bb14f1bc7b30dac2, type: 3}
+    - {fileID: 8300000, guid: 2817c9065deb5674194ecaba983d42a9, type: 3}
+    - {fileID: 8300000, guid: 5ef791b601282db47bde4ce2f14cfc47, type: 3}
+    - {fileID: 8300000, guid: c5eb5c1a39edc53478430b0984ca9422, type: 3}
+    - {fileID: 8300000, guid: 688b3fa99ecbe544ab193beb89f2c39f, type: 3}
+    - {fileID: 8300000, guid: f450fa3b166323748a1a1dc51817c723, type: 3}
+    audiosHi:
+    - {fileID: 8300000, guid: c7a6ba65fa49c9847b1fe00fd4243d75, type: 3}
+    - {fileID: 8300000, guid: 10213c4a7adc7f844ab6f98324114f8a, type: 3}
+    - {fileID: 8300000, guid: d676a08c2aaed504482e27a63f6624ed, type: 3}
+    - {fileID: 8300000, guid: cacf925251873cb4ba01aa57dfb3b9ef, type: 3}
+    - {fileID: 8300000, guid: 827ab4110893be347971be717e45b1c2, type: 3}
+    - {fileID: 8300000, guid: e6ed5e1a0db1b834b899ec2d9f1eab5b, type: 3}
+    - {fileID: 8300000, guid: fce829a1853b7ac4182f0112a7d12c6d, type: 3}
+    - {fileID: 8300000, guid: 9541560f2e2ce744bb14f1bc7b30dac2, type: 3}
+    - {fileID: 8300000, guid: 2817c9065deb5674194ecaba983d42a9, type: 3}
+    - {fileID: 8300000, guid: 5ef791b601282db47bde4ce2f14cfc47, type: 3}
+    - {fileID: 8300000, guid: c5eb5c1a39edc53478430b0984ca9422, type: 3}
+    - {fileID: 8300000, guid: 688b3fa99ecbe544ab193beb89f2c39f, type: 3}
+    - {fileID: 8300000, guid: f450fa3b166323748a1a1dc51817c723, type: 3}
+    name: rings
+  - oneShot: 1
+    audiosLo:
+    - {fileID: 8300000, guid: 9713a5a38fa979a4e902312d402ccdab, type: 3}
+    - {fileID: 8300000, guid: bf418686bc7772442a1111b97c094176, type: 3}
+    - {fileID: 8300000, guid: 1c817281b67bb924a9e807545db9d74d, type: 3}
+    audiosHi:
+    - {fileID: 8300000, guid: 9713a5a38fa979a4e902312d402ccdab, type: 3}
+    - {fileID: 8300000, guid: bf418686bc7772442a1111b97c094176, type: 3}
+    - {fileID: 8300000, guid: 1c817281b67bb924a9e807545db9d74d, type: 3}
+    name: sparkles
+  - oneShot: 1
+    audiosLo:
+    - {fileID: 8300000, guid: 224927fa01729e245bcfc377cde4a81e, type: 3}
+    - {fileID: 8300000, guid: 6e379446d43f0d3449d93e22f4fabccb, type: 3}
+    - {fileID: 8300000, guid: f8b075bbbb317a145a01b4a5f6cb38fd, type: 3}
+    - {fileID: 8300000, guid: 45c8c53f3add14046a9d21db9909296d, type: 3}
+    - {fileID: 8300000, guid: a0d62d61b3c597c418bf87b840363da2, type: 3}
+    - {fileID: 8300000, guid: a5b5b2fee27ec6a44b1b0aa144f1801e, type: 3}
+    - {fileID: 8300000, guid: 0e6f50f5103ee3f43838f0b1f58ae38d, type: 3}
+    - {fileID: 8300000, guid: 21c2c9514f37b724ba12c2fa9ce6c8b8, type: 3}
+    audiosHi:
+    - {fileID: 8300000, guid: 224927fa01729e245bcfc377cde4a81e, type: 3}
+    - {fileID: 8300000, guid: 6e379446d43f0d3449d93e22f4fabccb, type: 3}
+    - {fileID: 8300000, guid: f8b075bbbb317a145a01b4a5f6cb38fd, type: 3}
+    - {fileID: 8300000, guid: 45c8c53f3add14046a9d21db9909296d, type: 3}
+    - {fileID: 8300000, guid: a0d62d61b3c597c418bf87b840363da2, type: 3}
+    - {fileID: 8300000, guid: a5b5b2fee27ec6a44b1b0aa144f1801e, type: 3}
+    - {fileID: 8300000, guid: 0e6f50f5103ee3f43838f0b1f58ae38d, type: 3}
+    - {fileID: 8300000, guid: 21c2c9514f37b724ba12c2fa9ce6c8b8, type: 3}
+    name: strings
+  - oneShot: 1
+    audiosLo:
+    - {fileID: 8300000, guid: 7ee5c08e0a0c9bd4c85cab23e0fbe33b, type: 3}
+    audiosHi:
+    - {fileID: 8300000, guid: 7ee5c08e0a0c9bd4c85cab23e0fbe33b, type: 3}
+    name: kick
+  - oneShot: 1
+    audiosLo:
+    - {fileID: 8300000, guid: 00d14e10c686fe64da0f3344c1af5920, type: 3}
+    audiosHi:
+    - {fileID: 8300000, guid: 00d14e10c686fe64da0f3344c1af5920, type: 3}
+    name: snare
+  - oneShot: 1
+    audiosLo:
+    - {fileID: 8300000, guid: 5fb74285d4c4a9c4f979cf1c8695f7f7, type: 3}
+    audiosHi:
+    - {fileID: 8300000, guid: 5fb74285d4c4a9c4f979cf1c8695f7f7, type: 3}
+    name: hat

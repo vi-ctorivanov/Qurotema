@@ -11,7 +11,6 @@ using UnityEngine;
 public class CursorBehavior : MonoBehaviour {
 
 	[Header("References")]
-	public Sound soundSystem;
 	private Material mat;
 	private Material trail;
 
@@ -30,35 +29,42 @@ public class CursorBehavior : MonoBehaviour {
 	}
 
 	void Update () {
-		if (!Input.GetMouseButton(1)) {
-			GetComponent<MeshRenderer>().enabled = false;
-			GetComponent<TrailRenderer>().enabled = false;
-			makePassive();
+		if (Nox.Instance.introductionFinished) {
+			if (!Input.GetMouseButton(1)) {
+				GetComponent<MeshRenderer>().enabled = false;
+				GetComponent<TrailRenderer>().enabled = false;
+				makePassive();
+			} else {
+				GetComponent<MeshRenderer>().enabled = true;
+				GetComponent<TrailRenderer>().enabled = true;
+
+				if (Input.GetMouseButtonDown(0)) makeActive();
+				if (Input.GetMouseButtonUp(0)) makePassive();
+			}
 		} else {
-			GetComponent<MeshRenderer>().enabled = true;
-			GetComponent<TrailRenderer>().enabled = true;
-
-			if (Input.GetMouseButtonDown(0)) makeActive();
-			if (Input.GetMouseButtonUp(0)) makePassive();
-		}
-
-		//override in movement and flight modes
-		if (Input.GetMouseButton(2) || Nox.getPlayer().GetComponent<PlayerMove>().flying) {
 			GetComponent<MeshRenderer>().enabled = false;
 			GetComponent<TrailRenderer>().enabled = false;
 		}
 
-		//audio
-		if (Input.GetMouseButton(1) && !Nox.getPlayer().GetComponent<PlayerMove>().flying && !Input.GetMouseButton(2)) {
-			soundSystem.addEnergy(1f);
-		}
+		if (Nox.Instance.player) {
+			//override in movement and flight modes
+			if (Input.GetMouseButton(2) || Nox.Instance.player.GetComponent<PlayerMove>().flying) {
+				GetComponent<MeshRenderer>().enabled = false;
+				GetComponent<TrailRenderer>().enabled = false;
+			}
 
-		if (Input.GetMouseButtonDown(1) && !Nox.getPlayer().GetComponent<PlayerMove>().flying && !Input.GetMouseButton(2)) {
-			soundSystem.dynamicToggle("rhythms", true);
-		}
+			//audio
+			if (Input.GetMouseButton(1) && !Nox.Instance.player.GetComponent<PlayerMove>().flying && !Input.GetMouseButton(2)) {
+				Sound.Instance.addEnergy(1f);
+			}
 
-		if (Input.GetMouseButtonUp(1)) {
-			soundSystem.dynamicToggle("rhythms", false);
+			if (Input.GetMouseButtonDown(1) && !Nox.Instance.player.GetComponent<PlayerMove>().flying && !Input.GetMouseButton(2)) {
+				Sound.Instance.dynamicToggle("rhythms", true);
+			}
+
+			if (Input.GetMouseButtonUp(1)) {
+				Sound.Instance.dynamicToggle("rhythms", false);
+			}
 		}
 
 		Vector3 targetPosition = Camera.main.transform.position + (Camera.main.transform.forward * distanceFromCamera);

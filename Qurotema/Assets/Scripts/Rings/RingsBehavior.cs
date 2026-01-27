@@ -10,20 +10,11 @@ using UnityEngine;
 
 public class RingsBehavior : MonoBehaviour {
 
-	[Header("References")]
-	private Sound soundSystem;
-	private Story s;
-
 	[Header("Dynamics")]
 	public LayerMask mask;
 
 	[Header("States")]
 	public bool inArea = false;
-
-	void Start() {
-		soundSystem = GameObject.Find("Nox").GetComponent<Sound>();
-		s = GameObject.Find("Nox").GetComponent<Story>();
-	}
 
 	void Update() {
 		if (inArea && Input.GetMouseButton(1) && Input.GetMouseButtonDown(0)) {
@@ -32,9 +23,9 @@ public class RingsBehavior : MonoBehaviour {
 
 			if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~mask)) {
 
-				soundSystem.addEnergy(0.5f);
-				soundSystem.shootSound("rings", int.Parse(hit.collider.tag) - 1);
-				s.ringPlayed();
+				Sound.Instance.addEnergy(0.5f);
+				Sound.Instance.shootSound("rings", int.Parse(hit.collider.tag) - 1);
+				Nox.Instance.ringPlayed();
 			}
 		}
 	}

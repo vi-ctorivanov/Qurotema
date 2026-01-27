@@ -13,8 +13,10 @@ public class LocationData : MonoBehaviour {
 	}
 	
 	void Update () {
-		position = Nox.getPlayerPosition();
-		var text = (position.x * 20).ToString("F2") + "\n" + (position.y * 20).ToString("F2") + "\n" + (position.z * 20).ToString("F2");
-		data.text = text;
+		if (Nox.Instance.player) {
+			position = Nox.Instance.player.transform.position;
+			var text = (position.x * 20).ToString("F2") + "\n" + (position.y * 20).ToString("F2") + "\n" + (position.z * 20).ToString("F2");
+			data.text = text;
+		}
 	}
 }

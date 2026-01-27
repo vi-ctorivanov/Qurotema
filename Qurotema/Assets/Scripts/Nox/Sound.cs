@@ -13,8 +13,7 @@ using UnityEngine;
 public class Sound : MonoBehaviour {
 
 	[Header("References")]
-	public GameObject ambientSoundEmitter;
-	public GameObject dynamicSoundEmitter;
+	public AudioClips clips;
 
 	[Header("States")]
 	public float energy = 20f; //range: 0 - 100
@@ -38,34 +37,35 @@ public class Sound : MonoBehaviour {
 	private int bars = 0;
 	
 	[Header("Sounds")]
-
 	private DynamicClip[] dynamicClips;
 	private AmbientClip[] ambientClips;
 
-	[System.Serializable]
-	public class Ambient { public AudioClip audio; public string name; }
-	public Ambient[] ambiences;
-
-   	[System.Serializable]
-   	public class Sonic { public bool oneShot; public AudioClip[] audiosLo; public AudioClip[] audiosHi; public string name; }
-   	public Sonic[] dynamics;
+	//create static singleton to act as a globally accessible Sound
+	private static Sound instance;
+	public static Sound Instance {
+		//here we use the ?? operator, to return 'instance' if 'instance' does not equal null
+		//otherwise we assign instance to a new component and return that
+		get { return instance ?? (instance = new GameObject("Nox").AddComponent<Sound>()); }
+	}
 
 	void Start() {
+		clips = Resources.Load("AudioClips") as AudioClips;
+
 		//create sound clips from editor data
-		ambientClips = new AmbientClip[ambiences.Length];
+		ambientClips = new AmbientClip[clips.ambiences.Length];
 
 		for (int i = 0; i < ambientClips.Length; i++) {
-			GameObject temp = Instantiate(ambientSoundEmitter, Camera.main.transform);
+			GameObject temp = Instantiate(clips.ambientSoundEmitter, Camera.main.transform);
 			ambientClips[i] = temp.GetComponent<AmbientClip>();
-			ambientClips[i].init(ambiences[i].audio, ambiences[i].name);
+			ambientClips[i].init(clips.ambiences[i].audio);
 		}
 
-		dynamicClips = new DynamicClip[dynamics.Length];
+		dynamicClips = new DynamicClip[clips.dynamics.Length];
 
 		for (int i = 0; i < dynamicClips.Length; i++) {
-			GameObject temp = Instantiate(dynamicSoundEmitter, Camera.main.transform);
+			GameObject temp = Instantiate(clips.dynamicSoundEmitter, Camera.main.transform);
 			dynamicClips[i] = temp.GetComponent<DynamicClip>();
-			dynamicClips[i].init(dynamics[i].oneShot, dynamics[i].audiosLo, dynamics[i].audiosHi, dynamics[i].name);
+			dynamicClips[i].init(clips.dynamics[i].oneShot, clips.dynamics[i].audiosLo, clips.dynamics[i].audiosHi, clips.dynamics[i].name);
 		}
 
 		//kickstart loop clips
@@ -243,7 +243,7 @@ public class Sound : MonoBehaviour {
 
 	private AmbientClip findAmbient(string sound) {
 		for (int i = 0; i < ambientClips.Length; i++) {
-			if (ambientClips[i].clipName == sound) return ambientClips[i];
+			if (ambientClips[i].clip.name == sound) return ambientClips[i];
 		}
 
 		Debug.Log("couldn't find ambient sound");

@@ -8,15 +8,11 @@ public class AmbientClip : MonoBehaviour {
 	public AudioClip clip;
 	public AudioSource source;
 
-	[Header("Clip Definition")]
-	public string clipName;
-
 	[Header("Coroutines")]
 	private Coroutine mod;
 
-	public void init(AudioClip audio, string n) {
+	public void init(AudioClip audio) {
 		clip = audio;
-		clipName = n;
 
 		source.clip = clip;
 		source.volume = 0f;

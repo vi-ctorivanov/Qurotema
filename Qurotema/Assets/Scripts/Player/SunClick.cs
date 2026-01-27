@@ -9,15 +9,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.HighDefinition;
 
 public class SunClick : MonoBehaviour {
 
 	[Header("References")]
 	public AudioMixer mix;
 	public GameObject pp;
-	public Sound soundSystem;
 	public Camera camComponent;
 
 	[Header("Dynamics")]
@@ -44,7 +41,7 @@ public class SunClick : MonoBehaviour {
 
 			if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~mask)) {
 				if (hit.collider.tag == "Sun") {
-					soundSystem.addEnergy(5f);
+					Sound.Instance.addEnergy(5f);
 					if (transitioning != null) StopCoroutine(transitioning);
 					transitioning = StartCoroutine(SwitchWorlds());
 				}

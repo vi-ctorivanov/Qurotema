@@ -8,8 +8,6 @@ public class Pad : MonoBehaviour {
 	public GameObject lightObject;
 	public Transform platform;
 	private Material lightMat;
-	private Sound soundSystem;
-	private Story s;
 
 	[Header("Pad Definition")]
 	public string tone;
@@ -26,8 +24,6 @@ public class Pad : MonoBehaviour {
 	private Coroutine glowRoutine;
 
 	void Start() {
-		soundSystem = GameObject.Find("Nox").GetComponent<Sound>();
-		s = GameObject.Find("Nox").GetComponent<Story>();
 		lightMat = lightObject.GetComponent<Renderer>().material;
 		lightMat.SetColor("_Base_Color", new Color(1f, 1f, 1f, 0f));
 
@@ -45,11 +41,11 @@ public class Pad : MonoBehaviour {
 	}
 
 	void Update() {
-		if (soundSystem.beat == count && active && soundSystem.beatChange) {
+		if (Sound.Instance.beat == count && active && Sound.Instance.beatChange) {
 			if (glowRoutine != null) StopCoroutine(glowRoutine);
 			glowRoutine = StartCoroutine(Glow());
-			soundSystem.addEnergy(0.1f);
-			soundSystem.shootSound(tone);
+			Sound.Instance.addEnergy(0.1f);
+			Sound.Instance.shootSound(tone);
 		}
 	}
 
@@ -61,7 +57,7 @@ public class Pad : MonoBehaviour {
 			if (active) {
 				if (glowRoutine != null) StopCoroutine(glowRoutine);
 				lightMat.SetColor("_Base_Color", new Color(1f, 1f, 1f, minAlpha));
-				s.padPlayed();
+				Nox.Instance.padPlayed();
 			} else {
 				if (glowRoutine != null) StopCoroutine(glowRoutine);
 				lightMat.SetColor("_Base_Color", new Color(1f, 1f, 1f, 0f));

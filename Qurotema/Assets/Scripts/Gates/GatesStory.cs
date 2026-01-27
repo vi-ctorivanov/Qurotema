@@ -8,7 +8,6 @@ public class GatesStory : MonoBehaviour {
 	public GameObject Quro;
 	public GameObject Tema;
 	public GameObject sphere;
-	public Story s;
 
 	void Start() {
 		Quro.SetActive(false);
@@ -16,7 +15,7 @@ public class GatesStory : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter(Collider other) {
-		if (other.tag == "Player") s.endGame();
+		if (other.tag == "Player") Nox.Instance.endGame();
 	}
 
 	public void activateEnd() {

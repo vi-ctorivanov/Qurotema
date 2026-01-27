@@ -11,9 +11,6 @@ using UnityEngine;
 
 public class PlayOnLook : MonoBehaviour {
 
-	[Header("References")]
-	public Sound soundSystem;
-
 	[Header("Trackers")]
 	private bool lookingAtMonolith = false;
 	private bool lookingAtGates = false;
@@ -32,7 +29,7 @@ public class PlayOnLook : MonoBehaviour {
 				disableAllFlags();
 				lookingAtSun = true;
 
-				soundSystem.ambienceToggle("sun", true);
+				Sound.Instance.ambienceToggle("sun", true);
 			}
 
 			if (hit.collider.tag == "Monolith" && !lookingAtMonolith) {
@@ -40,47 +37,47 @@ public class PlayOnLook : MonoBehaviour {
 				lookingAtMonolith = true;
 				if (!firstLookMonolith) {
 					firstLookMonolith = true;
-					GameObject.Find("Nox").GetComponent<Story>().monolithDiscovered();
+					Nox.Instance.monolithDiscovered();
 				}
 
-				soundSystem.ambienceToggle("whispers", true);
+				Sound.Instance.ambienceToggle("whispers", true);
 			}
 
 			if (hit.collider.tag == "Gates" && !lookingAtGates) {
 				disableAllFlags();
 				lookingAtGates = true;
 
-				soundSystem.ambienceToggle("vocals", true);
-				soundSystem.ambienceToggle("whispers", true);
+				Sound.Instance.ambienceToggle("vocals", true);
+				Sound.Instance.ambienceToggle("whispers", true);
 			}
 
 			if (hit.collider.tag == "Rock" && !lookingAtRock) {
 				disableAllFlags();
 				lookingAtRock = true;
 
-				soundSystem.ambienceToggle("whispers", true);
+				Sound.Instance.ambienceToggle("whispers", true);
 			}
 
 			//off conditions
 			if (hit.collider.tag != "Gates" && lookingAtGates) {
 				lookingAtGates = false;
-				soundSystem.ambienceToggle("vocals", false);
-				if (hit.collider.tag != "Monolith" && hit.collider.tag != "Rock") soundSystem.ambienceToggle("whispers", false);
+				Sound.Instance.ambienceToggle("vocals", false);
+				if (hit.collider.tag != "Monolith" && hit.collider.tag != "Rock") Sound.Instance.ambienceToggle("whispers", false);
 			}
 
 			if (hit.collider.tag != "Monolith" && lookingAtMonolith) {
 				lookingAtMonolith = false;
-				if (hit.collider.tag != "Rock") soundSystem.ambienceToggle("whispers", false);
+				if (hit.collider.tag != "Rock") Sound.Instance.ambienceToggle("whispers", false);
 			}
 
 			if (hit.collider.tag != "Sun" && lookingAtSun) {
 				lookingAtSun = false;
-				soundSystem.ambienceToggle("sun", false);
+				Sound.Instance.ambienceToggle("sun", false);
 			}
 
 			if (hit.collider.tag != "Rock" && lookingAtRock) {
 				lookingAtRock = false;
-				if (hit.collider.tag != "Monolith") soundSystem.ambienceToggle("whispers", false);
+				if (hit.collider.tag != "Monolith") Sound.Instance.ambienceToggle("whispers", false);
 			}
 		}
 	}

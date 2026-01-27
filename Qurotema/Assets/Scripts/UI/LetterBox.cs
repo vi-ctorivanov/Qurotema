@@ -37,10 +37,12 @@ public class LetterBox : MonoBehaviour {
 		}
 
 		//override when flying
-		if (Nox.getPlayer().GetComponent<PlayerMove>().flying) {
-			if (letterBox != null) StopCoroutine(letterBox);
-			if (currentAspect != cam.aspect) currentAspect = Mathf.Lerp(currentAspect, cam.aspect, aspecRatioChangeSpeed / 4f * Time.deltaTime);
-			forceAspectRatio(currentAspect);
+		if (Nox.Instance.player) {
+			if (Nox.Instance.player.GetComponent<PlayerMove>().flying) {
+				if (letterBox != null) StopCoroutine(letterBox);
+				if (currentAspect != cam.aspect) currentAspect = Mathf.Lerp(currentAspect, cam.aspect, aspecRatioChangeSpeed / 4f * Time.deltaTime);
+				forceAspectRatio(currentAspect);
+			}
 		}
 	}
 

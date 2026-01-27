@@ -46,7 +46,7 @@ public class AnimateTerrain : MonoBehaviour {
 			mixers[i] += mixerSpeed * Time.deltaTime;
 			
 			float mix = Mathf.PerlinNoise(mixers[i], 0f);
-			mix = Nox.remap(mix, 0, 1, -1, 2);
+			mix = Nox.Instance.remap(mix, 0, 1, -1, 2);
 			mix = Mathf.Clamp(mix, 0, 1);
 
 			terrainMaterial.SetFloat("_Blend" + i, mix);

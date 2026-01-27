@@ -55,7 +55,7 @@ public class MouseLook : MonoBehaviour {
 
 	void Update() {
 		if (!ready) {
-			if (GameObject.Find("Nox").GetComponent<Story>().introductionFinished) ready = true;
+			if (Nox.Instance.introductionFinished) ready = true;
 		}
 
 		handleInput();
@@ -92,7 +92,7 @@ public class MouseLook : MonoBehaviour {
 	}
 
 	void follow() {
-		transform.position = Vector3.Lerp(transform.position, new Vector3(Nox.getPlayerPosition().x, Nox.getPlayerPosition().y + 0.5f, Nox.getPlayerPosition().z), followSpeed * Time.deltaTime);
+		transform.position = Vector3.Lerp(transform.position, new Vector3(Nox.Instance.player.transform.position.x, Nox.Instance.player.transform.position.y + 0.5f, Nox.Instance.player.transform.position.z), followSpeed * Time.deltaTime);
 
 		//move up if clipping
 		RaycastHit hit;
@@ -110,13 +110,13 @@ public class MouseLook : MonoBehaviour {
 		perlinZ += shakeSpeed * Time.deltaTime;
 
 		//remap to -1 to 1 and amplify according to shake quantity
-		float x = Nox.remap(Mathf.PerlinNoise(perlinX, 0), 0f, 1f, -1f, 1f) * shakeQuantity;
-		float y = Nox.remap(Mathf.PerlinNoise(perlinY, 0), 0f, 1f, -1f, 1f) * shakeQuantity;
-		float z = Nox.remap(Mathf.PerlinNoise(perlinZ, 0), 0f, 1f, -1f, 1f) * shakeQuantity;
+		float x = Nox.Instance.remap(Mathf.PerlinNoise(perlinX, 0), 0f, 1f, -1f, 1f) * shakeQuantity;
+		float y = Nox.Instance.remap(Mathf.PerlinNoise(perlinY, 0), 0f, 1f, -1f, 1f) * shakeQuantity;
+		float z = Nox.Instance.remap(Mathf.PerlinNoise(perlinZ, 0), 0f, 1f, -1f, 1f) * shakeQuantity;
 
 		//use player speed as subtraction to shake speed modifier
 		//the faster the player moves, the less camera shake there is
-		playerSpeed = Nox.getPlayer().GetComponent<PlayerMove>().getSpeed();
+		playerSpeed = Nox.Instance.player.GetComponent<PlayerMove>().getSpeed();
 
 		float shakeSpeedModifier = 1f - (playerSpeed * 0.005f);
 		if (shakeSpeedModifier < 0) shakeSpeedModifier = 0;

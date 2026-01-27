@@ -15,7 +15,6 @@ public class Stringer : MonoBehaviour {
 	public GameObject strings;
 	public GameObject stringObject;
 	public CursorBehavior cursor;
-	public Sound soundSystem;
 
 	[Header("Dynamics")]
 	public LayerMask mask;

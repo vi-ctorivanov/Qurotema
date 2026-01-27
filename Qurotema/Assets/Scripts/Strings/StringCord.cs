@@ -7,8 +7,6 @@ public class StringCord : MonoBehaviour {
 	[Header("References")]
 	public Vector3 start;
 	public Vector3 end;
-	private Sound soundSystem;
-	private Story s;
 	private BoxCollider col;
 	private Material mat;
 
@@ -26,10 +24,8 @@ public class StringCord : MonoBehaviour {
 	private Coroutine ringRoutine;
 
 	void Start () {
-		soundSystem = GameObject.Find("Nox").GetComponent<Sound>();
 		col = GetComponent<BoxCollider>();
 		mat = GetComponent<MeshRenderer>().material;
-		s = GameObject.Find("Nox").GetComponent<Story>();
 	}
 
 	public void init (Vector3 s, Vector3 e) {
@@ -46,18 +42,18 @@ public class StringCord : MonoBehaviour {
 			if (ringRoutine != null) StopCoroutine(ringRoutine);
 			ringRoutine = StartCoroutine(Ring());
 			StartCoroutine(Refresh());
-			soundSystem.addEnergy(0.2f);
+			Sound.Instance.addEnergy(0.2f);
 
-			if(frequency < 300f) soundSystem.shootSound("strings", 0);
-			else if (frequency < 400f) soundSystem.shootSound("strings", 1);
-			else if (frequency < 500f) soundSystem.shootSound("strings", 2);
-			else if (frequency < 600f) soundSystem.shootSound("strings", 3);
-			else if (frequency < 700f) soundSystem.shootSound("strings", 4);
-			else if (frequency < 800f) soundSystem.shootSound("strings", 5);
-			else if (frequency < 900f) soundSystem.shootSound("strings", 6);
-			else soundSystem.shootSound("strings", 7);
+			if(frequency < 300f) Sound.Instance.shootSound("strings", 0);
+			else if (frequency < 400f) Sound.Instance.shootSound("strings", 1);
+			else if (frequency < 500f) Sound.Instance.shootSound("strings", 2);
+			else if (frequency < 600f) Sound.Instance.shootSound("strings", 3);
+			else if (frequency < 700f) Sound.Instance.shootSound("strings", 4);
+			else if (frequency < 800f) Sound.Instance.shootSound("strings", 5);
+			else if (frequency < 900f) Sound.Instance.shootSound("strings", 6);
+			else Sound.Instance.shootSound("strings", 7);
 
-			s.stringPlayed();
+			Nox.Instance.stringPlayed();
 		}
 	}
 

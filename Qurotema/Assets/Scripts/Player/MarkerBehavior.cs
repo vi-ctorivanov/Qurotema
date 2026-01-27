@@ -11,7 +11,6 @@ using UnityEngine;
 public class MarkerBehavior : MonoBehaviour {
 
 	[Header("References")]
-	public Sound soundSystem;
 	public GameObject marker;
 
 	[Header("Dynamics")]
@@ -21,7 +20,7 @@ public class MarkerBehavior : MonoBehaviour {
 	private bool playing = false;
 
 	void Update() {
-		if (Input.GetMouseButton(2) && !Input.GetMouseButton(1) && !Nox.getPlayer().GetComponent<PlayerMove>().flying) {
+		if (Input.GetMouseButton(2) && !Input.GetMouseButton(1) && !Nox.Instance.player.GetComponent<PlayerMove>().flying) {
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -30,23 +29,23 @@ public class MarkerBehavior : MonoBehaviour {
 
 				if (!playing) {
 					playing = true;
-					soundSystem.dynamicToggle("droplets", true, 5f);
+					Sound.Instance.dynamicToggle("droplets", true, 5f);
 				}
 
 				if (Input.GetMouseButtonDown(0)) {
-					Nox.getPlayer().GetComponent<PlayerMove>().targetFOV = 20f;
-					Nox.getPlayer().GetComponent<PlayerMove>().verticalForce = 0f;
-					Nox.getPlayer().GetComponent<PlayerMove>().targetDirection = Vector2.zero;
-					Nox.getPlayer().transform.position = new Vector3(hit.point.x, hit.point.y + 2f, hit.point.z);
-					soundSystem.addEnergy(3f);
-					soundSystem.shootSound("whips");
+					Nox.Instance.player.GetComponent<PlayerMove>().targetFOV = 20f;
+					Nox.Instance.player.GetComponent<PlayerMove>().verticalForce = 0f;
+					Nox.Instance.player.GetComponent<PlayerMove>().targetDirection = Vector2.zero;
+					Nox.Instance.player.transform.position = new Vector3(hit.point.x, hit.point.y + 2f, hit.point.z);
+					Sound.Instance.addEnergy(3f);
+					Sound.Instance.shootSound("whips");
 				}
 			}
 		}
 
 		if (Input.GetMouseButtonUp(2)) {
 			playing = false;
-			soundSystem.dynamicToggle("droplets", false, 5f);
+			Sound.Instance.dynamicToggle("droplets", false, 5f);
 		}
 	}
 }

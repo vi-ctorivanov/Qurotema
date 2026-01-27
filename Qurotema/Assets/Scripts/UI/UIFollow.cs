@@ -35,62 +35,63 @@ public class UIFollow : MonoBehaviour {
 	}
 
 	void Update() {
-		
 		//modes
-		switch (triggerLayer) {
-			case "flight":
-				if (Nox.getPlayer().GetComponent<PlayerMove>().flying) {
-					if (fader != null) StopCoroutine(fader);
-					if (opacity != targetOpacity) opacity = Mathf.Lerp(opacity, targetOpacity, (fadeSpeed / 2f) * fadeDelay * Time.deltaTime);
-				} else {
-					if (fader != null) StopCoroutine(fader);
-					if (opacity != 0f) opacity = Mathf.Lerp(opacity, 0f, fadeSpeed / 2f * Time.deltaTime);
-				}
-				break;
+		if (Nox.Instance.player) {
+			switch (triggerLayer) {
+				case "flight":
+					if (Nox.Instance.player.GetComponent<PlayerMove>().flying) {
+						if (fader != null) StopCoroutine(fader);
+						if (opacity != targetOpacity) opacity = Mathf.Lerp(opacity, targetOpacity, (fadeSpeed / 2f) * fadeDelay * Time.deltaTime);
+					} else {
+						if (fader != null) StopCoroutine(fader);
+						if (opacity != 0f) opacity = Mathf.Lerp(opacity, 0f, fadeSpeed / 2f * Time.deltaTime);
+					}
+					break;
 
-			case "control":
-				if (Input.GetMouseButtonDown(1)) {
-					if (fader != null) StopCoroutine(fader);
-					fader = StartCoroutine(Fade(targetOpacity));
-				}
+				case "control":
+					if (Input.GetMouseButtonDown(1)) {
+						if (fader != null) StopCoroutine(fader);
+						fader = StartCoroutine(Fade(targetOpacity));
+					}
 
-				if (Input.GetMouseButtonUp(1)) {
-					if (fader != null) StopCoroutine(fader);
-					fader = StartCoroutine(Fade(0f));
-				}
+					if (Input.GetMouseButtonUp(1)) {
+						if (fader != null) StopCoroutine(fader);
+						fader = StartCoroutine(Fade(0f));
+					}
 
-				if (Input.GetMouseButtonDown(2)) {
-					if (fader != null) StopCoroutine(fader);
-					fader = StartCoroutine(Fade(0f));
-				}
+					if (Input.GetMouseButtonDown(2)) {
+						if (fader != null) StopCoroutine(fader);
+						fader = StartCoroutine(Fade(0f));
+					}
 
-				if (Nox.getPlayer().GetComponent<PlayerMove>().flying) {
-					if (fader != null) StopCoroutine(fader);
-					if (opacity != 0f) opacity = Mathf.Lerp(opacity, 0f, fadeSpeed / 2f * Time.deltaTime);
-				}
-				break;
+					if (Nox.Instance.player.GetComponent<PlayerMove>().flying) {
+						if (fader != null) StopCoroutine(fader);
+						if (opacity != 0f) opacity = Mathf.Lerp(opacity, 0f, fadeSpeed / 2f * Time.deltaTime);
+					}
+					break;
 
-			case "movement":
-				if (Input.GetMouseButtonDown(2)) {
-					if (fader != null) StopCoroutine(fader);
-					fader = StartCoroutine(Fade(targetOpacity));
-				}
+				case "movement":
+					if (Input.GetMouseButtonDown(2)) {
+						if (fader != null) StopCoroutine(fader);
+						fader = StartCoroutine(Fade(targetOpacity));
+					}
 
-				if (Input.GetMouseButtonUp(2)) {
-					if (fader != null) StopCoroutine(fader);
-					fader = StartCoroutine(Fade(0f));
-				}
+					if (Input.GetMouseButtonUp(2)) {
+						if (fader != null) StopCoroutine(fader);
+						fader = StartCoroutine(Fade(0f));
+					}
 
-				if (Input.GetMouseButtonDown(1)) {
-					if (fader != null) StopCoroutine(fader);
-					fader = StartCoroutine(Fade(0f));
-				}
+					if (Input.GetMouseButtonDown(1)) {
+						if (fader != null) StopCoroutine(fader);
+						fader = StartCoroutine(Fade(0f));
+					}
 
-				if (Nox.getPlayer().GetComponent<PlayerMove>().flying) {
-					if (fader != null) StopCoroutine(fader);
-					if (opacity != 0f) opacity = Mathf.Lerp(opacity, 0f, fadeSpeed / 2f * Time.deltaTime);
-				}
-				break;
+					if (Nox.Instance.player.GetComponent<PlayerMove>().flying) {
+						if (fader != null) StopCoroutine(fader);
+						if (opacity != 0f) opacity = Mathf.Lerp(opacity, 0f, fadeSpeed / 2f * Time.deltaTime);
+					}
+					break;
+			}
 		}
 
 		GetComponent<CanvasGroup>().alpha = opacity;
@@ -99,7 +100,7 @@ public class UIFollow : MonoBehaviour {
 	}
 
 	void follow() {
-		targetDistance = Nox.remap(playerScript.targetFOV, playerScript.defaultFOV, playerScript.fastFOV, distanceFromCamera, minDistanceFromCamera);
+		targetDistance = Nox.Instance.remap(playerScript.targetFOV, playerScript.defaultFOV, playerScript.fastFOV, distanceFromCamera, minDistanceFromCamera);
 		Vector3 targetPosition = Camera.main.transform.position + (Camera.main.transform.forward * targetDistance);
 
 		transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);

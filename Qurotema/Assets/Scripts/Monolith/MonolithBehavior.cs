@@ -6,9 +6,6 @@ using UnityEngine.UI;
 public class MonolithBehavior : MonoBehaviour {
 
 	[Header("References")]
-	private Story s;
-	private Nox n;
-	private Sound soundSystem;
 	public Renderer tear;
 	public Renderer eye;
 	public CanvasGroup canvas;
@@ -17,26 +14,20 @@ public class MonolithBehavior : MonoBehaviour {
 	[Header("States")]
 	public bool active = false;
 
-	void Start() {
-		s = GameObject.Find("Nox").GetComponent<Story>();
-		n = GameObject.Find("Nox").GetComponent<Nox>();
-		soundSystem = GameObject.Find("Nox").GetComponent<Sound>();
-	}
-
 	public void makeActive() {
 		active = true;
 
-		Sprite t = s.monolithTexts[s.monolithsRead];
-		s.monolithActivated();
+		Sprite t = Nox.Instance.content.monolithGraphics[Nox.Instance.monolithsRead];
+		Nox.Instance.monolithActivated();
 		image.material.SetTexture("_MainTex", t.texture);
 		image.sprite = t;
 
 		StartCoroutine(makeVisible());
 
-		soundSystem.addEnergy(5f);
-		soundSystem.shootSound("sparkles");
+		Sound.Instance.addEnergy(5f);
+		Sound.Instance.shootSound("sparkles");
 
-		n.terrain.flashFeedback();
+		Nox.Instance.terrain.flashFeedback();
 	}
 
 	IEnumerator makeVisible() {

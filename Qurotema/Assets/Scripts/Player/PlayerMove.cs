@@ -27,7 +27,6 @@ public class PlayerMove : MonoBehaviour {
 	public GameObject cam;
 	public Camera camComponent;
 	public Transform colliders;
-	public Sound soundSystem;
 	public AudioMixer mix;
 
 	[Header("Dynamics")]
@@ -73,7 +72,7 @@ public class PlayerMove : MonoBehaviour {
 	public float verticalForce = 0f;
 	public float bottomDistanceFromCenter = 1f;
 	public Vector2 targetDirection = new Vector2(0f, 0f);
-	private bool ready = false; //story
+	private bool ready = false;
 	
 	void Start() {
 		targetFOV = defaultFOV;
@@ -81,7 +80,7 @@ public class PlayerMove : MonoBehaviour {
 
 	void Update() {
 		if (!ready) {
-			if (GameObject.Find("Nox").GetComponent<Story>().introductionFinished) ready = true;
+			if (Nox.Instance.introductionFinished) ready = true;
 		} else {
 			handleKeys();
 			move();
@@ -107,7 +106,7 @@ public class PlayerMove : MonoBehaviour {
 				speedChangeStop *= flightControlMultiplier;
 				directionChangeSpeed *= flightControlMultiplier;
 
-				soundSystem.dynamicToggle("harmonies", true);
+				Sound.Instance.dynamicToggle("harmonies", true);
 			} else {
 				walkSpeed /= flightSpeedMultiplier;
 				sprintSpeed /= flightSpeedMultiplier;
@@ -117,22 +116,22 @@ public class PlayerMove : MonoBehaviour {
 				speedChangeStop /= flightControlMultiplier;
 				directionChangeSpeed /= flightControlMultiplier;
 
-				soundSystem.dynamicToggle("harmonies", false);
-				soundSystem.dynamicToggle("pads", false);
+				Sound.Instance.dynamicToggle("harmonies", false);
+				Sound.Instance.dynamicToggle("pads", false);
 			}
 		}
 	}
 
 	void handleSound() {
-		if (flying && sprinting) soundSystem.addEnergy(2.4f);
-		else if (flying && !sprinting) soundSystem.addEnergy(1.8f);
-		else if (sprinting) soundSystem.addEnergy(1.4f);
-		else if (getSpeed() > 1f) soundSystem.addEnergy(0.4f);
+		if (flying && sprinting) Sound.Instance.addEnergy(2.4f);
+		else if (flying && !sprinting) Sound.Instance.addEnergy(1.8f);
+		else if (sprinting) Sound.Instance.addEnergy(1.4f);
+		else if (getSpeed() > 1f) Sound.Instance.addEnergy(0.4f);
 
 		//need listener specifically for a single event
 		//repeated calls to dynamicToggle result in loss of functionality
-		if (Input.GetKeyDown(KeyCode.LeftShift)) soundSystem.dynamicToggle("percussion", true);
-		if (Input.GetKeyUp(KeyCode.LeftShift)) soundSystem.dynamicToggle("percussion", false);
+		if (Input.GetKeyDown(KeyCode.LeftShift)) Sound.Instance.dynamicToggle("percussion", true);
+		if (Input.GetKeyUp(KeyCode.LeftShift)) Sound.Instance.dynamicToggle("percussion", false);
 
 		if (jumping) {
 			float cut;
@@ -146,9 +145,11 @@ public class PlayerMove : MonoBehaviour {
 	}
 
 	void setFOV() {
-		if (GameObject.Find("Camera").GetComponent<SunClick>().transitioning == null) {
-	 		if (!flying) targetFOV = Mathf.Lerp(targetFOV, Nox.remap(targetSpeed, walkSpeed, sprintSpeed, defaultFOV, fastFOV), FOVease * Time.deltaTime);
-			camComponent.fieldOfView = targetFOV;
+		if (Camera.main.GetComponent<SunClick>()) {
+			if (Camera.main.GetComponent<SunClick>().transitioning == null) {
+				if (!flying) targetFOV = Mathf.Lerp(targetFOV, Nox.Instance.remap(targetSpeed, walkSpeed, sprintSpeed, defaultFOV, fastFOV), FOVease * Time.deltaTime);
+				camComponent.fieldOfView = targetFOV;
+			}
 		}
 	}
 
