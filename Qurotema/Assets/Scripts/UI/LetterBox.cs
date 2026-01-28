@@ -8,7 +8,7 @@ public class LetterBox : MonoBehaviour {
 	[Header("References")]
 	public RectTransform lowPanel;
 	public RectTransform highPanel;
-	public Camera cam;
+	private Camera cam;
 
 	[Header("Dynamics")]
 	public float aspectRatio = 2f;
@@ -21,27 +21,30 @@ public class LetterBox : MonoBehaviour {
 	private Coroutine letterBox;
 
 	void Start() {
+		cam = Camera.main.GetComponent<Camera>();
 		currentAspect = cam.aspect;
 		forceAspectRatio(cam.aspect);
 	}
 
 	void Update() {
-		if (Input.GetMouseButtonDown(1)) {
-			if (letterBox != null) StopCoroutine(letterBox);
-			letterBox = StartCoroutine(changeAspectRatio(aspectRatio));
-		}
-
-		if (Input.GetMouseButtonUp(1)) {
-			if (letterBox != null) StopCoroutine(letterBox);
-			letterBox = StartCoroutine(changeAspectRatio(cam.aspect));
-		}
-
-		//override when flying
-		if (Nox.Instance.player) {
-			if (Nox.Instance.player.GetComponent<PlayerMove>().flying) {
+		if (Nox.Instance.introductionFinished) {
+			if (Input.GetMouseButtonDown(1)) {
 				if (letterBox != null) StopCoroutine(letterBox);
-				if (currentAspect != cam.aspect) currentAspect = Mathf.Lerp(currentAspect, cam.aspect, aspecRatioChangeSpeed / 4f * Time.deltaTime);
-				forceAspectRatio(currentAspect);
+				letterBox = StartCoroutine(changeAspectRatio(aspectRatio));
+			}
+
+			if (Input.GetMouseButtonUp(1)) {
+				if (letterBox != null) StopCoroutine(letterBox);
+				letterBox = StartCoroutine(changeAspectRatio(cam.aspect));
+			}
+
+			//override when flying
+			if (Nox.Instance.player) {
+				if (Nox.Instance.player.GetComponent<PlayerMove>().flying) {
+					if (letterBox != null) StopCoroutine(letterBox);
+					if (currentAspect != cam.aspect) currentAspect = Mathf.Lerp(currentAspect, cam.aspect, aspecRatioChangeSpeed / 4f * Time.deltaTime);
+					forceAspectRatio(currentAspect);
+				}
 			}
 		}
 	}

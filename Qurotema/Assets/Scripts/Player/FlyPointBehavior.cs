@@ -18,26 +18,28 @@ public class FlyPointBehavior : MonoBehaviour {
 	private Vector3 targetPoint;
 
 	void Update() {
-		if (Nox.Instance.player.GetComponent<PlayerMove>().flying && Input.GetMouseButton(0)) {
-			RaycastHit hit;
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		if (Nox.Instance.player) {
+			if (Nox.Instance.player.GetComponent<PlayerMove>().flying && Input.GetMouseButton(0)) {
+				RaycastHit hit;
+				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-			if (Physics.Raycast(ray, out hit, Mathf.Infinity, mask)) targetPoint = hit.point;
+				if (Physics.Raycast(ray, out hit, Mathf.Infinity, mask)) targetPoint = hit.point;
 
-			Sound.Instance.addEnergy(1f);
-		}
+				Sound.Instance.addEnergy(1f);
+			}
 
-		if (Mathf.Abs(targetPoint.x - flyPoint.transform.position.x) > 1f && Mathf.Abs(targetPoint.z - flyPoint.transform.position.z) > 1f) {
-			flyPoint.transform.position = Vector3.Lerp(flyPoint.transform.position, targetPoint, 1f * Time.deltaTime);
-		}
+			if (Mathf.Abs(targetPoint.x - flyPoint.transform.position.x) > 1f && Mathf.Abs(targetPoint.z - flyPoint.transform.position.z) > 1f) {
+				flyPoint.transform.position = Vector3.Lerp(flyPoint.transform.position, targetPoint, 1f * Time.deltaTime);
+			}
 
-		//audio
-		if (Nox.Instance.player.GetComponent<PlayerMove>().flying && Input.GetMouseButtonDown(0)) {
-			Sound.Instance.dynamicToggle("pads", true);
-		}
+			//audio
+			if (Nox.Instance.player.GetComponent<PlayerMove>().flying && Input.GetMouseButtonDown(0)) {
+				Sound.Instance.dynamicToggle("pads", true);
+			}
 
-		if (Nox.Instance.player.GetComponent<PlayerMove>().flying && Input.GetMouseButtonUp(0)) {
-			Sound.Instance.dynamicToggle("pads", false);
+			if (Nox.Instance.player.GetComponent<PlayerMove>().flying && Input.GetMouseButtonUp(0)) {
+				Sound.Instance.dynamicToggle("pads", false);
+			}
 		}
 	}
 }

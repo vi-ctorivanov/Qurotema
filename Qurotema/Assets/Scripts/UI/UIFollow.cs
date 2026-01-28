@@ -100,12 +100,14 @@ public class UIFollow : MonoBehaviour {
 	}
 
 	void follow() {
-		targetDistance = Nox.Instance.remap(playerScript.targetFOV, playerScript.defaultFOV, playerScript.fastFOV, distanceFromCamera, minDistanceFromCamera);
-		Vector3 targetPosition = Camera.main.transform.position + (Camera.main.transform.forward * targetDistance);
+		if (Camera.main) {
+			targetDistance = Nox.Instance.remap(playerScript.targetFOV, playerScript.defaultFOV, playerScript.fastFOV, distanceFromCamera, minDistanceFromCamera);
+			Vector3 targetPosition = Camera.main.transform.position + (Camera.main.transform.forward * targetDistance);
 
-		transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
-		//transform.position = targetPosition;
-		transform.rotation = Camera.main.transform.rotation;
+			transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
+			//transform.position = targetPosition;
+			transform.rotation = Camera.main.transform.rotation;
+		}
 	}
 
 	IEnumerator Fade(float target) {

@@ -10,9 +10,6 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour {
 
-	[Header("References")]
-	public Camera cam;
-
 	[Header("Dynamics")]
 	public float mouseSensitivity = 130f;
 	public float clampAngle = 80f;
@@ -92,36 +89,40 @@ public class MouseLook : MonoBehaviour {
 	}
 
 	void follow() {
-		transform.position = Vector3.Lerp(transform.position, new Vector3(Nox.Instance.player.transform.position.x, Nox.Instance.player.transform.position.y + 0.5f, Nox.Instance.player.transform.position.z), followSpeed * Time.deltaTime);
+		if (Nox.Instance.player) {
+			transform.position = Vector3.Lerp(transform.position, new Vector3(Nox.Instance.player.transform.position.x, Nox.Instance.player.transform.position.y + 0.5f, Nox.Instance.player.transform.position.z), followSpeed * Time.deltaTime);
 
-		//move up if clipping
-		RaycastHit hit;
-		if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 10f, transform.position.z), -Vector3.up, out hit, 50f, mask)) {
-			if (hit.point.y > transform.position.y - 2f) {
-				transform.position = new Vector3(transform.position.x, hit.point.y + 2f, transform.position.z);
+			//move up if clipping
+			RaycastHit hit;
+			if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 10f, transform.position.z), -Vector3.up, out hit, 50f, mask)) {
+				if (hit.point.y > transform.position.y - 2f) {
+					transform.position = new Vector3(transform.position.x, hit.point.y + 2f, transform.position.z);
+				}
 			}
 		}
 	}
 
 	void shake() {
-		//increment perlin 'cursor'
-		perlinX += shakeSpeed * Time.deltaTime;
-		perlinY += shakeSpeed * Time.deltaTime;
-		perlinZ += shakeSpeed * Time.deltaTime;
+		if (Nox.Instance.player) {
+			//increment perlin 'cursor'
+			perlinX += shakeSpeed * Time.deltaTime;
+			perlinY += shakeSpeed * Time.deltaTime;
+			perlinZ += shakeSpeed * Time.deltaTime;
 
-		//remap to -1 to 1 and amplify according to shake quantity
-		float x = Nox.Instance.remap(Mathf.PerlinNoise(perlinX, 0), 0f, 1f, -1f, 1f) * shakeQuantity;
-		float y = Nox.Instance.remap(Mathf.PerlinNoise(perlinY, 0), 0f, 1f, -1f, 1f) * shakeQuantity;
-		float z = Nox.Instance.remap(Mathf.PerlinNoise(perlinZ, 0), 0f, 1f, -1f, 1f) * shakeQuantity;
+			//remap to -1 to 1 and amplify according to shake quantity
+			float x = Nox.Instance.remap(Mathf.PerlinNoise(perlinX, 0), 0f, 1f, -1f, 1f) * shakeQuantity;
+			float y = Nox.Instance.remap(Mathf.PerlinNoise(perlinY, 0), 0f, 1f, -1f, 1f) * shakeQuantity;
+			float z = Nox.Instance.remap(Mathf.PerlinNoise(perlinZ, 0), 0f, 1f, -1f, 1f) * shakeQuantity;
 
-		//use player speed as subtraction to shake speed modifier
-		//the faster the player moves, the less camera shake there is
-		playerSpeed = Nox.Instance.player.GetComponent<PlayerMove>().getSpeed();
+			//use player speed as subtraction to shake speed modifier
+			//the faster the player moves, the less camera shake there is
+			playerSpeed = Nox.Instance.player.GetComponent<PlayerMove>().getSpeed();
 
-		float shakeSpeedModifier = 1f - (playerSpeed * 0.005f);
-		if (shakeSpeedModifier < 0) shakeSpeedModifier = 0;
+			float shakeSpeedModifier = 1f - (playerSpeed * 0.005f);
+			if (shakeSpeedModifier < 0) shakeSpeedModifier = 0;
 
-		//apply perlin noise as rotation
-		transform.localEulerAngles = new Vector3(transform.localEulerAngles.x + (x * shakeSpeedModifier), transform.localEulerAngles.y + (y * shakeSpeedModifier), transform.localEulerAngles.z + (z * shakeSpeedModifier));
+			//apply perlin noise as rotation
+			transform.localEulerAngles = new Vector3(transform.localEulerAngles.x + (x * shakeSpeedModifier), transform.localEulerAngles.y + (y * shakeSpeedModifier), transform.localEulerAngles.z + (z * shakeSpeedModifier));
+		}
 	}
 }

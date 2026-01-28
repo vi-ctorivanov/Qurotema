@@ -25,7 +25,6 @@ public class PlayerMove : MonoBehaviour {
 
 	[Header("References")]
 	public GameObject cam;
-	public Camera camComponent;
 	public Transform colliders;
 	public AudioMixer mix;
 
@@ -145,10 +144,10 @@ public class PlayerMove : MonoBehaviour {
 	}
 
 	void setFOV() {
-		if (Camera.main.GetComponent<SunClick>()) {
+		if (Camera.main) {
 			if (Camera.main.GetComponent<SunClick>().transitioning == null) {
 				if (!flying) targetFOV = Mathf.Lerp(targetFOV, Nox.Instance.remap(targetSpeed, walkSpeed, sprintSpeed, defaultFOV, fastFOV), FOVease * Time.deltaTime);
-				camComponent.fieldOfView = targetFOV;
+				Camera.main.GetComponent<Camera>().fieldOfView = targetFOV;
 			}
 		}
 	}

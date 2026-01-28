@@ -15,7 +15,6 @@ public class SunClick : MonoBehaviour {
 	[Header("References")]
 	public AudioMixer mix;
 	public GameObject pp;
-	public Camera camComponent;
 
 	[Header("Dynamics")]
 	public LayerMask mask;
@@ -54,14 +53,14 @@ public class SunClick : MonoBehaviour {
 
 		float cut;
 		mix.GetFloat("LP_Freq", out cut);
-		FOV = camComponent.fieldOfView;
+		FOV = Camera.main.GetComponent<Camera>().fieldOfView;
 
 		while (FOV > 10f) {
 			yield return new WaitForSeconds(0.01f);
 			FOV = Mathf.Lerp(FOV, 9.9f, 10f * Time.deltaTime);
 			cut = Mathf.Lerp(cut, 3000f, 0.1f * Time.deltaTime);
 			mix.SetFloat("LP_Freq", cut);
-			camComponent.fieldOfView = FOV;
+			Camera.main.GetComponent<Camera>().fieldOfView = FOV;
 		}
 
 		//filter cutoff
@@ -75,7 +74,7 @@ public class SunClick : MonoBehaviour {
 		while (FOV < 65f) {
 			yield return new WaitForSeconds(0.01f);
 			FOV = Mathf.Lerp(FOV, 66f, 5f * Time.deltaTime);
-			camComponent.fieldOfView = FOV;
+			Camera.main.GetComponent<Camera>().fieldOfView = FOV;
 		}
 
 		routineEnded = true;

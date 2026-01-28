@@ -4,11 +4,13 @@ Holds and triggers different story beats (cutscenes and text) when tracked gamep
 Also holds some global variables and functions.
 
 */
-
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Playables;
+using TMPro;
 
 public class Nox : MonoBehaviour {
 
@@ -18,15 +20,20 @@ public class Nox : MonoBehaviour {
 	public AnimateTerrain terrain;
 	public GameObject gates;
 	public GameObject storyTextCanvas;
-	public Text storyText;
+	public TMP_Text storyText;
 	public GameObject sun;
 	public StoryContent content;
+	private PlayableDirector director;
+	private PlayableAsset introductionTimeline;
+	private PlayableAsset introductionEndTimeline;
+	private PlayableAsset monolithTimeline;
+	private PlayableAsset endTimeline;
 
 	[Header("States")]
 	public bool introductionFinished = false;
 
 	[Header("Text Animation")]
-	public float textTime = 3f;
+	public float textTime = 1f;
 	public float opacityChangeSpeed = 0.01f;
 
 	[Header("Trackers")]
@@ -40,11 +47,13 @@ public class Nox : MonoBehaviour {
 	private Coroutine routine;
 
 	//create static singleton to act as a globally accessible Nox
+	//if instance is null (it is at first), set it to this object so all references point to it
 	private static Nox instance;
 	public static Nox Instance {
-		//here we use the ?? operator, to return 'instance' if 'instance' does not equal null
-		//otherwise we assign instance to a new component and return that
-		get { return instance ?? (instance = new GameObject("Nox").AddComponent<Nox>()); }
+		get { 
+			if (instance == null) instance = GameObject.Find("Nox").GetComponent<Nox>();
+			return instance;
+		}
 	}
 
 	void Start() {
@@ -52,19 +61,26 @@ public class Nox : MonoBehaviour {
 		terrain = GetComponent<AnimateTerrain>();
 		gates = GameObject.Find("Gates");
 		storyTextCanvas = GameObject.Find("Story - Text");
-		storyText = GameObject.Find("Story - Text/Text").GetComponent<Text>();
+		storyText = GameObject.Find("Story - Text/Text").GetComponent<TMP_Text>();
 		sun = GameObject.Find("Sun");
 		content = Resources.Load("StoryContent") as StoryContent;
+		director = GetComponent<PlayableDirector>();
+		introductionTimeline = Resources.Load("Introduction") as PlayableAsset;
+		introductionEndTimeline = Resources.Load("Introduction End") as PlayableAsset;
+		monolithTimeline = Resources.Load("Monolith") as PlayableAsset;
+		endTimeline = Resources.Load("End") as PlayableAsset;
+
+		gates.SetActive(false);
 
 		if (!introductionFinished) {
-			//start intro cutscene
+			directorPlay(introductionTimeline);
 		} else {
 			//skip intro cutscene
 		}
 	}
 
 	public void monolithDiscovered() {
-		playText("unique", "monolith discovery");
+		playText("unique" + "_" + "monolith discovery");
 	}
 
 	public void monolithActivated() {
@@ -93,12 +109,12 @@ public class Nox : MonoBehaviour {
 	private void instrumentMasteryMessage() {
 		Sound.Instance.shootSound("sparkles");
 		terrain.flashFeedback();
-		playText("instrument", instrumentsDiscovered);
+		playText("instrument" + "_" + instrumentsDiscovered);
 		instrumentsDiscovered++;
 	}
 
 	private void checkForInstrumentDiscovery() {
-		if (stringsPlayed == 0 && ringsPlayed == 0 && padsPlayed == 0) playText("unique", "instrument discovery");
+		if (stringsPlayed == 0 && ringsPlayed == 0 && padsPlayed == 0) playText("unique" + "_" + "instrument discovery");
 	}
 
 	public void endGame() {
@@ -112,68 +128,98 @@ public class Nox : MonoBehaviour {
 		return (val - min1) / (max1 - min1) * (max2 - min2) + min2;
 	}
 
-	public void playText<T>(string category, T index) {
+	//text id is defined as category_index, as signal system only accepts methods with maximum 1 parameter,
+	//and we sometimes use integers and strings as the index
+	public void playText(string id) {
 		if (routine != null) StopCoroutine(routine);
-		routine = StartCoroutine(PlayText(category, index));
+		routine = StartCoroutine(PlayText(id));
 	}
 
-	IEnumerator PlayText<T>(string category, T index, bool playNext = false) {
+	IEnumerator PlayText(string id) {
+		//parse id
+		string category = id.Split("_")[0];
+		string i = id.Split("_")[1];
+		int index = -1;
+		int.TryParse(i, out index);
+
 		//select text
 		string text = "";
-		string[] textCategory;
 
 		switch (category) {
 			case "introduction":
+				text = content.introductionText[index];
 				break;
 
 			case "monolith":
+				text = content.monolithText[index];
 				break;
 
 			case "instrument":
+				text = content.instrumentText[index];
 				break;
 
 			case "end":
+				text = content.endText[index];
 				break;
 
 			case "unique":
+				text = content.uniqueText[index];
 				break;
 		}
 		
-		//execute unique actions
+		//write in
+		storyText.text = "";
 
-		//allow movement
-		//introductionFinished = true;
-
-		//make gates visible
-		//gates.SetActive(true);
-		//gates.GetComponent<GatesStory>().activateEnd();
-
-		//quit application
-		//Application.Quit();
-		
-		float opacity = 0f;
+		float opacity = 1f;
 		storyTextCanvas.GetComponent<CanvasGroup>().alpha = opacity;
+
+		int textTracker = 0;
+		storyText.maxVisibleCharacters = textTracker;
 		storyText.text = text;
 
-		while (opacity < 0.99f) {
-			yield return new WaitForSeconds(0.01f);
-			opacity += opacityChangeSpeed;
-			storyTextCanvas.GetComponent<CanvasGroup>().alpha = opacity;
+		while (storyText.maxVisibleCharacters < text.Length) {
+			yield return new WaitForSeconds(0.03f);
+			textTracker++;
+			storyText.maxVisibleCharacters = textTracker;
 		}
 
 		yield return new WaitForSeconds(textTime);
 
+		//fade out
 		while (opacity > 0.01f) {
 			yield return new WaitForSeconds(0.01f);
 			opacity -= opacityChangeSpeed;
 			storyTextCanvas.GetComponent<CanvasGroup>().alpha = opacity;
 		}
 
-		yield return new WaitForSeconds(2f);
+		storyTextCanvas.GetComponent<CanvasGroup>().alpha = 0f;
+	}
 
-		//play other texts in this set if they exist
-		if (playNext) {
-			//StartCoroutine(playText());
-		} else storyText.text = "";
+	private void directorPlay(PlayableAsset timeline) {
+		if (director) {
+			director.playableAsset = timeline;
+			director.RebuildGraph();
+			director.time = 0f;
+			director.Play();
+		}
+	}
+
+	//special cutscene actions, executed through signals
+	public void endIntroduction() {
+		directorPlay(introductionEndTimeline);
+	}
+
+	public void allowMovement() {
+		Debug.Log("yup");
+		introductionFinished = true;
+	}
+
+	public void makeGatesVisible() {
+		gates.SetActive(true);
+		gates.GetComponent<GatesStory>().activateEnd();
+	}
+
+	public void quitApplication() {
+		Application.Quit();
 	}
 }
