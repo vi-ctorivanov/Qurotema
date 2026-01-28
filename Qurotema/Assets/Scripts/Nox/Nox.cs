@@ -14,7 +14,6 @@ using TMPro;
 
 public class Nox : MonoBehaviour {
 
-	//can't be set in the inspector, because we use lazy instantiation
 	[Header("References")]
 	public GameObject player;
 	public AnimateTerrain terrain;
@@ -23,11 +22,11 @@ public class Nox : MonoBehaviour {
 	public TMP_Text storyText;
 	public GameObject sun;
 	public StoryContent content;
-	private PlayableDirector director;
-	private PlayableAsset introductionTimeline;
-	private PlayableAsset introductionEndTimeline;
-	private PlayableAsset monolithTimeline;
-	private PlayableAsset endTimeline;
+	public PlayableDirector director;
+	public PlayableAsset introductionTimeline;
+	public PlayableAsset introductionEndTimeline;
+	public PlayableAsset monolithTimeline;
+	public PlayableAsset endTimeline;
 
 	[Header("States")]
 	public bool introductionFinished = false;
@@ -57,25 +56,13 @@ public class Nox : MonoBehaviour {
 	}
 
 	void Start() {
-		player = GameObject.Find("Player");
-		terrain = GetComponent<AnimateTerrain>();
-		gates = GameObject.Find("Gates");
-		storyTextCanvas = GameObject.Find("Story - Text");
-		storyText = GameObject.Find("Story - Text/Text").GetComponent<TMP_Text>();
-		sun = GameObject.Find("Sun");
-		content = Resources.Load("StoryContent") as StoryContent;
-		director = GetComponent<PlayableDirector>();
-		introductionTimeline = Resources.Load("Introduction") as PlayableAsset;
-		introductionEndTimeline = Resources.Load("Introduction End") as PlayableAsset;
-		monolithTimeline = Resources.Load("Monolith") as PlayableAsset;
-		endTimeline = Resources.Load("End") as PlayableAsset;
-
 		gates.SetActive(false);
 
 		if (!introductionFinished) {
 			directorPlay(introductionTimeline);
 		} else {
 			//skip intro cutscene
+			directorPlay(introductionEndTimeline);
 		}
 	}
 
@@ -84,7 +71,7 @@ public class Nox : MonoBehaviour {
 	}
 
 	public void monolithActivated() {
-		if (monolithsRead == 0) //start monoliths cutscene
+		if (monolithsRead == 0) directorPlay(monolithTimeline);
 		monolithsRead++;
 	}
 
@@ -118,7 +105,7 @@ public class Nox : MonoBehaviour {
 	}
 
 	public void endGame() {
-		//start end cutscene
+		directorPlay(endTimeline);
 	}
 
 	public float remap(float val, float min1, float max1, float min2, float max2) {
@@ -210,7 +197,6 @@ public class Nox : MonoBehaviour {
 	}
 
 	public void allowMovement() {
-		Debug.Log("yup");
 		introductionFinished = true;
 	}
 

@@ -14,6 +14,8 @@ public class Sound : MonoBehaviour {
 
 	[Header("References")]
 	public AudioClips clips;
+	public GameObject ambientSoundEmitter;
+	public GameObject dynamicSoundEmitter;
 
 	[Header("States")]
 	public float energy = 20f; //range: 0 - 100
@@ -51,13 +53,11 @@ public class Sound : MonoBehaviour {
 	}
 
 	void Start() {
-		clips = Resources.Load("AudioClips") as AudioClips;
-
-		//create sound clips from editor data
+		//create sound clips
 		ambientClips = new AmbientClip[clips.ambiences.Length];
 
 		for (int i = 0; i < ambientClips.Length; i++) {
-			GameObject temp = Instantiate(clips.ambientSoundEmitter, Camera.main.transform);
+			GameObject temp = Instantiate(ambientSoundEmitter, Camera.main.transform);
 			ambientClips[i] = temp.GetComponent<AmbientClip>();
 			ambientClips[i].init(clips.ambiences[i].audio);
 		}
@@ -65,7 +65,7 @@ public class Sound : MonoBehaviour {
 		dynamicClips = new DynamicClip[clips.dynamics.Length];
 
 		for (int i = 0; i < dynamicClips.Length; i++) {
-			GameObject temp = Instantiate(clips.dynamicSoundEmitter, Camera.main.transform);
+			GameObject temp = Instantiate(dynamicSoundEmitter, Camera.main.transform);
 			dynamicClips[i] = temp.GetComponent<DynamicClip>();
 			dynamicClips[i].init(clips.dynamics[i].oneShot, clips.dynamics[i].audiosLo, clips.dynamics[i].audiosHi, clips.dynamics[i].name);
 		}

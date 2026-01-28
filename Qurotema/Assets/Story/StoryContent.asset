@@ -24,14 +24,16 @@ MonoBehaviour:
   monolithText:
   - 'We''ve got a feed of the characters. So this is the "i-tema" Sino spoke about.
 
-    Said
+    Supposedly
     there''s no way to speak it, it''s a writing-only language.'
-  - 'Actually, this looks like our set of translated text.\nIt say: ''The night will
-    flow when black time''s sand knows foreign touch.'
-  - 'The writing on the gates shares two of those words, "Quro" and "Tema". Those
-    are our only translations.
+  - 'Huh, this actually looks like our set of translated text.
 
-    The origin of our station''s name.'
+    It says: "The
+    night will flow when black time''s sand knows foreign touch."'
+  - 'The writing on the gates shares two of those words, "Quro" and "Tema".
+
+    Those
+    are our only translations. The origin of our station''s name.'
   - 'I''m not sure how Sino felt so confident understanding i-tema, it looks incomprehensible
     to me.
 
@@ -49,11 +51,13 @@ MonoBehaviour:
   - Qur..ema .. ...., .... ... ..... ... .... ves.el .. .. ... Vo.d.
   - Aban.on.ng ...... ... s..ry. ...
   uniqueText:
-  - 'Right there, in front of you is one of the Monoliths Dr. Sino spoke about. There
-    should be a sort of writing ''eminating'' from it.
+  - 'Right there, in front of you is one of the Monoliths Dr. Sino spoke about.
 
-    Do you see anything?
-    Maybe it needs to be activated.'
+    There
+    should be a sort of writing eminating from it.
+
+    Do you see anything? Maybe
+    it needs to be activated.'
   - What is that? Nothing like that was documented in Sino's notes.
   monolithGraphics:
   - {fileID: 21300000, guid: 009b7b77115537843b2ad2e8417e06cf, type: 3}

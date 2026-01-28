@@ -2,10 +2,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "AudioClips", menuName = "Scriptable Objects/AudioClips")]
 public class AudioClips : ScriptableObject {
-    public GameObject ambientSoundEmitter;
-	public GameObject dynamicSoundEmitter;
-
-    [System.Serializable]
+	[System.Serializable]
 	public class Ambient { public AudioClip audio; }
 	public Ambient[] ambiences;
 
