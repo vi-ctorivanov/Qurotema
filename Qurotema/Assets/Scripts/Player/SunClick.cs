@@ -1,6 +1,6 @@
 ﻿/*
 
-Manages sun click behavior, playing an animation and
+Manages sun and gates sphere click behavior, playing an animation and
 altering post processing and audio.
 
 */
@@ -15,6 +15,7 @@ public class SunClick : MonoBehaviour {
 	[Header("References")]
 	public AudioMixer mix;
 	public GameObject pp;
+	public OrbitingSun sun;
 
 	[Header("Dynamics")]
 	public LayerMask mask;
@@ -23,6 +24,7 @@ public class SunClick : MonoBehaviour {
 	private float FOV;
 	private bool routineEnded = false;
 	private bool negative = false;
+	private bool proxim = false;
 
 	[Header("Coroutine")]
 	public Coroutine transitioning;
@@ -41,11 +43,23 @@ public class SunClick : MonoBehaviour {
 			if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~mask)) {
 				if (hit.collider.tag == "Sun") {
 					Sound.Instance.addEnergy(5f);
+					toggleProxim();
+				}
+
+				if (hit.collider.tag == "GatesSphere" && sun.gates) {
+					Sound.Instance.addEnergy(5f);
 					if (transitioning != null) StopCoroutine(transitioning);
 					transitioning = StartCoroutine(SwitchWorlds());
 				}
 			}
 		}
+	}
+
+	private void toggleProxim() {
+		proxim = !proxim;
+		sun.proxim = proxim;
+
+		//do some audio stuff
 	}
 
 	IEnumerator SwitchWorlds() {

@@ -280,7 +280,6 @@ public class PlayerMove : MonoBehaviour {
 		foreach (Transform child in colliders) {
 			if (child.gameObject.GetComponent<Collider>().bounds.Contains(location)) return true;
 		}
-
 		return false;
 	}
 

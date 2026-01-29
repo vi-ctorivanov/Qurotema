@@ -18,14 +18,15 @@ public class Nox : MonoBehaviour {
 	public GameObject player;
 	public AnimateTerrain terrain;
 	public GameObject gates;
+	public GameObject gatesSphere;
 	public GameObject storyTextCanvas;
 	public TMP_Text storyText;
-	public GameObject sun;
 	public StoryContent content;
 	public PlayableDirector director;
 	public PlayableAsset introductionTimeline;
 	public PlayableAsset introductionEndTimeline;
 	public PlayableAsset monolithTimeline;
+	public PlayableAsset gatesTimeline;
 	public PlayableAsset endTimeline;
 
 	[Header("States")]
@@ -201,8 +202,16 @@ public class Nox : MonoBehaviour {
 	}
 
 	public void makeGatesVisible() {
-		gates.SetActive(true);
-		gates.GetComponent<GatesStory>().activateEnd();
+		directorPlay(gatesTimeline);
+		//gates.SetActive(true);
+		//quro.SetActive(false);
+		//tema.SetActive(false);
+
+		// quro.SetActive(true);
+		// tema.SetActive(true);
+		// Color c = new Color(1f, 1f, 1f, 1f);
+		// GetComponent<Renderer>().material.SetColor("_EmissiveColor", c * 60);
+		// sphere.GetComponent<Renderer>().material.SetColor("_EmissiveColor", c * 60);
 	}
 
 	public void quitApplication() {

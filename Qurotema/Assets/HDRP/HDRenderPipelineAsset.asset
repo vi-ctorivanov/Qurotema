@@ -104,7 +104,7 @@ MonoBehaviour:
       reflectionProbeTexLastValidCubeMip: 3
       reflectionProbeTexLastValidPlanarMip: 0
       reflectionProbeDecreaseResToFit: 1
-      skyReflectionSize: 2048
+      skyReflectionSize: 4096
       skyLightingOverrideLayerMask:
         serializedVersion: 2
         m_Bits: 0

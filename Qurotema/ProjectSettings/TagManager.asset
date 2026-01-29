@@ -24,6 +24,7 @@ TagManager:
   - 12
   - 13
   - MonolithEye
+  - GatesSphere
   layers:
   - Default
   - TransparentFX

@@ -171,11 +171,11 @@ Material:
     - _AlphaToMask: 0
     - _AlphaToMaskInspectorValue: 0
     - _Anisotropy: 0
-    - _Blend0: 0.41248757
-    - _Blend1: 0.14182183
-    - _Blend2: 0.111367494
+    - _Blend0: 1
+    - _Blend1: 0
+    - _Blend2: 0.6470802
     - _Blend3: 0
-    - _Blend4: 0.8450426
+    - _Blend4: 0.73647213
     - _BlendMode: 0
     - _Cell_Movement_Speed: 1
     - _CoatMask: 0
@@ -329,7 +329,7 @@ Material:
     - Base_Normal_UV: {r: 100, g: 100, b: 0, a: 0}
     - Dunes_Normal_UV: {r: 1000, g: 1000, b: 0, a: 0}
     - Emissive_UV: {r: 500, g: 500, b: 0, a: 0}
-    - Fly_Point: {r: 0, g: 1000.4695, b: 0, a: 0}
+    - Fly_Point: {r: 379.44183, g: 1000.0012, b: -1195.4517, a: 0}
     - Grains_Normal_UV: {r: 200, g: 200, b: 0, a: 0}
     - Roughness_UV: {r: 500, g: 500, b: 0, a: 0}
     - Smoothness_UV: {r: 1, g: 1, b: 0, a: 0}

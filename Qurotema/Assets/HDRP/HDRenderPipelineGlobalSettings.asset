@@ -52,7 +52,7 @@ MonoBehaviour:
   lensAttenuationMode: 0
   colorGradingSpace: 0
   m_ObsoleteDiffusionProfileSettingsList:
-  - {fileID: 11400000, guid: a025ed5910fed9c48a947444acb8bdec, type: 2}
+  - {fileID: 0}
   - {fileID: 11400000, guid: e988b949bc7de8a4db2a22e51d2135ca, type: 2}
   specularFade: 0
   rendererListCulling: 0
@@ -198,26 +198,7 @@ MonoBehaviour:
       - rid: 2198460892157575204
       - rid: 2198460892157575205
     m_RuntimeSettings:
-      m_List:
-      - rid: 2198460892157575169
-      - rid: 2198460892157575170
-      - rid: 2198460892157575172
-      - rid: 2198460892157575173
-      - rid: 2198460892157575174
-      - rid: 2198460892157575175
-      - rid: 2198460892157575176
-      - rid: 2198460892157575177
-      - rid: 2198460892157575180
-      - rid: 2198460892157575181
-      - rid: 2198460892157575182
-      - rid: 2198460892157575186
-      - rid: 2198460892157575188
-      - rid: 2198460892157575189
-      - rid: 2198460892157575194
-      - rid: 2198460892157575195
-      - rid: 2198460892157575196
-      - rid: 2198460892157575199
-      - rid: 2198460892157575200
+      m_List: []
   renderingLayerNames:
   - Light Layer default
   - Light Layer 1
@@ -734,7 +715,7 @@ MonoBehaviour:
         m_Camera:
           bitDatas:
             data1: 140666620608349
-            data2: 4575659395467116568
+            data2: 4575659398688342040
           lodBias: 1
           lodBiasMode: 0
           lodBiasQualityLevel: 0

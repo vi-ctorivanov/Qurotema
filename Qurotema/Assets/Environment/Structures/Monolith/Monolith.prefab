@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 3f3de13465fe6f84d96e1af49910e069, type: 2}
+  m_Material: {fileID: 2100000, guid: 93a86cea00c88dc4caea963503d41934, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -87,7 +87,6 @@ GameObject:
   - component: {fileID: 1805817695}
   - component: {fileID: 1805817694}
   - component: {fileID: 1805817693}
-  - component: {fileID: 1805817696}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -178,18 +177,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!225 &1805817696
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1805817691}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &1469432889618098539
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 1469432889618098539}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01414, y: -0, z: -0.01146}
+  m_LocalPosition: {x: -0.0145, y: -0, z: -0.01146}
   m_LocalScale: {x: 0.0100000035, y: 0.01, z: 0.010000002}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -232,7 +219,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1469432889618098539}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 2660993816306684009, guid: fc55ee19b5f89584e8950467bcf8016a, type: 3}
 --- !u!23 &8130184229755922684
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -258,7 +245,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3062158ed48490b45814cedc42a84e86, type: 2}
+  - {fileID: 2100000, guid: ccd7c8fa265acfd4e9376edd1e7a8fec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -301,7 +288,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.7
   m_Center: {x: -0.4, y: 0, z: 0}
 --- !u!114 &830789872149560695
 MonoBehaviour:
@@ -317,8 +304,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tear: {fileID: 5438756121929259227}
   eye: {fileID: 8130184229755922684}
-  canvas: {fileID: 1805817696}
+  tearGrow: {fileID: 3283327808254812919}
+  eyeObject: {fileID: 1469432889618098539}
   image: {fileID: 1601258651}
+  easeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   active: 0
 --- !u!1 &2678047652685826103
 GameObject:
@@ -346,12 +358,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2678047652685826103}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01757, y: 0, z: -0.0679}
-  m_LocalScale: {x: 0.005, y: 0.0005, z: 0.1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.0024299994, y: 0, z: -0.050004017}
+  m_LocalScale: {x: 0.005, y: 0.0005000001, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 135952927022415067}
+  m_Father: {fileID: 8744996131035674389}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1330891039651007953
 MeshFilter:
@@ -386,7 +398,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3062158ed48490b45814cedc42a84e86, type: 2}
+  - {fileID: 2100000, guid: ccd7c8fa265acfd4e9376edd1e7a8fec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -410,6 +422,38 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3283327808254812919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8744996131035674389}
+  m_Layer: 0
+  m_Name: Tear Grow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8744996131035674389
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3283327808254812919}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.02, y: -0, z: -0.017896}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4004593086479247275}
+  m_Father: {fileID: 135952927022415067}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4015057677813976776
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,7 +487,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7286916542865083664}
-  - {fileID: 4004593086479247275}
+  - {fileID: 8744996131035674389}
   - {fileID: 1805817692}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -89.98, y: -133.01, z: 0}
@@ -454,7 +498,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4015057677813976776}
-  m_Mesh: {fileID: 5832796430217659505, guid: 1c7d1376dfd211148b98fe8846bbea72, type: 3}
+  m_Mesh: {fileID: 5832796430217659505, guid: 4d48e862010b577449b1ed6ad00015af, type: 3}
 --- !u!23 &3424019550631148052
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -523,5 +567,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.040064186, y: 0.04009728, z: 0.108747795}
-  m_Center: {x: 0.0000000019346933, y: 0.0000000027432978, z: -0.049925324}
+  m_Size: {x: 0.041, y: 0.041, z: 0.11}
+  m_Center: {x: 0, y: 0, z: -0.05}
