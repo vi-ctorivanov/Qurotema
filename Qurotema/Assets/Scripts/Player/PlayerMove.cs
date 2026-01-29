@@ -27,6 +27,7 @@ public class PlayerMove : MonoBehaviour {
 	public GameObject cam;
 	public Transform colliders;
 	public AudioMixer mix;
+	public Material ribbonsBottom;
 
 	[Header("Dynamics")]
 	public LayerMask mask;
@@ -87,10 +88,14 @@ public class PlayerMove : MonoBehaviour {
 
 		setFOV();
 		handleSound();
+
+		//set ribbon visibility
+		if (flying) ribbonsBottom.SetFloat("_Alpha", Mathf.Lerp(ribbonsBottom.GetFloat("_Alpha"), 1f, 1f * Time.deltaTime));
+		else ribbonsBottom.SetFloat("_Alpha", Mathf.Lerp(ribbonsBottom.GetFloat("_Alpha"), 0f, 1f * Time.deltaTime));
 	}
 
 	void handleKeys() {
-		if (Input.GetKeyDown("escape")) Application.Quit();
+		if (Input.GetKeyUp("escape")) StartCoroutine(quit());
 
 		//switch to flying mode only if no mouse buttons are pressed
 		if (Input.GetKeyDown(KeyCode.LeftAlt) && !Input.GetMouseButton(0) && !Input.GetMouseButton(1) && !Input.GetMouseButton(2)) {
@@ -186,8 +191,13 @@ public class PlayerMove : MonoBehaviour {
 			//fly
 			targetFOV = Mathf.Lerp(targetFOV, flyingFOV, FOVease * Time.deltaTime);
 
-			if (transform.position.y < flyHeight - 0.001f) newLoc = new Vector3(newLoc.x, Mathf.Lerp(transform.position.y, flyHeight, flyEase * Time.deltaTime), newLoc.z);
-			else newLoc = new Vector3(newLoc.x, flyHeight, newLoc.z);
+			float floor = 0f;
+			RaycastHit hit;
+			if (Physics.Raycast(transform.position, -Vector3.up, out hit, 300f, mask)) {
+				floor = hit.point.y;
+			}
+
+			newLoc = new Vector3(newLoc.x, Mathf.Lerp(transform.position.y, floor + flyHeight, flyEase * Time.deltaTime), newLoc.z);
 		}
 
 		//apply movement
@@ -298,5 +308,15 @@ public class PlayerMove : MonoBehaviour {
 
 	public float getSpeed() {
 		return targetSpeed / sprintSpeed;
+	}
+
+	IEnumerator quit() {
+		Nox.Instance.playText("unique_2");
+
+		//5 seconds
+		for (int i = 0; i < 500; i++) {
+			yield return new WaitForSeconds(0.01f);
+			if (Input.GetKeyDown("escape")) Application.Quit();
+		}
 	}
 }

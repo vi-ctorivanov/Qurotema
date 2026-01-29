@@ -59,6 +59,7 @@ MonoBehaviour:
     Do you see anything? Maybe
     it needs to be activated.'
   - What is that? Nothing like that was documented in Sino's notes.
+  - Press escape again to quit.
   monolithGraphics:
   - {fileID: 21300000, guid: 009b7b77115537843b2ad2e8417e06cf, type: 3}
   - {fileID: 21300000, guid: b214fc2f37b8a9b45ab39cb0e4b693a7, type: 3}
