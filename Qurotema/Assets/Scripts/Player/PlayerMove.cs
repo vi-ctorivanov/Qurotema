@@ -31,6 +31,7 @@ public class PlayerMove : MonoBehaviour {
 
 	[Header("Dynamics")]
 	public LayerMask mask;
+	public float collisionPushback = 0.1f;
 
 	[Header("Speed")]
 	public float walkSpeed = 20f;
@@ -201,8 +202,16 @@ public class PlayerMove : MonoBehaviour {
 		}
 
 		//apply movement
-		if (isColliding(newLoc)) transform.position = new Vector3(transform.position.x, newLoc.y, transform.position.z); //prevent collisions with select objects
-		else transform.position = newLoc;
+		GameObject collision = isColliding(newLoc);
+		if (collision != null) {
+			//prevent collisions with select objects by moving player away from them
+			//it's very rudamentary, but our collisions are simple
+			transform.position = new Vector3(transform.position.x, newLoc.y, transform.position.z);
+			//Vector3 nearest = collision.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+			Vector3 colliderToPlayer = Vector3.Normalize(collision.transform.position - transform.position);
+			transform.position = new Vector3(transform.position.x - colliderToPlayer.x * collisionPushback, newLoc.y, transform.position.z - colliderToPlayer.z * collisionPushback);
+
+		} else transform.position = newLoc;
 
 		//limit player to bounds
 		if (transform.position.z > 2900f) transform.position = new Vector3(transform.position.x, transform.position.y, 2899f);
@@ -286,11 +295,11 @@ public class PlayerMove : MonoBehaviour {
 		return location.y;
 	}
 
-	bool isColliding(Vector3 location) {
+	GameObject isColliding(Vector3 location) {
 		foreach (Transform child in colliders) {
-			if (child.gameObject.GetComponent<Collider>().bounds.Contains(location)) return true;
+			if (child.gameObject.GetComponent<Collider>().bounds.Contains(location)) return child.gameObject;
 		}
-		return false;
+		return null;
 	}
 
 	bool isGrounded() {

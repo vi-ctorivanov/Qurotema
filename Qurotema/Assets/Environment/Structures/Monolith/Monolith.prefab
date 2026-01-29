@@ -307,30 +307,6 @@ MonoBehaviour:
   tearGrow: {fileID: 3283327808254812919}
   eyeObject: {fileID: 1469432889618098539}
   image: {fileID: 1601258651}
-  easeCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   active: 0
 --- !u!1 &2678047652685826103
 GameObject:
@@ -567,5 +543,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.041, y: 0.041, z: 0.11}
+  m_Size: {x: 0.042, y: 0.042, z: 0.11}
   m_Center: {x: 0, y: 0, z: -0.05}

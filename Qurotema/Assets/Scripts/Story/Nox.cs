@@ -68,7 +68,7 @@ public class Nox : MonoBehaviour {
 	}
 
 	public void monolithDiscovered() {
-		playText("unique" + "_" + "monolith discovery");
+		playText("unique_0");
 	}
 
 	public void monolithActivated() {
@@ -102,7 +102,7 @@ public class Nox : MonoBehaviour {
 	}
 
 	private void checkForInstrumentDiscovery() {
-		if (stringsPlayed == 0 && ringsPlayed == 0 && padsPlayed == 0) playText("unique" + "_" + "instrument discovery");
+		if (stringsPlayed == 0 && ringsPlayed == 0 && padsPlayed == 0) playText("unique_1");
 	}
 
 	public void endGame() {
