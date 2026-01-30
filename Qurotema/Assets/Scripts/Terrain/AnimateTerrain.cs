@@ -41,7 +41,7 @@ public class AnimateTerrain : MonoBehaviour {
 		terrainMaterial.SetVector("Fly_Point", flyPoint.position);
 
 		//update mixers
-		//remap mixers from range to -1 to 2, and then clamp 0-1 so that mixers are typically in either extreme
+		//remap mixers range to -1 to 2, and then clamp 0-1 so that mixers are typically in either extreme
 		for (int i = 0; i < mixers.Length; i++) {
 			mixers[i] += mixerSpeed * Time.deltaTime;
 			

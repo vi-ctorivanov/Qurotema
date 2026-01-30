@@ -17,9 +17,13 @@ public class Nox : MonoBehaviour {
 	[Header("References")]
 	public GameObject player;
 	public AnimateTerrain terrain;
+	public GameObject sun;
 	public GameObject gates;
 	public GameObject gatesSphere;
+	public GameObject gatesCollider;
+	public GameObject pillar;
 	public GameObject storyTextCanvas;
+	public GameObject fadeOut;
 	public TMP_Text storyText;
 	public StoryContent content;
 	public PlayableDirector director;
@@ -29,12 +33,16 @@ public class Nox : MonoBehaviour {
 	public PlayableAsset gatesTimeline;
 	public PlayableAsset endTimeline;
 
+	[Header("Dynamics")]
+	private Vector3 targetPillarSize;
+
 	[Header("States")]
 	public bool introductionFinished = false;
 
 	[Header("Text Animation")]
 	public float textTime = 1f;
 	public float opacityChangeSpeed = 0.01f;
+	public float textLetterTime = 0.03f;
 
 	[Header("Trackers")]
 	public int monolithsRead = 0;
@@ -50,7 +58,7 @@ public class Nox : MonoBehaviour {
 	//if instance is null (it is at first), set it to this object so all references point to it
 	private static Nox instance;
 	public static Nox Instance {
-		get { 
+		get {
 			if (instance == null) instance = GameObject.Find("Nox").GetComponent<Nox>();
 			return instance;
 		}
@@ -58,6 +66,9 @@ public class Nox : MonoBehaviour {
 
 	void Start() {
 		gates.SetActive(false);
+		gatesCollider.SetActive(false);
+		fadeOut.SetActive(false);
+		targetPillarSize = pillar.transform.localScale;
 
 		if (!introductionFinished) {
 			directorPlay(introductionTimeline);
@@ -65,6 +76,10 @@ public class Nox : MonoBehaviour {
 			//skip intro cutscene
 			directorPlay(introductionEndTimeline);
 		}
+	}
+
+	void Update() {
+		pillar.transform.localScale = Vector3.Lerp(pillar.transform.localScale, targetPillarSize, 0.8f * Time.deltaTime);
 	}
 
 	public void monolithDiscovered() {
@@ -79,13 +94,13 @@ public class Nox : MonoBehaviour {
 	public void stringPlayed() {
 		checkForInstrumentDiscovery();
 		stringsPlayed++;
-		if (stringsPlayed == 50) instrumentMasteryMessage();
+		if (stringsPlayed == 30) instrumentMasteryMessage();
 	}
 
 	public void ringPlayed() {
 		checkForInstrumentDiscovery();
 		ringsPlayed++;
-		if (ringsPlayed == 40) instrumentMasteryMessage();
+		if (ringsPlayed == 30) instrumentMasteryMessage();
 	}
 
 	public void padPlayed() {
@@ -98,6 +113,11 @@ public class Nox : MonoBehaviour {
 		Sound.Instance.shootSound("sparkles");
 		terrain.flashFeedback();
 		playText("instrument" + "_" + instrumentsDiscovered);
+		targetPillarSize = new Vector3(pillar.transform.localScale.x * 0.5f, pillar.transform.localScale.y, pillar.transform.localScale.z * 0.5f);
+		if (instrumentsDiscovered >= 2) {
+			targetPillarSize = new Vector3(0f, pillar.transform.localScale.y, 0f);
+			makeGatesVisible();
+		}
 		instrumentsDiscovered++;
 	}
 
@@ -166,7 +186,7 @@ public class Nox : MonoBehaviour {
 		storyText.text = text;
 
 		while (storyText.maxVisibleCharacters < text.Length) {
-			yield return new WaitForSeconds(0.03f);
+			yield return new WaitForSeconds(textLetterTime);
 			textTracker++;
 			storyText.maxVisibleCharacters = textTracker;
 		}
@@ -192,6 +212,11 @@ public class Nox : MonoBehaviour {
 		}
 	}
 
+	public void makeGatesVisible() {
+		directorPlay(gatesTimeline);
+		sun.GetComponent<OrbitingSun>().gates = true;
+	}
+
 	//special cutscene actions, executed through signals
 	public void endIntroduction() {
 		directorPlay(introductionEndTimeline);
@@ -199,19 +224,6 @@ public class Nox : MonoBehaviour {
 
 	public void allowMovement() {
 		introductionFinished = true;
-	}
-
-	public void makeGatesVisible() {
-		directorPlay(gatesTimeline);
-		//gates.SetActive(true);
-		//quro.SetActive(false);
-		//tema.SetActive(false);
-
-		// quro.SetActive(true);
-		// tema.SetActive(true);
-		// Color c = new Color(1f, 1f, 1f, 1f);
-		// GetComponent<Renderer>().material.SetColor("_EmissiveColor", c * 60);
-		// sphere.GetComponent<Renderer>().material.SetColor("_EmissiveColor", c * 60);
 	}
 
 	public void quitApplication() {
