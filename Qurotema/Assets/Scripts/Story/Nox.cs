@@ -87,17 +87,21 @@ public class Nox : MonoBehaviour {
 	}
 
 	public void monolithActivated() {
+		player.GetComponent<PlayerMove>().flashFeedback();
+		terrain.addFeedback(3.0f);
 		if (monolithsRead == 0) directorPlay(monolithTimeline);
 		monolithsRead++;
 	}
 
 	public void stringPlayed() {
+		terrain.addFeedback(2.0f);
 		checkForInstrumentDiscovery();
 		stringsPlayed++;
 		if (stringsPlayed == 30) instrumentMasteryMessage();
 	}
 
 	public void ringPlayed() {
+		terrain.addFeedback(2.0f);
 		checkForInstrumentDiscovery();
 		ringsPlayed++;
 		if (ringsPlayed == 30) instrumentMasteryMessage();
@@ -111,7 +115,7 @@ public class Nox : MonoBehaviour {
 
 	private void instrumentMasteryMessage() {
 		Sound.Instance.shootSound("sparkles");
-		terrain.flashFeedback();
+		terrain.addFeedback(3.0f);
 		playText("instrument" + "_" + instrumentsDiscovered);
 		targetPillarSize = new Vector3(pillar.transform.localScale.x * 0.5f, pillar.transform.localScale.y, pillar.transform.localScale.z * 0.5f);
 		if (instrumentsDiscovered >= 2) {

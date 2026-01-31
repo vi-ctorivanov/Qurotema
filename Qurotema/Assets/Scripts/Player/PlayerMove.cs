@@ -32,6 +32,7 @@ public class PlayerMove : MonoBehaviour {
 	[Header("Dynamics")]
 	public LayerMask mask;
 	public float collisionPushback = 0.1f;
+	public AnimationCurve flashFOVCurve;
 
 	[Header("Speed")]
 	public float walkSpeed = 20f;
@@ -61,7 +62,7 @@ public class PlayerMove : MonoBehaviour {
 	public float defaultFOV = 65f;
 	public float fastFOV = 90f;
 	public float flyingFOV = 100f;
-	public float FOVease = 2f;
+	public float easeFOV = 2f;
 
 	[Header("States")]
 	public bool flying = false;
@@ -152,7 +153,7 @@ public class PlayerMove : MonoBehaviour {
 	void setFOV() {
 		if (Camera.main) {
 			if (Camera.main.GetComponent<SunClick>().transitioning == null) {
-				if (!flying) targetFOV = Mathf.Lerp(targetFOV, Nox.Instance.remap(targetSpeed, walkSpeed, sprintSpeed, defaultFOV, fastFOV), FOVease * Time.deltaTime);
+				if (!flying) targetFOV = Mathf.Lerp(targetFOV, Nox.Instance.remap(targetSpeed, walkSpeed, sprintSpeed, defaultFOV, fastFOV), easeFOV * Time.deltaTime);
 				Camera.main.GetComponent<Camera>().fieldOfView = targetFOV;
 			}
 		}
@@ -190,7 +191,7 @@ public class PlayerMove : MonoBehaviour {
 			}
 		} else {
 			//fly
-			targetFOV = Mathf.Lerp(targetFOV, flyingFOV, FOVease * Time.deltaTime);
+			targetFOV = Mathf.Lerp(targetFOV, flyingFOV, easeFOV * Time.deltaTime);
 
 			float floor = 0f;
 			RaycastHit hit;
@@ -326,6 +327,18 @@ public class PlayerMove : MonoBehaviour {
 		for (int i = 0; i < 500; i++) {
 			yield return new WaitForSeconds(0.01f);
 			if (Input.GetKeyDown("escape")) Application.Quit();
+		}
+	}
+
+	public void flashFeedback() {
+		StartCoroutine(flashFOV());
+	}
+
+	IEnumerator flashFOV() {
+		float current = targetFOV;
+		for (float i = 0f; i < 1f; i+=0.005f) {
+			yield return new WaitForSeconds(0.01f);
+			targetFOV = current + flashFOVCurve.Evaluate(i) * 5f;
 		}
 	}
 }

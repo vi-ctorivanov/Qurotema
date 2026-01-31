@@ -19,13 +19,12 @@ public class AnimateTerrain : MonoBehaviour {
 	[Header("Dynamics")]
 	public float mixerSpeed = 0.1f;
 	public float ribbonEaseSpeed = 0.1f;
-	public float ribbonFeedbackAmount = 3.0f;
+	public float feedbackMultiplier = 20f;
 
 	[Header("States")]
 	private float[] mixers = new float[5];
-
-	[Header("Coroutines")]
-	private Coroutine feedbackCoroutine;
+	public float feedback = 1f;
+	private float timeOffset = 0f;
 
 	void Start() {
 		for (int i = 0; i < mixers.Length; i++) {
@@ -33,7 +32,7 @@ public class AnimateTerrain : MonoBehaviour {
 		}
 	}
 
-    void Update() {
+	void Update() {
 		//move flypoint upwards for fading effect
 		if (flyPoint.position.y < 1000) flyPoint.Translate((Vector3.up * 50) * Time.deltaTime);
 
@@ -51,25 +50,15 @@ public class AnimateTerrain : MonoBehaviour {
 
 			terrainMaterial.SetFloat("_Blend" + i, mix);
 		}
-    }
 
-    public void flashFeedback() {
-		if (feedbackCoroutine != null) StopCoroutine(feedbackCoroutine);
-		feedbackCoroutine = StartCoroutine(Feedback());
+		//manage sky feedback energy - update sky distortion offset on CPU because we can't control time in shader without jumping around
+		feedback = Mathf.Lerp(feedback, 0f, ribbonEaseSpeed * Time.deltaTime);
+		timeOffset += Time.deltaTime * (feedback * feedbackMultiplier);
+		ribbonLowMaterial.SetFloat("_TimeOffset", timeOffset);
+		ribbonHighMaterial.SetFloat("_TimeOffset", timeOffset);
 	}
 
-	IEnumerator Feedback() {
-		//set initial state instead of easing for added impact
-		float UV = ribbonFeedbackAmount;
-		ribbonLowMaterial.SetVector("_DistortionUV", new Vector2(UV, 1f));
-
-		bool done = false;
-		while (!done) {
-			yield return new WaitForSeconds(0.01f);
-			UV = Mathf.Lerp(UV, 1f, ribbonEaseSpeed * Time.deltaTime);
-			ribbonLowMaterial.SetVector("_DistortionUV", new Vector2(UV, 1f));
-			ribbonHighMaterial.SetVector("_DistortionUV", new Vector2(UV, 1f));
-			if (UV < 1.01f) done = true;
-		}
+	public void addFeedback(float amount) {
+		feedback += amount;
 	}
 }

@@ -44,7 +44,6 @@ public class MonolithBehavior : MonoBehaviour {
 		StartCoroutine(makeVisible());
 		Sound.Instance.addEnergy(5f);
 		Sound.Instance.shootSound("sparkles");
-		Nox.Instance.terrain.flashFeedback();
 	}
 
 	public IEnumerator makeVisible() {

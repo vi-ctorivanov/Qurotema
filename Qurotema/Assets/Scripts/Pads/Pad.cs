@@ -46,6 +46,7 @@ public class Pad : MonoBehaviour {
 			glowRoutine = StartCoroutine(Glow());
 			Sound.Instance.addEnergy(0.1f);
 			Sound.Instance.shootSound(tone);
+			Nox.Instance.terrain.addFeedback(1.0f);
 		}
 	}
 
