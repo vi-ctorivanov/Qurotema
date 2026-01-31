@@ -983,10 +983,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScript: {fileID: 1450290461}
+  look: {fileID: 1297650285}
   distanceFromCamera: 1.9
   followSpeed: 40
   fadeDelay: 0.2
   triggerLayer: movement
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!225 &72965135
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2646,10 +2650,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScript: {fileID: 1450290461}
+  look: {fileID: 1297650285}
   distanceFromCamera: 2.5
-  followSpeed: 40
+  followSpeed: 0.7
   fadeDelay: 0.4
   triggerLayer: control
+  mask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!225 &259069354
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3633,10 +3641,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScript: {fileID: 1450290461}
+  look: {fileID: 1297650285}
   distanceFromCamera: 1.5
   followSpeed: 55
   fadeDelay: 0.6
   triggerLayer: flight
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!225 &429154335
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -6683,10 +6695,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScript: {fileID: 1450290461}
+  look: {fileID: 1297650285}
   distanceFromCamera: 1.3
-  followSpeed: 50
+  followSpeed: 0.1
   fadeDelay: 0
   triggerLayer: control
+  mask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!225 &978761194
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -7181,10 +7197,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScript: {fileID: 1450290461}
+  look: {fileID: 1297650285}
   distanceFromCamera: 1.7
-  followSpeed: 44
+  followSpeed: 0.3
   fadeDelay: 0.07
   triggerLayer: control
+  mask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!225 &1098124618
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -7616,10 +7636,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScript: {fileID: 1450290461}
+  look: {fileID: 1297650285}
   distanceFromCamera: 2.7
-  followSpeed: 39
+  followSpeed: 0.8
   fadeDelay: 0.5
   triggerLayer: control
+  mask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!225 &1168997565
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -7867,10 +7891,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScript: {fileID: 1450290461}
+  look: {fileID: 1297650285}
   distanceFromCamera: 2.3
-  followSpeed: 41
+  followSpeed: 0.6
   fadeDelay: 0.3
   triggerLayer: control
+  mask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!225 &1185410838
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -8228,10 +8256,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScript: {fileID: 1450290461}
+  look: {fileID: 1297650285}
   distanceFromCamera: 1.4
-  followSpeed: 45
+  followSpeed: 0.2
   fadeDelay: 0.02
   triggerLayer: control
+  mask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!225 &1217608622
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -8568,51 +8600,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1266477568}
   m_CullTransparentMesh: 0
---- !u!21 &1282960411
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs/DefaultCompositionGraph
-  m_Shader: {fileID: -6465566751694194690, guid: d2b72c4759ff207479c9c419063cc540,
-    type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - BaseLayer:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats: []
-    m_Colors: []
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!1 &1283151636
 GameObject:
   m_ObjectHideFlags: 0
@@ -9103,7 +9090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Enable: 1
-  m_Material: {fileID: 1282960411}
+  m_Material: {fileID: 1900736563}
   m_OutputDisplay: 0
   m_InputLayers:
   - m_LayerName: BaseLayer
@@ -9479,6 +9466,7 @@ MonoBehaviour:
   shakeSpeed: 0.5
   shakeQuantity: 0.8
   followSpeed: 8
+  heightOffset: 0.5
   mask:
     serializedVersion: 2
     m_Bits: 2048
@@ -10228,10 +10216,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScript: {fileID: 1450290461}
+  look: {fileID: 1297650285}
   distanceFromCamera: 1.9
-  followSpeed: 43
+  followSpeed: 0.4
   fadeDelay: 0.1
   triggerLayer: control
+  mask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!225 &1347140160
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -10468,10 +10460,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScript: {fileID: 1450290461}
+  look: {fileID: 1297650285}
   distanceFromCamera: 1.6
   followSpeed: 42
   fadeDelay: 0.1
   triggerLayer: movement
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!225 &1363328283
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -11381,10 +11377,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScript: {fileID: 1450290461}
+  look: {fileID: 1297650285}
   distanceFromCamera: 1.2
   followSpeed: 55
   fadeDelay: 1
   triggerLayer: flight
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!225 &1494617101
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -11716,10 +11716,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScript: {fileID: 1450290461}
+  look: {fileID: 1297650285}
   distanceFromCamera: 2.9
-  followSpeed: 38
+  followSpeed: 0.9
   fadeDelay: 0.6
   triggerLayer: control
+  mask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!225 &1513354266
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -12023,10 +12027,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScript: {fileID: 1450290461}
+  look: {fileID: 1297650285}
   distanceFromCamera: 1.3
   followSpeed: 45
   fadeDelay: 0
   triggerLayer: movement
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!225 &1566776973
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -12999,10 +13007,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScript: {fileID: 1450290461}
+  look: {fileID: 1297650285}
   distanceFromCamera: 2.1
-  followSpeed: 42
+  followSpeed: 0.5
   fadeDelay: 0.2
   triggerLayer: control
+  mask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!225 &1835964149
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -13645,6 +13657,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1896733718}
   m_CullTransparentMesh: 0
+--- !u!21 &1900736563
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shader Graphs/DefaultCompositionGraph
+  m_Shader: {fileID: -6465566751694194690, guid: d2b72c4759ff207479c9c419063cc540,
+    type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - BaseLayer:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors: []
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1 &1925697216
 GameObject:
   m_ObjectHideFlags: 0
@@ -13712,10 +13769,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScript: {fileID: 1450290461}
+  look: {fileID: 1297650285}
   distanceFromCamera: 1.8
   followSpeed: 55
   fadeDelay: 0.2
   triggerLayer: flight
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!225 &1925697219
 CanvasGroup:
   m_ObjectHideFlags: 0

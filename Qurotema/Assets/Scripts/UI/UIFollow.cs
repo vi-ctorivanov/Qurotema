@@ -7,6 +7,7 @@ public class UIFollow : MonoBehaviour {
 
 	[Header("References")]
 	public PlayerMove playerScript;
+	public MouseLook look;
 
 	[Header("Dynamics")]
 	public float distanceFromCamera = 1.2f;
@@ -16,6 +17,7 @@ public class UIFollow : MonoBehaviour {
 	private float targetOpacity = 0.9f;
 	private float fadeSpeed = 10f;
 	private float distanceFromCameraDifference = 0.3f;
+	public LayerMask mask;
 	
 	[Header("States")]
 	private float opacity = 0f;
@@ -24,6 +26,8 @@ public class UIFollow : MonoBehaviour {
 
 	[Header("Coroutines")]
 	private Coroutine fader;
+
+	private Vector3 lastCameraPos = Vector3.zero;
 	
 	void Start () {
 		transform.position = Camera.main.transform.position + (Camera.main.transform.forward * targetDistance);
@@ -101,11 +105,13 @@ public class UIFollow : MonoBehaviour {
 
 	void follow() {
 		if (Camera.main) {
+			/*
+			the core issue is that we want a subtle lerp that is really close to its final position, but without overshooting OR clamping,
+			because the second it is somehow limited, its motion has become irregular as the next frame will see it oscillating back to a non overshot / clamped position
+			*/
 			targetDistance = Nox.Instance.remap(playerScript.targetFOV, playerScript.defaultFOV, playerScript.fastFOV, distanceFromCamera, minDistanceFromCamera);
 			Vector3 targetPosition = Camera.main.transform.position + (Camera.main.transform.forward * targetDistance);
-
-			transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
-			//transform.position = targetPosition;
+			transform.position = Vector3.Lerp(transform.position, targetPosition, Mathf.Clamp(followSpeed * Time.deltaTime, 0f, 0.99f));
 			transform.rotation = Camera.main.transform.rotation;
 		}
 	}

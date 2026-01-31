@@ -17,6 +17,7 @@ public class MouseLook : MonoBehaviour {
 	public float shakeSpeed = 1f;
 	public float shakeQuantity = 1.4f;
 	public float followSpeed = 8f;
+	public float heightOffset = 0.5f;
 	public LayerMask mask;
  
 	[Header("States")]
@@ -90,7 +91,7 @@ public class MouseLook : MonoBehaviour {
 
 	void follow() {
 		if (Nox.Instance.player) {
-			transform.position = Vector3.Lerp(transform.position, new Vector3(Nox.Instance.player.transform.position.x, Nox.Instance.player.transform.position.y + 0.5f, Nox.Instance.player.transform.position.z), followSpeed * Time.deltaTime);
+			transform.position = Vector3.Lerp(transform.position, new Vector3(Nox.Instance.player.transform.position.x, Nox.Instance.player.transform.position.y + heightOffset, Nox.Instance.player.transform.position.z), followSpeed * Time.deltaTime);
 
 			//move up if clipping
 			RaycastHit hit;
