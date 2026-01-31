@@ -39,7 +39,7 @@ public class UIFollow : MonoBehaviour {
 		if (Nox.Instance.player) {
 			switch (triggerLayer) {
 				case "flight":
-					if (Nox.Instance.player.GetComponent<PlayerMove>().flying) {
+					if (playerScript.flying) {
 						if (fader != null) StopCoroutine(fader);
 						if (opacity != targetOpacity) opacity = Mathf.Lerp(opacity, targetOpacity, (fadeSpeed / 2f) * fadeDelay * Time.deltaTime);
 					} else {
@@ -64,7 +64,7 @@ public class UIFollow : MonoBehaviour {
 						fader = StartCoroutine(Fade(0f));
 					}
 
-					if (Nox.Instance.player.GetComponent<PlayerMove>().flying) {
+					if (playerScript.flying) {
 						if (fader != null) StopCoroutine(fader);
 						if (opacity != 0f) opacity = Mathf.Lerp(opacity, 0f, fadeSpeed / 2f * Time.deltaTime);
 					}
@@ -86,7 +86,7 @@ public class UIFollow : MonoBehaviour {
 						fader = StartCoroutine(Fade(0f));
 					}
 
-					if (Nox.Instance.player.GetComponent<PlayerMove>().flying) {
+					if (playerScript.flying) {
 						if (fader != null) StopCoroutine(fader);
 						if (opacity != 0f) opacity = Mathf.Lerp(opacity, 0f, fadeSpeed / 2f * Time.deltaTime);
 					}
