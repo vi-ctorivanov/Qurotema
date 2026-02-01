@@ -13,28 +13,25 @@ public class UIFollow : MonoBehaviour {
 	public float distanceFromCamera = 1.2f;
 	public float followSpeed = 45f;
 	public float fadeDelay = 0f;
+	public Vector3 cameraAngularContribution = Vector3.zero;
+	public Vector3 cameraTranslationalContribution = Vector3.zero;
+	public float overallContribution = 1f;
 	public string triggerLayer;
 	private float targetOpacity = 0.9f;
 	private float fadeSpeed = 10f;
 	private float distanceFromCameraDifference = 0.3f;
-	public LayerMask mask;
+	private Vector3 lastCameraPosition = Vector3.zero;
+	private Vector3 cameraAngularVelocity = Vector3.zero;
+	private Vector3 cameraTranslationalVelocity = Vector3.zero;
 	
 	[Header("States")]
 	private float opacity = 0f;
 	private float minDistanceFromCamera = 0f;
-	private float targetDistance = 0f;
 
 	[Header("Coroutines")]
 	private Coroutine fader;
-
-	private Vector3 lastCameraPos = Vector3.zero;
 	
 	void Start () {
-		transform.position = Camera.main.transform.position + (Camera.main.transform.forward * targetDistance);
-		transform.rotation = Camera.main.transform.rotation;
-
-		targetDistance = distanceFromCamera;
-
 		minDistanceFromCamera = distanceFromCamera - distanceFromCameraDifference;
 	}
 
@@ -105,14 +102,42 @@ public class UIFollow : MonoBehaviour {
 
 	void follow() {
 		if (Camera.main) {
+			float targetDistance = Nox.Instance.remap(playerScript.targetFOV, playerScript.defaultFOV, playerScript.fastFOV, distanceFromCamera, minDistanceFromCamera);
+			Vector3 targetPosition = new Vector3(0f, 0f, targetDistance);
+
 			/*
-			the core issue is that we want a subtle lerp that is really close to its final position, but without overshooting OR clamping,
-			because the second it is somehow limited, its motion has become irregular as the next frame will see it oscillating back to a non overshot / clamped position
+			Calculate camera-relative camera velocity and angular velocity to offset UI in opposite direction to create sense of weighty sway.
+			The actual velocity calculations are more like representations of velocity, since they're easier to calculate.
+
+			Other solutions like a lerping follow did not work very nicely because small changes to time.deltaTime resulted in
+			major jittering.
 			*/
-			targetDistance = Nox.Instance.remap(playerScript.targetFOV, playerScript.defaultFOV, playerScript.fastFOV, distanceFromCamera, minDistanceFromCamera);
-			Vector3 targetPosition = Camera.main.transform.position + (Camera.main.transform.forward * targetDistance);
-			transform.position = Vector3.Lerp(transform.position, targetPosition, Mathf.Clamp(followSpeed * Time.deltaTime, 0f, 0.99f));
+
+			/*
+			The rotation is just looking at mouse input, since the camera never turns without user input.
+			Of course this means that we can never allow input through while restricting the camera.
+			*/
+			Vector3 tempAngular = new Vector3(-Camera.main.GetComponent<MouseLook>().mouseX, Camera.main.GetComponent<MouseLook>().mouseY, 0f);
+			cameraAngularVelocity = Vector3.Lerp(cameraAngularVelocity, tempAngular, followSpeed * Time.deltaTime);
+
+			/*
+			The translation is the distance between the camera's current and previous location.
+			We do need to transform this vector so it's relative to the camera's forward direction to know where the UI should offset towards.
+			*/
+			Vector3 tempTranslational = lastCameraPosition - Camera.main.transform.position;
+			cameraTranslationalVelocity = Vector3.Lerp(cameraTranslationalVelocity, Camera.main.transform.InverseTransformDirection(tempTranslational), followSpeed * Time.deltaTime);
+
+			//apply offset
+			float x = (cameraAngularVelocity.x * cameraAngularContribution.x) + (cameraTranslationalVelocity.x * cameraTranslationalContribution.x);
+			float y = (cameraAngularVelocity.y * cameraAngularContribution.y) + (cameraTranslationalVelocity.y * cameraTranslationalContribution.y);
+			float z = cameraTranslationalVelocity.z * cameraTranslationalContribution.z;
+			Vector3 offset = new Vector3(x, y, z) * overallContribution;
+			targetPosition += offset;
+
+			transform.localPosition = targetPosition;
 			transform.rotation = Camera.main.transform.rotation;
+
+			lastCameraPosition = Camera.main.transform.position;
 		}
 	}
 

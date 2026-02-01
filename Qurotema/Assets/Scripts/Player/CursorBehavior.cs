@@ -16,11 +16,11 @@ public class CursorBehavior : MonoBehaviour {
 
 	[Header("Dynamics")]
 	public float distanceFromCamera = 5f;
-	public float followSpeed = 15f;
+	public float followSpeed = 0.5f;
 
 	[Header("Colors")]
-	private Color red = new Color(100f, 0f, 0f);
-	private Color purple = new Color(5f, 5f, 100f);
+	public Color red = new Color(100f, 0f, 0f);
+	public Color purple = new Color(5f, 5f, 100f);
 
 	void Start () {
 		transform.position = Camera.main.transform.position + (Camera.main.transform.forward * distanceFromCamera);
@@ -68,7 +68,8 @@ public class CursorBehavior : MonoBehaviour {
 		}
 
 		Vector3 targetPosition = Camera.main.transform.position + (Camera.main.transform.forward * distanceFromCamera);
-		transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
+		//no Time.deltaTime to keep it feeling a bit smoother, frame independence is less important here
+		transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed); 
 	}
 
 	void makeActive() {

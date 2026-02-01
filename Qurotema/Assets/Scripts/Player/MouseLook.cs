@@ -21,12 +21,12 @@ public class MouseLook : MonoBehaviour {
 	public LayerMask mask;
  
 	[Header("States")]
-	private float mouseX = 0f;
-	private float mouseY = 0f;
-	private float rotY = 0f;
-	private float rotX = 0f;
-	private float currentX = 0f;
-	private float currentY = 0f;
+	public float mouseX = 0f;
+	public float mouseY = 0f;
+	public float rotY = 0f;
+	public float rotX = 0f;
+	public float currentX = 0f;
+	public float currentY = 0f;
 	private float playerSpeed;
 	private float perlinX;
 	private float perlinY;
@@ -91,7 +91,9 @@ public class MouseLook : MonoBehaviour {
 
 	void follow() {
 		if (Nox.Instance.player) {
-			transform.position = Vector3.Lerp(transform.position, new Vector3(Nox.Instance.player.transform.position.x, Nox.Instance.player.transform.position.y + heightOffset, Nox.Instance.player.transform.position.z), followSpeed * Time.deltaTime);
+			Vector3 target = Nox.Instance.player.transform.position;
+			target.y += heightOffset;
+			transform.position = Vector3.Lerp(transform.position, target, followSpeed * Time.deltaTime);
 
 			//move up if clipping
 			RaycastHit hit;
