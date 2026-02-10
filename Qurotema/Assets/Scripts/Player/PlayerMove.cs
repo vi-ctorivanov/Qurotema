@@ -20,6 +20,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour {
 
@@ -28,6 +29,16 @@ public class PlayerMove : MonoBehaviour {
 	public Transform colliders;
 	public AudioMixer mix;
 	public Material ribbonsBottom;
+
+	[Header("Input")]
+	private InputAction quitAction;
+	private InputAction sprintAction;
+	private InputAction jumpAction;
+	private InputAction moveAction;
+	private InputAction flyAction;
+	private InputAction cursorAction;
+	private InputAction interactAction;
+	private InputAction markerAction;
 
 	[Header("Dynamics")]
 	public LayerMask mask;
@@ -78,6 +89,15 @@ public class PlayerMove : MonoBehaviour {
 	
 	void Start() {
 		targetFOV = defaultFOV;
+
+		quitAction = InputSystem.actions.FindAction("Quit");
+		sprintAction = InputSystem.actions.FindAction("Sprint");
+		jumpAction = InputSystem.actions.FindAction("Jump");
+		moveAction = InputSystem.actions.FindAction("Move");
+		flyAction = InputSystem.actions.FindAction("Fly");
+		cursorAction = InputSystem.actions.FindAction("Cursor");
+		interactAction = InputSystem.actions.FindAction("Interact");
+		markerAction = InputSystem.actions.FindAction("Marker");
 	}
 
 	void Update() {
@@ -97,10 +117,10 @@ public class PlayerMove : MonoBehaviour {
 	}
 
 	void handleKeys() {
-		if (Input.GetKeyUp("escape")) StartCoroutine(quit());
+		if (quitAction.WasReleasedThisFrame()) StartCoroutine(quit());
 
 		//switch to flying mode only if no mouse buttons are pressed
-		if (Input.GetKeyDown(KeyCode.LeftAlt) && !Input.GetMouseButton(0) && !Input.GetMouseButton(1) && !Input.GetMouseButton(2)) {
+		if (flyAction.WasPressedThisFrame() && !cursorAction.IsPressed() && !interactAction.IsPressed() && !markerAction.IsPressed()) {
 			flying = !flying;
 			//change speeds and dampening parameters when flying for quicker and snappier movement in-air
 			if (flying) {
@@ -136,8 +156,8 @@ public class PlayerMove : MonoBehaviour {
 
 		//need listener specifically for a single event
 		//repeated calls to dynamicToggle result in loss of functionality
-		if (Input.GetKeyDown(KeyCode.LeftShift)) Sound.Instance.dynamicToggle("percussion", true);
-		if (Input.GetKeyUp(KeyCode.LeftShift)) Sound.Instance.dynamicToggle("percussion", false);
+		if (sprintAction.WasPressedThisFrame()) Sound.Instance.dynamicToggle("percussion", true);
+		if (sprintAction.WasReleasedThisFrame()) Sound.Instance.dynamicToggle("percussion", false);
 
 		if (jumping) {
 			float cut;
@@ -163,8 +183,9 @@ public class PlayerMove : MonoBehaviour {
 		//get input
 		float horizontal = 0f;
 		float vertical = 0f;
-		if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.1f) horizontal = Input.GetAxis("Horizontal");
-		if (Mathf.Abs(Input.GetAxis("Vertical")) > 0.1f) vertical = Input.GetAxis("Vertical");
+
+		horizontal = moveAction.ReadValue<Vector2>().x;
+		vertical = moveAction.ReadValue<Vector2>().y;
 		Vector2 direction = getInput(horizontal, vertical);
 		Vector3 newLoc = new Vector3(transform.position.x + direction.x * Time.deltaTime, transform.position.y, transform.position.z + direction.y * Time.deltaTime);
 
@@ -221,7 +242,7 @@ public class PlayerMove : MonoBehaviour {
 		if (transform.position.x < -2900f) transform.position = new Vector3(-2899f, transform.position.y, transform.position.z);
 
 		//jump
-		if (Input.GetKeyDown(KeyCode.Space) && isGrounded() && !jumping && !flying) {
+		if (jumpAction.WasPressedThisFrame() && isGrounded() && !jumping && !flying) {
 			jumping = true;
 			jumpTrigger = true;
 		}
@@ -231,7 +252,7 @@ public class PlayerMove : MonoBehaviour {
 			targetSpeed = Mathf.Lerp(targetSpeed, 0f, speedChangeStop * Time.deltaTime);
 
 		//sprint
-		} else if (Input.GetKey(KeyCode.LeftShift)) {
+		} else if (sprintAction.IsPressed()) {
 			sprinting = true;
 			targetSpeed = Mathf.Lerp(targetSpeed, sprintSpeed, speedChangeSprint * Time.deltaTime);
 			
@@ -326,7 +347,7 @@ public class PlayerMove : MonoBehaviour {
 		//5 seconds
 		for (int i = 0; i < 500; i++) {
 			yield return new WaitForSeconds(0.01f);
-			if (Input.GetKeyDown("escape")) Application.Quit();
+			if (quitAction.WasPressedThisFrame()) Application.Quit();
 		}
 	}
 

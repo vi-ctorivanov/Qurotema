@@ -721,6 +721,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 37925198}
   m_CullTransparentMesh: 0
+--- !u!84 &49878637
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 6
+  m_Width: 1769
+  m_Height: 995
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 94
+  m_ColorFormat: 48
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_UseDynamicScaleExplicit: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1 &66776397
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,7 +1009,7 @@ MonoBehaviour:
   distanceFromCamera: 1.9
   followSpeed: 1
   fadeDelay: 0.2
-  cameraAngularContribution: {x: 0.5, y: 1, z: 0}
+  cameraAngularContribution: {x: 0.05, y: 0.1, z: 0}
   cameraTranslationalContribution: {x: 1, y: 1, z: 0.5}
   overallContribution: 2
   triggerLayer: movement
@@ -2624,7 +2661,7 @@ MonoBehaviour:
   distanceFromCamera: 2.5
   followSpeed: 1
   fadeDelay: 0.4
-  cameraAngularContribution: {x: 0.5, y: 1, z: 0}
+  cameraAngularContribution: {x: 0.05, y: 0.1, z: 0}
   cameraTranslationalContribution: {x: 1, y: 1, z: 0.5}
   overallContribution: 1.6
   triggerLayer: control
@@ -3615,7 +3652,7 @@ MonoBehaviour:
   distanceFromCamera: 1.5
   followSpeed: 1
   fadeDelay: 0.6
-  cameraAngularContribution: {x: 0.5, y: 1, z: 0}
+  cameraAngularContribution: {x: 0.05, y: 0.1, z: 0}
   cameraTranslationalContribution: {x: 0.5, y: 0.2, z: 0.3}
   overallContribution: 1
   triggerLayer: flight
@@ -3769,6 +3806,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 435254326}
   m_CullTransparentMesh: 0
+--- !u!84 &436530674
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 6
+  m_Width: 1769
+  m_Height: 995
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 94
+  m_ColorFormat: 48
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_UseDynamicScaleExplicit: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_EnableRandomWrite: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1 &445797106
 GameObject:
   m_ObjectHideFlags: 0
@@ -6131,55 +6205,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856368303}
   m_CullTransparentMesh: 0
---- !u!21 &869958795
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs/DefaultCompositionGraph
-  m_Shader: {fileID: -6465566751694194690, guid: 054cd61f1e736ab45a595f7b32d2e2bc,
-    type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BaseLayer:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _UILayer:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats: []
-    m_Colors: []
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!1 &870550051
 GameObject:
   m_ObjectHideFlags: 0
@@ -6720,7 +6745,7 @@ MonoBehaviour:
   distanceFromCamera: 1.3
   followSpeed: 1
   fadeDelay: 0
-  cameraAngularContribution: {x: 0.5, y: 1, z: 0}
+  cameraAngularContribution: {x: 0.05, y: 0.1, z: 0}
   cameraTranslationalContribution: {x: 1, y: 1, z: 0.5}
   overallContribution: 0.4
   triggerLayer: control
@@ -7222,7 +7247,7 @@ MonoBehaviour:
   distanceFromCamera: 1.7
   followSpeed: 1
   fadeDelay: 0.07
-  cameraAngularContribution: {x: 0.5, y: 1, z: 0}
+  cameraAngularContribution: {x: 0.05, y: 0.1, z: 0}
   cameraTranslationalContribution: {x: 1, y: 1, z: 0.5}
   overallContribution: 0.8
   triggerLayer: control
@@ -7661,7 +7686,7 @@ MonoBehaviour:
   distanceFromCamera: 2.7
   followSpeed: 1
   fadeDelay: 0.5
-  cameraAngularContribution: {x: 0.5, y: 1, z: 0}
+  cameraAngularContribution: {x: 0.05, y: 0.1, z: 0}
   cameraTranslationalContribution: {x: 1, y: 1, z: 0.5}
   overallContribution: 1.8
   triggerLayer: control
@@ -7916,7 +7941,7 @@ MonoBehaviour:
   distanceFromCamera: 2.3
   followSpeed: 1
   fadeDelay: 0.3
-  cameraAngularContribution: {x: 0.5, y: 1, z: 0}
+  cameraAngularContribution: {x: 0.05, y: 0.1, z: 0}
   cameraTranslationalContribution: {x: 1, y: 1, z: 0.5}
   overallContribution: 1.4
   triggerLayer: control
@@ -8281,7 +8306,7 @@ MonoBehaviour:
   distanceFromCamera: 1.4
   followSpeed: 1
   fadeDelay: 0.02
-  cameraAngularContribution: {x: 0.5, y: 1, z: 0}
+  cameraAngularContribution: {x: 0.05, y: 0.1, z: 0}
   cameraTranslationalContribution: {x: 1, y: 1, z: 0.5}
   overallContribution: 0.6
   triggerLayer: control
@@ -9181,7 +9206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 047d14a149aff624bbdfcd871abd1b44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 2
+  mouseSensitivity: 0.08
   clampAngle: 80
   easeSpeed: 10
   shakeSpeed: 0.5
@@ -10137,7 +10162,7 @@ MonoBehaviour:
   distanceFromCamera: 1.9
   followSpeed: 1
   fadeDelay: 0.1
-  cameraAngularContribution: {x: 0.5, y: 1, z: 0}
+  cameraAngularContribution: {x: 0.05, y: 0.1, z: 0}
   cameraTranslationalContribution: {x: 1, y: 1, z: 0.5}
   overallContribution: 1
   triggerLayer: control
@@ -10381,7 +10406,7 @@ MonoBehaviour:
   distanceFromCamera: 1.6
   followSpeed: 1
   fadeDelay: 0.1
-  cameraAngularContribution: {x: 0.5, y: 1, z: 0}
+  cameraAngularContribution: {x: 0.05, y: 0.1, z: 0}
   cameraTranslationalContribution: {x: 1, y: 1, z: 0.5}
   overallContribution: 1
   triggerLayer: movement
@@ -10716,43 +10741,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1409282351}
   m_CullTransparentMesh: 0
---- !u!84 &1424813694
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 6
-  m_Width: 1771
-  m_Height: 996
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 48
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_UseDynamicScaleExplicit: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1 &1438757135
 GameObject:
   m_ObjectHideFlags: 0
@@ -11018,7 +11006,7 @@ MonoBehaviour:
   sprintSpeed: 80
   jumpSpeed: 20
   terminalVelocity: -15
-  flyHeight: 120
+  flyHeight: 100
   gravityEase: 1
   groundedHeight: 1
   floatDistance: 10
@@ -11335,7 +11323,7 @@ MonoBehaviour:
   distanceFromCamera: 1.2
   followSpeed: 1
   fadeDelay: 1
-  cameraAngularContribution: {x: 0.5, y: 1, z: 0}
+  cameraAngularContribution: {x: 0.05, y: 0.1, z: 0}
   cameraTranslationalContribution: {x: 0.5, y: 0.2, z: 0.3}
   overallContribution: 1
   triggerLayer: flight
@@ -11674,7 +11662,7 @@ MonoBehaviour:
   distanceFromCamera: 2.9
   followSpeed: 1
   fadeDelay: 0.6
-  cameraAngularContribution: {x: 0.5, y: 1, z: 0}
+  cameraAngularContribution: {x: 0.05, y: 0.1, z: 0}
   cameraTranslationalContribution: {x: 1, y: 1, z: 0.5}
   overallContribution: 2
   triggerLayer: control
@@ -12002,7 +11990,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.Compositor.CompositionManager
   m_Enable: 1
-  m_Material: {fileID: 869958795}
+  m_Material: {fileID: 1588341543}
   m_OutputDisplay: 0
   m_InputLayers:
   - m_LayerName: _UILayer
@@ -12033,7 +12021,7 @@ MonoBehaviour:
     m_InputFilters: []
     m_AOVBitmask: 0
     m_AOVRenderTargets: []
-    m_RenderTarget: {fileID: 1751665924}
+    m_RenderTarget: {fileID: 436530674}
     m_ClearsBackGround: 0
     m_Show: 1
     m_LayerCamera: {fileID: 0}
@@ -12051,7 +12039,7 @@ MonoBehaviour:
     m_BackgroundFit: 0
     m_ResolutionScale: 1
     m_ColorBufferFormat: 48
-    m_OverrideAntialiasing: 0
+    m_OverrideAntialiasing: 1
     m_Antialiasing: 0
     m_OverrideClearMode: 1
     m_ClearMode: 0
@@ -12101,7 +12089,7 @@ MonoBehaviour:
     m_InputFilters: []
     m_AOVBitmask: 0
     m_AOVRenderTargets: []
-    m_RenderTarget: {fileID: 1424813694}
+    m_RenderTarget: {fileID: 49878637}
     m_ClearsBackGround: 0
     m_Show: 1
     m_LayerCamera: {fileID: 0}
@@ -12119,8 +12107,8 @@ MonoBehaviour:
     m_BackgroundFit: 0
     m_ResolutionScale: 1
     m_ColorBufferFormat: 48
-    m_OverrideAntialiasing: 0
-    m_Antialiasing: 0
+    m_OverrideAntialiasing: 1
+    m_Antialiasing: 2
     m_OverrideClearMode: 1
     m_ClearMode: 0
     m_OverrideCullingMask: 1
@@ -12223,7 +12211,7 @@ MonoBehaviour:
   distanceFromCamera: 1.3
   followSpeed: 1
   fadeDelay: 0
-  cameraAngularContribution: {x: 0.5, y: 1, z: 0}
+  cameraAngularContribution: {x: 0.05, y: 0.1, z: 0}
   cameraTranslationalContribution: {x: 1, y: 1, z: 0.5}
   overallContribution: 0.5
   triggerLayer: movement
@@ -12302,6 +12290,55 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!21 &1588341543
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shader Graphs/DefaultCompositionGraph
+  m_Shader: {fileID: -6465566751694194690, guid: 054cd61f1e736ab45a595f7b32d2e2bc,
+    type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseLayer:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _UILayer:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors: []
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1 &1598912261
 GameObject:
   m_ObjectHideFlags: 0
@@ -13015,43 +13052,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1722046854}
   m_CullTransparentMesh: 0
---- !u!84 &1751665924
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 6
-  m_Width: 1771
-  m_Height: 996
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 48
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_UseDynamicScaleExplicit: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_EnableRandomWrite: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1 &1784000387
 GameObject:
   m_ObjectHideFlags: 0
@@ -13289,7 +13289,7 @@ MonoBehaviour:
   distanceFromCamera: 2.1
   followSpeed: 1
   fadeDelay: 0.2
-  cameraAngularContribution: {x: 0.5, y: 1, z: 0}
+  cameraAngularContribution: {x: 0.05, y: 0.1, z: 0}
   cameraTranslationalContribution: {x: 1, y: 1, z: 0.5}
   overallContribution: 1.2
   triggerLayer: control
@@ -14006,7 +14006,7 @@ MonoBehaviour:
   distanceFromCamera: 1.8
   followSpeed: 1
   fadeDelay: 0.2
-  cameraAngularContribution: {x: 0.5, y: 1, z: 0}
+  cameraAngularContribution: {x: 0.05, y: 0.1, z: 0}
   cameraTranslationalContribution: {x: 0.5, y: 0.2, z: 0.3}
   overallContribution: 1
   triggerLayer: flight

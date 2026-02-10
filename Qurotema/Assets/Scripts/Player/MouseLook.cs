@@ -7,6 +7,7 @@ Camera controls and animation.
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MouseLook : MonoBehaviour {
 
@@ -19,6 +20,9 @@ public class MouseLook : MonoBehaviour {
 	public float followSpeed = 8f;
 	public float heightOffset = 0.5f;
 	public LayerMask mask;
+
+	[Header("Input")]
+	private InputAction lookAction;
  
 	[Header("States")]
 	public float mouseX = 0f;
@@ -49,6 +53,8 @@ public class MouseLook : MonoBehaviour {
 		perlinX = Random.Range(0f, 1000f);
 		perlinY = Random.Range(0f, 1000f);
 		perlinZ = Random.Range(0f, 1000f);
+
+		lookAction = InputSystem.actions.FindAction("Look");
 	}
 
 	void Update() {
@@ -64,8 +70,8 @@ public class MouseLook : MonoBehaviour {
 
 	void handleInput() {
 		//get input
-		mouseX = Input.GetAxis("Mouse X");
-		mouseY = -Input.GetAxis("Mouse Y");
+		mouseX = lookAction.ReadValue<Vector2>().x;
+		mouseY = -lookAction.ReadValue<Vector2>().y;
 
 		if (!ready) {
 			mouseX = 0;

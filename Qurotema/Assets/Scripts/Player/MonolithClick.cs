@@ -7,14 +7,24 @@ Manages monolith interaction.
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MonolithClick : MonoBehaviour {
 
 	[Header("Dynamics")]
 	public LayerMask mask;
 
+	[Header("Input")]
+	private InputAction cursorAction;
+	private InputAction interactAction;
+
+	void Start() {
+		cursorAction = InputSystem.actions.FindAction("Cursor");
+		interactAction = InputSystem.actions.FindAction("Interact");
+	}
+
     void Update() {
-        if (Input.GetMouseButton(1) && Input.GetMouseButtonDown(0)) {
+        if (cursorAction.IsPressed() && interactAction.WasPressedThisFrame()) {
 			RaycastHit hit;
 			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 

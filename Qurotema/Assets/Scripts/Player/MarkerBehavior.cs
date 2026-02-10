@@ -7,11 +7,17 @@ Creates marker on mouse look location when trigger button is held.
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MarkerBehavior : MonoBehaviour {
 
 	[Header("References")]
 	public GameObject marker;
+
+	[Header("Input")]
+	private InputAction cursorAction;
+	private InputAction interactAction;
+	private InputAction markerAction;
 
 	[Header("Dynamics")]
 	public LayerMask mask;
@@ -19,8 +25,14 @@ public class MarkerBehavior : MonoBehaviour {
 	[Header("States")]
 	private bool playing = false;
 
+	void Start() {
+		cursorAction = InputSystem.actions.FindAction("Cursor");
+		interactAction = InputSystem.actions.FindAction("Interact");
+		markerAction = InputSystem.actions.FindAction("Marker");
+	}
+
 	void Update() {
-		if (Input.GetMouseButton(2) && !Input.GetMouseButton(1) && !Nox.Instance.player.GetComponent<PlayerMove>().flying) {
+		if (markerAction.IsPressed() && !cursorAction.IsPressed() && !Nox.Instance.player.GetComponent<PlayerMove>().flying) {
 			RaycastHit hit;
 			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
@@ -32,7 +44,7 @@ public class MarkerBehavior : MonoBehaviour {
 					Sound.Instance.dynamicToggle("droplets", true, 5f);
 				}
 
-				if (Input.GetMouseButtonDown(0)) {
+				if (interactAction.WasPressedThisFrame()) {
 					Nox.Instance.player.GetComponent<PlayerMove>().targetFOV = 20f;
 					Nox.Instance.player.GetComponent<PlayerMove>().verticalForce = 0f;
 					Nox.Instance.player.GetComponent<PlayerMove>().targetDirection = Vector2.zero;
@@ -43,7 +55,7 @@ public class MarkerBehavior : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetMouseButtonUp(2)) {
+		if (markerAction.WasReleasedThisFrame()) {
 			playing = false;
 			Sound.Instance.dynamicToggle("droplets", false, 5f);
 		}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class LetterBox : MonoBehaviour {
 
@@ -9,6 +10,9 @@ public class LetterBox : MonoBehaviour {
 	public RectTransform lowPanel;
 	public RectTransform highPanel;
 	private Camera cam;
+
+	[Header("Input")]
+	private InputAction cursorAction;
 
 	[Header("Dynamics")]
 	public float aspectRatio = 2f;
@@ -24,16 +28,18 @@ public class LetterBox : MonoBehaviour {
 		cam = Camera.main.GetComponent<Camera>();
 		currentAspect = cam.aspect;
 		forceAspectRatio(cam.aspect);
+
+		cursorAction = InputSystem.actions.FindAction("Cursor");
 	}
 
 	void Update() {
 		if (Nox.Instance.introductionFinished) {
-			if (Input.GetMouseButtonDown(1)) {
+			if (cursorAction.WasPressedThisFrame()) {
 				if (letterBox != null) StopCoroutine(letterBox);
 				letterBox = StartCoroutine(changeAspectRatio(aspectRatio));
 			}
 
-			if (Input.GetMouseButtonUp(1)) {
+			if (cursorAction.WasReleasedThisFrame()) {
 				if (letterBox != null) StopCoroutine(letterBox);
 				letterBox = StartCoroutine(changeAspectRatio(cam.aspect));
 			}

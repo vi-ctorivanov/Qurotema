@@ -7,6 +7,7 @@ Manages string instrument.
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Stringer : MonoBehaviour {
 	
@@ -16,6 +17,10 @@ public class Stringer : MonoBehaviour {
 	public GameObject stringObject;
 	public CursorBehavior cursor;
 
+	[Header("Input")]
+	private InputAction cursorAction;
+	private InputAction interactAction;
+
 	[Header("Dynamics")]
 	public LayerMask mask;
 
@@ -24,6 +29,11 @@ public class Stringer : MonoBehaviour {
 	private Vector3 end = new Vector3(0,0,0);
 	private bool stringing = false;
 	private List<StringCord> stringSet = new List<StringCord>();
+
+	void Start() {
+		cursorAction = InputSystem.actions.FindAction("Cursor");
+		interactAction = InputSystem.actions.FindAction("Interact");
+	}
 
 	void Update() {
 		if (!stringing) leftClick();
@@ -35,7 +45,7 @@ public class Stringer : MonoBehaviour {
 
 	private void leftClick() {
 		//play string
-		if (Input.GetMouseButton(1) && !Input.GetMouseButton(0)) {
+		if (cursorAction.IsPressed() && !interactAction.IsPressed()) {
 			RaycastHit hit;
 			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
@@ -47,7 +57,7 @@ public class Stringer : MonoBehaviour {
 		}
 
 		//start create string
-		if (Input.GetMouseButtonDown(0) && Input.GetMouseButton(1)) {
+		if (interactAction.WasPressedThisFrame() && cursorAction.IsPressed()) {
 			RaycastHit hit;
 			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
@@ -62,7 +72,7 @@ public class Stringer : MonoBehaviour {
 
 	private void leftRelease() {
 		//end create string
-		if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1)) {
+		if (interactAction.WasReleasedThisFrame() || cursorAction.WasReleasedThisFrame()) {
 			RaycastHit hit;
 			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 

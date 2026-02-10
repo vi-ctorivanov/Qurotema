@@ -7,8 +7,13 @@ Manages rings instrument.
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class RingsBehavior : MonoBehaviour {
+
+	[Header("Input")]
+	private InputAction cursorAction;
+	private InputAction interactAction;
 
 	[Header("Dynamics")]
 	public LayerMask mask;
@@ -16,8 +21,13 @@ public class RingsBehavior : MonoBehaviour {
 	[Header("States")]
 	public bool inArea = false;
 
+	void Start() {
+		cursorAction = InputSystem.actions.FindAction("Cursor");
+		interactAction = InputSystem.actions.FindAction("Interact");
+	}
+
 	void Update() {
-		if (inArea && Input.GetMouseButton(1) && Input.GetMouseButtonDown(0)) {
+		if (inArea && cursorAction.IsPressed() && interactAction.WasPressedThisFrame()) {
 			RaycastHit hit;
 			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 

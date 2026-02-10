@@ -7,19 +7,27 @@ Manages flying behavior.
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class FlyPointBehavior : MonoBehaviour {
 
 	[Header("References")]
 	public GameObject flyPoint;
 
+	[Header("Input")]
+	private InputAction interactAction;
+
 	[Header("Dynamics")]
 	public LayerMask mask;
 	private Vector3 targetPoint;
 
+	void Start() {
+		interactAction = InputSystem.actions.FindAction("Interact");
+	}
+
 	void Update() {
 		if (Nox.Instance.player) {
-			if (Nox.Instance.player.GetComponent<PlayerMove>().flying && Input.GetMouseButton(0)) {
+			if (Nox.Instance.player.GetComponent<PlayerMove>().flying && interactAction.IsPressed()) {
 				RaycastHit hit;
 				Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
@@ -33,11 +41,11 @@ public class FlyPointBehavior : MonoBehaviour {
 			}
 
 			//audio
-			if (Nox.Instance.player.GetComponent<PlayerMove>().flying && Input.GetMouseButtonDown(0)) {
+			if (Nox.Instance.player.GetComponent<PlayerMove>().flying && interactAction.WasPressedThisFrame()) {
 				Sound.Instance.dynamicToggle("pads", true);
 			}
 
-			if (Nox.Instance.player.GetComponent<PlayerMove>().flying && Input.GetMouseButtonUp(0)) {
+			if (Nox.Instance.player.GetComponent<PlayerMove>().flying && interactAction.WasReleasedThisFrame()) {
 				Sound.Instance.dynamicToggle("pads", false);
 			}
 		}

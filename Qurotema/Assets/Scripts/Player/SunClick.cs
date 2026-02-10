@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.InputSystem;
 
 public class SunClick : MonoBehaviour {
 
@@ -16,6 +17,10 @@ public class SunClick : MonoBehaviour {
 	public AudioMixer mix;
 	public GameObject pp;
 	public OrbitingSun sun;
+
+	[Header("Input")]
+	private InputAction cursorAction;
+	private InputAction interactAction;
 
 	[Header("Dynamics")]
 	public LayerMask mask;
@@ -29,6 +34,11 @@ public class SunClick : MonoBehaviour {
 	[Header("Coroutine")]
 	public Coroutine transitioning;
 
+	void Start() {
+		cursorAction = InputSystem.actions.FindAction("Cursor");
+		interactAction = InputSystem.actions.FindAction("Interact");
+	}
+
 	void Update() {
 		if (routineEnded && transitioning != null) {
 			StopCoroutine(transitioning);
@@ -36,7 +46,7 @@ public class SunClick : MonoBehaviour {
 			routineEnded = false;
 		}
 
-		if (Input.GetMouseButton(1) && Input.GetMouseButtonDown(0)) {
+		if (cursorAction.IsPressed() && interactAction.WasPressedThisFrame()) {
 			RaycastHit hit;
 			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 

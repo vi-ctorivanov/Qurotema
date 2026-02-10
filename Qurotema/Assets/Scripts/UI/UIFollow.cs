@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class UIFollow : MonoBehaviour {
 
@@ -9,9 +10,13 @@ public class UIFollow : MonoBehaviour {
 	public PlayerMove playerScript;
 	public MouseLook look;
 
+	[Header("Input")]
+	private InputAction cursorAction;
+	private InputAction markerAction;
+
 	[Header("Dynamics")]
 	public float distanceFromCamera = 1.2f;
-	public float followSpeed = 45f;
+	public float followSpeed = 0.5f;
 	public float fadeDelay = 0f;
 	public Vector3 cameraAngularContribution = Vector3.zero;
 	public Vector3 cameraTranslationalContribution = Vector3.zero;
@@ -33,6 +38,9 @@ public class UIFollow : MonoBehaviour {
 	
 	void Start () {
 		minDistanceFromCamera = distanceFromCamera - distanceFromCameraDifference;
+
+		cursorAction = InputSystem.actions.FindAction("Cursor");
+		markerAction = InputSystem.actions.FindAction("Marker");
 	}
 
 	void Update() {
@@ -50,17 +58,17 @@ public class UIFollow : MonoBehaviour {
 					break;
 
 				case "control":
-					if (Input.GetMouseButtonDown(1)) {
+					if (cursorAction.WasPressedThisFrame()) {
 						if (fader != null) StopCoroutine(fader);
 						fader = StartCoroutine(Fade(targetOpacity));
 					}
 
-					if (Input.GetMouseButtonUp(1)) {
+					if (cursorAction.WasReleasedThisFrame()) {
 						if (fader != null) StopCoroutine(fader);
 						fader = StartCoroutine(Fade(0f));
 					}
 
-					if (Input.GetMouseButtonDown(2)) {
+					if (markerAction.WasPressedThisFrame()) {
 						if (fader != null) StopCoroutine(fader);
 						fader = StartCoroutine(Fade(0f));
 					}
@@ -72,17 +80,17 @@ public class UIFollow : MonoBehaviour {
 					break;
 
 				case "movement":
-					if (Input.GetMouseButtonDown(2)) {
+					if (markerAction.WasPressedThisFrame()) {
 						if (fader != null) StopCoroutine(fader);
 						fader = StartCoroutine(Fade(targetOpacity));
 					}
 
-					if (Input.GetMouseButtonUp(2)) {
+					if (markerAction.WasReleasedThisFrame()) {
 						if (fader != null) StopCoroutine(fader);
 						fader = StartCoroutine(Fade(0f));
 					}
 
-					if (Input.GetMouseButtonDown(1)) {
+					if (cursorAction.WasPressedThisFrame()) {
 						if (fader != null) StopCoroutine(fader);
 						fader = StartCoroutine(Fade(0f));
 					}
