@@ -32,6 +32,11 @@ public class MonolithBehavior : MonoBehaviour {
 		tearGrow.transform.localScale = tearGrowStart;
 
 		image.color = new Color(1f, 1f, 1f, 0f);
+
+		mPB = new MaterialPropertyBlock();
+		mPB.SetFloat("_Alpha", 0f);
+		tear.SetPropertyBlock(mPB);
+		eye.SetPropertyBlock(mPB);
 	}
 
 	public void makeActive() {
@@ -55,6 +60,11 @@ public class MonolithBehavior : MonoBehaviour {
 			alpha = Mathf.Lerp(alpha, 1f, 0.2f * Time.deltaTime);
 
 			image.color = new Color(1f, 1f, 1f, alpha * 0.3f);
+
+			mPB.SetFloat("_Alpha", alpha);
+        	tear.SetPropertyBlock(mPB);
+			eye.SetPropertyBlock(mPB);
+
 			eyeObject.transform.localPosition = Vector3.Lerp(eyeStart, eyeTarget, alpha);
 			tearGrow.transform.localScale = Vector3.Lerp(tearGrowStart, tearGrowTarget, alpha);
 

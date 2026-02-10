@@ -22,72 +22,92 @@ public class CursorBehavior : MonoBehaviour {
 
 	[Header("Dynamics")]
 	public float distanceFromCamera = 5f;
-	public float followSpeed = 0.5f;
+	public float followSpeed = 50f;
+	public float alphaSpeed = 0.03f;
+
+	[Header("States")]
+	public bool enabled = false;
 
 	[Header("Colors")]
 	public Color red = new Color(100f, 0f, 0f);
 	public Color purple = new Color(5f, 5f, 100f);
 
+	[Header("Coroutines")]
+	private Coroutine routine;
+
 	void Start () {
 		transform.position = Camera.main.transform.position + (Camera.main.transform.forward * distanceFromCamera);
 		mat = GetComponent<MeshRenderer>().material;
 		trail = GetComponent<TrailRenderer>().material;
+
 		cursorAction = InputSystem.actions.FindAction("Cursor");
 		interactAction = InputSystem.actions.FindAction("Interact");
 		markerAction = InputSystem.actions.FindAction("Marker");
+
+		mat.SetFloat("_Alpha", 0f);
+		trail.SetFloat("_Alpha", 0f);
 	}
 
 	void Update () {
 		if (Nox.Instance.introductionFinished) {
-			if (!cursorAction.IsPressed()) {
-				GetComponent<MeshRenderer>().enabled = false;
-				GetComponent<TrailRenderer>().enabled = false;
-				makePassive();
-			} else {
-				GetComponent<MeshRenderer>().enabled = true;
-				GetComponent<TrailRenderer>().enabled = true;
-
+			if (!cursorAction.IsPressed()) makePassive();
+			else {
 				if (interactAction.WasPressedThisFrame()) makeActive();
 				if (interactAction.WasReleasedThisFrame()) makePassive();
 			}
-		} else {
-			GetComponent<MeshRenderer>().enabled = false;
-			GetComponent<TrailRenderer>().enabled = false;
 		}
 
 		if (Nox.Instance.player) {
 			//override in movement and flight modes
-			if (markerAction.IsPressed() || Nox.Instance.player.GetComponent<PlayerMove>().flying) {
-				GetComponent<MeshRenderer>().enabled = false;
-				GetComponent<TrailRenderer>().enabled = false;
-			}
+			if ((markerAction.IsPressed() || Nox.Instance.player.GetComponent<PlayerMove>().flying) && enabled) toggleCursor(false);
 
-			//audio
-			if (cursorAction.IsPressed() && !Nox.Instance.player.GetComponent<PlayerMove>().flying && !markerAction.IsPressed()) {
-				Sound.Instance.addEnergy(1f);
-			}
+			if (cursorAction.IsPressed() && !Nox.Instance.player.GetComponent<PlayerMove>().flying && !markerAction.IsPressed()) Sound.Instance.addEnergy(1f);
 
-			if (cursorAction.WasPressedThisFrame() && !Nox.Instance.player.GetComponent<PlayerMove>().flying && !markerAction.IsPressed()) {
-				Sound.Instance.dynamicToggle("rhythms", true);
-			}
+			if (cursorAction.WasPressedThisFrame() && !Nox.Instance.player.GetComponent<PlayerMove>().flying && !markerAction.IsPressed()) toggleCursor(true);
 
-			if (cursorAction.WasReleasedThisFrame()) {
-				Sound.Instance.dynamicToggle("rhythms", false);
-			}
+			if (cursorAction.WasReleasedThisFrame()) toggleCursor(false);
 		}
 
 		Vector3 targetPosition = Camera.main.transform.position + (Camera.main.transform.forward * distanceFromCamera);
-		//no Time.deltaTime to keep it feeling a bit smoother, framerate independence is less important here
-		transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed); 
+		transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime); 
 	}
 
 	void makeActive() {
-		mat.SetColor("_EmissiveColor", red);
-		trail.SetColor("_EmissiveColor", red);
+		mat.SetColor("_Color", red);
+		trail.SetColor("_Color", red);
 	}
 
 	void makePassive() {
-		mat.SetColor("_EmissiveColor", purple);
-		trail.SetColor("_EmissiveColor", purple);
+		mat.SetColor("_Color", purple);
+		trail.SetColor("_Color", purple);
+	}
+
+	void toggleCursor(bool on) {
+		if (routine != null) StopCoroutine(routine);
+		routine = StartCoroutine(toggle(on));
+	}
+
+	IEnumerator toggle(bool t) {
+		Sound.Instance.dynamicToggle("rhythms", t);
+
+		enabled = t;
+
+		float alpha = 0f;
+		if (!t) alpha = 1f;
+
+		while (true) {
+			yield return new WaitForSeconds(0.01f);
+
+			mat.SetFloat("_Alpha", alpha);
+			trail.SetFloat("_Alpha", alpha);
+
+			if (t) {
+				alpha += alphaSpeed;
+				if (alpha > 1f) yield break;
+			} else {
+				alpha -= alphaSpeed;
+				if (alpha < 0f) yield break;
+			}
+		}
 	}
 }
