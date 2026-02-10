@@ -37,7 +37,7 @@ public class Stringer : MonoBehaviour {
 		//play string
 		if (Input.GetMouseButton(1) && !Input.GetMouseButton(0)) {
 			RaycastHit hit;
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
 			if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~mask)) {
 				if (hit.collider.tag == "String") {
@@ -49,7 +49,7 @@ public class Stringer : MonoBehaviour {
 		//start create string
 		if (Input.GetMouseButtonDown(0) && Input.GetMouseButton(1)) {
 			RaycastHit hit;
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
 			if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~mask)) {
 				if (hit.collider.tag == "StringsNode") {
@@ -64,7 +64,7 @@ public class Stringer : MonoBehaviour {
 		//end create string
 		if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1)) {
 			RaycastHit hit;
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
 			if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~mask)) {
 				if (hit.collider.tag == "StringsNode") {

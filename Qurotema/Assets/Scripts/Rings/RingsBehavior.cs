@@ -19,7 +19,7 @@ public class RingsBehavior : MonoBehaviour {
 	void Update() {
 		if (inArea && Input.GetMouseButton(1) && Input.GetMouseButtonDown(0)) {
 			RaycastHit hit;
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
 			if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~mask)) {
 

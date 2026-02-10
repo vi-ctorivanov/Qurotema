@@ -11,6 +11,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Playables;
 using TMPro;
+using UnityEngine.Rendering;
 
 public class Nox : MonoBehaviour {
 
@@ -65,6 +66,8 @@ public class Nox : MonoBehaviour {
 	}
 
 	void Start() {
+		SupportedRenderingFeatures.active.rendersUIOverlay = false;
+
 		gates.SetActive(false);
 		gatesCollider.SetActive(false);
 		fadeOut.SetActive(false);

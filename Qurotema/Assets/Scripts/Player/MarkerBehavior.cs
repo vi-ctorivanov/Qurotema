@@ -22,7 +22,7 @@ public class MarkerBehavior : MonoBehaviour {
 	void Update() {
 		if (Input.GetMouseButton(2) && !Input.GetMouseButton(1) && !Nox.Instance.player.GetComponent<PlayerMove>().flying) {
 			RaycastHit hit;
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
 			if (Physics.Raycast(ray, out hit, Mathf.Infinity, mask)) {
 				Instantiate(marker, hit.point, Quaternion.identity);
