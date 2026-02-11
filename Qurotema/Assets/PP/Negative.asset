@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Negative
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 2105036758051719601}
   - {fileID: 6999157742423010975}
+  - {fileID: 2105036758051719601}
 --- !u!114 &2105036758051719601
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -68,18 +68,18 @@ MonoBehaviour:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.84000003
-          inSlope: -7.857779
-          outSlope: -7.857779
+          value: 0.9612142
+          inSlope: -8.589479
+          outSlope: -8.589479
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
           time: 1
-          value: 0
-          inSlope: -0.73520213
-          outSlope: -0.73520213
+          value: 0.08937603
+          inSlope: 2.0043423
+          outSlope: 2.0043423
           tangentMode: 0
           weightedMode: 0
           inWeight: 0

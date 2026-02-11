@@ -9,7 +9,7 @@ public class LetterBox : MonoBehaviour {
 	[Header("References")]
 	public RectTransform lowPanel;
 	public RectTransform highPanel;
-	private Camera cam;
+	public Camera cam;
 
 	[Header("Input")]
 	private InputAction cursorAction;
@@ -25,7 +25,6 @@ public class LetterBox : MonoBehaviour {
 	private Coroutine letterBox;
 
 	void Start() {
-		cam = Camera.main.GetComponent<Camera>();
 		currentAspect = cam.aspect;
 		forceAspectRatio(cam.aspect);
 
@@ -64,10 +63,10 @@ public class LetterBox : MonoBehaviour {
 		Vector2 resize = new Vector2(Screen.width + 10f, (variance * Screen.height) / 2f);
 
 		lowPanel.sizeDelta = resize;
-		lowPanel.anchoredPosition = new Vector2(0f, (lowPanel.rect.height / 2f) - 1f);
+		//lowPanel.anchoredPosition = new Vector2(0f, (lowPanel.rect.height / 2f) - 1f);
 
 		highPanel.sizeDelta = resize;
-		highPanel.anchoredPosition = new Vector2(0f, (-highPanel.rect.height / 2f) + 1f);
+		//highPanel.anchoredPosition = new Vector2(0f, (-highPanel.rect.height / 2f) + 1f);
 	}
 
 	IEnumerator changeAspectRatio(float desiredRatio) {

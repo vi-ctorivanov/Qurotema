@@ -13,37 +13,36 @@ MonoBehaviour:
   m_Name: StoryContent
   m_EditorClassIdentifier: Assembly-CSharp::StoryContent
   introductionText:
-  - Stable port to Qurotema, all nominal. RO, your vision should come in soon.
-  - Reminder, because of the Gates, this is a one-way only communication channel.
-  - We'll keep watch and study Qurotema alongside you, Operator.
-  - 'Your vessel is equipped with a control module.
+  - 'Stable port to Qurotema. All readings active.
 
-    Feels weird at first, I
-    know. Experiment, you''ll get used to it.'
-  - And Di... Make Sino proud.
+    Vision coming in for RO.'
+  - 'Stabilizing comms. Gates are forcing one-way only channel.
+
+    That''s fine.'
+  - All set. We'll keep watch and study Qurotema alongside you, Operator.
+  - Activating vessel control module.
+  - Di, make Sino proud.
   monolithText:
-  - 'We''ve got a feed of the characters. So this is the "i-tema" Sino spoke about.
+  - 'Confirming i-tema characters on visual feed.
 
-    Supposedly
-    there''s no way to speak it, it''s a writing-only language.'
-  - 'Huh, this actually looks like our set of translated text.
+    Loading up our local translations
+    to compare.'
+  - 'Huh, this is exactly our already translated text.
 
-    It says: "The
-    night will flow when black time''s sand knows foreign touch."'
+    "The night will flow
+    when black time''s sand knows foreign touch."'
   - 'The writing on the gates shares two of those words, "Quro" and "Tema".
 
-    Those
-    are our only translations. The origin of our station''s name.'
-  - 'I''m not sure how Sino felt so confident understanding i-tema, it looks incomprehensible
-    to me.
+    Feels
+    weird seeing our station''s name in its original form.'
+  - 'Those are our only translations, this isn''t new information.
 
-    Find more Monoliths, it''ll help us fill a database for linguistic
-    analysis.'
+    Find more
+    Monoliths, it''ll help us fill a database for linguistic analysis.'
   instrumentText:
-  - We hav. signals of faint acit.vity aw.y from your vessel's current pos.tion.
-  - We've l.st sight .f your fe.d, but we are st..l getting al. oth.r r.adings. Ke.p
-    up the research.
-  - Our co..ection is bec.ming too unreli.ble. Begin..ng pu.l, s.ay c.lm.
+  - Faint s.gnal n... your vessel's current pos.tion.
+  - L.st v..ual fe.d. St..l getting al. oth.r r.adings. Ke.p up the research.
+  - Co..ection is bec.ming too unreli.ble. Begin..ng pu.l, s.ay c.lm.
   endText:
   - Lo.ing co..ection fas., Di, wh.t's ..ing on?
   - RO? Di? B.dy .. ... la... .. ..resp.n.ive. ........ ret.r. pro.ocol ...........
@@ -51,14 +50,13 @@ MonoBehaviour:
   - Qur..ema .. ...., .... ... ..... ... .... ves.el .. .. ... vo.d.
   - Aban.on.ng ...... ... s..ry. ... ... ..... ...... ..... ... ......
   uniqueText:
-  - 'Right there, in front of you is one of the Monoliths Dr. Sino spoke about.
+  - 'Monolith visual confirmed. But there should be writing projected from it.
 
-    There
-    should be a sort of writing eminating from it.
+    Maybe
+    it needs to be activated?'
+  - 'Confirming new reading.
 
-    Do you see anything? Maybe
-    it needs to be activated.'
-  - What is that? Nothing like that was documented in Sino's notes.
+    Hmm. Nothing like this in Sino''s notes.'
   - Press escape again to quit.
   monolithGraphics:
   - {fileID: 21300000, guid: 009b7b77115537843b2ad2e8417e06cf, type: 3}
