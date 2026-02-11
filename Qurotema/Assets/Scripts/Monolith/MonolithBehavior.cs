@@ -59,7 +59,7 @@ public class MonolithBehavior : MonoBehaviour {
 			yield return new WaitForSeconds(0.01f);
 			alpha = Mathf.Lerp(alpha, 1f, 0.2f * Time.deltaTime);
 
-			image.color = new Color(1f, 1f, 1f, alpha * 0.3f);
+			image.color = new Color(1f, 1f, 1f, alpha);
 
 			mPB.SetFloat("_Alpha", alpha);
         	tear.SetPropertyBlock(mPB);
