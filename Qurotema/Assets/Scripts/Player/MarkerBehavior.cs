@@ -45,7 +45,7 @@ public class MarkerBehavior : MonoBehaviour {
 				}
 
 				if (interactAction.WasPressedThisFrame()) {
-					Nox.Instance.player.GetComponent<PlayerMove>().targetFOV = 20f;
+					Nox.Instance.cam.GetComponent<MouseLook>().targetFOV = 20f;
 					Nox.Instance.player.GetComponent<PlayerMove>().verticalForce = 0f;
 					Nox.Instance.player.GetComponent<PlayerMove>().targetDirection = Vector2.zero;
 					Nox.Instance.player.transform.position = new Vector3(hit.point.x, hit.point.y + 2f, hit.point.z);

@@ -17,6 +17,7 @@ public class Nox : MonoBehaviour {
 
 	[Header("References")]
 	public GameObject player;
+	public GameObject cam;
 	public AnimateTerrain terrain;
 	public GameObject sun;
 	public GameObject gates;
@@ -90,7 +91,7 @@ public class Nox : MonoBehaviour {
 	}
 
 	public void monolithActivated() {
-		player.GetComponent<PlayerMove>().flashFeedback();
+		cam.GetComponent<MouseLook>().flashFeedback();
 		terrain.addFeedback(3.0f);
 		if (monolithsRead == 0) directorPlay(monolithTimeline);
 		monolithsRead++;

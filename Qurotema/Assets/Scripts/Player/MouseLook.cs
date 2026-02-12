@@ -1,6 +1,6 @@
 ﻿/*
 
-Camera controls and animation.
+Camera controls, animation, and FOV dynamics.
 
 */
 
@@ -19,10 +19,18 @@ public class MouseLook : MonoBehaviour {
 	public float shakeQuantity = 1.4f;
 	public float followSpeed = 8f;
 	public float heightOffset = 0.5f;
+	public AnimationCurve flashFOVCurve;
 	public LayerMask mask;
+
+	[Header("FOV")]
+	public float minFOV = 65f;
+	public float maxFOV = 140f;
+	public float easeFOV = 2f;
+	public float boostBoost = 1.5f;
 
 	[Header("Input")]
 	private InputAction lookAction;
+	private InputAction sprintAction;
  
 	[Header("States")]
 	public float mouseX = 0f;
@@ -31,6 +39,8 @@ public class MouseLook : MonoBehaviour {
 	public float rotX = 0f;
 	public float currentX = 0f;
 	public float currentY = 0f;
+	public float targetFOV = 0f;
+	private Vector3 previousCameraLocation = Vector3.zero;
 	private float playerSpeed;
 	private float perlinX;
 	private float perlinY;
@@ -55,6 +65,9 @@ public class MouseLook : MonoBehaviour {
 		perlinZ = Random.Range(0f, 1000f);
 
 		lookAction = InputSystem.actions.FindAction("Look");
+		sprintAction = InputSystem.actions.FindAction("Sprint");
+
+		targetFOV = minFOV;
 	}
 
 	void Update() {
@@ -66,6 +79,7 @@ public class MouseLook : MonoBehaviour {
 		rotate();
 		follow();
 		shake();
+		fov();
 	}
 
 	void handleInput() {
@@ -132,6 +146,35 @@ public class MouseLook : MonoBehaviour {
 
 			//apply perlin noise as rotation
 			transform.localEulerAngles = new Vector3(transform.localEulerAngles.x + (x * shakeSpeedModifier), transform.localEulerAngles.y + (y * shakeSpeedModifier), transform.localEulerAngles.z + (z * shakeSpeedModifier));
+		}
+	}
+
+	void fov() {
+		float velocity = Vector3.Distance(transform.position, previousCameraLocation) / Time.deltaTime;
+		previousCameraLocation = transform.position;
+
+		if (GetComponent<SunClick>().transitioning == null) {
+			float extraFOV = 0f;
+			if (Nox.Instance.player.GetComponent<PlayerMove>().flying) extraFOV += 10f;
+			//boost FOV by pushing up targetFOV spectrum - boosting the FOV itself is too jarring
+			//the boostBoost value shouldn't be too high though, or else the FOV will once again undesireably jump abruptly
+			if (sprintAction.WasPressedThisFrame()) extraFOV += boostBoost; 
+
+			targetFOV = Mathf.Lerp(targetFOV, Nox.Instance.remap(velocity, 0f, 300f, minFOV + extraFOV, maxFOV + extraFOV), easeFOV * Time.deltaTime);
+
+			GetComponent<Camera>().fieldOfView = targetFOV;
+		}
+	}
+
+	public void flashFeedback() {
+		StartCoroutine(flashFOV());
+	}
+
+	IEnumerator flashFOV() {
+		float current = targetFOV;
+		for (float i = 0f; i < 1f; i+=0.005f) {
+			yield return new WaitForSeconds(0.01f);
+			targetFOV = current + flashFOVCurve.Evaluate(i) * 5f;
 		}
 	}
 }

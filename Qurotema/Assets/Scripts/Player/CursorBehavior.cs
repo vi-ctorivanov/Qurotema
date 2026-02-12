@@ -26,7 +26,7 @@ public class CursorBehavior : MonoBehaviour {
 	public float alphaSpeed = 0.03f;
 
 	[Header("States")]
-	public bool enabled = false;
+	public bool on = false;
 
 	[Header("Colors")]
 	public Color red = new Color(100f, 0f, 0f);
@@ -59,7 +59,7 @@ public class CursorBehavior : MonoBehaviour {
 
 		if (Nox.Instance.player) {
 			//override in movement and flight modes
-			if ((markerAction.IsPressed() || Nox.Instance.player.GetComponent<PlayerMove>().flying) && enabled) toggleCursor(false);
+			if ((markerAction.IsPressed() || Nox.Instance.player.GetComponent<PlayerMove>().flying) && on) toggleCursor(false);
 
 			if (cursorAction.IsPressed() && !Nox.Instance.player.GetComponent<PlayerMove>().flying && !markerAction.IsPressed()) Sound.Instance.addEnergy(1f);
 
@@ -90,7 +90,7 @@ public class CursorBehavior : MonoBehaviour {
 	IEnumerator toggle(bool t) {
 		Sound.Instance.dynamicToggle("rhythms", t);
 
-		enabled = t;
+		on = t;
 
 		float alpha = 0f;
 		if (!t) alpha = 1f;

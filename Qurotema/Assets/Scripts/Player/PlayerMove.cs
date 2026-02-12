@@ -7,7 +7,6 @@ Manages player movement:
 - Flying
 - Acceleration and deceleration
 - Collision
-- FOV dynamics
 
 All done using a custom physics system, since we want a very
 particular feel to the character movement, where they slide
@@ -43,7 +42,6 @@ public class PlayerMove : MonoBehaviour {
 	[Header("Dynamics")]
 	public LayerMask mask;
 	public float collisionPushback = 0.1f;
-	public AnimationCurve flashFOVCurve;
 
 	[Header("Speed")]
 	public float walkSpeed = 20f;
@@ -62,6 +60,7 @@ public class PlayerMove : MonoBehaviour {
 	[Header("Acceleration")]
 	public float speedChangeWalk = 2f;
 	public float speedChangeSprint = 2f;
+	public float boostBoost = 1.5f;
 	public float speedChangeStop = 2f;
 	public float directionChangeSpeed = 3f;
 	public float airDampening = 0.2f;
@@ -69,27 +68,18 @@ public class PlayerMove : MonoBehaviour {
 	public float flightSpeedMultiplier = 2f;
 	public float flightControlMultiplier = 3f;
 
-	[Header("FOV")]
-	public float defaultFOV = 65f;
-	public float fastFOV = 90f;
-	public float flyingFOV = 100f;
-	public float easeFOV = 2f;
-
 	[Header("States")]
 	public bool flying = false;
 	public bool jumpTrigger = false;
 	public bool jumping = false;
 	public bool sprinting = false;
 	public float targetSpeed = 0f;
-	public float targetFOV = 0f;
 	public float verticalForce = 0f;
 	public float bottomDistanceFromCenter = 1f;
 	public Vector2 targetDirection = new Vector2(0f, 0f);
 	private bool ready = false;
 	
 	void Start() {
-		targetFOV = defaultFOV;
-
 		quitAction = InputSystem.actions.FindAction("Quit");
 		sprintAction = InputSystem.actions.FindAction("Sprint");
 		jumpAction = InputSystem.actions.FindAction("Jump");
@@ -108,7 +98,6 @@ public class PlayerMove : MonoBehaviour {
 			move();
 		}
 
-		setFOV();
 		handleSound();
 
 		//set ribbon visibility
@@ -170,15 +159,6 @@ public class PlayerMove : MonoBehaviour {
 		}
 	}
 
-	void setFOV() {
-		if (Camera.main) {
-			if (Camera.main.GetComponent<SunClick>().transitioning == null) {
-				if (!flying) targetFOV = Mathf.Lerp(targetFOV, Nox.Instance.remap(targetSpeed, walkSpeed, sprintSpeed, defaultFOV, fastFOV), easeFOV * Time.deltaTime);
-				Camera.main.GetComponent<Camera>().fieldOfView = targetFOV;
-			}
-		}
-	}
-
 	void move() {
 		//get input
 		float horizontal = 0f;
@@ -211,9 +191,6 @@ public class PlayerMove : MonoBehaviour {
 				newLoc.y = preventClip(newLoc);
 			}
 		} else {
-			//fly
-			targetFOV = Mathf.Lerp(targetFOV, flyingFOV, easeFOV * Time.deltaTime);
-
 			float floor = 0f;
 			RaycastHit hit;
 			if (Physics.Raycast(transform.position, -Vector3.up, out hit, 300f, mask)) {
@@ -229,7 +206,6 @@ public class PlayerMove : MonoBehaviour {
 			//prevent collisions with select objects by moving player away from them
 			//it's very rudamentary, but our collisions are simple
 			transform.position = new Vector3(transform.position.x, newLoc.y, transform.position.z);
-			//Vector3 nearest = collision.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
 			Vector3 colliderToPlayer = Vector3.Normalize(collision.transform.position - transform.position);
 			transform.position = new Vector3(transform.position.x - colliderToPlayer.x * collisionPushback, newLoc.y, transform.position.z - colliderToPlayer.z * collisionPushback);
 
@@ -255,6 +231,7 @@ public class PlayerMove : MonoBehaviour {
 		} else if (sprintAction.IsPressed()) {
 			sprinting = true;
 			targetSpeed = Mathf.Lerp(targetSpeed, sprintSpeed, speedChangeSprint * Time.deltaTime);
+			if (sprintAction.WasPressedThisFrame()) targetSpeed = sprintSpeed * boostBoost;
 			
 		//walk
 		} else {
@@ -348,18 +325,6 @@ public class PlayerMove : MonoBehaviour {
 		for (int i = 0; i < 500; i++) {
 			yield return new WaitForSeconds(0.01f);
 			if (quitAction.WasPressedThisFrame()) Application.Quit();
-		}
-	}
-
-	public void flashFeedback() {
-		StartCoroutine(flashFOV());
-	}
-
-	IEnumerator flashFOV() {
-		float current = targetFOV;
-		for (float i = 0f; i < 1f; i+=0.005f) {
-			yield return new WaitForSeconds(0.01f);
-			targetFOV = current + flashFOVCurve.Evaluate(i) * 5f;
 		}
 	}
 }

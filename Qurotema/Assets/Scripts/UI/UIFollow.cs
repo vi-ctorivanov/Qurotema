@@ -110,7 +110,8 @@ public class UIFollow : MonoBehaviour {
 
 	void follow() {
 		if (Camera.main) {
-			float targetDistance = Nox.Instance.remap(playerScript.targetFOV, playerScript.defaultFOV, playerScript.fastFOV, distanceFromCamera, minDistanceFromCamera);
+			float targetDistance = 0f;
+			targetDistance = Nox.Instance.remap(look.targetFOV, look.minFOV, look.maxFOV, distanceFromCamera, minDistanceFromCamera);
 			Vector3 targetPosition = new Vector3(0f, 0f, targetDistance);
 
 			/*
