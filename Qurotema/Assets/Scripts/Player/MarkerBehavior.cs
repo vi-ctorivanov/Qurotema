@@ -20,6 +20,9 @@ public class MarkerBehavior : MonoBehaviour {
 	private InputAction markerAction;
 
 	[Header("Dynamics")]
+	public float minTeleportFOV = -10f;
+	public float maxTeleportFOV = 10f;
+	public Vector3 teleportFOVDistances; //0, 100, 500
 	public LayerMask mask;
 
 	[Header("States")]
@@ -45,7 +48,12 @@ public class MarkerBehavior : MonoBehaviour {
 				}
 
 				if (interactAction.WasPressedThisFrame()) {
-					Nox.Instance.cam.GetComponent<MouseLook>().targetFOV = 20f;
+					//use distance to determine FOV warping
+					float d = Vector3.Distance(hit.point, transform.position);
+					if (d < teleportFOVDistances.y) d = Nox.Instance.remap(d, teleportFOVDistances.y, teleportFOVDistances.x, 0f, minTeleportFOV);
+					else d = Nox.Instance.remap(d, teleportFOVDistances.y, teleportFOVDistances.z, 0f, maxTeleportFOV);
+					Nox.Instance.cam.GetComponent<MouseLook>().targetFOV += d;
+
 					Nox.Instance.player.GetComponent<PlayerMove>().verticalForce = 0f;
 					Nox.Instance.player.GetComponent<PlayerMove>().targetDirection = Vector2.zero;
 					Nox.Instance.player.transform.position = new Vector3(hit.point.x, hit.point.y + 2f, hit.point.z);

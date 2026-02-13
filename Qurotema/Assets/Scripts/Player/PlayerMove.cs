@@ -231,7 +231,7 @@ public class PlayerMove : MonoBehaviour {
 		} else if (sprintAction.IsPressed()) {
 			sprinting = true;
 			targetSpeed = Mathf.Lerp(targetSpeed, sprintSpeed, speedChangeSprint * Time.deltaTime);
-			if (sprintAction.WasPressedThisFrame()) targetSpeed = sprintSpeed * boostBoost;
+			if (sprintAction.WasPressedThisFrame() && !jumping) targetSpeed = sprintSpeed * boostBoost;
 			
 		//walk
 		} else {

@@ -158,7 +158,7 @@ public class MouseLook : MonoBehaviour {
 			if (Nox.Instance.player.GetComponent<PlayerMove>().flying) extraFOV += 10f;
 			//boost FOV by pushing up targetFOV spectrum - boosting the FOV itself is too jarring
 			//the boostBoost value shouldn't be too high though, or else the FOV will once again undesireably jump abruptly
-			if (sprintAction.WasPressedThisFrame()) extraFOV += boostBoost; 
+			if (sprintAction.WasPressedThisFrame() && !Nox.Instance.player.GetComponent<PlayerMove>().jumping) extraFOV += boostBoost;
 
 			targetFOV = Mathf.Lerp(targetFOV, Nox.Instance.remap(velocity, 0f, 300f, minFOV + extraFOV, maxFOV + extraFOV), easeFOV * Time.deltaTime);
 
