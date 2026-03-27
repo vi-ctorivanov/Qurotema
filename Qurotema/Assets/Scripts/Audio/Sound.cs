@@ -24,7 +24,6 @@ public class Sound : MonoBehaviour {
 	private float highEnergyTreshold = 60f;
 	private float lowEnergyThreshold = 10f;
 	private bool atRoot = false;
-	private bool playingTheme = false;
 	private bool mute = false;
 
 	[Header("Timing")]
@@ -79,10 +78,6 @@ public class Sound : MonoBehaviour {
 			ambientClips[i].kickstart();
 		}
 
-		findAmbient("theme").source.loop = false;
-		findAmbient("theme").source.Stop();
-		findAmbient("theme").source.volume = 1f;
-
 		//activate ambience clips
 		ambienceToggle("bass Em", true);
 		ambienceToggle("bass ambience Em", true);
@@ -93,18 +88,13 @@ public class Sound : MonoBehaviour {
 	}
 
 	void Update() {
-		//change chord at random point in time (unless playing theme)
-		if (!findAmbient("theme").source.isPlaying) changeChord();
+		//change chord at random point in time
+		changeChord();
 
 		//play vocals if low energy
 		if (energy < lowEnergyThreshold && energyState != 0) {
 			energyState = 0;
 			ambienceToggle("vocals", true);
-		}
-
-		//play theme if low energy
-		if (energy < lowEnergyThreshold) {
-			theme();
 		}
 
 		//calculate energy falloff
@@ -151,15 +141,6 @@ public class Sound : MonoBehaviour {
 				}
 			}
 		}
-
-		//force start on Em when theme is done playing
-		if (playingTheme && !findAmbient("theme").source.isPlaying) {
-			atRoot = false;
-			playingTheme = false;
-			ambienceToggle("bass Em", true);
-			ambienceToggle("bass ambience Em", true);
-			ambienceToggle("vocals", true, 0.5f);
-		}
 	}
 
 	private void changeChord() {
@@ -190,20 +171,6 @@ public class Sound : MonoBehaviour {
 					ambienceToggle("chord ambience Em", false);
 				}
 			}
-		}
-	}
-
-	//at random point in time, play theme as one-shot
-	private void theme() {
-		float chance = Random.Range(0f, 1f);
-		if (chance < 0.1f && beatChange && beat == 1 && !findAmbient("theme").source.isPlaying) {
-			ambienceToggle("bass Em", false);
-			ambienceToggle("bass CM", false);
-			ambienceToggle("bass ambience Em", false);
-			ambienceToggle("bass ambience CM", false);
-			ambienceToggle("vocals", false, 0.5f);
-			findAmbient("theme").source.PlayOneShot(findAmbient("theme").clip);
-			playingTheme = true;
 		}
 	}
 
