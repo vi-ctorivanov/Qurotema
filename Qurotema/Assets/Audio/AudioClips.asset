@@ -12,10 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f1f19cb978194408bb6f660f791980, type: 3}
   m_Name: AudioClips
   m_EditorClassIdentifier: Assembly-CSharp::AudioClips
-  ambientSoundEmitter: {fileID: 1940475542757626201, guid: 1ca1f28dafd7ae54eb38978c626f8036,
-    type: 3}
-  dynamicSoundEmitter: {fileID: 6795656644235646544, guid: 6ce8f24a1702b3e4f9b2bdcf7d482973,
-    type: 3}
   ambiences:
   - audio: {fileID: 8300000, guid: 5573f7c48b8683b4d9b0aa065eba8c78, type: 3}
   - audio: {fileID: 8300000, guid: 54c5b468584f86341a5321eabc2d4265, type: 3}
@@ -25,7 +21,6 @@ MonoBehaviour:
   - audio: {fileID: 8300000, guid: a40240a031b8aa946bab072292875d89, type: 3}
   - audio: {fileID: 8300000, guid: 558db8ba901934540a1e44989c627b4b, type: 3}
   - audio: {fileID: 8300000, guid: 49d257f7db5c0c246b896f4c383aae05, type: 3}
-  - audio: {fileID: 8300000, guid: 0cc0a3e88f4cf11459d9298bf1d8daf6, type: 3}
   - audio: {fileID: 8300000, guid: 7e8fb5a300bc8f249864ffe2d85a335b, type: 3}
   - audio: {fileID: 8300000, guid: a7f9a2664003fd049aea39e49b9a3287, type: 3}
   - audio: {fileID: 8300000, guid: 866c89b2841eac94fa3253024acfd9e5, type: 3}
