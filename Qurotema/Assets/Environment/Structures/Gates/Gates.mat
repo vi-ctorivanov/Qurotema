@@ -218,7 +218,7 @@ Material:
     - _EnableWind: 0
     - _EnergyConservingSpecularColor: 1
     - _ExcludeFromTUAndAA: 0
-    - _Glow: 0
+    - _Glow: 0.057357
     - _Glow_Intensity: 1000
     - _HdrpVersion: 2
     - _HeightAmplitude: 0.02
