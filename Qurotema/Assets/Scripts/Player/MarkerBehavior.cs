@@ -62,7 +62,8 @@ public class MarkerBehavior : MonoBehaviour {
 			}
 		}
 
-		if (markerAction.WasReleasedThisFrame()) {
+		//override with control state
+		if (playing && (markerAction.WasReleasedThisFrame() || cursorAction.IsPressed())) {
 			playing = false;
 			Sound.Instance.dropletState.setParameterByName("Volume", 0);
 		}

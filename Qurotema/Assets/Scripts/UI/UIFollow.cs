@@ -68,11 +68,6 @@ public class UIFollow : MonoBehaviour {
 						fader = StartCoroutine(Fade(0f));
 					}
 
-					if (markerAction.WasPressedThisFrame()) {
-						if (fader != null) StopCoroutine(fader);
-						fader = StartCoroutine(Fade(0f));
-					}
-
 					if (playerScript.flying) {
 						if (fader != null) StopCoroutine(fader);
 						if (opacity != 0f) opacity = Mathf.Lerp(opacity, 0f, fadeSpeed / 2f * Time.deltaTime);
@@ -80,7 +75,8 @@ public class UIFollow : MonoBehaviour {
 					break;
 
 				case "movement":
-					if (markerAction.WasPressedThisFrame()) {
+					//control overrides movement
+					if (markerAction.WasPressedThisFrame() && !cursorAction.IsPressed()) {
 						if (fader != null) StopCoroutine(fader);
 						fader = StartCoroutine(Fade(targetOpacity));
 					}

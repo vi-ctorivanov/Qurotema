@@ -58,12 +58,11 @@ public class CursorBehavior : MonoBehaviour {
 		}
 
 		if (Nox.Instance.player) {
-			//override in movement and flight modes
-			if ((markerAction.IsPressed() || Nox.Instance.player.GetComponent<PlayerMove>().flying) && on) toggleCursor(false);
-
-			if (cursorAction.WasPressedThisFrame() && !Nox.Instance.player.GetComponent<PlayerMove>().flying && !markerAction.IsPressed()) toggleCursor(true);
-
-			if (cursorAction.WasReleasedThisFrame()) toggleCursor(false);
+			//override in flight mode (control overrides movement mode)
+			if (Nox.Instance.player.GetComponent<PlayerMove>().flying && on) toggleCursor(false);
+			if (cursorAction.WasPressedThisFrame() && !Nox.Instance.player.GetComponent<PlayerMove>().flying) toggleCursor(true);
+			
+			if (cursorAction.WasReleasedThisFrame() && on) toggleCursor(false);
 		}
 
 		Vector3 targetPosition = Camera.main.transform.position + (Camera.main.transform.forward * distanceFromCamera);
