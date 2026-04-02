@@ -44,7 +44,7 @@ public class MarkerBehavior : MonoBehaviour {
 
 				if (!playing) {
 					playing = true;
-					Sound.Instance.dynamicToggle("droplets", true, 5f);
+					Sound.Instance.dropletState.setParameterByName("Volume", 1);
 				}
 
 				if (interactAction.WasPressedThisFrame()) {
@@ -58,14 +58,14 @@ public class MarkerBehavior : MonoBehaviour {
 					Nox.Instance.player.GetComponent<PlayerMove>().targetDirection = Vector2.zero;
 					Nox.Instance.player.transform.position = new Vector3(hit.point.x, hit.point.y + 2f, hit.point.z);
 					Sound.Instance.addEnergy(3f);
-					Sound.Instance.shootSound("whips");
+					FMODUnity.RuntimeManager.PlayOneShot(Sound.Instance.whipEvent);
 				}
 			}
 		}
 
 		if (markerAction.WasReleasedThisFrame()) {
 			playing = false;
-			Sound.Instance.dynamicToggle("droplets", false, 5f);
+			Sound.Instance.dropletState.setParameterByName("Volume", 0);
 		}
 	}
 }

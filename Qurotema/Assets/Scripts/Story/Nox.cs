@@ -118,7 +118,7 @@ public class Nox : MonoBehaviour {
 	}
 
 	private void instrumentMasteryMessage() {
-		Sound.Instance.shootSound("sparkles");
+		FMODUnity.RuntimeManager.PlayOneShot(Sound.Instance.momentEvent);
 		terrain.addFeedback(3.0f);
 		playText("instrument" + "_" + instrumentsDiscovered);
 		targetPillarSize = new Vector3(pillar.transform.localScale.x * 0.5f, pillar.transform.localScale.y, pillar.transform.localScale.z * 0.5f);

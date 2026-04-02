@@ -1,35 +1,27 @@
 ﻿/*
 
-Creates sound emitters for each sound, tracks bpm,
-manages energy, holds functions for playing audio sources,
-triggers different audio depending on energy levels.
+Creates sound events for each sound, tracks bpm, manages 'energy'.
 
 */
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class Sound : MonoBehaviour {
 
-	[Header("References")]
-	public AudioClips clips;
-	public GameObject ambientSoundEmitter;
-	public GameObject dynamicSoundEmitter;
-
 	[Header("States")]
 	public float energy = 20f; //range: 0 - 100
-	private float eneryFalloff = 0.6f;
+	public float energyFalloff = 0.6f;
 	private int energyState = 1;
 	private float highEnergyTreshold = 60f;
 	private float lowEnergyThreshold = 10f;
-	private bool atRoot = false;
-	private bool mute = false;
 
 	[Header("Timing")]
 	public int beat = 1;
 	public bool beatChange = false;
-	public float bpm = 120f; //originally 120, but changed to 60 for eight notes
+	public float bpm = 120f;
 
 	private float musicStart;
 	private float secPerBeat;
@@ -37,9 +29,37 @@ public class Sound : MonoBehaviour {
 	private float musicPositionInBeats;
 	private int bars = 0;
 	
-	[Header("Sounds")]
-	private DynamicClip[] dynamicClips;
-	private AmbientClip[] ambientClips;
+	[Header("Atmosphere Sounds")]
+    public FMODUnity.EventReference ambienceEvent;
+	public FMOD.Studio.EventInstance ambienceState;
+	
+	public FMODUnity.EventReference lookEvent;
+	public FMOD.Studio.EventInstance lookState;
+
+	public FMODUnity.EventReference momentEvent;
+	
+	[Header("Movement Sounds")]
+	public FMODUnity.EventReference flyPointEvent;
+	public FMOD.Studio.EventInstance flyPointState;
+
+	public FMODUnity.EventReference padEvent;
+	public FMOD.Studio.EventInstance padState;
+
+	public FMODUnity.EventReference percussionEvent;
+	public FMOD.Studio.EventInstance percussionState;
+
+	public FMODUnity.EventReference dropletEvent;
+	public FMOD.Studio.EventInstance dropletState;
+
+	public FMODUnity.EventReference rhythmEvent;
+	public FMOD.Studio.EventInstance rhythmState;
+
+	public FMODUnity.EventReference whipEvent;
+
+	[Header("Instrument Sounds")]
+	public FMODUnity.EventReference stringsEvent;
+	public FMODUnity.EventReference ringsEvent;
+	public FMODUnity.EventReference padsEvent;
 
 	//create static singleton to act as a globally accessible Sound
 	//if instance is null (it is at first), set it to this object so all references point to it
@@ -52,56 +72,49 @@ public class Sound : MonoBehaviour {
 	}
 
 	void Start() {
-		//create sound clips
-		ambientClips = new AmbientClip[clips.ambiences.Length];
+		//activate ambient sound events
+		ambienceState = FMODUnity.RuntimeManager.CreateInstance(ambienceEvent);
+        ambienceState.start();
 
-		for (int i = 0; i < ambientClips.Length; i++) {
-			GameObject temp = Instantiate(ambientSoundEmitter, Camera.main.transform);
-			ambientClips[i] = temp.GetComponent<AmbientClip>();
-			ambientClips[i].init(clips.ambiences[i].audio);
-		}
+		lookState = FMODUnity.RuntimeManager.CreateInstance(lookEvent);
+        lookState.start();
+		lookState.setParameterByName("Look", 0);
 
-		dynamicClips = new DynamicClip[clips.dynamics.Length];
+		flyPointState = FMODUnity.RuntimeManager.CreateInstance(flyPointEvent);
+		flyPointState.start();
+		flyPointState.setParameterByName("Volume", 0);
 
-		for (int i = 0; i < dynamicClips.Length; i++) {
-			GameObject temp = Instantiate(dynamicSoundEmitter, Camera.main.transform);
-			dynamicClips[i] = temp.GetComponent<DynamicClip>();
-			dynamicClips[i].init(clips.dynamics[i].oneShot, clips.dynamics[i].audiosLo, clips.dynamics[i].audiosHi, clips.dynamics[i].name);
-		}
+		padState = FMODUnity.RuntimeManager.CreateInstance(padEvent);
+		padState.start();
+		padState.setParameterByName("Volume", 0);
 
-		//kickstart loop clips
-		for (int i = 0; i < dynamicClips.Length; i++) {
-			if (!dynamicClips[i].isOneShot) dynamicClips[i].kickstart();
-		}
+		percussionState = FMODUnity.RuntimeManager.CreateInstance(percussionEvent);
+		percussionState.start();
+		percussionState.setParameterByName("Volume", 0);
 
-		for (int i = 0; i < ambientClips.Length; i++) {
-			ambientClips[i].kickstart();
-		}
+		dropletState = FMODUnity.RuntimeManager.CreateInstance(dropletEvent);
+		dropletState.start();
+		dropletState.setParameterByName("Volume", 0);
 
-		//activate ambience clips
-		ambienceToggle("bass Em", true);
-		ambienceToggle("bass ambience Em", true);
+		rhythmState = FMODUnity.RuntimeManager.CreateInstance(rhythmEvent);
+		rhythmState.start();
+		rhythmState.setParameterByName("Volume", 0);
 
-		//handle beat tracking
+		//beat tracking
 		secPerBeat = 60f / bpm;
 		musicStart = (float) AudioSettings.dspTime;
 	}
 
 	void Update() {
-		//change chord at random point in time
-		changeChord();
+		ambienceState.setParameterByName("Energy", energy);
 
-		//play vocals if low energy
-		if (energy < lowEnergyThreshold && energyState != 0) {
-			energyState = 0;
-			ambienceToggle("vocals", true);
-		}
+		if (energy < lowEnergyThreshold && energyState != 0) energyState = 0;
 
-		//calculate energy falloff
-		energy -= eneryFalloff * Time.deltaTime;
+		//energy falloff
+		energy -= energyFalloff * Time.deltaTime;
 		energy = Mathf.Clamp(energy, 0f, 100f);
 
-		//calculate beats
+		//beats
 		musicPosition = (float) (AudioSettings.dspTime - musicStart);
 		int currentBeat = (int) Mathf.Floor(musicPosition / secPerBeat);
 
@@ -116,61 +129,9 @@ public class Sound : MonoBehaviour {
 
 		//play appropriate sound set for different energy
 		if (energy > highEnergyTreshold) {
-			if (energyState != 2) {
-				energyState = 2;
-				ambienceToggle("clicks", true);
-				if (atRoot) ambienceToggle("chord ambience CM", true);
-				else ambienceToggle("chord ambience Em", true);
-
-				//if dynamic clip is playing lo sound, switch to hi
-				for (int i = 0; i < dynamicClips.Length; i++) {
-					if (dynamicClips[i].playingLo) dynamicClips[i].toggleSound(true, 0.1f, true);
-				}
-			}
+			if (energyState != 2) energyState = 2;
 		} else if (energy > lowEnergyThreshold) {
-			if (energyState != 1) {
-				energyState = 1;
-				ambienceToggle("clicks", false);
-				ambienceToggle("chord ambience CM", false);
-				ambienceToggle("chord ambience Em", false);
-				ambienceToggle("vocals", false);
-
-				//if dynamic clip is playing hi sound, switch to lo
-				for (int i = 0; i < dynamicClips.Length; i++) {
-					if (dynamicClips[i].playingHi) dynamicClips[i].toggleSound(true, 0.1f, false);
-				}
-			}
-		}
-	}
-
-	private void changeChord() {
-		float chance = Random.Range(0f, 1f);
-		if (chance < 0.2f && beatChange && (beat == 1 || beat == 9)) {
-			atRoot = !atRoot;
-
-			if (atRoot) {
-				ambienceToggle("bass CM", true);
-				ambienceToggle("bass ambience CM", true);
-
-				ambienceToggle("bass Em", false);
-				ambienceToggle("bass ambience Em", false);
-
-				if (energyState == 2) {
-					ambienceToggle("chord ambience Em", false);
-					ambienceToggle("chord ambience CM", true);
-				}
-			} else {
-				ambienceToggle("bass Em", true);
-				ambienceToggle("bass ambience Em", true);
-
-				ambienceToggle("bass CM", false);
-				ambienceToggle("bass ambience CM", false);
-
-				if (energyState == 2) {
-					ambienceToggle("chord ambience CM", true);
-					ambienceToggle("chord ambience Em", false);
-				}
-			}
+			if (energyState != 1) energyState = 1;
 		}
 	}
 
@@ -178,52 +139,14 @@ public class Sound : MonoBehaviour {
 		energy += amount * Time.deltaTime;
 	}
 
-	//toggle dynamic sound
-	public void dynamicToggle(string sound, bool on, float speed = 0.1f) {
-		if (!mute) {
-			if (energy > highEnergyTreshold) findDynamic(sound).toggleSound(on, speed, true);
-			else findDynamic(sound).toggleSound(on, speed, false);
-		}
-	}
+	public void playOneShotWithParameters(FMODUnity.EventReference fmodEvent, params(string name, float value)[] parameters) {
+		FMOD.Studio.EventInstance instance = FMODUnity.RuntimeManager.CreateInstance(fmodEvent);
 
-	//toggle ambient sound
-	public void ambienceToggle(string sound, bool on, float speed = 0.1f) {
-		if (!mute) {
-			findAmbient(sound).toggleSound(on, speed);
-		}
-	}
-
-	//play one-shot of soundclip
-	public void shootSound(string sound, int index = 100) {
-		if (!mute) {
-			if (energy > highEnergyTreshold) findDynamic(sound).shootClip(index, true);
-			else findDynamic(sound).shootClip(index, false);
-		}
-	}
-
-	private DynamicClip findDynamic(string sound) {
-		for (int i = 0; i < dynamicClips.Length; i++) {
-			if (dynamicClips[i].clipName == sound) return dynamicClips[i];
+		foreach(var (name, value) in parameters) {
+			instance.setParameterByName(name, value);
 		}
 
-		Debug.Log("couldn't find dynamic sound");
-		return new DynamicClip();
-	}
-
-	private AmbientClip findAmbient(string sound) {
-		for (int i = 0; i < ambientClips.Length; i++) {
-			if (ambientClips[i].clip.name == sound) return ambientClips[i];
-		}
-
-		Debug.Log("couldn't find ambient sound");
-		return new AmbientClip();
-	}
-
-	public void silence() {
-		for (int i = 0; i < ambientClips.Length; i++) {
-			ambientClips[i].toggleSound(false, 0.05f);
-		}
-
-		mute = true;
+		instance.start();
+		instance.release();
 	}
 }

@@ -45,7 +45,14 @@ public class Pad : MonoBehaviour {
 			if (glowRoutine != null) StopCoroutine(glowRoutine);
 			glowRoutine = StartCoroutine(Glow());
 			Sound.Instance.addEnergy(0.1f);
-			Sound.Instance.shootSound(tone);
+			int toneInt = 0;
+			switch (tone) {
+				case "kick": toneInt = 0; break;
+				case "snare": toneInt = 1; break;
+				case "hat": toneInt = 2; break;
+				default: toneInt = 0; break;
+			}
+			Sound.Instance.playOneShotWithParameters(Sound.Instance.padsEvent, ("PercussionNote", toneInt));
 			Nox.Instance.terrain.addFeedback(1.0f);
 		}
 	}

@@ -14,7 +14,6 @@ using UnityEngine.InputSystem;
 public class SunClick : MonoBehaviour {
 
 	[Header("References")]
-	public AudioMixer mix;
 	public GameObject pp;
 	public OrbitingSun sun;
 
@@ -76,20 +75,21 @@ public class SunClick : MonoBehaviour {
 		negative = !negative;
 
 		float cut;
-		mix.GetFloat("LP_Freq", out cut);
+		//todo
+		//mix.GetFloat("LP_Freq", out cut);
 		FOV = Camera.main.GetComponent<Camera>().fieldOfView;
 
 		while (FOV > 10f) {
 			yield return new WaitForSeconds(0.01f);
 			FOV = Mathf.Lerp(FOV, 9.9f, 10f * Time.deltaTime);
-			cut = Mathf.Lerp(cut, 3000f, 0.1f * Time.deltaTime);
-			mix.SetFloat("LP_Freq", cut);
+			//todo
+			//cut = Mathf.Lerp(cut, 3000f, 0.1f * Time.deltaTime);
+			//mix.SetFloat("LP_Freq", cut);
 			Camera.main.GetComponent<Camera>().fieldOfView = FOV;
 		}
 
 		//filter cutoff
-		if (negative) mix.SetFloat("LP_Freq", 1500f);
-		else mix.SetFloat("LP_Freq", 22000f);
+		//todo
 
 		//post-processing effects
 		if (negative) pp.SetActive(true);

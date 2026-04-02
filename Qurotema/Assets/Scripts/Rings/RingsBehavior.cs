@@ -32,10 +32,12 @@ public class RingsBehavior : MonoBehaviour {
 			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
 			if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~mask)) {
-
-				Sound.Instance.addEnergy(0.5f);
-				Sound.Instance.shootSound("rings", int.Parse(hit.collider.tag) - 1);
-				Nox.Instance.ringPlayed();
+				int parsedInt = -1;
+				if (int.TryParse(hit.collider.tag, out parsedInt)) {
+					Sound.Instance.addEnergy(0.5f);
+					Sound.Instance.playOneShotWithParameters(Sound.Instance.ringsEvent, ("ChromaticNote", parsedInt - 1));
+					Nox.Instance.ringPlayed();
+				}
 			}
 		}
 	}

@@ -48,7 +48,7 @@ public class MonolithBehavior : MonoBehaviour {
 
 		StartCoroutine(makeVisible());
 		Sound.Instance.addEnergy(5f);
-		Sound.Instance.shootSound("sparkles");
+		FMODUnity.RuntimeManager.PlayOneShot(Sound.Instance.momentEvent);
 	}
 
 	public IEnumerator makeVisible() {

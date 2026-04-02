@@ -30,9 +30,7 @@ public class FlyPointBehavior : MonoBehaviour {
 			if (Nox.Instance.player.GetComponent<PlayerMove>().flying && interactAction.IsPressed()) {
 				RaycastHit hit;
 				Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-
 				if (Physics.Raycast(ray, out hit, Mathf.Infinity, mask)) targetPoint = hit.point;
-
 				Sound.Instance.addEnergy(1f);
 			}
 
@@ -42,11 +40,11 @@ public class FlyPointBehavior : MonoBehaviour {
 
 			//audio
 			if (Nox.Instance.player.GetComponent<PlayerMove>().flying && interactAction.WasPressedThisFrame()) {
-				Sound.Instance.dynamicToggle("pads", true);
+				Sound.Instance.padState.setParameterByName("Volume", 1);
 			}
 
 			if (Nox.Instance.player.GetComponent<PlayerMove>().flying && interactAction.WasReleasedThisFrame()) {
-				Sound.Instance.dynamicToggle("pads", false);
+				Sound.Instance.padState.setParameterByName("Volume", 0);
 			}
 		}
 	}

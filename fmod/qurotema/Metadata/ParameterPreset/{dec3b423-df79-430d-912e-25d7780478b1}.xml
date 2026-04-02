@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{dec3b423-df79-430d-912e-25d7780478b1}">
+		<property name="name">
+			<value>PercussionNote</value>
+		</property>
+		<relationship name="folder">
+			<destination>{30f531ee-8933-4330-be55-36191dff2dd3}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{ce981dba-0ace-4974-bea5-943388be38ad}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{ce981dba-0ace-4974-bea5-943388be38ad}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>3</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>Kick</value>
+			<value>Snare</value>
+			<value>Hat</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

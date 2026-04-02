@@ -88,7 +88,8 @@ public class CursorBehavior : MonoBehaviour {
 	}
 
 	IEnumerator toggle(bool t) {
-		Sound.Instance.dynamicToggle("rhythms", t);
+		int boolInt = t ? 1 : 0;
+		Sound.Instance.rhythmState.setParameterByName("Volume", boolInt);
 
 		on = t;
 

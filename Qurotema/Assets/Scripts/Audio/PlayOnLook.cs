@@ -12,10 +12,6 @@ using UnityEngine;
 public class PlayOnLook : MonoBehaviour {
 
 	[Header("Trackers")]
-	private bool lookingAtMonolith = false;
-	private bool lookingAtGates = false;
-	private bool lookingAtSun = false;
-	private bool lookingAtRock = false;
 	private bool firstLookMonolith = false;
 
 	void Update() {
@@ -23,69 +19,27 @@ public class PlayOnLook : MonoBehaviour {
 		Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
 		if (Physics.Raycast(ray, out hit, Mathf.Infinity)) {
+			switch (hit.collider.tag) {
+				case "Sun":
+					Sound.Instance.lookState.setParameterByName("Look", 1);
+					break;
 
-			//on conditions
-			if (hit.collider.tag == "Sun" && !lookingAtSun) {
-				disableAllFlags();
-				lookingAtSun = true;
+				case "Monolith":
+					Sound.Instance.lookState.setParameterByName("Look", 2);
+					if (!firstLookMonolith) {
+						firstLookMonolith = true;
+						Nox.Instance.monolithDiscovered();
+					}
+					break;
 
-				Sound.Instance.ambienceToggle("sun", true);
-			}
+				case "Gates":
+					Sound.Instance.lookState.setParameterByName("Look", 3);
+					break;
 
-			if (hit.collider.tag == "Monolith" && !lookingAtMonolith) {
-				disableAllFlags();
-				lookingAtMonolith = true;
-				if (!firstLookMonolith) {
-					firstLookMonolith = true;
-					Nox.Instance.monolithDiscovered();
-				}
-
-				Sound.Instance.ambienceToggle("whispers", true);
-			}
-
-			if (hit.collider.tag == "Gates" && !lookingAtGates) {
-				disableAllFlags();
-				lookingAtGates = true;
-
-				Sound.Instance.ambienceToggle("vocals", true);
-				Sound.Instance.ambienceToggle("whispers", true);
-			}
-
-			if (hit.collider.tag == "Rock" && !lookingAtRock) {
-				disableAllFlags();
-				lookingAtRock = true;
-
-				Sound.Instance.ambienceToggle("whispers", true);
-			}
-
-			//off conditions
-			if (hit.collider.tag != "Gates" && lookingAtGates) {
-				lookingAtGates = false;
-				Sound.Instance.ambienceToggle("vocals", false);
-				if (hit.collider.tag != "Monolith" && hit.collider.tag != "Rock") Sound.Instance.ambienceToggle("whispers", false);
-			}
-
-			if (hit.collider.tag != "Monolith" && lookingAtMonolith) {
-				lookingAtMonolith = false;
-				if (hit.collider.tag != "Rock") Sound.Instance.ambienceToggle("whispers", false);
-			}
-
-			if (hit.collider.tag != "Sun" && lookingAtSun) {
-				lookingAtSun = false;
-				Sound.Instance.ambienceToggle("sun", false);
-			}
-
-			if (hit.collider.tag != "Rock" && lookingAtRock) {
-				lookingAtRock = false;
-				if (hit.collider.tag != "Monolith") Sound.Instance.ambienceToggle("whispers", false);
+				default:
+					Sound.Instance.lookState.setParameterByName("Look", 0);
+					break;
 			}
 		}
-	}
-
-	void disableAllFlags() {
-		lookingAtGates = false;
-		lookingAtMonolith = false;
-		lookingAtSun = false;
-		lookingAtRock = false;
 	}
 }

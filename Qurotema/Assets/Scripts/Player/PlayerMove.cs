@@ -26,7 +26,6 @@ public class PlayerMove : MonoBehaviour {
 	[Header("References")]
 	public GameObject cam;
 	public Transform colliders;
-	public AudioMixer mix;
 	public Material ribbonsBottom;
 
 	[Header("Input")]
@@ -121,7 +120,7 @@ public class PlayerMove : MonoBehaviour {
 				speedChangeStop *= flightControlMultiplier;
 				directionChangeSpeed *= flightControlMultiplier;
 
-				Sound.Instance.dynamicToggle("harmonies", true);
+				Sound.Instance.flyPointState.setParameterByName("Volume", 1);
 			} else {
 				walkSpeed /= flightSpeedMultiplier;
 				sprintSpeed /= flightSpeedMultiplier;
@@ -131,8 +130,8 @@ public class PlayerMove : MonoBehaviour {
 				speedChangeStop /= flightControlMultiplier;
 				directionChangeSpeed /= flightControlMultiplier;
 
-				Sound.Instance.dynamicToggle("harmonies", false);
-				Sound.Instance.dynamicToggle("pads", false);
+				Sound.Instance.flyPointState.setParameterByName("Volume", 0);
+				Sound.Instance.padState.setParameterByName("Volume", 0);
 			}
 		}
 	}
@@ -145,17 +144,13 @@ public class PlayerMove : MonoBehaviour {
 
 		//need listener specifically for a single event
 		//repeated calls to dynamicToggle result in loss of functionality
-		if (sprintAction.WasPressedThisFrame()) Sound.Instance.dynamicToggle("percussion", true);
-		if (sprintAction.WasReleasedThisFrame()) Sound.Instance.dynamicToggle("percussion", false);
+		if (sprintAction.WasPressedThisFrame()) Sound.Instance.percussionState.setParameterByName("Volume", 1);
+		if (sprintAction.WasReleasedThisFrame()) Sound.Instance.percussionState.setParameterByName("Volume", 0);
 
 		if (jumping) {
-			float cut;
-			mix.GetFloat("Frequency_Cutoff", out cut);
-			mix.SetFloat("Frequency_Cutoff", Mathf.Lerp(cut, 1100f, 1f * Time.deltaTime));
+			//todo
 		} else {
-			float cut;
-			mix.GetFloat("Frequency_Cutoff", out cut);
-			mix.SetFloat("Frequency_Cutoff", Mathf.Lerp(cut, 10f, 5f * Time.deltaTime));
+			//todo
 		}
 	}
 

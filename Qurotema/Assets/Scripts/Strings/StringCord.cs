@@ -44,14 +44,14 @@ public class StringCord : MonoBehaviour {
 			StartCoroutine(Refresh());
 			Sound.Instance.addEnergy(0.2f);
 
-			if(frequency < 300f) Sound.Instance.shootSound("strings", 0);
-			else if (frequency < 400f) Sound.Instance.shootSound("strings", 1);
-			else if (frequency < 500f) Sound.Instance.shootSound("strings", 2);
-			else if (frequency < 600f) Sound.Instance.shootSound("strings", 3);
-			else if (frequency < 700f) Sound.Instance.shootSound("strings", 4);
-			else if (frequency < 800f) Sound.Instance.shootSound("strings", 5);
-			else if (frequency < 900f) Sound.Instance.shootSound("strings", 6);
-			else Sound.Instance.shootSound("strings", 7);
+			if(frequency < 300f) Sound.Instance.playOneShotWithParameters(Sound.Instance.stringsEvent, ("KeyNote", 0));
+			else if (frequency < 400f) Sound.Instance.playOneShotWithParameters(Sound.Instance.stringsEvent, ("KeyNote", 1));
+			else if (frequency < 500f) Sound.Instance.playOneShotWithParameters(Sound.Instance.stringsEvent, ("KeyNote", 2));
+			else if (frequency < 600f) Sound.Instance.playOneShotWithParameters(Sound.Instance.stringsEvent, ("KeyNote", 3));
+			else if (frequency < 700f) Sound.Instance.playOneShotWithParameters(Sound.Instance.stringsEvent, ("KeyNote", 4));
+			else if (frequency < 800f) Sound.Instance.playOneShotWithParameters(Sound.Instance.stringsEvent, ("KeyNote", 5));
+			else if (frequency < 900f) Sound.Instance.playOneShotWithParameters(Sound.Instance.stringsEvent, ("KeyNote", 6));
+			else Sound.Instance.playOneShotWithParameters(Sound.Instance.stringsEvent, ("KeyNote", 7));
 
 			Nox.Instance.stringPlayed();
 		}
