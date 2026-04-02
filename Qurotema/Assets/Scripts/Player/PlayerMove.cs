@@ -137,11 +137,6 @@ public class PlayerMove : MonoBehaviour {
 	}
 
 	void handleSound() {
-		if (flying && sprinting) Sound.Instance.addEnergy(2.4f);
-		else if (flying && !sprinting) Sound.Instance.addEnergy(1.8f);
-		else if (sprinting) Sound.Instance.addEnergy(1.4f);
-		else if (getSpeed() > 1f) Sound.Instance.addEnergy(0.4f);
-
 		//need listener specifically for a single event
 		//repeated calls to dynamicToggle result in loss of functionality
 		if (sprintAction.WasPressedThisFrame()) Sound.Instance.percussionState.setParameterByName("Volume", 1);

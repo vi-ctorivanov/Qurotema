@@ -42,7 +42,6 @@ public class StringCord : MonoBehaviour {
 			if (ringRoutine != null) StopCoroutine(ringRoutine);
 			ringRoutine = StartCoroutine(Ring());
 			StartCoroutine(Refresh());
-			Sound.Instance.addEnergy(0.2f);
 
 			if(frequency < 300f) Sound.Instance.playOneShotWithParameters(Sound.Instance.stringsEvent, ("KeyNote", 0));
 			else if (frequency < 400f) Sound.Instance.playOneShotWithParameters(Sound.Instance.stringsEvent, ("KeyNote", 1));

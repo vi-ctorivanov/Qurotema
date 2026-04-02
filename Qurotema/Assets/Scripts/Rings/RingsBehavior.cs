@@ -34,7 +34,6 @@ public class RingsBehavior : MonoBehaviour {
 			if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~mask)) {
 				int parsedInt = -1;
 				if (int.TryParse(hit.collider.tag, out parsedInt)) {
-					Sound.Instance.addEnergy(0.5f);
 					Sound.Instance.playOneShotWithParameters(Sound.Instance.ringsEvent, ("ChromaticNote", parsedInt - 1));
 					Nox.Instance.ringPlayed();
 				}

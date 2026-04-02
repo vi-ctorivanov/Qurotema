@@ -50,13 +50,9 @@ public class SunClick : MonoBehaviour {
 			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
 			if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~mask)) {
-				if (hit.collider.tag == "Sun") {
-					Sound.Instance.addEnergy(5f);
-					toggleProxim();
-				}
+				if (hit.collider.tag == "Sun") toggleProxim();
 
 				if (hit.collider.tag == "GatesSphere" && sun.gates) {
-					Sound.Instance.addEnergy(5f);
 					if (transitioning != null) StopCoroutine(transitioning);
 					transitioning = StartCoroutine(SwitchWorlds());
 				}
@@ -68,38 +64,26 @@ public class SunClick : MonoBehaviour {
 		proxim = !proxim;
 		sun.proxim = proxim;
 
-		//do some audio stuff
+		//todo some audio stuff
 	}
 
 	IEnumerator SwitchWorlds() {
 		negative = !negative;
 
-		float cut;
 		//todo
+		//float cut;
 		//mix.GetFloat("LP_Freq", out cut);
-		FOV = Camera.main.GetComponent<Camera>().fieldOfView;
 
-		while (FOV > 10f) {
-			yield return new WaitForSeconds(0.01f);
-			FOV = Mathf.Lerp(FOV, 9.9f, 10f * Time.deltaTime);
-			//todo
-			//cut = Mathf.Lerp(cut, 3000f, 0.1f * Time.deltaTime);
-			//mix.SetFloat("LP_Freq", cut);
-			Camera.main.GetComponent<Camera>().fieldOfView = FOV;
-		}
+		//cut = Mathf.Lerp(cut, 3000f, 0.1f * Time.deltaTime);
+		//mix.SetFloat("LP_Freq", cut);
 
-		//filter cutoff
-		//todo
+		//filter cutoff...
+
+		yield return new WaitForSeconds(0.1f);
 
 		//post-processing effects
 		if (negative) pp.SetActive(true);
 		else pp.SetActive(false);
-
-		while (FOV < 65f) {
-			yield return new WaitForSeconds(0.01f);
-			FOV = Mathf.Lerp(FOV, 66f, 5f * Time.deltaTime);
-			Camera.main.GetComponent<Camera>().fieldOfView = FOV;
-		}
 
 		routineEnded = true;
 	}

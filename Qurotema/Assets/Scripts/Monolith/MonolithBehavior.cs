@@ -47,7 +47,6 @@ public class MonolithBehavior : MonoBehaviour {
 		image.sprite = t;
 
 		StartCoroutine(makeVisible());
-		Sound.Instance.addEnergy(5f);
 		FMODUnity.RuntimeManager.PlayOneShot(Sound.Instance.momentEvent);
 	}
 

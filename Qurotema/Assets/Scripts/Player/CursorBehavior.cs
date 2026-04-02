@@ -61,8 +61,6 @@ public class CursorBehavior : MonoBehaviour {
 			//override in movement and flight modes
 			if ((markerAction.IsPressed() || Nox.Instance.player.GetComponent<PlayerMove>().flying) && on) toggleCursor(false);
 
-			if (cursorAction.IsPressed() && !Nox.Instance.player.GetComponent<PlayerMove>().flying && !markerAction.IsPressed()) Sound.Instance.addEnergy(1f);
-
 			if (cursorAction.WasPressedThisFrame() && !Nox.Instance.player.GetComponent<PlayerMove>().flying && !markerAction.IsPressed()) toggleCursor(true);
 
 			if (cursorAction.WasReleasedThisFrame()) toggleCursor(false);

@@ -31,7 +31,6 @@ public class FlyPointBehavior : MonoBehaviour {
 				RaycastHit hit;
 				Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 				if (Physics.Raycast(ray, out hit, Mathf.Infinity, mask)) targetPoint = hit.point;
-				Sound.Instance.addEnergy(1f);
 			}
 
 			if (Mathf.Abs(targetPoint.x - flyPoint.transform.position.x) > 1f && Mathf.Abs(targetPoint.z - flyPoint.transform.position.z) > 1f) {

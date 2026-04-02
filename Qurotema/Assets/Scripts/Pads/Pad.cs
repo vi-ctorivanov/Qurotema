@@ -44,7 +44,6 @@ public class Pad : MonoBehaviour {
 		if (Sound.Instance.beat == count && active && Sound.Instance.beatChange) {
 			if (glowRoutine != null) StopCoroutine(glowRoutine);
 			glowRoutine = StartCoroutine(Glow());
-			Sound.Instance.addEnergy(0.1f);
 			int toneInt = 0;
 			switch (tone) {
 				case "kick": toneInt = 0; break;

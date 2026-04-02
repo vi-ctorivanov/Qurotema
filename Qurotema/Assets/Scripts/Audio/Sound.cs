@@ -1,6 +1,6 @@
 ﻿/*
 
-Creates sound events for each sound, tracks bpm, manages 'energy'.
+Creates sound events for each sound, tracks bpm.
 
 */
 
@@ -10,13 +10,6 @@ using System.Diagnostics;
 using UnityEngine;
 
 public class Sound : MonoBehaviour {
-
-	[Header("States")]
-	public float energy = 20f; //range: 0 - 100
-	public float energyFalloff = 0.6f;
-	private int energyState = 1;
-	private float highEnergyTreshold = 60f;
-	private float lowEnergyThreshold = 10f;
 
 	[Header("Timing")]
 	public int beat = 1;
@@ -106,15 +99,7 @@ public class Sound : MonoBehaviour {
 	}
 
 	void Update() {
-		ambienceState.setParameterByName("Energy", energy);
-
-		if (energy < lowEnergyThreshold && energyState != 0) energyState = 0;
-
-		//energy falloff
-		energy -= energyFalloff * Time.deltaTime;
-		energy = Mathf.Clamp(energy, 0f, 100f);
-
-		//beats
+		//track beats
 		musicPosition = (float) (AudioSettings.dspTime - musicStart);
 		int currentBeat = (int) Mathf.Floor(musicPosition / secPerBeat);
 
@@ -126,17 +111,6 @@ public class Sound : MonoBehaviour {
 		}
 		
 		if (beatChange && beat == 16) bars++;
-
-		//play appropriate sound set for different energy
-		if (energy > highEnergyTreshold) {
-			if (energyState != 2) energyState = 2;
-		} else if (energy > lowEnergyThreshold) {
-			if (energyState != 1) energyState = 1;
-		}
-	}
-
-	public void addEnergy(float amount) {
-		energy += amount * Time.deltaTime;
 	}
 
 	public void playOneShotWithParameters(FMODUnity.EventReference fmodEvent, params(string name, float value)[] parameters) {

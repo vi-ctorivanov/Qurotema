@@ -57,7 +57,6 @@ public class MarkerBehavior : MonoBehaviour {
 					Nox.Instance.player.GetComponent<PlayerMove>().verticalForce = 0f;
 					Nox.Instance.player.GetComponent<PlayerMove>().targetDirection = Vector2.zero;
 					Nox.Instance.player.transform.position = new Vector3(hit.point.x, hit.point.y + 2f, hit.point.z);
-					Sound.Instance.addEnergy(3f);
 					FMODUnity.RuntimeManager.PlayOneShot(Sound.Instance.whipEvent);
 				}
 			}
