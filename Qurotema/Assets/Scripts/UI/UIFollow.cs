@@ -13,6 +13,7 @@ public class UIFollow : MonoBehaviour {
 	[Header("Input")]
 	private InputAction cursorAction;
 	private InputAction markerAction;
+	private InputAction flightAction;
 
 	[Header("Dynamics")]
 	public float distanceFromCamera = 1.2f;
@@ -41,6 +42,7 @@ public class UIFollow : MonoBehaviour {
 
 		cursorAction = InputSystem.actions.FindAction("Cursor");
 		markerAction = InputSystem.actions.FindAction("Marker");
+		flightAction = InputSystem.actions.FindAction("Flight");
 	}
 
 	void Update() {
@@ -48,53 +50,23 @@ public class UIFollow : MonoBehaviour {
 		if (Nox.Instance.player) {
 			switch (triggerLayer) {
 				case "flight":
-					if (playerScript.flying) {
-						if (fader != null) StopCoroutine(fader);
-						if (opacity != targetOpacity) opacity = Mathf.Lerp(opacity, targetOpacity, (fadeSpeed / 2f) * fadeDelay * Time.deltaTime);
-					} else {
-						if (fader != null) StopCoroutine(fader);
-						if (opacity != 0f) opacity = Mathf.Lerp(opacity, 0f, fadeSpeed / 2f * Time.deltaTime);
-					}
+					//checking if player is flying gives consistent results because UIFollow always runs after PlayerMove
+					if (flightAction.WasPressedThisFrame() && playerScript.flying) doFade(true);
+					if (flightAction.WasReleasedThisFrame() && !playerScript.flying) doFade(false);
 					break;
 
 				case "control":
-					if (cursorAction.WasPressedThisFrame()) {
-						if (fader != null) StopCoroutine(fader);
-						fader = StartCoroutine(Fade(targetOpacity));
-					}
-
-					if (cursorAction.WasReleasedThisFrame()) {
-						if (fader != null) StopCoroutine(fader);
-						fader = StartCoroutine(Fade(0f));
-					}
-
-					if (playerScript.flying) {
-						if (fader != null) StopCoroutine(fader);
-						if (opacity != 0f) opacity = Mathf.Lerp(opacity, 0f, fadeSpeed / 2f * Time.deltaTime);
-					}
+					//flight overrides control
+					if (cursorAction.WasPressedThisFrame() && !playerScript.flying) doFade(true);
+					if (cursorAction.WasReleasedThisFrame()) doFade(false);
 					break;
 
 				case "movement":
-					//control overrides movement
-					if (markerAction.WasPressedThisFrame() && !cursorAction.IsPressed()) {
-						if (fader != null) StopCoroutine(fader);
-						fader = StartCoroutine(Fade(targetOpacity));
-					}
+					//control and flight override movement
+					if (markerAction.WasPressedThisFrame() && !cursorAction.IsPressed() && !playerScript.flying) doFade(true);
 
-					if (markerAction.WasReleasedThisFrame()) {
-						if (fader != null) StopCoroutine(fader);
-						fader = StartCoroutine(Fade(0f));
-					}
-
-					if (cursorAction.WasPressedThisFrame()) {
-						if (fader != null) StopCoroutine(fader);
-						fader = StartCoroutine(Fade(0f));
-					}
-
-					if (playerScript.flying) {
-						if (fader != null) StopCoroutine(fader);
-						if (opacity != 0f) opacity = Mathf.Lerp(opacity, 0f, fadeSpeed / 2f * Time.deltaTime);
-					}
+					if (markerAction.WasReleasedThisFrame()) doFade(false);
+					if (cursorAction.WasPressedThisFrame()) doFade(false);
 					break;
 			}
 		}
@@ -102,6 +74,12 @@ public class UIFollow : MonoBehaviour {
 		GetComponent<CanvasGroup>().alpha = opacity;
 
 		follow();
+	}
+
+	void doFade(bool on) {
+		if (fader != null) StopCoroutine(fader);
+		if (on) fader = StartCoroutine(Fade(targetOpacity));
+		else fader = StartCoroutine(Fade(0f));
 	}
 
 	void follow() {

@@ -34,7 +34,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Fly",
+                    "name": "Flight",
                     "type": "Button",
                     "id": "27c5f898-bc57-4ee1-8800-db469aca5fe3",
                     "expectedControlType": "",
@@ -316,7 +316,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Fly",
+                    "action": "Flight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -327,7 +327,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Fly",
+                    "action": "Flight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

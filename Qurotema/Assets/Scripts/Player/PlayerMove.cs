@@ -33,7 +33,7 @@ public class PlayerMove : MonoBehaviour {
 	private InputAction sprintAction;
 	private InputAction jumpAction;
 	private InputAction moveAction;
-	private InputAction flyAction;
+	private InputAction flightAction;
 	private InputAction cursorAction;
 	private InputAction interactAction;
 	private InputAction markerAction;
@@ -83,7 +83,7 @@ public class PlayerMove : MonoBehaviour {
 		sprintAction = InputSystem.actions.FindAction("Sprint");
 		jumpAction = InputSystem.actions.FindAction("Jump");
 		moveAction = InputSystem.actions.FindAction("Move");
-		flyAction = InputSystem.actions.FindAction("Fly");
+		flightAction = InputSystem.actions.FindAction("Flight");
 		cursorAction = InputSystem.actions.FindAction("Cursor");
 		interactAction = InputSystem.actions.FindAction("Interact");
 		markerAction = InputSystem.actions.FindAction("Marker");
@@ -108,7 +108,7 @@ public class PlayerMove : MonoBehaviour {
 		if (quitAction.WasReleasedThisFrame()) StartCoroutine(quit());
 
 		//switch to flying mode only if no mouse buttons are pressed
-		if (flyAction.WasPressedThisFrame() && !cursorAction.IsPressed() && !interactAction.IsPressed() && !markerAction.IsPressed()) {
+		if (flightAction.WasPressedThisFrame() && !cursorAction.IsPressed() && !interactAction.IsPressed() && !markerAction.IsPressed()) {
 			flying = !flying;
 			//change speeds and dampening parameters when flying for quicker and snappier movement in-air
 			if (flying) {
