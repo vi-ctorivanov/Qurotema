@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class StringSetup : MonoBehaviour {
+public class StringsSetup : MonoBehaviour {
 
 	[Header("References")]
 	public GameObject node;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MonolithBehavior : MonoBehaviour {
+public class MonolithActivate : MonoBehaviour {
 
 	[Header("References")]
 	public Image image;

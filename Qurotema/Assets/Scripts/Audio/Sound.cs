@@ -23,7 +23,7 @@ public class Sound : MonoBehaviour {
 	private int bars = 0;
 	
 	[Header("Atmosphere Sounds")]
-    public FMODUnity.EventReference ambienceEvent;
+	public FMODUnity.EventReference ambienceEvent;
 	public FMOD.Studio.EventInstance ambienceState;
 	
 	public FMODUnity.EventReference lookEvent;

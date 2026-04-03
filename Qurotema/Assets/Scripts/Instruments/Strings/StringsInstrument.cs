@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StringCord : MonoBehaviour {
+public class StringsInstrument : MonoBehaviour {
 
 	[Header("References")]
 	public Vector3 start;

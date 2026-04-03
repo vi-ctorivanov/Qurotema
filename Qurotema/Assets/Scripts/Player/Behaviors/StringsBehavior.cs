@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Stringer : MonoBehaviour {
+public class StringsBehavior : MonoBehaviour {
 	
 	[Header("References")]
 	public LineRenderer liner;
@@ -28,7 +28,7 @@ public class Stringer : MonoBehaviour {
 	private Vector3 start = new Vector3(0,0,0);
 	private Vector3 end = new Vector3(0,0,0);
 	private bool stringing = false;
-	private List<StringCord> stringSet = new List<StringCord>();
+	private List<StringsInstrument> stringSet = new List<StringsInstrument>();
 
 	void Start() {
 		cursorAction = InputSystem.actions.FindAction("Cursor");
@@ -51,7 +51,7 @@ public class Stringer : MonoBehaviour {
 
 			if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~mask)) {
 				if (hit.collider.tag == "String") {
-					hit.collider.gameObject.GetComponent<StringCord>().playSound();
+					hit.collider.gameObject.GetComponent<StringsInstrument>().playSound();
 				}
 			}
 		}
@@ -119,19 +119,19 @@ public class Stringer : MonoBehaviour {
 		stringInstance.transform.localScale += new Vector3(0, Vector3.Distance(s, e) * 50, 0);
 		stringInstance.transform.Rotate(-90, 0, 0);
 
-		StringCord component = stringInstance.GetComponent<StringCord>();
+		StringsInstrument component = stringInstance.GetComponent<StringsInstrument>();
 		component.init(s, e);
 
 		addString(stringInstance);
 	}
 
 	private void addString(GameObject o) {
-		stringSet.Add(o.GetComponent<StringCord>());
+		stringSet.Add(o.GetComponent<StringsInstrument>());
 	}
 
 	private bool stringExists(Vector3 s, Vector3 e) {
 		for (int i = 0; i < stringSet.Count; i++) {
-			StringCord str = stringSet[i].GetComponent<StringCord>();
+			StringsInstrument str = stringSet[i].GetComponent<StringsInstrument>();
 			if (str.start == s && str.end == e) return true;
 			if (str.start == e && str.end == s) return true;
 		}

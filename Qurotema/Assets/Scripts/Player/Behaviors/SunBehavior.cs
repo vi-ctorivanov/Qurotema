@@ -11,7 +11,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 
-public class SunClick : MonoBehaviour {
+public class SunBehavior : MonoBehaviour {
 
 	[Header("References")]
 	public GameObject pp;

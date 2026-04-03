@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pad : MonoBehaviour {
+public class PadsInstrument : MonoBehaviour {
 
 	[Header("References")]
 	public GameObject lightObject;

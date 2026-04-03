@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class RingsTrigger : MonoBehaviour {
 
-	private RingsBehavior r;
+	private RingsInstrument r;
 
 	void Start() {
-		r = Camera.main.gameObject.GetComponent<RingsBehavior>();
+		r = Camera.main.gameObject.GetComponent<RingsInstrument>();
 	}
 
 	private void OnTriggerEnter(Collider other) {

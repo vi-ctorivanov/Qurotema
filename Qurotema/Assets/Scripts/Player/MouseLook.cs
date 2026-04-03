@@ -153,7 +153,7 @@ public class MouseLook : MonoBehaviour {
 		float velocity = Vector3.Distance(transform.position, previousCameraLocation) / Time.deltaTime;
 		previousCameraLocation = transform.position;
 
-		if (GetComponent<SunClick>().transitioning == null) {
+		if (GetComponent<SunBehavior>().transitioning == null) {
 			float extraFOV = 0f;
 			if (Nox.Instance.player.GetComponent<PlayerMove>().flying) extraFOV += 10f;
 			//boost FOV by pushing up targetFOV spectrum - boosting the FOV itself is too jarring
