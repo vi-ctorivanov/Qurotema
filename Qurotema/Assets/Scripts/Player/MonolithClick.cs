@@ -24,7 +24,7 @@ public class MonolithClick : MonoBehaviour {
 	}
 
     void Update() {
-        if (cursorAction.IsPressed() && interactAction.WasPressedThisFrame()) {
+        if (cursorAction.IsPressed()) {
 			RaycastHit hit;
 			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 

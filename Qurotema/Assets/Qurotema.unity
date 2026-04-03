@@ -1165,59 +1165,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130565370}
   m_CullTransparentMesh: 0
---- !u!21 &134058153
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs/DefaultCompositionGraph
-  m_Shader: {fileID: -6465566751694194690, guid: 054cd61f1e736ab45a595f7b32d2e2bc,
-    type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BaseLayer:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _FlatUILayer:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _UILayer:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats: []
-    m_Colors: []
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!1 &142033254
 GameObject:
   m_ObjectHideFlags: 0
@@ -5868,6 +5815,59 @@ Transform:
   - {fileID: 815224754}
   m_Father: {fileID: 1379775439}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &804000337
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shader Graphs/DefaultCompositionGraph
+  m_Shader: {fileID: -6465566751694194690, guid: 054cd61f1e736ab45a595f7b32d2e2bc,
+    type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseLayer:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FlatUILayer:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _UILayer:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors: []
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1 &815224753
 GameObject:
   m_ObjectHideFlags: 0
@@ -9442,13 +9442,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced8db6f5b1040843aa9b3bd7a040ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sound
-  clips: {fileID: 11400000, guid: 21d290977757cb440befc0e37b76f103, type: 2}
-  ambientSoundEmitter: {fileID: 1940475542757626201, guid: 1ca1f28dafd7ae54eb38978c626f8036,
-    type: 3}
-  dynamicSoundEmitter: {fileID: 6795656644235646544, guid: 6ce8f24a1702b3e4f9b2bdcf7d482973,
-    type: 3}
-  energy: 20
-  energyFalloff: 0.6
   beat: 1
   beatChange: 0
   bpm: 120
@@ -9466,6 +9459,13 @@ MonoBehaviour:
       Data3: -24705860
       Data4: 777324691
     Path: event:/Atmosphere/Look
+  momentEvent:
+    Guid:
+      Data1: 1658908501
+      Data2: 1144606098
+      Data3: -274575475
+      Data4: 854462908
+    Path: event:/Atmosphere/Moment
   flyPointEvent:
     Guid:
       Data1: -346462333
@@ -9501,13 +9501,6 @@ MonoBehaviour:
       Data3: -999080277
       Data4: 1919622262
     Path: event:/Movement/Rhythm
-  momentEvent:
-    Guid:
-      Data1: 1658908501
-      Data2: 1144606098
-      Data3: -274575475
-      Data4: 854462908
-    Path: event:/Atmosphere/Moment
   whipEvent:
     Guid:
       Data1: -1506225492
@@ -9816,7 +9809,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4ff609190bf0de41b000b80dda711cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mix: {fileID: 24100000, guid: 8ff87e8b1319e4b49927e92f429cadf3, type: 2}
   pp: {fileID: 905478163}
   sun: {fileID: 2035111238}
   mask:
@@ -11481,7 +11473,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 1297650280}
   colliders: {fileID: 801699980}
-  mix: {fileID: 24100000, guid: 8ff87e8b1319e4b49927e92f429cadf3, type: 2}
   ribbonsBottom: {fileID: 2100000, guid: 290480186a48eb44d91886e2a732b75b, type: 2}
   mask:
     serializedVersion: 2
@@ -12505,7 +12496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.Compositor.CompositionManager
   m_Enable: 1
-  m_Material: {fileID: 134058153}
+  m_Material: {fileID: 804000337}
   m_OutputDisplay: 0
   m_InputLayers:
   - m_LayerName: _FlatUILayer
@@ -16152,6 +16143,11 @@ PrefabInstance:
         type: 3}
       propertyPath: canvas
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1469432889618098539, guid: 90a8f6f3a4021c342990a3502c946c7f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4015057677813976776, guid: 90a8f6f3a4021c342990a3502c946c7f,
         type: 3}
