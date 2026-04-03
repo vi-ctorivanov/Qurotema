@@ -204,7 +204,7 @@ RectTransform:
   m_GameObject: {fileID: 721058772834801371}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2148423880124435582}
@@ -484,6 +484,7 @@ MonoBehaviour:
   tearGrow: {fileID: 3283327808254812919}
   eyeObject: {fileID: 1469432889618098539}
   image: {fileID: 1601258651}
+  anim: {fileID: 1507249662879547844}
   active: 0
 --- !u!1 &2678047652685826103
 GameObject:
@@ -619,6 +620,7 @@ GameObject:
   - component: {fileID: 8986940515024324333}
   - component: {fileID: 3424019550631148052}
   - component: {fileID: 4015057677813976777}
+  - component: {fileID: 1507249662879547844}
   m_Layer: 11
   m_Name: Monolith
   m_TagString: Monolith
@@ -723,3 +725,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.042, y: 0.042, z: 0.11}
   m_Center: {x: 0, y: 0, z: -0.05}
+--- !u!111 &1507249662879547844
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4015057677813976776}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 7400000, guid: 3109032fe7a8cd943b87bf1c39e45eb1, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 3109032fe7a8cd943b87bf1c39e45eb1, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_UpdateMode: 1
+  m_CullingType: 0
