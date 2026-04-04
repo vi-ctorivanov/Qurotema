@@ -8,18 +8,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Sound : MonoBehaviour {
 
 	[Header("Timing")]
-	public int beat = 1;
+	public int currentBeatInBar = 0;
 	public bool beatChange = false;
 	public float bpm = 120f;
+	public int beat = 1;
 
 	private float musicStart;
 	private float secPerBeat;
 	private float musicPosition;
-	private float musicPositionInBeats;
 	private int bars = 0;
 	
 	[Header("Atmosphere Sounds")]
@@ -102,14 +103,13 @@ public class Sound : MonoBehaviour {
 		//track beats
 		musicPosition = (float) (AudioSettings.dspTime - musicStart);
 		int currentBeat = (int) Mathf.Floor(musicPosition / secPerBeat);
+		currentBeatInBar = currentBeat % 16;
 
 		beatChange = false;
-
 		if (beat + (bars * 16) != currentBeat) {
 			beatChange = true;
 			beat = currentBeat - (bars * 16);
 		}
-		
 		if (beatChange && beat == 16) bars++;
 	}
 

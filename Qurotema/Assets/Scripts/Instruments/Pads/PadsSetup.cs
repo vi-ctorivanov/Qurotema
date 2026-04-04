@@ -30,7 +30,7 @@ public class PadsSetup : MonoBehaviour {
 			for (int column = 0; column < columns; column++) {
 				GameObject p = Instantiate(pad, new Vector3(this.transform.position.x + row * distanceBetweenPads, this.transform.position.y + 0, this.transform.position.z - column * distanceBetweenPads), Quaternion.identity, this.transform);
 				p.GetComponent<PadsInstrument>().tone = tone;
-				p.GetComponent<PadsInstrument>().count = column + 1;
+				p.GetComponent<PadsInstrument>().count = column;
 			}
 		}
 	}
