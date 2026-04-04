@@ -14,7 +14,7 @@ public class MonolithBehavior : MonoBehaviour {
 	[Header("Dynamics")]
 	public LayerMask mask;
 
-	[Header("Input")]
+	//input
 	private InputAction cursorAction;
 	private InputAction interactAction;
 
@@ -23,8 +23,8 @@ public class MonolithBehavior : MonoBehaviour {
 		interactAction = InputSystem.actions.FindAction("Interact");
 	}
 
-    void Update() {
-        if (cursorAction.IsPressed() && interactAction.IsPressed()) {
+	void Update() {
+		if (cursorAction.IsPressed() && interactAction.IsPressed()) {
 			RaycastHit hit;
 			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
@@ -36,5 +36,5 @@ public class MonolithBehavior : MonoBehaviour {
 				}
 			}
 		}
-    }
+	}
 }

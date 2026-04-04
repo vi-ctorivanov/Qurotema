@@ -17,14 +17,14 @@ public class StringsBehavior : MonoBehaviour {
 	public GameObject stringObject;
 	public CursorBehavior cursor;
 
-	[Header("Input")]
+	//input
 	private InputAction cursorAction;
 	private InputAction interactAction;
 
 	[Header("Dynamics")]
 	public LayerMask mask;
 
-	[Header("States")]
+	//states
 	private Vector3 start = new Vector3(0,0,0);
 	private Vector3 end = new Vector3(0,0,0);
 	private bool stringing = false;
@@ -36,14 +36,14 @@ public class StringsBehavior : MonoBehaviour {
 	}
 
 	void Update() {
-		if (!stringing) leftClick();
+		if (!stringing) passive();
 		else {
 			drawPendingString();
-			leftRelease();
+			release();
 		}
 	}
 
-	private void leftClick() {
+	private void passive() {
 		//play string
 		if (cursorAction.IsPressed() && !interactAction.IsPressed()) {
 			RaycastHit hit;
@@ -70,7 +70,7 @@ public class StringsBehavior : MonoBehaviour {
 		}
 	}
 
-	private void leftRelease() {
+	private void release() {
 		//end create string
 		if (interactAction.WasReleasedThisFrame() || cursorAction.WasReleasedThisFrame()) {
 			RaycastHit hit;

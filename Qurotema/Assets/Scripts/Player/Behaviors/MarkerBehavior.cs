@@ -14,7 +14,7 @@ public class MarkerBehavior : MonoBehaviour {
 	[Header("References")]
 	public GameObject marker;
 
-	[Header("Input")]
+	//input
 	private InputAction cursorAction;
 	private InputAction interactAction;
 	private InputAction markerAction;
@@ -25,7 +25,7 @@ public class MarkerBehavior : MonoBehaviour {
 	public Vector3 teleportFOVDistances; //0, 100, 500
 	public LayerMask mask;
 
-	[Header("States")]
+	//states
 	private bool playing = false;
 
 	void Start() {

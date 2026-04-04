@@ -11,7 +11,6 @@ using UnityEngine;
 
 public class PlayOnLook : MonoBehaviour {
 
-	[Header("Trackers")]
 	private bool firstLookMonolith = false;
 
 	void Update() {

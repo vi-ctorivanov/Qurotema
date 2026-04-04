@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class StringsInstrument : MonoBehaviour {
 
-	[Header("References")]
+	//references
 	public Vector3 start;
 	public Vector3 end;
 	private BoxCollider col;
 	private Material mat;
 
-	[Header("States")]
-	public float frequency;
+	//states
+	private float frequency;
 	private float distance;
 	private float offset = 0f;
 	private float offsetSpeed = 10f;

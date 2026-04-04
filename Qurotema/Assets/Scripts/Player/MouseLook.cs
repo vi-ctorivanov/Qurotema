@@ -13,22 +13,22 @@ public class MouseLook : MonoBehaviour {
 
 	[Header("Dynamics")]
 	public float mouseSensitivity = 130f;
-	public float clampAngle = 80f;
-	public float easeSpeed = 2f;
 	public float shakeSpeed = 1f;
 	public float shakeQuantity = 1.4f;
-	public float followSpeed = 8f;
-	public float heightOffset = 0.5f;
 	public AnimationCurve flashFOVCurve;
 	public LayerMask mask;
+	private float clampAngle = 80f;
+	private float easeSpeed = 10f;
+	private float followSpeed = 8f;
+	private float heightOffset = 0.5f;
 
 	[Header("FOV")]
 	public float minFOV = 65f;
 	public float maxFOV = 140f;
-	public float easeFOV = 2f;
-	public float boostBoost = 1.5f;
+	private float easeFOV = 3f;
+	private float boostBoost = 25f;
 
-	[Header("Input")]
+	//input
 	private InputAction lookAction;
 	private InputAction sprintAction;
  
@@ -46,6 +46,14 @@ public class MouseLook : MonoBehaviour {
 	private float perlinY;
 	private float perlinZ;
 	private bool ready = false;
+
+	private void OnEnable() {
+		Nox.OnFlashFeedback += fovFeedback;
+	}
+
+	private void OnDisable() {
+		Nox.OnFlashFeedback -= fovFeedback;
+	}
 
 	void Start() {
 		//lock cursor
@@ -71,9 +79,7 @@ public class MouseLook : MonoBehaviour {
 	}
 
 	void Update() {
-		if (!ready) {
-			if (Nox.Instance.introductionFinished) ready = true;
-		}
+		if (!ready) if (Nox.Instance.introductionFinished) ready = true;
 
 		handleInput();
 		rotate();
@@ -153,20 +159,18 @@ public class MouseLook : MonoBehaviour {
 		float velocity = Vector3.Distance(transform.position, previousCameraLocation) / Time.deltaTime;
 		previousCameraLocation = transform.position;
 
-		if (GetComponent<SunBehavior>().transitioning == null) {
-			float extraFOV = 0f;
-			if (Nox.Instance.player.GetComponent<PlayerMove>().flying) extraFOV += 10f;
-			//boost FOV by pushing up targetFOV spectrum - boosting the FOV itself is too jarring
-			//the boostBoost value shouldn't be too high though, or else the FOV will once again undesireably jump abruptly
-			if (sprintAction.WasPressedThisFrame() && !Nox.Instance.player.GetComponent<PlayerMove>().jumping) extraFOV += boostBoost;
+		float extraFOV = 0f;
+		if (Nox.Instance.player.GetComponent<PlayerMove>().flying) extraFOV += 10f;
+		//boost FOV by pushing up targetFOV spectrum - boosting the FOV itself is too jarring
+		//the boostBoost value shouldn't be too high though, or else the FOV will once again undesireably jump abruptly
+		if (sprintAction.WasPressedThisFrame() && !Nox.Instance.player.GetComponent<PlayerMove>().jumping) extraFOV += boostBoost;
 
-			targetFOV = Mathf.Lerp(targetFOV, Nox.Instance.remap(velocity, 0f, 300f, minFOV + extraFOV, maxFOV + extraFOV), easeFOV * Time.deltaTime);
+		targetFOV = Mathf.Lerp(targetFOV, Nox.Instance.remap(velocity, 0f, 300f, minFOV + extraFOV, maxFOV + extraFOV), easeFOV * Time.deltaTime);
 
-			GetComponent<Camera>().fieldOfView = targetFOV;
-		}
+		GetComponent<Camera>().fieldOfView = targetFOV;
 	}
 
-	public void flashFeedback() {
+	private void fovFeedback(float intensity) {
 		StartCoroutine(flashFOV());
 	}
 

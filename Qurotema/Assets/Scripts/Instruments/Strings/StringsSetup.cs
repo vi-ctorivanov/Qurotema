@@ -5,13 +5,13 @@ public class StringsSetup : MonoBehaviour {
 	[Header("References")]
 	public GameObject node;
 
-	[Header("Definition")]
-	public Vector3 nodesStart = new Vector3(-10f, 10f, -10f);
-	public float distanceBetweenNodes = 10f;
-	public int rows = 3;
-	public int columns = 3;
-	public int depths = 3;
-	public float nodePositionRandomness = 3f;
+	//definition
+	private Vector3 nodesStart = new Vector3(-10f, 10f, -10f);
+	private float distanceBetweenNodes = 10f;
+	private int rows = 3;
+	private int columns = 3;
+	private int depths = 3;
+	private float nodePositionRandomness = 3f;
 
 	void Start() {
 		for (int row = 0; row < rows; row++) {

@@ -31,7 +31,7 @@ public class MonolithActivate : MonoBehaviour {
 		//use animation system in favor of easier maintenacne
 		//despite losing on a small performance benefit of material property blocks to keep material batching intact
 		AnimationState state = anim[anim.clip.name];
-    	state.speed = 1f;
+		state.speed = 1f;
 		anim.Play();
 	}
 }

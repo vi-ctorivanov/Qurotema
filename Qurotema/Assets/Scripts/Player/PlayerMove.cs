@@ -28,7 +28,7 @@ public class PlayerMove : MonoBehaviour {
 	public Transform colliders;
 	public Material ribbonsBottom;
 
-	[Header("Input")]
+	//input
 	private InputAction quitAction;
 	private InputAction sprintAction;
 	private InputAction jumpAction;
@@ -40,41 +40,41 @@ public class PlayerMove : MonoBehaviour {
 
 	[Header("Dynamics")]
 	public LayerMask mask;
-	public float collisionPushback = 0.1f;
+	private float collisionPushback = 0.1f;
 
 	[Header("Speed")]
 	public float walkSpeed = 20f;
 	public float sprintSpeed = 80f;
 
-	[Header("Verticality")]
-	public float jumpSpeed = 20f;
-	public float terminalVelocity = -20f;
-	public float flyHeight = 200f;
-	public float gravityEase = 1f;
-	public float groundedHeight = 1f;
-	public float floatDistance = 10f;
-	public float graceSpace = 0.1f;
-	public float jumpDelayTime = 0.5f;
+	//verticality
+	private float jumpSpeed = 20f;
+	private float terminalVelocity = -15f;
+	private float flyHeight = 100f;
+	private float gravityEase = 1f;
+	private float groundedHeight = 1f;
+	private float floatDistance = 10f;
+	private float graceSpace = 0.1f;
+	private float jumpDelayTime = 0.5f;
 
-	[Header("Acceleration")]
-	public float speedChangeWalk = 2f;
-	public float speedChangeSprint = 2f;
-	public float boostBoost = 1.5f;
-	public float speedChangeStop = 2f;
-	public float directionChangeSpeed = 3f;
-	public float airDampening = 0.2f;
-	public float flyEase = 4f;
-	public float flightSpeedMultiplier = 2f;
-	public float flightControlMultiplier = 3f;
+	//acceleration
+	private float speedChangeWalk = 2f;
+	private float speedChangeSprint = 2f;
+	private float boostBoost = 2.5f;
+	private float speedChangeStop = 2f;
+	private float directionChangeSpeed = 3f;
+	private float airDampening = 0.2f;
+	private float flyEase = 1f;
+	private float flightSpeedMultiplier = 2f;
+	private float flightControlMultiplier = 3f;
 
 	[Header("States")]
 	public bool flying = false;
-	public bool jumpTrigger = false;
+	private bool jumpTrigger = false;
 	public bool jumping = false;
-	public bool sprinting = false;
-	public float targetSpeed = 0f;
+	private bool sprinting = false;
+	private float targetSpeed = 0f;
 	public float verticalForce = 0f;
-	public float bottomDistanceFromCenter = 1f;
+	private float bottomDistanceFromCenter = 1f;
 	public Vector2 targetDirection = new Vector2(0f, 0f);
 	private bool ready = false;
 	
@@ -137,8 +137,6 @@ public class PlayerMove : MonoBehaviour {
 	}
 
 	void handleSound() {
-		//need listener specifically for a single event
-		//repeated calls to dynamicToggle result in loss of functionality
 		if (sprintAction.WasPressedThisFrame()) Sound.Instance.percussionState.setParameterByName("Volume", 1);
 		if (sprintAction.WasReleasedThisFrame()) Sound.Instance.percussionState.setParameterByName("Volume", 0);
 

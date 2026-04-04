@@ -13,15 +13,23 @@ public class PadsInstrument : MonoBehaviour {
 	public string tone;
 	public int count;
 
-	[Header("States")]
+	//states
 	private bool active;
 	private bool ready = true;
 	private float minAlpha = 0.51f;
 	private float maxAlpha = 1f;
 
-	[Header("Coroutines")]
+	//coroutines
 	private Coroutine refreshRoutine;
 	private Coroutine glowRoutine;
+
+	private void OnEnable() {
+		Sound.OnBeat += playBeat;
+	}
+
+	private void OnDisable() {
+		Sound.OnBeat -= playBeat;
+	}
 
 	void Start() {
 		lightMat = lightObject.GetComponent<Renderer>().material;
@@ -40,20 +48,24 @@ public class PadsInstrument : MonoBehaviour {
 		platform.localEulerAngles = new Vector3(platform.localEulerAngles.x, Random.Range(0, 3) * 90f, platform.localEulerAngles.z);
 	}
 
-	void Update() {
-		if (Sound.Instance.beat == count && active && Sound.Instance.beatChange) {
+	void playBeat(int beat) {
+		if (active && beat == count) {
 			if (glowRoutine != null) StopCoroutine(glowRoutine);
 			glowRoutine = StartCoroutine(Glow());
-			int toneInt = 0;
-			switch (tone) {
-				case "kick": toneInt = 0; break;
-				case "snare": toneInt = 1; break;
-				case "hat": toneInt = 2; break;
-				default: toneInt = 0; break;
-			}
-			Sound.Instance.playOneShotWithParameters(Sound.Instance.padsEvent, ("PercussionNote", toneInt));
-			Nox.Instance.terrain.addFeedback(1.0f);
+			playSound();
 		}
+	}
+
+	private void playSound() {
+		int toneInt = 0;
+		switch (tone) {
+			case "kick": toneInt = 0; break;
+			case "snare": toneInt = 1; break;
+			case "hat": toneInt = 2; break;
+			default: toneInt = 0; break;
+		}
+		Sound.Instance.playOneShotWithParameters(Sound.Instance.padsEvent, ("PercussionNote", toneInt));
+		Nox.Instance.terrain.addFeedback(1.0f);
 	}
 
 	private void OnTriggerEnter(Collider other) {

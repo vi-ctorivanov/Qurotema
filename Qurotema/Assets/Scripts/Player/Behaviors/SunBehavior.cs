@@ -17,21 +17,21 @@ public class SunBehavior : MonoBehaviour {
 	public GameObject pp;
 	public OrbitingSun sun;
 
-	[Header("Input")]
+	//input
 	private InputAction cursorAction;
 	private InputAction interactAction;
 
 	[Header("Dynamics")]
 	public LayerMask mask;
 
-	[Header("States")]
+	//states
 	private float FOV;
 	private bool routineEnded = false;
 	private bool negative = false;
 	private bool proxim = false;
 
-	[Header("Coroutine")]
-	public Coroutine transitioning;
+	//coroutines
+	private Coroutine transitioning;
 
 	void Start() {
 		cursorAction = InputSystem.actions.FindAction("Cursor");

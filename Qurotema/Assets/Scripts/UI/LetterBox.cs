@@ -11,17 +11,17 @@ public class LetterBox : MonoBehaviour {
 	public RectTransform highPanel;
 	public Camera cam;
 
-	[Header("Input")]
+	//input
 	private InputAction cursorAction;
 
-	[Header("Dynamics")]
-	public float aspectRatio = 2f;
-	public float aspecRatioChangeSpeed = 4f;
+	//dynamics
+	private float aspectRatio = 1.67f;
+	private float aspecRatioChangeSpeed = 4f;
 
-	[Header("States")]
+	//states
 	private float currentAspect;
 
-	[Header("Coroutines")]
+	//corountines
 	private Coroutine letterBox;
 
 	void Start() {

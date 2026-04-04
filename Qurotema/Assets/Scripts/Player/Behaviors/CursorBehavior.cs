@@ -11,11 +11,11 @@ using UnityEngine.InputSystem;
 
 public class CursorBehavior : MonoBehaviour {
 
-	[Header("References")]
+	//references
 	private Material mat;
 	private Material trail;
 
-	[Header("Input")]
+	//input
 	private InputAction cursorAction;
 	private InputAction interactAction;
 	private InputAction markerAction;

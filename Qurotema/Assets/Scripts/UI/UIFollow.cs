@@ -6,11 +6,12 @@ using UnityEngine.InputSystem;
 
 public class UIFollow : MonoBehaviour {
 
-	[Header("References")]
-	public PlayerMove playerScript;
-	public MouseLook look;
+	//references
+	private PlayerMove playerScript;
+	private MouseLook look;
+	private CanvasGroup canvas;
 
-	[Header("Input")]
+	//input
 	private InputAction cursorAction;
 	private InputAction markerAction;
 	private InputAction flightAction;
@@ -30,15 +31,19 @@ public class UIFollow : MonoBehaviour {
 	private Vector3 cameraAngularVelocity = Vector3.zero;
 	private Vector3 cameraTranslationalVelocity = Vector3.zero;
 	
-	[Header("States")]
+	//states
 	private float opacity = 0f;
 	private float minDistanceFromCamera = 0f;
 
-	[Header("Coroutines")]
+	//coroutines
 	private Coroutine fader;
 	
 	void Start () {
 		minDistanceFromCamera = distanceFromCamera - distanceFromCameraDifference;
+
+		playerScript = Nox.Instance.player.GetComponent<PlayerMove>();
+		look = Camera.main.GetComponent<MouseLook>();
+		canvas = GetComponent<CanvasGroup>();
 
 		cursorAction = InputSystem.actions.FindAction("Cursor");
 		markerAction = InputSystem.actions.FindAction("Marker");
@@ -71,7 +76,7 @@ public class UIFollow : MonoBehaviour {
 			}
 		}
 
-		GetComponent<CanvasGroup>().alpha = opacity;
+		canvas.alpha = opacity;
 
 		follow();
 	}

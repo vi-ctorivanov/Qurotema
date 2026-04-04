@@ -4,24 +4,22 @@ Creates sound events for each sound, tracks bpm.
 
 */
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Sound : MonoBehaviour {
 
-	[Header("Timing")]
-	public int currentBeatInBar = 0;
-	public bool beatChange = false;
-	public float bpm = 120f;
-	public int beat = 1;
-
+	//timing
+	private float bpm = 120f;
+	private int beat = 1;
 	private float musicStart;
 	private float secPerBeat;
 	private float musicPosition;
 	private int bars = 0;
+	public static event Action<int> OnBeat;
 	
 	[Header("Atmosphere Sounds")]
 	public FMODUnity.EventReference ambienceEvent;
@@ -68,10 +66,10 @@ public class Sound : MonoBehaviour {
 	void Start() {
 		//activate ambient sound events
 		ambienceState = FMODUnity.RuntimeManager.CreateInstance(ambienceEvent);
-        ambienceState.start();
+		ambienceState.start();
 
 		lookState = FMODUnity.RuntimeManager.CreateInstance(lookEvent);
-        lookState.start();
+		lookState.start();
 		lookState.setParameterByName("Look", 0);
 
 		flyPointState = FMODUnity.RuntimeManager.CreateInstance(flyPointEvent);
@@ -103,14 +101,15 @@ public class Sound : MonoBehaviour {
 		//track beats
 		musicPosition = (float) (AudioSettings.dspTime - musicStart);
 		int currentBeat = (int) Mathf.Floor(musicPosition / secPerBeat);
-		currentBeatInBar = currentBeat % 16;
 
-		beatChange = false;
+		bool beatChange = false;
 		if (beat + (bars * 16) != currentBeat) {
 			beatChange = true;
 			beat = currentBeat - (bars * 16);
 		}
 		if (beatChange && beat == 16) bars++;
+
+		if (beatChange) OnBeat?.Invoke(currentBeat % 16);
 	}
 
 	public void playOneShotWithParameters(FMODUnity.EventReference fmodEvent, params(string name, float value)[] parameters) {

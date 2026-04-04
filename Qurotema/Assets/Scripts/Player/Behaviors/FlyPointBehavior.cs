@@ -14,7 +14,7 @@ public class FlyPointBehavior : MonoBehaviour {
 	[Header("References")]
 	public GameObject flyPoint;
 
-	[Header("Input")]
+	//input
 	private InputAction interactAction;
 
 	[Header("Dynamics")]

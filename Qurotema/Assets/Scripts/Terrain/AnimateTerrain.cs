@@ -16,15 +16,21 @@ public class AnimateTerrain : MonoBehaviour {
 	public Material ribbonHighMaterial;
 	public Transform flyPoint;
 
-	[Header("Dynamics")]
-	public float mixerSpeed = 0.1f;
-	public float ribbonEaseSpeed = 0.1f;
-	public float feedbackMultiplier = 20f;
-
-	[Header("States")]
+	//dynamics
+	private float mixerSpeed = 0.1f;
+	private float ribbonEaseSpeed = 2f;
+	private float feedbackMultiplier = 1f;
 	private float[] mixers = new float[5];
-	public float feedback = 1f;
+	private float feedback = 0f;
 	private float timeOffset = 0f;
+
+	private void OnEnable() {
+		Nox.OnFlashFeedback += addFeedback;
+	}
+
+	private void OnDisable() {
+		Nox.OnFlashFeedback -= addFeedback;
+	}
 
 	void Start() {
 		for (int i = 0; i < mixers.Length; i++) {
@@ -58,7 +64,7 @@ public class AnimateTerrain : MonoBehaviour {
 		ribbonHighMaterial.SetFloat("_TimeOffset", timeOffset);
 	}
 
-	public void addFeedback(float amount) {
-		feedback += amount;
+	public void addFeedback(float intensity) {
+		feedback += intensity;
 	}
 }

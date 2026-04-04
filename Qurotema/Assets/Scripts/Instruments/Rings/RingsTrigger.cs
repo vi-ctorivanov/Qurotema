@@ -14,11 +14,11 @@ public class RingsTrigger : MonoBehaviour {
 		if (other.tag == "Player") {
 			r.inArea = true;
 		}
-    }
+	}
 
-    private void OnTriggerExit(Collider other) {
-    	if (other.tag == "Player") {
+	private void OnTriggerExit(Collider other) {
+		if (other.tag == "Player") {
 			r.inArea = false;
 		}
-    }
+	}
 }

@@ -28,6 +28,11 @@ public class Nox : MonoBehaviour {
 	public GameObject fadeOut;
 	public TMP_Text storyText;
 	public StoryContent content;
+	public static event Action<int> OnActivateMonolith;
+	public static event Action<int> OnMasterInstrument;
+	public static event Action<float> OnFlashFeedback;
+
+	[Header("Timelines")]
 	public PlayableDirector director;
 	public PlayableAsset introductionTimeline;
 	public PlayableAsset introductionEndTimeline;
@@ -35,23 +40,23 @@ public class Nox : MonoBehaviour {
 	public PlayableAsset gatesTimeline;
 	public PlayableAsset endTimeline;
 
-	[Header("Dynamics")]
+	//dynamics
 	private Vector3 targetPillarSize;
 
 	[Header("States")]
 	public bool introductionFinished = false;
 
 	[Header("Text Animation")]
-	public float textTime = 1f;
-	public float opacityChangeSpeed = 0.01f;
 	public float textLetterTime = 0.03f;
+	private float textTime = 1f;
+	private float opacityChangeSpeed = 0.01f;
 
 	[Header("Trackers")]
 	public int monolithsRead = 0;
-	public int instrumentsDiscovered = 0;
-	public int stringsPlayed = 0;
-	public int ringsPlayed = 0;
-	public int padsPlayed = 0;
+	private int instrumentsMastered = 0;
+	private int stringsPlayed = 0;
+	private int ringsPlayed = 0;
+	private int padsPlayed = 0;
 
 	[Header("Coroutines")]
 	private Coroutine routine;
@@ -91,42 +96,44 @@ public class Nox : MonoBehaviour {
 	}
 
 	public void monolithActivated() {
-		cam.GetComponent<MouseLook>().flashFeedback();
-		terrain.addFeedback(3.0f);
+		OnFlashFeedback?.Invoke(3f);
 		if (monolithsRead == 0) directorPlay(monolithTimeline);
 		monolithsRead++;
+		OnActivateMonolith?.Invoke(monolithsRead);
 	}
 
 	public void stringPlayed() {
 		terrain.addFeedback(2.0f);
 		checkForInstrumentDiscovery();
 		stringsPlayed++;
-		if (stringsPlayed == 30) instrumentMasteryMessage();
+		if (stringsPlayed == 30) instrumentMastered();
 	}
 
 	public void ringPlayed() {
 		terrain.addFeedback(2.0f);
 		checkForInstrumentDiscovery();
 		ringsPlayed++;
-		if (ringsPlayed == 30) instrumentMasteryMessage();
+		if (ringsPlayed == 30) instrumentMastered();
 	}
 
 	public void padPlayed() {
+		terrain.addFeedback(2.0f);
 		checkForInstrumentDiscovery();
 		padsPlayed++;
-		if (padsPlayed == 30) instrumentMasteryMessage();
+		if (padsPlayed == 30) instrumentMastered();
 	}
 
-	private void instrumentMasteryMessage() {
+	private void instrumentMastered() {
 		FMODUnity.RuntimeManager.PlayOneShot(Sound.Instance.momentEvent);
-		terrain.addFeedback(3.0f);
-		playText("instrument" + "_" + instrumentsDiscovered);
+		OnFlashFeedback?.Invoke(3f);
+		playText("instrument" + "_" + instrumentsMastered);
 		targetPillarSize = new Vector3(pillar.transform.localScale.x * 0.5f, pillar.transform.localScale.y, pillar.transform.localScale.z * 0.5f);
-		if (instrumentsDiscovered >= 2) {
-			targetPillarSize = new Vector3(0f, pillar.transform.localScale.y, 0f);
+		if (instrumentsMastered >= 2) {
+			targetPillarSize = new Vector3(0f, pillar.transform.localScale.y, 0f); //make beam invisible when gates appear in the end
 			makeGatesVisible();
 		}
-		instrumentsDiscovered++;
+		instrumentsMastered++;
+		OnMasterInstrument?.Invoke(instrumentsMastered);
 	}
 
 	private void checkForInstrumentDiscovery() {
