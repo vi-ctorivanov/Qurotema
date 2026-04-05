@@ -5,8 +5,6 @@ Only one object can be looked at at a time (naturally).
 
 */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayOnLook : MonoBehaviour {

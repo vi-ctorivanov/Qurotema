@@ -16,9 +16,7 @@ combined with existing momentum.
 */
 
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour {
@@ -77,6 +75,14 @@ public class PlayerMove : MonoBehaviour {
 	private float bottomDistanceFromCenter = 1f;
 	public Vector2 targetDirection = new Vector2(0f, 0f);
 	private bool ready = false;
+
+	private void OnEnable() {
+		Nox.OnIntroductionFinished += getReady;
+	}
+
+	private void OnDisable() {
+		Nox.OnIntroductionFinished -= getReady;
+	}
 	
 	void Start() {
 		quitAction = InputSystem.actions.FindAction("Quit");
@@ -90,9 +96,7 @@ public class PlayerMove : MonoBehaviour {
 	}
 
 	void Update() {
-		if (!ready) {
-			if (Nox.Instance.introductionFinished) ready = true;
-		} else {
+		if (ready) {
 			handleKeys();
 			move();
 		}
@@ -102,6 +106,10 @@ public class PlayerMove : MonoBehaviour {
 		//set ribbon visibility
 		if (flying) ribbonsBottom.SetFloat("_Alpha", Mathf.Lerp(ribbonsBottom.GetFloat("_Alpha"), 1f, 1f * Time.deltaTime));
 		else ribbonsBottom.SetFloat("_Alpha", Mathf.Lerp(ribbonsBottom.GetFloat("_Alpha"), 0f, 1f * Time.deltaTime));
+	}
+
+	void getReady() {
+		ready = true;
 	}
 
 	void handleKeys() {

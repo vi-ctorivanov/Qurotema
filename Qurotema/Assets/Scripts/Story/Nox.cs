@@ -6,9 +6,7 @@ Also holds some global variables and functions.
 */
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Playables;
 using TMPro;
 using UnityEngine.Rendering;
@@ -31,6 +29,8 @@ public class Nox : MonoBehaviour {
 	public static event Action<int> OnActivateMonolith;
 	public static event Action<int> OnMasterInstrument;
 	public static event Action<float> OnFlashFeedback;
+	public static event Action OnIntroductionFinished;
+	public static event Action OnGatesAppear;
 
 	[Header("Timelines")]
 	public PlayableDirector director;
@@ -42,9 +42,6 @@ public class Nox : MonoBehaviour {
 
 	//dynamics
 	private Vector3 targetPillarSize;
-
-	[Header("States")]
-	public bool introductionFinished = false;
 
 	[Header("Text Animation")]
 	public float textLetterTime = 0.03f;
@@ -72,19 +69,15 @@ public class Nox : MonoBehaviour {
 	}
 
 	void Start() {
-		SupportedRenderingFeatures.active.rendersUIOverlay = false;
+		SupportedRenderingFeatures.active.rendersUIOverlay = false; //todo: document why we are doing this
 
 		gates.SetActive(false);
 		gatesCollider.SetActive(false);
 		fadeOut.SetActive(false);
 		targetPillarSize = pillar.transform.localScale;
 
-		if (!introductionFinished) {
-			directorPlay(introductionTimeline);
-		} else {
-			//skip intro cutscene
-			directorPlay(introductionEndTimeline);
-		}
+		//directorPlay(introductionTimeline);
+		directorPlay(introductionEndTimeline); //skip intro cutscene
 	}
 
 	void Update() {
@@ -229,7 +222,7 @@ public class Nox : MonoBehaviour {
 
 	public void makeGatesVisible() {
 		directorPlay(gatesTimeline);
-		sun.GetComponent<OrbitingSun>().gates = true;
+		OnGatesAppear?.Invoke();
 	}
 
 	//special cutscene actions, executed through signals
@@ -238,7 +231,7 @@ public class Nox : MonoBehaviour {
 	}
 
 	public void allowMovement() {
-		introductionFinished = true;
+		OnIntroductionFinished?.Invoke();
 	}
 
 	public void quitApplication() {

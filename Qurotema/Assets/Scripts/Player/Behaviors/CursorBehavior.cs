@@ -5,7 +5,6 @@ Manages mouse 'cursor'.
 */
 
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -27,13 +26,22 @@ public class CursorBehavior : MonoBehaviour {
 
 	[Header("States")]
 	public bool on = false;
+	private bool ready = false;
 
 	[Header("Colors")]
 	public Color red = new Color(100f, 0f, 0f);
 	public Color purple = new Color(5f, 5f, 100f);
 
-	[Header("Coroutines")]
+	//coroutines
 	private Coroutine routine;
+
+	private void OnEnable() {
+		Nox.OnIntroductionFinished += getReady;
+	}
+
+	private void OnDisable() {
+		Nox.OnIntroductionFinished -= getReady;
+	}
 
 	void Start () {
 		transform.position = Camera.main.transform.position + (Camera.main.transform.forward * distanceFromCamera);
@@ -49,7 +57,7 @@ public class CursorBehavior : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Nox.Instance.introductionFinished) {
+		if (ready) {
 			if (!cursorAction.IsPressed()) makePassive();
 			else {
 				if (interactAction.WasPressedThisFrame()) makeActive();
@@ -69,17 +77,21 @@ public class CursorBehavior : MonoBehaviour {
 		transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime); 
 	}
 
-	void makeActive() {
+	private void getReady() {
+		ready = true;
+	}
+
+	private void makeActive() {
 		mat.SetColor("_Color", red);
 		trail.SetColor("_Color", red);
 	}
 
-	void makePassive() {
+	private void makePassive() {
 		mat.SetColor("_Color", purple);
 		trail.SetColor("_Color", purple);
 	}
 
-	void toggleCursor(bool on) {
+	private void toggleCursor(bool on) {
 		if (routine != null) StopCoroutine(routine);
 		routine = StartCoroutine(toggle(on));
 	}

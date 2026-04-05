@@ -5,10 +5,7 @@ Creates sound events for each sound, tracks bpm.
 */
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Sound : MonoBehaviour {
 

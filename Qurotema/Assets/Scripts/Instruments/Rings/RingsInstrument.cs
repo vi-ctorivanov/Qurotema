@@ -4,14 +4,15 @@ Manages rings instrument.
 
 */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class RingsInstrument : MonoBehaviour {
 
-	[Header("Input")]
+	[Header("References")]
+	public Transform cursor;
+
+	//input
 	private InputAction cursorAction;
 	private InputAction interactAction;
 

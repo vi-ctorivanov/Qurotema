@@ -4,12 +4,13 @@ Manages monolith interaction.
 
 */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class MonolithBehavior : MonoBehaviour {
+
+	[Header("References")]
+	public Transform cursor;
 
 	[Header("Dynamics")]
 	public LayerMask mask;

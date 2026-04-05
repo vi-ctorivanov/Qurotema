@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class LetterBox : MonoBehaviour {
@@ -20,9 +18,18 @@ public class LetterBox : MonoBehaviour {
 
 	//states
 	private float currentAspect;
+	private bool ready = false;
 
 	//corountines
 	private Coroutine letterBox;
+
+	void OnEnable() {
+		Nox.OnIntroductionFinished += getReady;
+	}
+
+	void OnDisable() {
+		Nox.OnIntroductionFinished -= getReady;
+	}
 
 	void Start() {
 		currentAspect = cam.aspect;
@@ -32,7 +39,7 @@ public class LetterBox : MonoBehaviour {
 	}
 
 	void Update() {
-		if (Nox.Instance.introductionFinished) {
+		if (ready) {
 			if (cursorAction.WasPressedThisFrame()) {
 				if (letterBox != null) StopCoroutine(letterBox);
 				letterBox = StartCoroutine(changeAspectRatio(aspectRatio));
@@ -54,8 +61,12 @@ public class LetterBox : MonoBehaviour {
 		}
 	}
 
+	private void getReady() {
+		ready = true;
+	}
+
 	//force aspect ratio with letterboxing
-	void forceAspectRatio(float ratio) {
+	private void forceAspectRatio(float ratio) {
 		if (cam.aspect <= 1.1f) return;
 
 		float variance = (ratio / cam.aspect) - 1f;

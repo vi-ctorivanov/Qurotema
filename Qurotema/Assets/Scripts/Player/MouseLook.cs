@@ -5,7 +5,6 @@ Camera controls, animation, and FOV dynamics.
 */
 
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -49,10 +48,12 @@ public class MouseLook : MonoBehaviour {
 
 	private void OnEnable() {
 		Nox.OnFlashFeedback += fovFeedback;
+		Nox.OnIntroductionFinished += getReady;
 	}
 
 	private void OnDisable() {
 		Nox.OnFlashFeedback -= fovFeedback;
+		Nox.OnIntroductionFinished -= getReady;
 	}
 
 	void Start() {
@@ -79,8 +80,6 @@ public class MouseLook : MonoBehaviour {
 	}
 
 	void Update() {
-		if (!ready) if (Nox.Instance.introductionFinished) ready = true;
-
 		handleInput();
 		rotate();
 		follow();
@@ -88,7 +87,11 @@ public class MouseLook : MonoBehaviour {
 		fov();
 	}
 
-	void handleInput() {
+	private void getReady() {
+		ready = true;
+	}
+
+	private void handleInput() {
 		//get input
 		mouseX = lookAction.ReadValue<Vector2>().x;
 		mouseY = -lookAction.ReadValue<Vector2>().y;
@@ -104,7 +107,7 @@ public class MouseLook : MonoBehaviour {
 		rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
 	}
 
-	void rotate() {
+	private void rotate() {
 		//ease rotation
 		currentX = Mathf.Lerp(currentX, rotX, easeSpeed * Time.deltaTime);
 		currentY = Mathf.Lerp(currentY, rotY, easeSpeed * Time.deltaTime);
@@ -115,7 +118,7 @@ public class MouseLook : MonoBehaviour {
 		transform.rotation = localRotation;
 	}
 
-	void follow() {
+	private void follow() {
 		if (Nox.Instance.player) {
 			Vector3 target = Nox.Instance.player.transform.position;
 			target.y += heightOffset;
@@ -131,7 +134,7 @@ public class MouseLook : MonoBehaviour {
 		}
 	}
 
-	void shake() {
+	private void shake() {
 		if (Nox.Instance.player) {
 			//increment perlin 'cursor'
 			perlinX += shakeSpeed * Time.deltaTime;
@@ -155,7 +158,7 @@ public class MouseLook : MonoBehaviour {
 		}
 	}
 
-	void fov() {
+	private void fov() {
 		float velocity = Vector3.Distance(transform.position, previousCameraLocation) / Time.deltaTime;
 		previousCameraLocation = transform.position;
 
