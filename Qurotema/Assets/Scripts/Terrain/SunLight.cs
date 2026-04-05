@@ -1,7 +1,11 @@
 using UnityEngine;
 
 public class SunLight : MonoBehaviour {
+	
+	public Transform sun;
+
 	void Update() {
-		transform.LookAt(new Vector3());
+		Vector3 lookDirection = (transform.position - sun.position).normalized;
+		transform.rotation = Quaternion.LookRotation(lookDirection, Vector3.up);
 	}
 }

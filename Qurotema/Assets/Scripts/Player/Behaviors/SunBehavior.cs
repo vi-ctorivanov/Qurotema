@@ -25,7 +25,9 @@ public class SunBehavior : MonoBehaviour {
 	private Vector3 startSize;
 	private float proximDistanceToGround = -10000f;
 	private float proximSizeMultiplier = 10f;
-	private float transitionAnimationSpeedMultiplier = 3f;
+	private float transitionAnimationSpeedMultiplier = 2f;
+	private float followEase = 8f;
+	private float sunDistance = 9000f;
 
 	//states
 	private bool following = false;
@@ -51,8 +53,7 @@ public class SunBehavior : MonoBehaviour {
 		//state management
 		if (cursorAction.IsPressed()) {
 			RaycastHit hit;
-			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-			if (Physics.Raycast(transform.position, Vector3.Normalize(cursor.position - transform.position), out hit, Mathf.Infinity, ~mask)) {
+			if (Physics.Raycast(transform.position, (cursor.position - transform.position).normalized, out hit, Mathf.Infinity, ~mask)) {
 
 				//cursor follow
 				if (!interactAction.IsPressed()) {
@@ -74,15 +75,10 @@ public class SunBehavior : MonoBehaviour {
 		if (proxim || gates) following = false;
 		if (gates) proxim = false;
 
-		//DEBUG
-
-
 		//follow animation
-		//place sun at certain distance from map center along vector from camera to cursor
 		if (following) {
-			Vector3 targetPosition = (cursor.position - transform.position).normalized * 9000f;
-			sunSphere.position = targetPosition;
-			//sunSphere.position = Vector3.Lerp(sunSphere.position, targetPosition, transitionAnimationSpeedMultiplier * Time.deltaTime);
+			Vector3 targetPosition = transform.position + (cursor.position - transform.position).normalized * sunDistance;
+			sunSphere.position = Vector3.Lerp(sunSphere.position, targetPosition, followEase * Time.deltaTime);
 		}
 		
 		// //proxim animation
@@ -90,7 +86,7 @@ public class SunBehavior : MonoBehaviour {
 		// 	sunSphere.localPosition = new Vector3(sunSphere.localPosition.x, sunSphere.localPosition.y, Mathf.Lerp(sunSphere.localPosition.z, proximDistanceToGround, transitionAnimationSpeedMultiplier * 0.1f * Time.deltaTime));
 		// 	sunSphere.localScale = Vector3.Lerp(sunSphere.localScale, startSize * proximSizeMultiplier, transitionAnimationSpeedMultiplier * 0.1f * Time.deltaTime);
 		// } else {
-		// 	sunSphere.localPosition = new Vector3(sunSphere.localPosition.x, sunSphere.localPosition.y, Mathf.Lerp(sunSphere.localPosition.z, -9000f, transitionAnimationSpeedMultiplier * Time.deltaTime));
+		// 	sunSphere.localPosition = new Vector3(sunSphere.localPosition.x, sunSphere.localPosition.y, Mathf.Lerp(sunSphere.localPosition.z, -sunDistance, transitionAnimationSpeedMultiplier * Time.deltaTime));
 		// 	if (transform.localEulerAngles.y > 20 && transform.localEulerAngles.y < 160) transform.Rotate(0.0f, orbitSpeed * underHorizonSpeedMultiplier * Time.deltaTime, 0.0f, Space.Self);
 		// 	else transform.Rotate(0.0f, orbitSpeed * Time.deltaTime, 0.0f, Space.Self);
 		// }

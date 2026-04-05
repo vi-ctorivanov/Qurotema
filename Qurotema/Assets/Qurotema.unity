@@ -4548,12 +4548,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480943174}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.17148827, y: -0.657061, z: 0.15714002, w: 0.71705633}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2004426839}
+  m_Father: {fileID: 1379775439}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &480943176
 MonoBehaviour:
@@ -4567,6 +4567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3348e3f0817051dc8af31b5bfcb9648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SunLight
+  sun: {fileID: 2004426839}
 --- !u!114 &480943177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10842,6 +10843,59 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1283151636}
   m_Enabled: 1
+--- !u!21 &1287339359
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shader Graphs/DefaultCompositionGraph
+  m_Shader: {fileID: -6465566751694194690, guid: 054cd61f1e736ab45a595f7b32d2e2bc,
+    type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseLayer:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FlatUILayer:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _UILayer:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors: []
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1 &1290717310
 GameObject:
   m_ObjectHideFlags: 1
@@ -11007,7 +11061,7 @@ MonoBehaviour:
   strings: {fileID: 196800113}
   stringObject: {fileID: 2143354438318618597, guid: 19b223d55b282314596ef584d8206ff5,
     type: 3}
-  cursor: {fileID: 708017552}
+  cursor: {fileID: 708017555}
   mask:
     serializedVersion: 2
     m_Bits: 1536
@@ -11070,6 +11124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ee3b324877f72e4ca540a7a7f31d7de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursor: {fileID: 708017555}
   mask:
     serializedVersion: 2
     m_Bits: 5124
@@ -11092,11 +11147,6 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 1028
-  orbitSpeed: 0.5
-  underHorizonSpeedMultiplier: 20
-  proximDistanceToGround: 200
-  proximSizeMultiplier: 2
-  transitionAnimationSpeedMultiplier: 5
 --- !u!114 &1297650294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11109,6 +11159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9a2fbc8cef614c4aaa6a1d025131c2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursor: {fileID: 708017555}
   mask:
     serializedVersion: 2
     m_Bits: 1028
@@ -12312,6 +12363,7 @@ Transform:
   - {fileID: 329977677}
   - {fileID: 5006512736762643235}
   - {fileID: 2004426839}
+  - {fileID: 480943175}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!850595691 &1380254027
@@ -13903,7 +13955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.Compositor.CompositionManager
   m_Enable: 1
-  m_Material: {fileID: 1716539203}
+  m_Material: {fileID: 1287339359}
   m_OutputDisplay: 0
   m_InputLayers:
   - m_LayerName: _FlatUILayer
@@ -14892,59 +14944,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1712991114}
   m_CullTransparentMesh: 0
---- !u!21 &1716539203
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs/DefaultCompositionGraph
-  m_Shader: {fileID: -6465566751694194690, guid: 054cd61f1e736ab45a595f7b32d2e2bc,
-    type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BaseLayer:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _FlatUILayer:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _UILayer:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats: []
-    m_Colors: []
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!1 &1720051689
 GameObject:
   m_ObjectHideFlags: 0
@@ -16903,8 +16902,7 @@ Transform:
   m_LocalPosition: {x: 7995.637, y: 4071.9124, z: -699.52734}
   m_LocalScale: {x: 900, y: 900, z: 900}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 480943175}
+  m_Children: []
   m_Father: {fileID: 1379775439}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &2004426840

@@ -46,9 +46,7 @@ public class StringsBehavior : MonoBehaviour {
 		//play string
 		if (cursorAction.IsPressed() && !interactAction.IsPressed()) {
 			RaycastHit hit;
-			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-
-			if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~mask)) {
+			if (Physics.Raycast(transform.position, (cursor.position - transform.position).normalized, out hit, Mathf.Infinity, ~mask)) {
 				if (hit.collider.tag == "String") {
 					hit.collider.gameObject.GetComponent<StringsInstrument>().playSound();
 				}
@@ -58,9 +56,7 @@ public class StringsBehavior : MonoBehaviour {
 		//start create string
 		if (interactAction.WasPressedThisFrame() && cursorAction.IsPressed()) {
 			RaycastHit hit;
-			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-
-			if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~mask)) {
+			if (Physics.Raycast(transform.position, (cursor.position - transform.position).normalized, out hit, Mathf.Infinity, ~mask)) {
 				if (hit.collider.tag == "StringsNode") {
 					start = hit.collider.gameObject.transform.position;
 					startString(start);
@@ -73,9 +69,7 @@ public class StringsBehavior : MonoBehaviour {
 		//end create string
 		if (interactAction.WasReleasedThisFrame() || cursorAction.WasReleasedThisFrame()) {
 			RaycastHit hit;
-			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-
-			if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~mask)) {
+			if (Physics.Raycast(transform.position, (cursor.position - transform.position).normalized, out hit, Mathf.Infinity, ~mask)) {
 				if (hit.collider.tag == "StringsNode") {
 					end = hit.collider.gameObject.transform.position;
 					if (end == start || stringExists(start, end)) cancelString();
@@ -87,7 +81,7 @@ public class StringsBehavior : MonoBehaviour {
 
 	private void drawPendingString() {
 		liner.SetPosition(0, start);
-		liner.SetPosition(1, Camera.main.transform.position + (Camera.main.transform.forward * 10));
+		liner.SetPosition(1, transform.position + (transform.forward * 10));
 	}
 
 	private void deletePendingString() {

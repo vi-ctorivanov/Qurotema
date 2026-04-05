@@ -27,9 +27,7 @@ public class MonolithBehavior : MonoBehaviour {
 	void Update() {
 		if (cursorAction.IsPressed() && interactAction.IsPressed()) {
 			RaycastHit hit;
-			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-
-			if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~mask)) {
+			if (Physics.Raycast(transform.position, (cursor.position - transform.position).normalized, out hit, Mathf.Infinity, ~mask)) {
 				if (hit.collider.tag == "MonolithEye") {
 					if (!hit.collider.gameObject.GetComponent<MonolithActivate>().active) {
 						hit.collider.gameObject.GetComponent<MonolithActivate>().makeActive();

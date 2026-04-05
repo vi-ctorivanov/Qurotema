@@ -30,9 +30,7 @@ public class RingsInstrument : MonoBehaviour {
 	void Update() {
 		if (inArea && cursorAction.IsPressed() && interactAction.WasPressedThisFrame()) {
 			RaycastHit hit;
-			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-
-			if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~mask)) {
+			if (Physics.Raycast(transform.position, (cursor.position - transform.position).normalized, out hit, Mathf.Infinity, ~mask)) {
 				int parsedInt = -1;
 				if (int.TryParse(hit.collider.tag, out parsedInt)) {
 					Sound.Instance.playOneShotWithParameters(Sound.Instance.ringsEvent, ("ChromaticNote", parsedInt - 1));
