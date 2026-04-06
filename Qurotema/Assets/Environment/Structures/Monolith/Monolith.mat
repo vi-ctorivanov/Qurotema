@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Monolith
-  m_Shader: {fileID: -6465566751694194690, guid: b5112e34f53596b41b079284e2b5fe1f,
+  m_Shader: {fileID: -6465566751694194690, guid: 14c06fbcaad9d6c218bf15ee85031f2e,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -198,6 +198,8 @@ Material:
     - _DoubleSidedNormalMode: 1
     - _DstBlend: 0
     - _DstBlend2: 0
+    - _Emission_Intensity: 0
+    - _Emission_Value: 0
     - _EmissiveColorMode: 1
     - _EmissiveExposureWeight: 1
     - _EmissiveIntensity: 1

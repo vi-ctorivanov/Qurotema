@@ -61,7 +61,7 @@ public class MarkerBehavior : MonoBehaviour {
 		}
 
 		//override with control state
-		if (playing && (markerAction.WasReleasedThisFrame() || cursorAction.IsPressed())) {
+		if (playing && (markerAction.WasReleasedThisFrame() || cursorAction.IsPressed() || Nox.Instance.player.GetComponent<PlayerMove>().flying)) {
 			playing = false;
 			Sound.Instance.dropletState.setParameterByName("Volume", 0);
 		}
