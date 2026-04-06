@@ -16,7 +16,6 @@ public class UIFollow : MonoBehaviour {
 
 	[Header("Dynamics")]
 	public float distanceFromCamera = 1.2f;
-	public float followSpeed = 0.5f;
 	public float fadeDelay = 0f;
 	public Vector3 cameraAngularContribution = Vector3.zero;
 	public Vector3 cameraTranslationalContribution = Vector3.zero;
@@ -104,14 +103,14 @@ public class UIFollow : MonoBehaviour {
 			Of course this means that we can never allow input through while restricting the camera.
 			*/
 			Vector3 tempAngular = new Vector3(-Camera.main.GetComponent<MouseLook>().mouseX, Camera.main.GetComponent<MouseLook>().mouseY, 0f);
-			cameraAngularVelocity = Vector3.Lerp(cameraAngularVelocity, tempAngular, followSpeed * Time.deltaTime);
+			cameraAngularVelocity = Vector3.Lerp(cameraAngularVelocity, tempAngular, Time.deltaTime);
 
 			/*
 			The translation is the distance between the camera's current and previous location.
 			We do need to transform this vector so it's relative to the camera's forward direction to know where the UI should offset towards.
 			*/
 			Vector3 tempTranslational = lastCameraPosition - Camera.main.transform.position;
-			cameraTranslationalVelocity = Vector3.Lerp(cameraTranslationalVelocity, Camera.main.transform.InverseTransformDirection(tempTranslational), followSpeed * Time.deltaTime);
+			cameraTranslationalVelocity = Vector3.Lerp(cameraTranslationalVelocity, Camera.main.transform.InverseTransformDirection(tempTranslational), Time.deltaTime);
 
 			//apply offset
 			float x = (cameraAngularVelocity.x * cameraAngularContribution.x) + (cameraTranslationalVelocity.x * cameraTranslationalContribution.x);

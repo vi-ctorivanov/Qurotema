@@ -14,17 +14,9 @@ public class PadsSetup : MonoBehaviour {
 		for (int row = 0; row < rows; row++) {
 			string tone = "";
 			switch (row) {
-				case 0:
-					tone = "kick";
-					break;
-
-				case 1:
-					tone = "snare";
-					break;
-
-				case 2:
-					tone = "hat";
-					break;
+				case 0: tone = "kick"; break;
+				case 1: tone = "snare"; break;
+				case 2: tone = "hat"; break;
 			}
 
 			for (int column = 0; column < columns; column++) {

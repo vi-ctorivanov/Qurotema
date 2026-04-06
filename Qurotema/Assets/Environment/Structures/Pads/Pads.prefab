@@ -47,4 +47,4 @@ MonoBehaviour:
   pad: {fileID: 5537877987212639737, guid: b8df9594506ecfe43ae4e03ae6c4db20, type: 3}
   rows: 3
   columns: 16
-  distanceBetweenPads: 6
+  distanceBetweenPads: 14

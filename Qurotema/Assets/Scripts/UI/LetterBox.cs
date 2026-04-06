@@ -13,7 +13,7 @@ public class LetterBox : MonoBehaviour {
 	private InputAction cursorAction;
 
 	//dynamics
-	private float aspectRatio = 1.67f;
+	private float aspectRatio = 2.0f;
 	private float aspecRatioChangeSpeed = 4f;
 
 	//states
@@ -67,17 +67,14 @@ public class LetterBox : MonoBehaviour {
 
 	//force aspect ratio with letterboxing
 	private void forceAspectRatio(float ratio) {
-		if (cam.aspect <= 1.1f) return;
-
-		float variance = (ratio / cam.aspect) - 1f;
-
-		Vector2 resize = new Vector2(Screen.width + 10f, (variance * Screen.height) / 2f);
+		float barHeight = (Screen.height - (Screen.width / ratio)) / 2f;
+		Vector2 resize = new Vector2(Screen.width + 10f, barHeight);
 
 		lowPanel.sizeDelta = resize;
-		//lowPanel.anchoredPosition = new Vector2(0f, (lowPanel.rect.height / 2f) - 1f);
+		lowPanel.anchoredPosition = new Vector2(0f, (lowPanel.rect.height / 2f) - 1f);
 
 		highPanel.sizeDelta = resize;
-		//highPanel.anchoredPosition = new Vector2(0f, (-highPanel.rect.height / 2f) + 1f);
+		highPanel.anchoredPosition = new Vector2(0f, (-highPanel.rect.height / 2f) + 1f);
 	}
 
 	IEnumerator changeAspectRatio(float desiredRatio) {
