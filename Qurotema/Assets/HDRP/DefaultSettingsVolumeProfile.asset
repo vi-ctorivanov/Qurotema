@@ -897,6 +897,16 @@ MonoBehaviour:
   includeSunInBaking:
     m_OverrideState: 1
     m_Value: 0
+  m_SkyVersion: 3
+  m_ObsoleteEarthPreset:
+    m_OverrideState: 1
+    m_Value: 1
+  planetaryRadius:
+    m_OverrideState: 1
+    m_Value: 6378100
+  planetCenterPosition:
+    m_OverrideState: 1
+    m_Value: {x: 0, y: -6378100, z: 0}
   type:
     m_OverrideState: 1
     m_Value: 1
@@ -988,16 +998,6 @@ MonoBehaviour:
   horizonZenithShift:
     m_OverrideState: 1
     m_Value: 0
-  m_SkyVersion: 3
-  m_ObsoleteEarthPreset:
-    m_OverrideState: 1
-    m_Value: 1
-  planetaryRadius:
-    m_OverrideState: 1
-    m_Value: 6378100
-  planetCenterPosition:
-    m_OverrideState: 1
-    m_Value: {x: 0, y: -6378100, z: 0}
 --- !u!114 &-1206645398962340262
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1056,6 +1056,25 @@ MonoBehaviour:
   m_Name: VolumetricClouds
   m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.VolumetricClouds
   active: 1
+  m_Version: 3
+  localClouds:
+    m_OverrideState: 1
+    m_Value: 0
+  m_ObsoleteWindSpeed:
+    m_OverrideState: 1
+    m_Value: 1
+  m_ObsoleteOrientation:
+    m_OverrideState: 1
+    m_Value: 0
+  m_ObsoleteShapeOffsetX:
+    m_OverrideState: 1
+    m_Value: 0
+  m_ObsoleteShapeOffsetY:
+    m_OverrideState: 1
+    m_Value: 0
+  m_ObsoleteShapeOffsetZ:
+    m_OverrideState: 1
+    m_Value: 0
   enable:
     m_OverrideState: 1
     m_Value: 0
@@ -1340,25 +1359,6 @@ MonoBehaviour:
   shadowOpacityFallback:
     m_OverrideState: 1
     m_Value: 0
-  m_Version: 3
-  localClouds:
-    m_OverrideState: 1
-    m_Value: 0
-  m_ObsoleteWindSpeed:
-    m_OverrideState: 1
-    m_Value: 1
-  m_ObsoleteOrientation:
-    m_OverrideState: 1
-    m_Value: 0
-  m_ObsoleteShapeOffsetX:
-    m_OverrideState: 1
-    m_Value: 0
-  m_ObsoleteShapeOffsetY:
-    m_OverrideState: 1
-    m_Value: 0
-  m_ObsoleteShapeOffsetZ:
-    m_OverrideState: 1
-    m_Value: 0
 --- !u!114 &-1016694868962581565
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1525,6 +1525,19 @@ MonoBehaviour:
   includeSunInBaking:
     m_OverrideState: 1
     m_Value: 0
+  m_SkyVersion: 1
+  enableDistortion:
+    m_OverrideState: 1
+    m_Value: 0
+  procedural:
+    m_OverrideState: 1
+    m_Value: 1
+  scrollDirection:
+    m_OverrideState: 1
+    m_Value: 0
+  m_ObsoleteScrollSpeed:
+    m_OverrideState: 1
+    m_Value: 1
   hdriSky:
     m_OverrideState: 1
     m_Value: {fileID: 0}
@@ -1596,19 +1609,6 @@ MonoBehaviour:
   rectLightShadow:
     m_OverrideState: 1
     m_Value: 0
-  m_SkyVersion: 1
-  enableDistortion:
-    m_OverrideState: 1
-    m_Value: 0
-  procedural:
-    m_OverrideState: 1
-    m_Value: 1
-  scrollDirection:
-    m_OverrideState: 1
-    m_Value: 0
-  m_ObsoleteScrollSpeed:
-    m_OverrideState: 1
-    m_Value: 1
 --- !u!114 &501965639086630659
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1722,6 +1722,7 @@ MonoBehaviour:
   m_Name: VisualEnvironment
   m_EditorClassIdentifier: 
   active: 1
+  m_Version: 1
   skyType:
     m_OverrideState: 1
     m_Value: 0
@@ -1752,7 +1753,6 @@ MonoBehaviour:
   fogType:
     m_OverrideState: 1
     m_Value: 0
-  m_Version: 1
 --- !u!114 &2601566887657148554
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -2670,6 +2670,9 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0.666
   directionalLightsOnly:
+    m_OverrideState: 1
+    m_Value: 0
+  volumetricLightingDensityCutoff:
     m_OverrideState: 1
     m_Value: 0
 --- !u!114 &8538174454207624001
