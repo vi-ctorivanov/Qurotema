@@ -73,7 +73,7 @@ MonoBehaviour:
   - {fileID: 4244608465577091042}
   IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters:
   - {fileID: 8041239708738332119}
   MinDistance: 1
@@ -235,7 +235,7 @@ MonoBehaviour:
   - {fileID: 4244608465577091042}
   IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters:
   - {fileID: 5148725842339751010}
   MinDistance: 1
@@ -418,7 +418,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 4105969798136695125}
   cacheVersion: 131858
-  cacheTime: 639106810412810846
+  cacheTime: 639110989518975600
   SerializableEventsDict:
   - key: event:/Movement/FlyPoint
     index: 0
@@ -608,7 +608,7 @@ MonoBehaviour:
   Path: ../fmod/export/Desktop/Movement.bank
   Name: Movement
   StudioPath: bank:/Movement
-  lastModified: 639106758626003795
+  lastModified: 639110989518975600
   FileSizes: []
   Exists: 1
 --- !u!114 &5148725842339751010
