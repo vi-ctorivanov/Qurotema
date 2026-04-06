@@ -38,9 +38,7 @@ public class PadsInstrument : MonoBehaviour {
 		RaycastHit hit;
 		if (Physics.Raycast(transform.position, -Vector3.up, out hit)) {
 			transform.position = hit.point + new Vector3(0f, -0.1f, 0f);
-
-			//in order to avoid any grid pattern breaking on y axis, the pads parent needs to be aligned to the y axis (0, 180, -180, etc.)
-			transform.up = hit.normal;
+			transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
 		}
 
 		//rotate platform randomly to vary up texture

@@ -20,7 +20,10 @@ public class PadsSetup : MonoBehaviour {
 			}
 
 			for (int column = 0; column < columns; column++) {
-				GameObject p = Instantiate(pad, new Vector3(this.transform.position.x + row * distanceBetweenPads, this.transform.position.y + 0, this.transform.position.z - column * distanceBetweenPads), Quaternion.identity, this.transform);
+				//use local transform to maintain parent's offset
+				GameObject p = Instantiate(pad, this.transform, false);
+				p.transform.localPosition = new Vector3(row * distanceBetweenPads, 0, -column * distanceBetweenPads);
+				p.transform.localRotation = Quaternion.identity;
 				p.GetComponent<PadsInstrument>().tone = tone;
 				p.GetComponent<PadsInstrument>().count = column;
 			}
