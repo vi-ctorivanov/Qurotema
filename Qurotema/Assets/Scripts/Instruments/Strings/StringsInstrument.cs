@@ -6,7 +6,6 @@ public class StringsInstrument : MonoBehaviour {
 	//references
 	public Vector3 start;
 	public Vector3 end;
-	private BoxCollider col;
 	private Material mat;
 
 	//states
@@ -23,7 +22,6 @@ public class StringsInstrument : MonoBehaviour {
 	private Coroutine ringRoutine;
 
 	void Start () {
-		col = GetComponent<BoxCollider>();
 		mat = GetComponent<MeshRenderer>().material;
 	}
 
@@ -42,14 +40,14 @@ public class StringsInstrument : MonoBehaviour {
 			ringRoutine = StartCoroutine(Ring());
 			StartCoroutine(Refresh());
 
-			if(frequency < 300f) Sound.Instance.playOneShotWithParameters(Sound.Instance.stringsEvent, ("KeyNote", 0));
-			else if (frequency < 400f) Sound.Instance.playOneShotWithParameters(Sound.Instance.stringsEvent, ("KeyNote", 1));
-			else if (frequency < 500f) Sound.Instance.playOneShotWithParameters(Sound.Instance.stringsEvent, ("KeyNote", 2));
-			else if (frequency < 600f) Sound.Instance.playOneShotWithParameters(Sound.Instance.stringsEvent, ("KeyNote", 3));
-			else if (frequency < 700f) Sound.Instance.playOneShotWithParameters(Sound.Instance.stringsEvent, ("KeyNote", 4));
-			else if (frequency < 800f) Sound.Instance.playOneShotWithParameters(Sound.Instance.stringsEvent, ("KeyNote", 5));
-			else if (frequency < 900f) Sound.Instance.playOneShotWithParameters(Sound.Instance.stringsEvent, ("KeyNote", 6));
-			else Sound.Instance.playOneShotWithParameters(Sound.Instance.stringsEvent, ("KeyNote", 7));
+			if(frequency < 300f) Sound.Instance.queueShot("string 0", Sound.Instance.stringsEvent, ("KeyNote", 0));
+			else if (frequency < 400f) Sound.Instance.queueShot("string 1", Sound.Instance.stringsEvent, ("KeyNote", 1));
+			else if (frequency < 500f) Sound.Instance.queueShot("string 2", Sound.Instance.stringsEvent, ("KeyNote", 2));
+			else if (frequency < 600f) Sound.Instance.queueShot("string 3", Sound.Instance.stringsEvent, ("KeyNote", 3));
+			else if (frequency < 700f) Sound.Instance.queueShot("string 4", Sound.Instance.stringsEvent, ("KeyNote", 4));
+			else if (frequency < 800f) Sound.Instance.queueShot("string 5", Sound.Instance.stringsEvent, ("KeyNote", 5));
+			else if (frequency < 900f) Sound.Instance.queueShot("string 6", Sound.Instance.stringsEvent, ("KeyNote", 6));
+			else Sound.Instance.queueShot("string 7", Sound.Instance.stringsEvent, ("KeyNote", 7));
 
 			Nox.Instance.stringPlayed();
 		}

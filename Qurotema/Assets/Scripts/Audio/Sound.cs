@@ -5,17 +5,26 @@ Creates sound events for each sound, tracks bpm.
 */
 
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Sound : MonoBehaviour {
 
 	//timing
-	private float bpm = 120f;
-	private int beat = 1;
+	private float bpm = 120f; //time signature is 4/4
+	private int temporalResolution = 2; //number of divisions of a quarter note for granular beats, should be multiples of 2
+
+	//tracking
 	private float musicStart;
+	public int beat = 1;
 	private float secPerBeat;
-	private float musicPosition;
-	private int bars = 0;
+	public int granularBeat = 1;
+	private float secPerGranularBeat;
+
+	//queue
+	private List<Shot> queue = new List<Shot>();
+
+	//events
 	public static event Action<int> OnBeat;
 	
 	[Header("Atmosphere Sounds")]
@@ -91,22 +100,49 @@ public class Sound : MonoBehaviour {
 
 		//beat tracking
 		secPerBeat = 60f / bpm;
+		secPerGranularBeat = 60f / temporalResolution / bpm;
 		musicStart = (float) AudioSettings.dspTime;
 	}
 
 	void Update() {
-		//track beats
-		musicPosition = (float) (AudioSettings.dspTime - musicStart);
-		int currentBeat = (int) Mathf.Floor(musicPosition / secPerBeat);
+		float musicPosition = (float) (AudioSettings.dspTime - musicStart);
 
-		bool beatChange = false;
-		if (beat + (bars * 16) != currentBeat) {
-			beatChange = true;
-			beat = currentBeat - (bars * 16);
+		//standard beats
+		int computedBeat = (int) Mathf.Floor(musicPosition / secPerBeat);
+		if (beat != computedBeat % 16) {
+			beat = computedBeat % 16;
+			OnBeat?.Invoke(beat);
 		}
-		if (beatChange && beat == 16) bars++;
 
-		if (beatChange) OnBeat?.Invoke(currentBeat % 16);
+		//granular beats
+		computedBeat = (int) Mathf.Floor(musicPosition / secPerGranularBeat);
+		if (granularBeat != computedBeat % (16 * temporalResolution)) {
+			granularBeat = 	computedBeat % (16 * temporalResolution);
+			playQueue();
+		}
+	}
+	
+	public void queueShot(string name, FMODUnity.EventReference fmodEvent, params(string name, float value)[] parameters) {
+		//if shot is closer to the previous beat than the next, just play it to avoid undesireable delay
+		float musicPosition = (float) (AudioSettings.dspTime - musicStart);
+		float present = (float) musicPosition / secPerGranularBeat;
+		float previousBeat = (int) Mathf.Floor(musicPosition / secPerGranularBeat);
+		float nextBeat = (int) Mathf.Ceil(musicPosition / secPerGranularBeat);
+
+		if (present - previousBeat < nextBeat - present) {
+			playOneShotWithParameters(fmodEvent, parameters);
+			return;
+		}
+
+		//only allow one slot for each shot of a specific name
+		if (!queue.Exists(x => x.name == name)) queue.Add(new Shot(name, fmodEvent, parameters));
+	}
+
+	private void playQueue() {
+		for (int i = 0; i < queue.Count; i++) {
+			playOneShotWithParameters(queue[i].fmodEvent, queue[i].parameters);
+		}
+		queue = new List<Shot>();
 	}
 
 	public void playOneShotWithParameters(FMODUnity.EventReference fmodEvent, params(string name, float value)[] parameters) {

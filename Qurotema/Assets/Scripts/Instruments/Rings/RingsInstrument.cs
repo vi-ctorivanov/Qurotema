@@ -33,7 +33,7 @@ public class RingsInstrument : MonoBehaviour {
 			if (Physics.Raycast(transform.position, (cursor.position - transform.position).normalized, out hit, Mathf.Infinity, ~mask)) {
 				int parsedInt = -1;
 				if (int.TryParse(hit.collider.tag, out parsedInt)) {
-					Sound.Instance.playOneShotWithParameters(Sound.Instance.ringsEvent, ("ChromaticNote", parsedInt - 1));
+					Sound.Instance.queueShot("ring", Sound.Instance.ringsEvent, ("ChromaticNote", parsedInt - 1));
 					Nox.Instance.ringPlayed();
 				}
 			}
