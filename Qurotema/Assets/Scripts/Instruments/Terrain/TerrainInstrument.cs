@@ -5,25 +5,23 @@ public class TerrainInstrument : MonoBehaviour {
     [Header("References")]
     public Material terrainMaterial;
 
-    private float intensity = 0f;
-    private float targetIntensity = 0f;
-    private float intensityFalloff = 1000f;
-    private float intensityMax = 500f;
+    [Header("Dynamics")]
+    public AnimationCurve flashCurve;
+    private float playHead = 0f;
+    private float speed = 5f;
 
+    private float intensityMultiplier = 20f;
     private float value = 0f;
 
-    private float ease = 500f;
-
     void Update() {
-        targetIntensity = Mathf.Clamp(targetIntensity - intensityFalloff * Time.deltaTime, 0f, intensityMax);
-        intensity = Mathf.Lerp(intensity, targetIntensity, ease * Time.deltaTime);
+        playHead = playHead + speed * Time.deltaTime;
 
-        terrainMaterial.SetFloat("_Play_Intensity", intensity);
+        terrainMaterial.SetFloat("_Play_Intensity", flashCurve.Evaluate(playHead) * intensityMultiplier);
         terrainMaterial.SetFloat("_Play_Value", value);
     }
 
     public void play(float v) {
-        targetIntensity = intensityMax;
+        playHead = 0f;
         value = v;
     }
 }

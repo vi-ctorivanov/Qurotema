@@ -23,7 +23,7 @@ public class TerrainBehavior : MonoBehaviour {
 			RaycastHit hit;
 			if (Physics.Raycast(transform.position, (cursor.position - transform.position).normalized, out hit, Mathf.Infinity, ~mask)) {
 				if (hit.collider.tag == "Terrain") {
-					float angle = Vector3.Dot(hit.normal, transform.forward); //~0: grazing angle, -1: directly perpendicular
+					float angle = Vector3.Dot(hit.normal, (transform.position - hit.point).normalized);
                     hit.collider.gameObject.GetComponent<TerrainInstrument>().play(angle);
 				}
 			}
