@@ -25,6 +25,7 @@ TagManager:
   - 13
   - MonolithEye
   - GatesSphere
+  - Terrain
   layers:
   - Default
   - TransparentFX
@@ -79,3 +80,4 @@ TagManager:
   - Decal Layer 5
   - Decal Layer 6
   - Decal Layer 7
+  m_MigratedRenderPipelines: []
