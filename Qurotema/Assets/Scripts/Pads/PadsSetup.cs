@@ -5,10 +5,10 @@ public class PadsSetup : MonoBehaviour {
 	[Header("References")]
 	public GameObject pad;
 
-	[Header("Definition")]
-	public int rows = 3;
-	public int columns = 16;
-	public float distanceBetweenPads = 6.0f;
+	//definition
+	private int rows = 3;
+	private int columns = 16;
+	private float distanceBetweenPads = 14f;
 
 	void Start() {
 		for (int row = 0; row < rows; row++) {
@@ -21,7 +21,7 @@ public class PadsSetup : MonoBehaviour {
 
 			for (int column = 0; column < columns; column++) {
 				//use local transform to maintain parent's offset
-				GameObject p = Instantiate(pad, this.transform, false);
+				GameObject p = Instantiate(pad, transform, false);
 				p.transform.localPosition = new Vector3(row * distanceBetweenPads, 0, -column * distanceBetweenPads);
 				p.transform.localRotation = Quaternion.identity;
 				p.GetComponent<PadsInstrument>().tone = tone;

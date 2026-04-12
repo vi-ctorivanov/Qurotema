@@ -45,6 +45,10 @@ public class UIFollow : MonoBehaviour {
 		cursorAction = InputSystem.actions.FindAction("Cursor");
 		markerAction = InputSystem.actions.FindAction("Marker");
 		flightAction = InputSystem.actions.FindAction("Flight");
+
+		for(int i = 0; i < 100; i++) {
+			follow();
+		}
 	}
 
 	void Update() {
@@ -91,22 +95,21 @@ public class UIFollow : MonoBehaviour {
 			Vector3 targetPosition = new Vector3(0f, 0f, targetDistance);
 
 			/*
-			Calculate camera-relative camera velocity and angular velocity to offset UI in opposite direction to create sense of weighty sway.
+			Use camera-relative camera velocity and angular velocity to offset UI in opposite direction to create sense of weighty sway.
 			The actual velocity calculations are more like representations of velocity, since they're easier to calculate.
 
-			Other solutions like a lerping follow did not work very nicely because small changes to time.deltaTime resulted in
-			major jittering.
+			Other solutions like a lerping follow did not work very nicely because small changes to time.deltaTime resulted in major jittering.
 			*/
 
 			/*
-			The rotation is just looking at mouse input, since the camera never turns without user input.
-			Of course this means that we can never allow input through while restricting the camera.
+			Rotation is just looking at mouse input, since the camera never turns without user input.
+			This means that we can never allow look input while also restricting the camera, as the UI will move without the camera.
 			*/
-			Vector3 tempAngular = new Vector3(-Camera.main.GetComponent<MouseLook>().mouseX, Camera.main.GetComponent<MouseLook>().mouseY, 0f);
+			Vector3 tempAngular = new Vector3(-look.mouseX, look.mouseY, 0f);
 			cameraAngularVelocity = Vector3.Lerp(cameraAngularVelocity, tempAngular, Time.deltaTime);
 
 			/*
-			The translation is the distance between the camera's current and previous location.
+			Translation is the distance between the camera's current and previous location.
 			We do need to transform this vector so it's relative to the camera's forward direction to know where the UI should offset towards.
 			*/
 			Vector3 tempTranslational = lastCameraPosition - Camera.main.transform.position;

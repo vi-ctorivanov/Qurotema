@@ -7,7 +7,7 @@ Manages rings instrument.
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class RingsInstrument : MonoBehaviour {
+public class RingsBehavior: MonoBehaviour {
 
 	[Header("References")]
 	public Transform cursor;
@@ -19,8 +19,9 @@ public class RingsInstrument : MonoBehaviour {
 	[Header("Dynamics")]
 	public LayerMask mask;
 
-	[Header("States")]
-	public bool inArea = false;
+	//state
+	private bool resizing = false;
+	private float playSpeed = 0f;
 
 	void Start() {
 		cursorAction = InputSystem.actions.FindAction("Cursor");
@@ -28,12 +29,19 @@ public class RingsInstrument : MonoBehaviour {
 	}
 
 	void Update() {
-		if (inArea && cursorAction.IsPressed() && interactAction.WasPressedThisFrame()) {
+		if (cursorAction.IsPressed()) {
 			RaycastHit hit;
 			if (Physics.Raycast(transform.position, (cursor.position - transform.position).normalized, out hit, Mathf.Infinity, ~mask)) {
-				int parsedInt = -1;
-				if (int.TryParse(hit.collider.tag, out parsedInt)) {
-					Sound.Instance.queueShot("ring", Sound.Instance.ringsEvent, ("ChromaticNote", parsedInt - 1));
+				if (hit.collider.tag == "Ring") {
+					//resize
+					if (interactAction.WasPressedThisFrame()) resizing = true;
+					if (interactAction.WasReleasedThisFrame()) resizing = false;
+					if (resizing) {
+						//find the mouse's... idk?
+					}
+
+					//resonate
+					//Sound.Instance.queueShot("ring", Sound.Instance.ringsEvent, ("ChromaticNote", parsedInt - 1));
 					Nox.Instance.ringPlayed();
 				}
 			}

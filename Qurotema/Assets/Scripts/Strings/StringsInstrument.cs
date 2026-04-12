@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class StringsInstrument : MonoBehaviour {
 
-	//references
+	[Header("References")]
 	public Vector3 start;
 	public Vector3 end;
 	private Material mat;
@@ -18,7 +18,7 @@ public class StringsInstrument : MonoBehaviour {
 	private float ringTick = 0.01f;
 	private float sustainDecay = 0.0004f;
 
-	[Header("Coroutines")]
+	//coroutines
 	private Coroutine ringRoutine;
 
 	void Start () {

@@ -8,7 +8,7 @@ public class PadsInstrument : MonoBehaviour {
 	public Transform platform;
 	private Material lightMat;
 
-	[Header("Pad Definition")]
+	[Header("Definition")]
 	public string tone;
 	public int count;
 

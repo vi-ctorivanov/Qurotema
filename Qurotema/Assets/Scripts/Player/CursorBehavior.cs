@@ -10,14 +10,13 @@ using UnityEngine.InputSystem;
 
 public class CursorBehavior : MonoBehaviour {
 
-	//references
-	private Material mat;
-	private Material trail;
+	[Header("References")]
+	public Material cursorTransparent;
+	public Material cursorOpaque;
 
 	//input
 	private InputAction cursorAction;
 	private InputAction interactAction;
-	private InputAction markerAction;
 
 	[Header("Dynamics")]
 	public float distanceFromCamera = 5f;
@@ -45,15 +44,12 @@ public class CursorBehavior : MonoBehaviour {
 
 	void Start () {
 		transform.position = Camera.main.transform.position + (Camera.main.transform.forward * distanceFromCamera);
-		mat = GetComponent<MeshRenderer>().material;
-		trail = GetComponent<TrailRenderer>().material;
 
 		cursorAction = InputSystem.actions.FindAction("Cursor");
 		interactAction = InputSystem.actions.FindAction("Interact");
-		markerAction = InputSystem.actions.FindAction("Marker");
 
-		mat.SetFloat("_Alpha", 0f);
-		trail.SetFloat("_Alpha", 0f);
+		cursorTransparent.SetFloat("_Alpha", 0f);
+		cursorOpaque.SetFloat("_Alpha", 0f);
 	}
 
 	void Update () {
@@ -82,13 +78,13 @@ public class CursorBehavior : MonoBehaviour {
 	}
 
 	private void makeActive() {
-		mat.SetColor("_Color", red);
-		trail.SetColor("_Color", red);
+		cursorTransparent.SetColor("_Color", red);
+		cursorOpaque.SetColor("_Color", red);
 	}
 
 	private void makePassive() {
-		mat.SetColor("_Color", purple);
-		trail.SetColor("_Color", purple);
+		cursorTransparent.SetColor("_Color", purple);
+		cursorOpaque.SetColor("_Color", purple);
 	}
 
 	private void toggleCursor(bool on) {
@@ -108,8 +104,8 @@ public class CursorBehavior : MonoBehaviour {
 		while (true) {
 			yield return new WaitForSeconds(0.01f);
 
-			mat.SetFloat("_Alpha", alpha);
-			trail.SetFloat("_Alpha", alpha);
+			cursorTransparent.SetFloat("_Alpha", alpha);
+			cursorOpaque.SetFloat("_Alpha", alpha);
 
 			if (t) {
 				alpha += alphaSpeed;
