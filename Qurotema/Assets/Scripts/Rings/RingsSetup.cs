@@ -7,7 +7,7 @@ public class RingsSetup: MonoBehaviour {
 
     //definition
 	private int count = 5;
-	private float distanceBetweenRings = 1.2f;
+	private float distanceBetweenRings = 1.5f;
 
 	void Start() {
 		for (int i = 0; i < count; i++) {

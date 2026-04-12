@@ -4,7 +4,7 @@ public class RingsInstrument : MonoBehaviour {
 
     //definition
     private float minimumRadius = 0.75f;
-    private float maximumRadius = 1.5f;
+    private float maximumRadius = 1.75f;
 
     //state
     private float defaultMeshRadius;
@@ -15,16 +15,17 @@ public class RingsInstrument : MonoBehaviour {
     void Start() {
         defaultMeshRadius = transform.localScale.x;
         radius = Random.Range(minimumRadius, maximumRadius);
-        transform.localScale = new Vector3(defaultMeshRadius * radius, defaultMeshRadius * radius, defaultMeshRadius * radius);
-        resize();
+        resize(radius);
     }
 
     void Update() {
         //compute resonance and play audio
     }
 
-    public void resize() {
-        
+    public void resize(float s) {
+        radius = s;
+        radius = Mathf.Clamp(radius, minimumRadius, maximumRadius);
+        transform.localScale = new Vector3(defaultMeshRadius * radius, defaultMeshRadius * radius, defaultMeshRadius * radius);
     }
 
     public void resonate() {
