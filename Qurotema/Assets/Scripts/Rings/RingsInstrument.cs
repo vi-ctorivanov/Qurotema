@@ -9,6 +9,9 @@ public class RingsInstrument : MonoBehaviour {
     //state
     private float defaultMeshRadius;
     private float radius;
+    private float targetRadius;
+    private float radiusEase = 4f;
+
     private float resonance = 0f;
     private float resonanceDecay = 0.1f;
 
@@ -19,13 +22,16 @@ public class RingsInstrument : MonoBehaviour {
     }
 
     void Update() {
+        //animate scale
+        radius = Mathf.Lerp(radius, targetRadius, radiusEase * Time.deltaTime);
+        transform.localScale = new Vector3(defaultMeshRadius * radius, defaultMeshRadius * radius, defaultMeshRadius * radius);
+
         //compute resonance and play audio
     }
 
     public void resize(float s) {
-        radius = s;
-        radius = Mathf.Clamp(radius, minimumRadius, maximumRadius);
-        transform.localScale = new Vector3(defaultMeshRadius * radius, defaultMeshRadius * radius, defaultMeshRadius * radius);
+        targetRadius = s;
+        targetRadius = Mathf.Clamp(targetRadius, minimumRadius, maximumRadius);
     }
 
     public void resonate() {

@@ -17,6 +17,7 @@ public class StringsInstrument : MonoBehaviour {
 	private float waitTime = 1f;
 	private float ringTick = 0.01f;
 	private float sustainDecay = 0.0004f;
+	private float maxAmplitude = 0.15f;
 
 	//coroutines
 	private Coroutine ringRoutine;
@@ -59,7 +60,7 @@ public class StringsInstrument : MonoBehaviour {
 	}
 
 	IEnumerator Ring() {
-		float a = 0.1f;
+		float a = maxAmplitude;
 
 		while (a > 0f) {
 			yield return new WaitForSeconds(ringTick);
