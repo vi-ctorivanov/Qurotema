@@ -6,11 +6,14 @@ public class PadsInstrument : MonoBehaviour {
 	[Header("References")]
 	public GameObject lightObject;
 	public Transform platform;
-	private Material lightMat;
+	private MeshRenderer lightMat;
 
 	[Header("Definition")]
 	public string tone;
 	public int count;
+
+	//dynamics
+	private MaterialPropertyBlock mpb;
 
 	//states
 	private bool active;
@@ -31,8 +34,10 @@ public class PadsInstrument : MonoBehaviour {
 	}
 
 	void Start() {
-		lightMat = lightObject.GetComponent<Renderer>().material;
-		lightMat.SetFloat("_Alpha", 0f);
+		lightMat = lightObject.GetComponent<MeshRenderer>();
+		mpb = new MaterialPropertyBlock();
+		mpb.SetFloat("_Alpha", 0f);
+		lightMat.SetPropertyBlock(mpb);
 
 		//move platform down and align to normal so that it matches terrain topology
 		RaycastHit hit;
@@ -72,11 +77,13 @@ public class PadsInstrument : MonoBehaviour {
 
 			if (active) {
 				if (glowRoutine != null) StopCoroutine(glowRoutine);
-				lightMat.SetFloat("_Alpha", minAlpha);
+				mpb.SetFloat("_Alpha", minAlpha);
+				lightMat.SetPropertyBlock(mpb);
 				Nox.Instance.padPlayed();
 			} else {
 				if (glowRoutine != null) StopCoroutine(glowRoutine);
-				lightMat.SetFloat("_Alpha", 0f);
+				mpb.SetFloat("_Alpha", 0f);
+				lightMat.SetPropertyBlock(mpb);
 			}
 		}
 	}
@@ -90,12 +97,14 @@ public class PadsInstrument : MonoBehaviour {
 
 	IEnumerator Glow() {
 		float alpha = maxAlpha;
-		lightMat.SetFloat("_Alpha", alpha);
+		mpb.SetFloat("_Alpha", alpha);
+		lightMat.SetPropertyBlock(mpb);
 
 		while (alpha > minAlpha) {
 			yield return new WaitForSeconds(0.01f);
 			alpha = Mathf.Lerp(alpha, minAlpha, 2f * Time.deltaTime);
-			lightMat.SetFloat("_Alpha", alpha);
+			mpb.SetFloat("_Alpha", alpha);
+			lightMat.SetPropertyBlock(mpb);
 		}
 	}
 

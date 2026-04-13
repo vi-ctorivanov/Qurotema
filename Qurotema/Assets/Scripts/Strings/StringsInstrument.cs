@@ -6,7 +6,10 @@ public class StringsInstrument : MonoBehaviour {
 	[Header("References")]
 	public Vector3 start;
 	public Vector3 end;
-	private Material mat;
+	private MeshRenderer mat;
+
+	//dynamics
+	private MaterialPropertyBlock mpb;
 
 	//states
 	private float frequency;
@@ -23,7 +26,8 @@ public class StringsInstrument : MonoBehaviour {
 	private Coroutine ringRoutine;
 
 	void Start () {
-		mat = GetComponent<MeshRenderer>().material;
+		mat = GetComponent<MeshRenderer>();
+		mpb = new MaterialPropertyBlock();
 	}
 
 	public void init (Vector3 s, Vector3 e) {
@@ -66,8 +70,9 @@ public class StringsInstrument : MonoBehaviour {
 			yield return new WaitForSeconds(ringTick);
 
 			offset += offsetSpeed;
-			mat.SetFloat("_Offset", offset);
-			mat.SetFloat("_Amplitude", a);
+			mpb.SetFloat("_Offset", offset);
+			mpb.SetFloat("_Amplitude", a);
+			mat.SetPropertyBlock(mpb);
 			a -= sustainDecay;
 
 		}
