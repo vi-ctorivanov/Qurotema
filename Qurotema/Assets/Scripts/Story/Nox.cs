@@ -17,7 +17,6 @@ public class Nox : MonoBehaviour {
 	public GameObject player;
 	public GameObject cam;
 	public AnimateTerrain terrain;
-	public GameObject sun;
 	public GameObject gates;
 	public GameObject gatesSphere;
 	public GameObject gatesCollider;

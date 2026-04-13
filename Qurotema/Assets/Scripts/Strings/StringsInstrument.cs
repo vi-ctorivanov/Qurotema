@@ -20,7 +20,7 @@ public class StringsInstrument : MonoBehaviour {
 	private float waitTime = 1f;
 	private float ringTick = 0.01f;
 	private float sustainDecay = 0.0004f;
-	private float maxAmplitude = 0.15f;
+	private float maxAmplitude = 0.12f;
 
 	//coroutines
 	private Coroutine ringRoutine;

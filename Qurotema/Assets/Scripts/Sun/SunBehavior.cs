@@ -24,7 +24,7 @@ public class SunBehavior : MonoBehaviour {
 	private bool gates = false;
 	private Vector3 startSize;
 	private float proximSizeMultiplier = 10f;
-	private float transitionAnimationSpeedMultiplier = 1.5f;
+	private float transitionAnimationSpeedMultiplier = 2.5f;
 	private float followEase = 8f;
 	private float sunDistance = 9000f;
 	private Vector3 targetPosition = new Vector3();
@@ -47,6 +47,7 @@ public class SunBehavior : MonoBehaviour {
 		interactAction = InputSystem.actions.FindAction("Interact");
 
 		startSize = sunSphere.localScale;
+		targetPosition = sunSphere.transform.position;
 	}
 
 	void Update() {
@@ -78,24 +79,18 @@ public class SunBehavior : MonoBehaviour {
 		if (proxim || gates) following = false;
 		if (gates) proxim = false;
 
-		//follow animation
 		if (following) {
 			targetPosition = transform.position + (cursor.position - transform.position).normalized * sunDistance;
 			if (targetPosition.y < 0f) targetPosition.y = 0f; //prevent going below horizon
-			sunSphere.position = Vector3.Lerp(sunSphere.position, targetPosition, followEase * Time.deltaTime);
 		}
 		
-		//proxim animation
-		if (proxim) {
-			sunSphere.position = Vector3.Lerp(sunSphere.position, targetPosition, transitionAnimationSpeedMultiplier * Time.deltaTime);
-			sunSphere.localScale = Vector3.Lerp(sunSphere.localScale, startSize * proximSizeMultiplier, transitionAnimationSpeedMultiplier * 0.1f * Time.deltaTime);
-		} else sunSphere.localScale = Vector3.Lerp(sunSphere.localScale, startSize, transitionAnimationSpeedMultiplier * Time.deltaTime);
+		if (proxim) sunSphere.localScale = Vector3.Lerp(sunSphere.localScale, startSize * proximSizeMultiplier, transitionAnimationSpeedMultiplier * 0.1f * Time.deltaTime);
+		else sunSphere.localScale = Vector3.Lerp(sunSphere.localScale, startSize, transitionAnimationSpeedMultiplier * Time.deltaTime);
 
-		//gates animation
 		if (gates) {
 			targetPosition = transform.position + (Nox.Instance.gatesSphere.transform.position - transform.position) + (Nox.Instance.gatesSphere.transform.position - transform.position).normalized * sunDistance;
 			sunSphere.position = Vector3.Lerp(sunSphere.position, targetPosition, transitionAnimationSpeedMultiplier * Time.deltaTime);
-		}
+		} else sunSphere.position = Vector3.Lerp(sunSphere.position, targetPosition, followEase * Time.deltaTime);
 	}
 
 	private void gatesAppeared() {
