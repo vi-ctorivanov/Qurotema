@@ -157,11 +157,8 @@ public class PlayerMove : MonoBehaviour {
 
 	void move() {
 		//get input
-		float horizontal = 0f;
-		float vertical = 0f;
-
-		horizontal = moveAction.ReadValue<Vector2>().x;
-		vertical = moveAction.ReadValue<Vector2>().y;
+		float horizontal = moveAction.ReadValue<Vector2>().x;
+		float vertical = moveAction.ReadValue<Vector2>().y;
 		Vector2 direction = getInput(horizontal, vertical);
 		Vector3 newLoc = new Vector3(transform.position.x + direction.x * Time.deltaTime, transform.position.y, transform.position.z + direction.y * Time.deltaTime);
 
@@ -265,14 +262,13 @@ public class PlayerMove : MonoBehaviour {
 	}
 
 	Vector3 groundPlayer(Vector3 location) {
-		
-		//add small correction (offset upwards) so that a collider on a steep hill doesn't clip through
+		//add small correction offset upwards so that a collider on a steep hill doesn't clip through
 		RaycastHit hit;
-		if (Physics.Raycast(new Vector3(location.x, location.y + graceSpace, location.z), -Vector3.up, out hit, floatDistance, mask)) {
+		if (Physics.Raycast(new Vector3(location.x, location.y + (floatDistance / 4f), location.z), -Vector3.up, out hit, floatDistance, mask)) 
 			location = new Vector3(location.x, hit.point.y + bottomDistanceFromCenter + graceSpace, location.z);
 
-		//if distance is big enough (float), make player fall with gravity instead of forcing them to the ground
-		} else if (!jumping) {
+		//if distance is bigger than floatDistance, assume we're jumping
+		else if (!jumping) {
 			jumping = true;
 			StartCoroutine(jumpDelay());
 		}
