@@ -123,8 +123,8 @@ public class StringsBehavior : MonoBehaviour {
 	}
 
 	private bool stringExists(Vector3 s, Vector3 e) {
-		for (int i = 0; i < stringSet.Count; i++) {
-			StringsInstrument str = stringSet[i].GetComponent<StringsInstrument>();
+		foreach (StringsInstrument set in stringSet) {
+			StringsInstrument str = set.GetComponent<StringsInstrument>();
 			if (str.start == s && str.end == e) return true;
 			if (str.start == e && str.end == s) return true;
 		}

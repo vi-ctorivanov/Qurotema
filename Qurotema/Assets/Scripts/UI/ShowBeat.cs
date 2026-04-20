@@ -19,8 +19,8 @@ public class ShowBeat : MonoBehaviour {
 	}
 
 	void Update() {
-		for (int i = 0; i < beatsUI.Length; i++) {
-			if (beatsUI[i].color.a > baseLight) beatsUI[i].color = new Color(1f, 1f, 1f, beatsUI[i].color.a - 2f * Time.deltaTime);
+		foreach (Image ui in beatsUI) {
+			if (ui.color.a > baseLight) ui.color = new Color(1f, 1f, 1f, ui.color.a - 2f * Time.deltaTime);
 		}
 	}
 

@@ -139,8 +139,8 @@ public class Sound : MonoBehaviour {
 	}
 
 	private void playQueue() {
-		for (int i = 0; i < queue.Count; i++) {
-			playOneShotWithParameters(queue[i].fmodEvent, queue[i].parameters);
+		foreach (Shot shot in queue) {
+			playOneShotWithParameters(shot.fmodEvent, shot.parameters);
 		}
 		queue = new List<Shot>();
 	}

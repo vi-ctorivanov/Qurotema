@@ -143,6 +143,18 @@ public class Nox : MonoBehaviour {
 		return (val - min1) / (max1 - min1) * (max2 - min2) + min2;
 	}
 
+	public int cardinalDirection(Vector2 cameraForward, Vector2 toObject) {
+		float angle = Vector2.SignedAngle(toObject, cameraForward);
+		
+		//normalize to [0, 360] since SignedAngle returns [-180, 180]
+		float normalizedAngle = (angle + 360f) % 360f;
+		
+		if (normalizedAngle < 45f || normalizedAngle >= 315f) return 0;
+		else if (normalizedAngle < 135f) return 1;
+		else if (normalizedAngle < 225f) return 2;
+		else return 3;
+	}
+
 	//text id is defined as category_index, as signal system only accepts methods with maximum 1 parameter,
 	//and we sometimes use integers and strings as the index
 	public void playText(string id) {
