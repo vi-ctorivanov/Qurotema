@@ -23,8 +23,8 @@ public class PlayerMove : MonoBehaviour {
 
 	[Header("References")]
 	public GameObject cam;
-	public Transform colliders;
 	public Material ribbonsBottom;
+	private CapsuleCollider capsule;
 
 	//input
 	private InputAction quitAction;
@@ -38,7 +38,6 @@ public class PlayerMove : MonoBehaviour {
 
 	[Header("Dynamics")]
 	public LayerMask mask;
-	private float collisionPushback = 0.1f;
 
 	[Header("Speed")]
 	public float walkSpeed = 20f;
@@ -93,6 +92,8 @@ public class PlayerMove : MonoBehaviour {
 		cursorAction = InputSystem.actions.FindAction("Cursor");
 		interactAction = InputSystem.actions.FindAction("Interact");
 		markerAction = InputSystem.actions.FindAction("Marker");
+
+		capsule = GetComponent<CapsuleCollider>();
 	}
 
 	void Update() {
@@ -108,11 +109,11 @@ public class PlayerMove : MonoBehaviour {
 		else ribbonsBottom.SetFloat("_Alpha", Mathf.Lerp(ribbonsBottom.GetFloat("_Alpha"), 0f, 1f * Time.deltaTime));
 	}
 
-	void getReady() {
+	private void getReady() {
 		ready = true;
 	}
 
-	void handleKeys() {
+	private void handleKeys() {
 		if (quitAction.WasReleasedThisFrame()) StartCoroutine(quit());
 
 		//switch to flying mode only if no mouse buttons are pressed
@@ -144,7 +145,7 @@ public class PlayerMove : MonoBehaviour {
 		}
 	}
 
-	void handleSound() {
+	private void handleSound() {
 		if (sprintAction.WasPressedThisFrame()) Sound.Instance.percussionState.setParameterByName("Volume", 1);
 		if (sprintAction.WasReleasedThisFrame()) Sound.Instance.percussionState.setParameterByName("Volume", 0);
 
@@ -155,7 +156,7 @@ public class PlayerMove : MonoBehaviour {
 		}
 	}
 
-	void move() {
+	private void move() {
 		//get input
 		float horizontal = moveAction.ReadValue<Vector2>().x;
 		float vertical = moveAction.ReadValue<Vector2>().y;
@@ -186,25 +187,35 @@ public class PlayerMove : MonoBehaviour {
 		} else {
 			float floor = 0f;
 			RaycastHit hit;
-			if (Physics.Raycast(transform.position, -Vector3.up, out hit, 300f, mask)) {
-				floor = hit.point.y;
-			}
-
+			if (Physics.Raycast(transform.position, -Vector3.up, out hit, 300f, mask)) floor = hit.point.y;
 			newLoc = new Vector3(newLoc.x, Mathf.Lerp(transform.position.y, floor + flyHeight, flyEase * Time.deltaTime), newLoc.z);
 		}
 
 		//apply movement
-		GameObject collision = isColliding(newLoc);
-		if (collision != null) {
-			//prevent collisions with select objects by moving player away from them
-			//it's very rudamentary, but our collisions are simple
-			transform.position = new Vector3(transform.position.x, newLoc.y, transform.position.z);
-			Vector3 colliderToPlayer = Vector3.Normalize(collision.transform.position - transform.position);
-			transform.position = new Vector3(transform.position.x - colliderToPlayer.x * collisionPushback, newLoc.y, transform.position.z - colliderToPlayer.z * collisionPushback);
+		transform.position = newLoc;
 
-		} else transform.position = newLoc;
+		//prevent collisions with terrain objects by moving player away from their penetration point
+		Collider[] overlaps = Physics.OverlapCapsule(
+			transform.position + capsule.center + Vector3.down * (capsule.height / 2f - capsule.radius),
+            transform.position + capsule.center + Vector3.up * (capsule.height / 2f - capsule.radius),
+            capsule.radius,
+			mask
+        );
 
-		//limit player to bounds
+		foreach (Collider col in overlaps) {
+            Vector3 dir;
+            float dis;
+
+            bool penetrating = Physics.ComputePenetration(
+                capsule, transform.position, transform.rotation,
+                col, col.transform.position, col.transform.rotation,
+                out dir, out dis
+            );
+
+            if (penetrating) transform.position += dir * dis;
+        }
+
+		//limit player to map bounds
 		if (transform.position.z > 2900f) transform.position = new Vector3(transform.position.x, transform.position.y, 2899f);
 		if (transform.position.z < -2900f) transform.position = new Vector3(transform.position.x, transform.position.y, -2899f);
 		if (transform.position.x > 2900f) transform.position = new Vector3(2899f, transform.position.y, transform.position.z);
@@ -233,7 +244,7 @@ public class PlayerMove : MonoBehaviour {
 		}
 	}
 
-	Vector2 getInput(float horizontal, float vertical) {
+	private Vector2 getInput(float horizontal, float vertical) {
 		//calculating direction vector
 		Vector3 direction = new Vector3(horizontal, 0.0f, vertical);
 
@@ -261,7 +272,7 @@ public class PlayerMove : MonoBehaviour {
 		return new Vector2(targetDirection.x, targetDirection.y) * targetSpeed;
 	}
 
-	Vector3 groundPlayer(Vector3 location) {
+	private Vector3 groundPlayer(Vector3 location) {
 		//add small correction offset upwards so that a collider on a steep hill doesn't clip through
 		RaycastHit hit;
 		if (Physics.Raycast(new Vector3(location.x, location.y + (floatDistance / 4f), location.z), -Vector3.up, out hit, floatDistance, mask)) 
@@ -276,7 +287,7 @@ public class PlayerMove : MonoBehaviour {
 		return location;
 	}
 
-	float preventClip(Vector3 location) {
+	private float preventClip(Vector3 location) {
 		RaycastHit hit;
 		if (Physics.Raycast(new Vector3(location.x, location.y + 20f, location.z), -Vector3.up, out hit, 50f, mask)) {
 			if (hit.point.y-3f > location.y - bottomDistanceFromCenter) {
@@ -286,15 +297,12 @@ public class PlayerMove : MonoBehaviour {
 		return location.y;
 	}
 
-	GameObject isColliding(Vector3 location) {
-		foreach (Transform child in colliders) {
-			if (child.gameObject.GetComponent<Collider>().bounds.Contains(location)) return child.gameObject;
-		}
-		return null;
+	private bool isGrounded() {
+		return Physics.Raycast(transform.position - new Vector3(0f, bottomDistanceFromCenter, 0f), -Vector3.up, groundedHeight);
 	}
 
-	bool isGrounded() {
-		return Physics.Raycast(transform.position - new Vector3(0f, bottomDistanceFromCenter, 0f), -Vector3.up, groundedHeight);
+	public float getSpeed() {
+		return targetSpeed / sprintSpeed;
 	}
 
 	IEnumerator jumpDelay() {
@@ -304,10 +312,6 @@ public class PlayerMove : MonoBehaviour {
 			yield return new WaitForSeconds(0.01f);
 			if (isGrounded()) jumping = false;
 		}
-	}
-
-	public float getSpeed() {
-		return targetSpeed / sprintSpeed;
 	}
 
 	IEnumerator quit() {

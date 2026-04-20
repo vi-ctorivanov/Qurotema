@@ -63,10 +63,7 @@ public class SunBehavior : MonoBehaviour {
 
 				//proxim and negative
 				if (interactAction.WasPressedThisFrame()) {
-					if (hit.collider.tag == "Sun") {
-						proxim = !proxim;
-						if (proxim) targetPosition = (cursor.position - transform.position).normalized * sunDistance;
-					}
+					if (hit.collider.tag == "Sun") proxim = !proxim;
 
 					if (hit.collider.tag == "GatesSphere" && gates) {
 						negative = !negative;

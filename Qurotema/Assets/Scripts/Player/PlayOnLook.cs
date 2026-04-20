@@ -32,6 +32,10 @@ public class PlayOnLook : MonoBehaviour {
 				case "Gates":
 					Sound.Instance.lookState.setParameterByName("Look", 3);
 					break;
+
+				default:
+					Sound.Instance.lookState.setParameterByName("Look", 0);
+					break;
 			}
 		}
 	}
