@@ -6,12 +6,16 @@ public class GatesStory : MonoBehaviour {
 	public Material m;
 
 	[Header("States")]
-	public float alpha = 0f;
+	public float alphaClip = 0f;
 	public float glow = 0f;
+	public float glowIntensity = 0f;
 
 	void Update() {
-		m.SetFloat("_AlphaClip", alpha);
+		//animating through this script to animate the master material
+		//which is shared with the gates' sphere
+		m.SetFloat("_AlphaClip", alphaClip);
 		m.SetFloat("_Glow", glow);
+		m.SetFloat("_Glow_Intensity", glowIntensity);
 	}
 
 	private void OnTriggerEnter(Collider other) {
