@@ -16,7 +16,7 @@ public class MonolithBeam : MonoBehaviour {
 	private Vector3[] basePositions = new Vector3[512];
 	private Vector3[] modifiedPositions = new Vector3[512];
 	private float noiseOffsetSpeed = 0.002f;
-	private float noiseRange = 1.5f;
+	private float noiseRange = 1f;
 
 	[Header("States")]
 	public float alpha = 0f;
@@ -41,7 +41,7 @@ public class MonolithBeam : MonoBehaviour {
 
 	void Update() {
 		//animate alpha
-		mpb.SetFloat("_Alpha", 1f);
+		mpb.SetFloat("_Alpha", alpha);
 		lr.SetPropertyBlock(mpb);
 
 		//animate positions - 3D noise based on point position, slightly offset over time

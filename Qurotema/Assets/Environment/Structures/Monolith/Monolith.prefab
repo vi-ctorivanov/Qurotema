@@ -839,7 +839,7 @@ LineRenderer:
   m_MaskInteraction: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 100}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 4.5
@@ -855,15 +855,6 @@ LineRenderer:
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.07712766
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: -0.43330452
-        outSlope: -0.43330452
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.10372341
-        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
