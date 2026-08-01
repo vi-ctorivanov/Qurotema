@@ -13,6 +13,9 @@ using UnityEngine.Rendering;
 
 public class Nox : MonoBehaviour {
 
+	[Header("Settings")]
+	public bool skipIntro = false;
+
 	[Header("References")]
 	public GameObject player;
 	public GameObject cam;
@@ -75,8 +78,8 @@ public class Nox : MonoBehaviour {
 		fadeOut.SetActive(false);
 		targetPillarSize = pillar.transform.localScale;
 
-		//directorPlay(introductionTimeline);
-		directorPlay(introductionEndTimeline); //skip intro cutscene
+		if (skipIntro) directorPlay(introductionEndTimeline);
+		else directorPlay(introductionTimeline);
 	}
 
 	void Update() {

@@ -224,6 +224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c003fe00d3d0f46a8d7c83d07809cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursorTransparent: {fileID: 0}
+  cursorOpaque: {fileID: 0}
   distanceFromCamera: 5
   followSpeed: 50
   alphaSpeed: 0.03
@@ -297,7 +299,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6636089cea0eff525882504139e7715a, type: 2}
+  - {fileID: 2100000, guid: 94df752de49316137b6af6f71a77142b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
