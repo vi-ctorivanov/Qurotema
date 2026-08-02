@@ -23,7 +23,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Holo
+  m_Name: Holo Node
   m_Shader: {fileID: -6465566751694194690, guid: 004a54c37957be44c922ce34fafe8d7c,
     type: 3}
   m_Parent: {fileID: 0}
@@ -222,7 +222,7 @@ Material:
     - _Metallic: 0
     - _MetallicRemapMax: 1
     - _MetallicRemapMin: 0
-    - _Noise_Scale: 0.1
+    - _Noise_Scale: 0.3
     - _NormalMapSpace: 0
     - _NormalScale: 1
     - _ObjectSpaceUVMapping: 0
@@ -281,7 +281,7 @@ Material:
     - _UVBase: 0
     - _UVDetail: 0
     - _UVEmissive: 0
-    - _UV_Scale: 0.1
+    - _UV_Scale: 8
     - _UseEmissiveIntensity: 0
     - _UseShadowThreshold: 0
     - _ZTestDepthEqualForOpaque: 3

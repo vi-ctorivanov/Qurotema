@@ -11,6 +11,7 @@ public class RingsInstrument : MonoBehaviour {
 	//definition
 	private float minimumRadius = 0.75f;
 	private float maximumRadius = 1.75f;
+	private float minimumAlpha = 0.2f;
 
 	//state
 	private float defaultMeshRadius;
@@ -24,7 +25,7 @@ public class RingsInstrument : MonoBehaviour {
 	private float resonanceDecay; 
 
 	void Start() {
-		resonanceDecay = resonanceAccumulation / 5f; //must be lower than accumulation
+		resonanceDecay = resonanceAccumulation / 3f; //must be lower than accumulation
 
 		defaultMeshRadius = transform.localScale.x;
 		radius = Random.Range(minimumRadius, maximumRadius);
@@ -46,7 +47,7 @@ public class RingsInstrument : MonoBehaviour {
 		//Sound.Instance.playAppropriateSound
 
 		//visual feedback
-		mpb.SetFloat("_Alpha", Nox.Instance.remap(resonance, 0f, resonanceMax, 0.55f, 1f));
+		mpb.SetFloat("_Alpha", Nox.Instance.remap(resonance, 0f, resonanceMax, minimumAlpha, 1f));
 		holo.SetPropertyBlock(mpb);
 	}
 

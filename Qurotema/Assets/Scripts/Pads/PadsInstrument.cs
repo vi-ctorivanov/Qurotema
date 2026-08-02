@@ -18,7 +18,7 @@ public class PadsInstrument : MonoBehaviour {
 	//states
 	private bool active;
 	private bool ready = true;
-	private float minAlpha = 0.51f;
+	private float minAlpha = 0.1f;
 	private float maxAlpha = 1f;
 
 	//coroutines
