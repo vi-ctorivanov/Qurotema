@@ -78,7 +78,10 @@ public class Nox : MonoBehaviour {
 		fadeOut.SetActive(false);
 		targetPillarSize = pillar.transform.localScale;
 
-		if (skipIntro) directorPlay(introductionEndTimeline);
+		if (skipIntro) {
+			GetComponent<FMODVolumeProxy>().masterVol = 1f;
+			directorPlay(introductionEndTimeline);
+		}
 		else directorPlay(introductionTimeline);
 	}
 

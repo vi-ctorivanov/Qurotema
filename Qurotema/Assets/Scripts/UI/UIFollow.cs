@@ -84,8 +84,8 @@ public class UIFollow : MonoBehaviour {
 
 	void doFade(bool on) {
 		if (fader != null) StopCoroutine(fader);
-		if (on) fader = StartCoroutine(Fade(targetOpacity));
-		else fader = StartCoroutine(Fade(0f));
+		if (on) fader = StartCoroutine(fade(targetOpacity));
+		else fader = StartCoroutine(fade(0f));
 	}
 
 	void follow() {
@@ -129,7 +129,7 @@ public class UIFollow : MonoBehaviour {
 		}
 	}
 
-	IEnumerator Fade(float target) {
+	IEnumerator fade(float target) {
 		yield return new WaitForSeconds(fadeDelay);
 
 		while (Mathf.Abs(opacity - target) > 0.01f) {

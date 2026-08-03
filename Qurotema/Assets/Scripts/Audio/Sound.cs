@@ -26,7 +26,7 @@ public class Sound : MonoBehaviour {
 
 	//events
 	public static event Action<int> OnBeat;
-	
+
 	[Header("Atmosphere Sounds")]
 	public FMODUnity.EventReference ambienceEvent;
 	public FMOD.Studio.EventInstance ambienceState;
@@ -70,6 +70,7 @@ public class Sound : MonoBehaviour {
 	}
 
 	void Start() {
+
 		//activate ambient sound events
 		ambienceState = FMODUnity.RuntimeManager.CreateInstance(ambienceEvent);
 		ambienceState.start();
