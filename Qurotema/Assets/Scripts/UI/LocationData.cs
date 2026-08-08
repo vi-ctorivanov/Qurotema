@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class LocationData : MonoBehaviour {
 
-	public Text data;
+	public TMP_Text data;
 	
 	void Update () {
 		if (Nox.Instance.player) {

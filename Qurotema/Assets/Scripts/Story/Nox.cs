@@ -7,8 +7,8 @@ Also holds some global variables and functions.
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Playables;
 using TMPro;
+using UnityEngine.Playables;
 using UnityEngine.Rendering;
 
 public class Nox : MonoBehaviour {
@@ -26,6 +26,7 @@ public class Nox : MonoBehaviour {
 	public GameObject pillar;
 	public GameObject storyTextCanvas;
 	public GameObject fadeOut;
+	public Material flash;
 	public TMP_Text storyText;
 	public StoryContent content;
 	public static event Action<int> OnActivateMonolith;
@@ -46,9 +47,7 @@ public class Nox : MonoBehaviour {
 	private Vector3 targetPillarSize;
 
 	[Header("Text Animation")]
-	public float textLetterTime = 0.03f;
-	private float textTime = 1f;
-	private float opacityChangeSpeed = 0.01f;
+	private float opacityChangeSpeed = 0.008f;
 
 	[Header("Trackers")]
 	public int monolithsRead = 0;
@@ -58,7 +57,8 @@ public class Nox : MonoBehaviour {
 	private int padsPlayed = 0;
 
 	[Header("Coroutines")]
-	private Coroutine routine;
+	private Coroutine textRoutine;
+	private Coroutine wordRoutine;
 
 	//create static singleton to act as a globally accessible Nox
 	//if instance is null (it is at first), set it to this object so all references point to it
@@ -164,8 +164,8 @@ public class Nox : MonoBehaviour {
 	//text id is defined as category_index, as signal system only accepts methods with maximum 1 parameter,
 	//and we sometimes use integers and strings as the index
 	public void playText(string id) {
-		if (routine != null) StopCoroutine(routine);
-		routine = StartCoroutine(PlayText(id));
+		if (textRoutine != null) StopCoroutine(textRoutine);
+		textRoutine = StartCoroutine(PlayText(id));
 	}
 
 	IEnumerator PlayText(string id) {
@@ -199,33 +199,50 @@ public class Nox : MonoBehaviour {
 				text = content.uniqueText[index];
 				break;
 		}
-		
-		//write in
-		storyText.text = "";
+
+		//separate into words and queue
+		string[] words = text.Split(new Char [] {' ', '\n'});
+
+		foreach(string word in words) {
+			if (wordRoutine != null) StopCoroutine(wordRoutine);
+			wordRoutine = StartCoroutine(PlayWord(word));
+
+			float seconds = 0.15f;
+			switch (word[^1]) {
+				case ',':
+					seconds = 0.5f;
+					break;
+
+				case '.':
+				case '?':
+				case '!':
+				case '\n':
+				seconds = 0.75f;
+					break;
+			}
+			seconds += word.Length * 0.05f;
+			seconds *= UnityEngine.Random.Range(0.95f, 1.05f);
+
+			yield return new WaitForSeconds(seconds);
+		}
+	}
+
+	IEnumerator PlayWord(string word) {
+		storyText.text = word;
 
 		float opacity = 1f;
 		storyTextCanvas.GetComponent<CanvasGroup>().alpha = opacity;
+		flash.SetFloat("_Alpha", opacity * 4f);
 
-		int textTracker = 0;
-		storyText.maxVisibleCharacters = textTracker;
-		storyText.text = text;
-
-		while (storyText.maxVisibleCharacters < text.Length) {
-			yield return new WaitForSeconds(textLetterTime);
-			textTracker++;
-			storyText.maxVisibleCharacters = textTracker;
-		}
-
-		yield return new WaitForSeconds(textTime);
-
-		//fade out
 		while (opacity > 0.01f) {
 			yield return new WaitForSeconds(0.01f);
 			opacity -= opacityChangeSpeed;
 			storyTextCanvas.GetComponent<CanvasGroup>().alpha = opacity;
+			flash.SetFloat("_Alpha", opacity * 4f);
 		}
 
 		storyTextCanvas.GetComponent<CanvasGroup>().alpha = 0f;
+		flash.SetFloat("_Alpha", 0f);
 	}
 
 	private void directorPlay(PlayableAsset timeline) {
