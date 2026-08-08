@@ -76,6 +76,7 @@ public class Nox : MonoBehaviour {
 		gates.SetActive(false);
 		gatesCollider.SetActive(false);
 		fadeOut.SetActive(false);
+		flash.SetFloat("_Alpha", 0f);
 		targetPillarSize = pillar.transform.localScale;
 
 		if (skipIntro) {
