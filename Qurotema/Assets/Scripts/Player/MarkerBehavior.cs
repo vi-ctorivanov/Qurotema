@@ -24,7 +24,20 @@ public class MarkerBehavior : MonoBehaviour {
 	public LayerMask mask;
 
 	//states
+	private bool ready = false;
 	private bool playing = false;
+
+	private void OnEnable() {
+		Nox.OnIntroductionFinished += getReady;
+	}
+
+	private void OnDisable() {
+		Nox.OnIntroductionFinished -= getReady;
+	}
+
+	private void getReady() {
+		ready = true;
+	}
 
 	void Start() {
 		cursorAction = InputSystem.actions.FindAction("Cursor");
@@ -33,6 +46,8 @@ public class MarkerBehavior : MonoBehaviour {
 	}
 
 	void Update() {
+		if (!ready) return;
+
 		if (markerAction.IsPressed() && !cursorAction.IsPressed() && !Nox.Instance.player.GetComponent<PlayerMove>().flying) {
 			RaycastHit hit;
 			Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));

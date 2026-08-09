@@ -53,12 +53,12 @@ public class CursorBehavior : MonoBehaviour {
 	}
 
 	void Update () {
-		if (ready) {
-			if (!cursorAction.IsPressed()) makePassive();
-			else {
-				if (interactAction.WasPressedThisFrame()) makeActive();
-				if (interactAction.WasReleasedThisFrame()) makePassive();
-			}
+		if (!ready) return;
+
+		if (!cursorAction.IsPressed()) makePassive();
+		else {
+			if (interactAction.WasPressedThisFrame()) makeActive();
+			if (interactAction.WasReleasedThisFrame()) makePassive();
 		}
 
 		if (Nox.Instance.player) {

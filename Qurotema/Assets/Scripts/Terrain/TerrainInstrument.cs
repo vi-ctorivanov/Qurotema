@@ -7,7 +7,7 @@ public class TerrainInstrument : MonoBehaviour {
 
 	[Header("Dynamics")]
 	public AnimationCurve flashCurve;
-	private float playHead = 0f;
+	private float playHead = 100f;
 	private float speed = 5f;
 
 	private float intensityMultiplier = 20f;
