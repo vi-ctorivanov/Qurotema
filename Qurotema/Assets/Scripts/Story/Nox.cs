@@ -71,8 +71,6 @@ public class Nox : MonoBehaviour {
 	}
 
 	void Start() {
-		SupportedRenderingFeatures.active.rendersUIOverlay = false; //todo: document why we are doing this
-
 		gates.SetActive(false);
 		gatesCollider.SetActive(false);
 		fadeOut.SetActive(false);

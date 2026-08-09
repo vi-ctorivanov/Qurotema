@@ -13,49 +13,59 @@ MonoBehaviour:
   m_Name: StoryContent
   m_EditorClassIdentifier: Assembly-CSharp::StoryContent
   introductionText:
-  - 'Stable port to Qurotema. All readings active.
+  - 'Stable port to Qurotema. Vision coming in for RO.
 
-    Vision coming in for RO.'
-  - Stabilizing comms. Gates are forcing one-way only channel.
-  - All set. We'll keep watch and study Qurotema alongside you, Operator.
-  - Activating vessel control module.
-  - Di, make Sino proud.
+    Visuals on our end are...
+    good enough.'
+  - 'Stable comms. Gates forcing one-way channel.
+
+    Expected.'
+  - All set. We'll be observing Qurotema alongside you, Operator.
+  - Initiating vessel control.
+  - And, Di? Make Sino proud.
   monolithText:
   - 'Confirming i-tema characters on visual feed.
 
-    Loading up local translations
+    Loading local translations
     to compare.'
-  - 'Huh, this is our only translated entry.
+  - 'Huh, this is our only translated entry. Seems unlikely.
 
-    "The night will flow when black
-    time''s sand knows foreign touch."'
-  - 'The writing on the gates shares two of those words, "Quro" and "Tema".
+    "The night will
+    flow when black time''s sand knows foreign touch."'
+  - 'The gates share two of those words, "Quro" and "Tema". Black time.
 
-    Our
-    station''s name in its original context.'
-  - 'Those are our only translations, this isn''t new information.
+    No gates
+    visible though. Odd.'
+  - 'Anyways, this isn''t new information.
 
-    Find more
-    Monoliths, it''ll help us fill a database for linguistic analysis.'
+    Find more monoliths, we''ll fill
+    the database for linguistic analysis.'
   instrumentText:
-  - Faint s.gnal n... your vessel's current pos.tion.
-  - L.st v..ual fe.d. St..l getting al. oth.r r.adings. Ke.p up the research.
-  - Co..ection is bec.ming too unreli.ble. Begin..ng pu.l, s.ay c.lm.
+  - 'Som.thing happen.d!
+
+    Faint s.gnal n.ar your vessel''s current pos.tion.'
+  - 'An.ther click.
+
+    L.st v.sual fe.d, st.ll getting a.l oth.r r.adings. Just
+    ke.p up the research.'
+  - 'Th.s .sn''t r..ht.
+
+    Con.ection is bec.m.ng too unrel..ble. I''m begin..ng
+    a pull.'
   endText:
-  - Lo.ing co..ection fas., Di, wh.t's ..ing on?
-  - RO? Di? B.dy .. ... la... .. ..resp.n.ive. ........ ret.r. pro.ocol ...........
-    .. .. ... .....cit.te.
-  - Qur..ema .. ...., .... ... ..... ... .... ves.el .. .. ... vo.d.
-  - Aban.on.ng ...... ... s..ry. ... ... ..... ...... ..... ... ......
+  - Lo.ing co..ection fas.! RO, wh.t's ..ing on?
+  - RO? Di? B.dy ......  ..resp.n.ive. ...... ret.r. pro.ocol ...... .....cit.te.
+  - No p.ng on Qur..ema? ...... ves.el ...... vo.d.
+  - ...... ...... ......
   uniqueText:
-  - 'Monolith visual confirmed. There should be writing projecting from it.
+  - 'Monolith visual confirmed. Strange, there''s no writing on it.
 
-    Maybe
-    it needs to be activated?'
-  - 'Confirming new reading.
+    Is it inactive?'
+  - 'Confirming new reading. Incredible! There''s nothing like this in Sino''s notes.
 
-    Hmm. Nothing like this in Sino''s notes.'
-  - Press escape again to quit.
+    Keep
+    experimenting, maybe we can learn something.'
+  - Press escape again to disconnect.
   monolithGraphics:
   - {fileID: 21300000, guid: 009b7b77115537843b2ad2e8417e06cf, type: 3}
   - {fileID: 21300000, guid: b214fc2f37b8a9b45ab39cb0e4b693a7, type: 3}

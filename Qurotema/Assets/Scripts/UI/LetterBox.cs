@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class LetterBox : MonoBehaviour {
 
 	[Header("References")]
+	public RectTransform canvasRect;
 	public RectTransform lowPanel;
 	public RectTransform highPanel;
 	public Camera cam;
@@ -13,7 +14,7 @@ public class LetterBox : MonoBehaviour {
 	private InputAction cursorAction;
 
 	//dynamics
-	private float aspectRatio = 2.0f;
+	private float aspectRatio = 2f;
 	private float aspecRatioChangeSpeed = 4f;
 
 	//states
@@ -39,26 +40,27 @@ public class LetterBox : MonoBehaviour {
 	}
 
 	void Update() {
-		if (ready) {
-			if (cursorAction.WasPressedThisFrame()) {
-				if (letterBox != null) StopCoroutine(letterBox);
-				letterBox = StartCoroutine(changeAspectRatio(aspectRatio));
-			}
+		if (!ready) return;
 
-			if (cursorAction.WasReleasedThisFrame()) {
-				if (letterBox != null) StopCoroutine(letterBox);
-				letterBox = StartCoroutine(changeAspectRatio(cam.aspect));
-			}
+		if (cursorAction.WasPressedThisFrame()) {
+			if (letterBox != null) StopCoroutine(letterBox);
+			letterBox = StartCoroutine(changeAspectRatio(aspectRatio));
+		}
 
-			//override when flying
-			if (Nox.Instance.player) {
-				if (Nox.Instance.player.GetComponent<PlayerMove>().flying) {
-					if (letterBox != null) StopCoroutine(letterBox);
-					if (currentAspect != cam.aspect) currentAspect = Mathf.Lerp(currentAspect, cam.aspect, aspecRatioChangeSpeed / 4f * Time.deltaTime);
-					forceAspectRatio(currentAspect);
-				}
+		if (cursorAction.WasReleasedThisFrame()) {
+			if (letterBox != null) StopCoroutine(letterBox);
+			letterBox = StartCoroutine(changeAspectRatio(cam.aspect));
+		}
+
+		//override when flying
+		if (Nox.Instance.player) {
+			if (Nox.Instance.player.GetComponent<PlayerMove>().flying) {
+				if (letterBox != null) StopCoroutine(letterBox);
+				if (currentAspect != cam.aspect) currentAspect = Mathf.Lerp(currentAspect, cam.aspect, aspecRatioChangeSpeed / 4f * Time.deltaTime);
+				forceAspectRatio(currentAspect);
 			}
 		}
+		
 	}
 
 	private void getReady() {
@@ -67,8 +69,8 @@ public class LetterBox : MonoBehaviour {
 
 	//force aspect ratio with letterboxing
 	private void forceAspectRatio(float ratio) {
-		float barHeight = (Screen.height - (Screen.width / ratio)) / 2f;
-		Vector2 resize = new Vector2(Screen.width + 10f, barHeight);
+		float barHeight = (canvasRect.rect.height - (canvasRect.rect.width / ratio)) / 2f;
+		Vector2 resize = new Vector2(canvasRect.rect.width + 10f, barHeight);
 
 		lowPanel.sizeDelta = resize;
 		lowPanel.anchoredPosition = new Vector2(0f, (lowPanel.rect.height / 2f) - 1f);
