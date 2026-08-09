@@ -29,11 +29,24 @@ public class UIFollow : MonoBehaviour {
 	private Vector3 cameraTranslationalVelocity = Vector3.zero;
 	
 	//states
+	private bool ready = false;
 	private float opacity = 0f;
 	private float minDistanceFromCamera = 0f;
 
 	//coroutines
 	private Coroutine fader;
+
+	void OnEnable() {
+		Nox.OnIntroductionFinished += getReady;
+	}
+
+	void OnDisable() {
+		Nox.OnIntroductionFinished -= getReady;
+	}
+
+	void getReady() {
+		ready = true;
+	}
 	
 	void Start () {
 		minDistanceFromCamera = distanceFromCamera - distanceFromCameraDifference;
@@ -49,9 +62,13 @@ public class UIFollow : MonoBehaviour {
 		for (int i = 0; i < 100; i++) {
 			follow();
 		}
+
+		canvas.alpha = 0f;
 	}
 
 	void Update() {
+		if (!ready) return;
+
 		//modes
 		if (Nox.Instance.player) {
 			switch (triggerLayer) {
