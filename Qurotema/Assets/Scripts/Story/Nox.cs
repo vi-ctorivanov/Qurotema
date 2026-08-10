@@ -9,12 +9,13 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Playables;
-using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class Nox : MonoBehaviour {
 
 	[Header("Settings")]
 	public bool skipIntro = false;
+	public bool active = true;
 
 	[Header("References")]
 	public GameObject player;
@@ -33,10 +34,12 @@ public class Nox : MonoBehaviour {
 	public static event Action<int> OnMasterInstrument;
 	public static event Action<float> OnFlashFeedback;
 	public static event Action OnIntroductionFinished;
+	public static event Action OnMovementStop;
 	public static event Action OnGatesAppear;
 
 	[Header("Timelines")]
 	public PlayableDirector director;
+	public PlayableAsset menuTimeline;
 	public PlayableAsset introductionTimeline;
 	public PlayableAsset introductionEndTimeline;
 	public PlayableAsset monolithTimeline;
@@ -60,6 +63,9 @@ public class Nox : MonoBehaviour {
 	private Coroutine textRoutine;
 	private Coroutine wordRoutine;
 
+	[Header("State")]
+	private bool ready = false;
+
 	//create static singleton to act as a globally accessible Nox
 	//if instance is null (it is at first), set it to this object so all references point to it
 	private static Nox instance;
@@ -71,6 +77,8 @@ public class Nox : MonoBehaviour {
 	}
 
 	void Start() {
+		if (!active) return;
+
 		gates.SetActive(false);
 		gatesCollider.SetActive(false);
 		fadeOut.SetActive(false);
@@ -85,6 +93,8 @@ public class Nox : MonoBehaviour {
 	}
 
 	void Update() {
+		if (!active) return;
+		
 		pillar.transform.localScale = Vector3.Lerp(pillar.transform.localScale, targetPillarSize, 0.8f * Time.deltaTime);
 	}
 
@@ -263,11 +273,17 @@ public class Nox : MonoBehaviour {
 		directorPlay(introductionEndTimeline);
 	}
 
-	public void allowMovement() {
-		OnIntroductionFinished?.Invoke();
+	public void toggleMovement() {
+		ready = !ready;
+		if (ready) OnIntroductionFinished?.Invoke();
+		else OnMovementStop?.Invoke();
 	}
 
-	public void quitApplication() {
-		Application.Quit();
+	public void quitGame() {
+		directorPlay(menuTimeline);
+	}
+
+	public void loadMenu() {
+		SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
 	}
 }

@@ -36,10 +36,12 @@ public class CursorBehavior : MonoBehaviour {
 
 	private void OnEnable() {
 		Nox.OnIntroductionFinished += getReady;
+		Nox.OnMovementStop += unReady;
 	}
 
 	private void OnDisable() {
 		Nox.OnIntroductionFinished -= getReady;
+		Nox.OnMovementStop -= unReady;
 	}
 
 	void Start () {
@@ -75,6 +77,10 @@ public class CursorBehavior : MonoBehaviour {
 
 	private void getReady() {
 		ready = true;
+	}
+
+	private void unReady() {
+		ready = false;
 	}
 
 	private void makeActive() {

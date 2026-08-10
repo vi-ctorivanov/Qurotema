@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Main Menu.unity
+    guid: 09a91a6095bfd96a0a2145eab0967086
+  - enabled: 1
     path: Assets/Qurotema.unity
     guid: cbfe36cfddfde964d9dfce63a355d5dd
   m_configObjects:

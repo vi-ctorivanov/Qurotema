@@ -77,10 +77,12 @@ public class PlayerMove : MonoBehaviour {
 
 	private void OnEnable() {
 		Nox.OnIntroductionFinished += getReady;
+		Nox.OnMovementStop += unReady;
 	}
 
 	private void OnDisable() {
 		Nox.OnIntroductionFinished -= getReady;
+		Nox.OnMovementStop -= unReady;
 	}
 	
 	void Start() {
@@ -111,6 +113,10 @@ public class PlayerMove : MonoBehaviour {
 
 	private void getReady() {
 		ready = true;
+	}
+
+	private void unReady() {
+		ready = false;
 	}
 
 	private void handleKeys() {
@@ -320,7 +326,10 @@ public class PlayerMove : MonoBehaviour {
 		//5 seconds
 		for (int i = 0; i < 500; i++) {
 			yield return new WaitForSeconds(0.01f);
-			if (quitAction.WasPressedThisFrame()) Application.Quit();
+			if (quitAction.WasPressedThisFrame()) {
+				Nox.Instance.quitGame();
+				yield break;
+			}
 		}
 	}
 }

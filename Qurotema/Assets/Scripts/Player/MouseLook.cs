@@ -49,17 +49,19 @@ public class MouseLook : MonoBehaviour {
 	private void OnEnable() {
 		Nox.OnFlashFeedback += fovFeedback;
 		Nox.OnIntroductionFinished += getReady;
+		Nox.OnMovementStop += unReady;
 	}
 
 	private void OnDisable() {
 		Nox.OnFlashFeedback -= fovFeedback;
 		Nox.OnIntroductionFinished -= getReady;
+		Nox.OnMovementStop -= unReady;
 	}
 
 	void Start() {
 		//lock cursor
 		Cursor.visible = false;
-		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.lockState = CursorLockMode.Confined;
 
 		//get rotation
 		Vector3 rot = transform.localRotation.eulerAngles;
@@ -89,6 +91,10 @@ public class MouseLook : MonoBehaviour {
 
 	private void getReady() {
 		ready = true;
+	}
+
+	private void unReady() {
+		ready = false;
 	}
 
 	private void handleInput() {

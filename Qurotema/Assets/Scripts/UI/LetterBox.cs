@@ -26,10 +26,12 @@ public class LetterBox : MonoBehaviour {
 
 	void OnEnable() {
 		Nox.OnIntroductionFinished += getReady;
+		Nox.OnMovementStop += unReady;
 	}
 
 	void OnDisable() {
 		Nox.OnIntroductionFinished -= getReady;
+		Nox.OnMovementStop -= unReady;
 	}
 
 	void Start() {
@@ -65,6 +67,10 @@ public class LetterBox : MonoBehaviour {
 
 	private void getReady() {
 		ready = true;
+	}
+
+	private void unReady() {
+		ready = false;
 	}
 
 	//force aspect ratio with letterboxing

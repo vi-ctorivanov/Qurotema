@@ -38,14 +38,20 @@ public class UIFollow : MonoBehaviour {
 
 	void OnEnable() {
 		Nox.OnIntroductionFinished += getReady;
+		Nox.OnMovementStop += unReady;
 	}
 
 	void OnDisable() {
 		Nox.OnIntroductionFinished -= getReady;
+		Nox.OnMovementStop -= unReady;
 	}
 
 	void getReady() {
 		ready = true;
+	}
+
+	private void unReady() {
+		ready = false;
 	}
 	
 	void Start () {

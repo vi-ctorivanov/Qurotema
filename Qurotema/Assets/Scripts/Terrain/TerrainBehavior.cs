@@ -18,14 +18,20 @@ public class TerrainBehavior : MonoBehaviour {
 
 	private void OnEnable() {
 		Nox.OnIntroductionFinished += getReady;
+		Nox.OnMovementStop += unReady;
 	}
 
 	private void OnDisable() {
 		Nox.OnIntroductionFinished -= getReady;
+		Nox.OnMovementStop -= unReady;
 	}
 
 	private void getReady() {
 		ready = true;
+	}
+
+	private void unReady() {
+		ready = false;
 	}
 
 	void Start() {
