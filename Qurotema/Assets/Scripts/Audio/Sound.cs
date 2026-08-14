@@ -6,6 +6,9 @@ Creates sound events for each sound, tracks bpm.
 
 using System;
 using System.Collections.Generic;
+using FMOD.Studio;
+using FMODUnity;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class Sound : MonoBehaviour {
@@ -28,36 +31,36 @@ public class Sound : MonoBehaviour {
 	public static event Action<int> OnBeat;
 
 	[Header("Atmosphere Sounds")]
-	public FMODUnity.EventReference ambienceEvent;
-	public FMOD.Studio.EventInstance ambienceState;
+	public EventReference ambienceEvent;
+	public EventInstance ambienceState;
 	
-	public FMODUnity.EventReference lookEvent;
-	public FMOD.Studio.EventInstance lookState;
+	public EventReference lookEvent;
+	public EventInstance lookState;
 
-	public FMODUnity.EventReference momentEvent;
+	public EventReference momentEvent;
 	
 	[Header("Movement Sounds")]
-	public FMODUnity.EventReference flyPointEvent;
-	public FMOD.Studio.EventInstance flyPointState;
+	public EventReference flyPointEvent;
+	public EventInstance flyPointState;
 
-	public FMODUnity.EventReference padEvent;
-	public FMOD.Studio.EventInstance padState;
+	public EventReference padEvent;
+	public EventInstance padState;
 
-	public FMODUnity.EventReference percussionEvent;
-	public FMOD.Studio.EventInstance percussionState;
+	public EventReference percussionEvent;
+	public EventInstance percussionState;
 
-	public FMODUnity.EventReference dropletEvent;
-	public FMOD.Studio.EventInstance dropletState;
+	public EventReference dropletEvent;
+	public EventInstance dropletState;
 
-	public FMODUnity.EventReference rhythmEvent;
-	public FMOD.Studio.EventInstance rhythmState;
+	public EventReference rhythmEvent;
+	public EventInstance rhythmState;
 
-	public FMODUnity.EventReference whipEvent;
+	public EventReference whipEvent;
 
 	[Header("Instrument Sounds")]
-	public FMODUnity.EventReference stringsEvent;
-	public FMODUnity.EventReference ringsEvent;
-	public FMODUnity.EventReference padsEvent;
+	public EventReference stringsEvent;
+	public EventReference ringsEvent;
+	public EventReference padsEvent;
 
 	//create static singleton to act as a globally accessible Sound
 	//if instance is null (it is at first), set it to this object so all references point to it
@@ -70,32 +73,31 @@ public class Sound : MonoBehaviour {
 	}
 
 	void Start() {
-
 		//activate ambient sound events
-		ambienceState = FMODUnity.RuntimeManager.CreateInstance(ambienceEvent);
+		ambienceState = RuntimeManager.CreateInstance(ambienceEvent);
 		ambienceState.start();
-
-		lookState = FMODUnity.RuntimeManager.CreateInstance(lookEvent);
+	
+		lookState = RuntimeManager.CreateInstance(lookEvent);
 		lookState.start();
 		lookState.setParameterByName("Look", 0);
 
-		flyPointState = FMODUnity.RuntimeManager.CreateInstance(flyPointEvent);
+		flyPointState = RuntimeManager.CreateInstance(flyPointEvent);
 		flyPointState.start();
 		flyPointState.setParameterByName("Volume", 0);
 
-		padState = FMODUnity.RuntimeManager.CreateInstance(padEvent);
+		padState = RuntimeManager.CreateInstance(padEvent);
 		padState.start();
 		padState.setParameterByName("Volume", 0);
 
-		percussionState = FMODUnity.RuntimeManager.CreateInstance(percussionEvent);
+		percussionState = RuntimeManager.CreateInstance(percussionEvent);
 		percussionState.start();
 		percussionState.setParameterByName("Volume", 0);
 
-		dropletState = FMODUnity.RuntimeManager.CreateInstance(dropletEvent);
+		dropletState = RuntimeManager.CreateInstance(dropletEvent);
 		dropletState.start();
 		dropletState.setParameterByName("Volume", 0);
 
-		rhythmState = FMODUnity.RuntimeManager.CreateInstance(rhythmEvent);
+		rhythmState = RuntimeManager.CreateInstance(rhythmEvent);
 		rhythmState.start();
 		rhythmState.setParameterByName("Volume", 0);
 
@@ -104,6 +106,16 @@ public class Sound : MonoBehaviour {
 		secPerGranularBeat = 60f / temporalResolution / bpm;
 		musicStart = (float) AudioSettings.dspTime;
 	}
+
+	//FMOD events are not tied to gameobjects' lifecycles
+	void OnDestroy() {
+		foreach(EventInstance i in new[]{ambienceState, lookState, flyPointState, padState, percussionState, dropletState, rhythmState}) {
+			if (i.isValid()) {
+            	i.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            	i.release();
+        	}
+		}
+    }
 
 	void Update() {
 		float musicPosition = (float) (AudioSettings.dspTime - musicStart);
@@ -123,7 +135,7 @@ public class Sound : MonoBehaviour {
 		}
 	}
 	
-	public void queueShot(string name, FMODUnity.EventReference fmodEvent, params(string name, float value)[] parameters) {
+	public void queueShot(string name, EventReference fmodEvent, params(string name, float value)[] parameters) {
 		//if shot is closer to the previous beat than the next, just play it to avoid undesireable delay
 		float musicPosition = (float) (AudioSettings.dspTime - musicStart);
 		float present = (float) musicPosition / secPerGranularBeat;
@@ -146,8 +158,8 @@ public class Sound : MonoBehaviour {
 		queue = new List<Shot>();
 	}
 
-	public void playOneShotWithParameters(FMODUnity.EventReference fmodEvent, params(string name, float value)[] parameters) {
-		FMOD.Studio.EventInstance instance = FMODUnity.RuntimeManager.CreateInstance(fmodEvent);
+	public void playOneShotWithParameters(EventReference fmodEvent, params(string name, float value)[] parameters) {
+		EventInstance instance = RuntimeManager.CreateInstance(fmodEvent);
 
 		foreach(var (name, value) in parameters) {
 			instance.setParameterByName(name, value);

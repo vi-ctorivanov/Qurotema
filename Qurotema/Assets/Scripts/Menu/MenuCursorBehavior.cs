@@ -1,4 +1,4 @@
-﻿/*
+/*
 
 Manages mouse 'cursor' in menu.
 
@@ -25,6 +25,7 @@ public class MenuCursorBehavior : MonoBehaviour {
 
 	void Start () {
 		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Confined;
 
 		Vector2 screenPos = Mouse.current.position.ReadValue();
 		Vector3 targetPosition = Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, 5f));
