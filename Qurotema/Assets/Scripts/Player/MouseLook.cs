@@ -61,7 +61,7 @@ public class MouseLook : MonoBehaviour {
 	void Start() {
 		//lock cursor
 		Cursor.visible = false;
-		Cursor.lockState = CursorLockMode.None;
+		Cursor.lockState = CursorLockMode.Locked;
 
 		//get rotation
 		Vector3 rot = transform.localRotation.eulerAngles;

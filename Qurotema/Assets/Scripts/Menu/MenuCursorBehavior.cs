@@ -10,12 +10,14 @@ using UnityEngine.InputSystem;
 public class MenuCursorBehavior : MonoBehaviour {
 
 	[Header("References")]
-	public Material cursor;
+	public Material cursorTransparent;
+	public Material cursorOpaque;
 
 	//input
 	private InputAction interactAction;
 
 	[Header("Dynamics")]
+	public float distanceFromCamera = 5f;
 	public float followSpeed = 50f;
 	public float alpha = 0f;
 
@@ -33,25 +35,30 @@ public class MenuCursorBehavior : MonoBehaviour {
 
 		interactAction = InputSystem.actions.FindAction("Interact");
 
-		cursor.SetFloat("_Alpha", 0f);
+		cursorTransparent.SetFloat("_Alpha", 0f);
+		cursorOpaque.SetFloat("_Alpha", 0f);
 	}
 
 	void Update () {
-		cursor.SetFloat("_Alpha", alpha);
+		cursorTransparent.SetFloat("_Alpha", alpha);
+		cursorOpaque.SetFloat("_Alpha", alpha);
 
 		if (interactAction.WasPressedThisFrame()) makeActive();
 		if (interactAction.WasReleasedThisFrame()) makePassive();
 
 		Vector2 screenPos = Mouse.current.position.ReadValue();
-		Vector3 targetPosition = Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, 5f));
+		Vector3 targetPosition = Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, distanceFromCamera));
 		transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime); 
+		Debug.Log(screenPos);
 	}
 
 	private void makeActive() {
-		cursor.SetColor("_Color", red);
+		cursorTransparent.SetColor("_Color", red);
+		cursorOpaque.SetColor("_Color", red);
 	}
 
 	private void makePassive() {
-		cursor.SetColor("_Color", purple);
+		cursorTransparent.SetColor("_Color", purple);
+		cursorOpaque.SetColor("_Color", purple);
 	}
 }

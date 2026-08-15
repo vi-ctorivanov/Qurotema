@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using FMOD.Studio;
 using FMODUnity;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class Sound : MonoBehaviour {
