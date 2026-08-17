@@ -11,13 +11,13 @@ using UnityEngine.InputSystem;
 public class MouseLook : MonoBehaviour {
 
 	[Header("Dynamics")]
-	public float mouseSensitivity = 130f;
-	public float shakeSpeed = 1f;
-	public float shakeQuantity = 1.4f;
+	public float mouseSensitivity = 0.08f;
+	public float shakeSpeed = 0.5f;
+	public float shakeQuantity = 0.8f;
+	public float easeSpeed = 10f;
 	public AnimationCurve flashFOVCurve;
 	public LayerMask mask;
 	private float clampAngle = 80f;
-	private float easeSpeed = 10f;
 	private float followSpeed = 8f;
 	private float heightOffset = 0.5f;
 
@@ -30,6 +30,10 @@ public class MouseLook : MonoBehaviour {
 	//input
 	private InputAction lookAction;
 	private InputAction sprintAction;
+
+	private InputAction fovAction; //debug
+	private InputAction shakeAction; //debug
+	private InputAction easeAction; //debug
  
 	[Header("States")]
 	public float mouseX = 0f;
@@ -78,6 +82,10 @@ public class MouseLook : MonoBehaviour {
 		lookAction = InputSystem.actions.FindAction("Look");
 		sprintAction = InputSystem.actions.FindAction("Sprint");
 
+		fovAction = InputSystem.actions.FindAction("FOV");
+		shakeAction = InputSystem.actions.FindAction("Shake");
+		easeAction = InputSystem.actions.FindAction("Ease");
+
 		targetFOV = minFOV;
 	}
 
@@ -86,6 +94,7 @@ public class MouseLook : MonoBehaviour {
 		rotate();
 		follow();
 		shake();
+		trailer();
 		fov();
 	}
 
@@ -180,6 +189,19 @@ public class MouseLook : MonoBehaviour {
 		targetFOV = Mathf.Lerp(targetFOV, Nox.Instance.remap(velocity, 0f, 300f, minFOV + extraFOV, maxFOV + extraFOV), easeFOV * Time.deltaTime);
 
 		GetComponent<Camera>().fieldOfView = targetFOV;
+	}
+
+	//trailer debug controls for different shots
+	private void trailer() {
+		float fovDelta = fovAction.ReadValue<float>();
+		minFOV = Mathf.Clamp(minFOV + fovDelta * 0.1f, 10f, 200f);
+		maxFOV = minFOV + 75f;
+
+		float shakeDelta = shakeAction.ReadValue<float>();
+		shakeQuantity = Mathf.Clamp(shakeQuantity + shakeDelta * 0.1f, 0f, 1f);
+
+		float easeDelta = easeAction.ReadValue<float>();
+		easeSpeed = Mathf.Clamp(easeSpeed + easeDelta * 0.1f, 0.1f, 20f);
 	}
 
 	private void fovFeedback(float intensity) {

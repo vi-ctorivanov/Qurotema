@@ -9,6 +9,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Playables;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class Nox : MonoBehaviour {
@@ -16,6 +17,7 @@ public class Nox : MonoBehaviour {
 	[Header("Settings")]
 	public bool skipIntro = false;
 	public bool active = true;
+	public bool debug = false;
 
 	[Header("References")]
 	public GameObject player;
@@ -78,6 +80,8 @@ public class Nox : MonoBehaviour {
 
 	void Start() {
 		if (!active) return;
+
+		if (!debug) InputSystem.actions.FindActionMap("Trailer").Disable();
 
 		gates.SetActive(false);
 		gatesCollider.SetActive(false);
