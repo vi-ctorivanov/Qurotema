@@ -23,7 +23,7 @@ public class PlayOnLook : MonoBehaviour {
 
 				case "Monolith":
 					Sound.Instance.lookState.setParameterByName("Look", 2);
-					if (!firstLookMonolith) {
+					if (!firstLookMonolith && Vector3.Distance(Nox.Instance.player.transform.position, hit.point) < 150f) {
 						firstLookMonolith = true;
 						Nox.Instance.monolithDiscovered();
 					}
