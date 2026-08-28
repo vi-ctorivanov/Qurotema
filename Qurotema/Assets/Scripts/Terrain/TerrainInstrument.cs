@@ -16,6 +16,7 @@ public class TerrainInstrument : MonoBehaviour {
 	void Update() {
 		playHead = playHead + speed * Time.deltaTime;
 
+		terrainMaterial.SetFloat("_Play_Falloff", flashCurve.Evaluate(playHead));
 		terrainMaterial.SetFloat("_Play_Intensity", flashCurve.Evaluate(playHead) * intensityMultiplier);
 		terrainMaterial.SetFloat("_Play_Value", value);
 	}
