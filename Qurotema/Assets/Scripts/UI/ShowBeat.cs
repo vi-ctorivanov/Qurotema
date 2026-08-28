@@ -11,11 +11,11 @@ public class ShowBeat : MonoBehaviour {
 	}
 
 	private void OnEnable() {
-		Sound.OnBeat += updateBeatUI;
+		Sound.OnQuarter += updateBeatUI;
 	}
 
 	private void OnDisable() {
-		Sound.OnBeat -= updateBeatUI;
+		Sound.OnQuarter -= updateBeatUI;
 	}
 
 	void Update() {

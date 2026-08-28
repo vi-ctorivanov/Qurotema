@@ -14,20 +14,23 @@ public class Sound : MonoBehaviour {
 
 	//timing
 	private float bpm = 120f; //time signature is 4/4
-	private int temporalResolution = 2; //number of divisions of a quarter note for granular beats, should be multiples of 2
 
 	//tracking
 	private float musicStart;
-	public int beat = 1;
+	// beats are 16th notes, smallest musical time unit in the game, played for 4 bars for a total of 64 beats
+	private int beat = 1;
 	private float secPerBeat;
-	public int granularBeat = 1;
-	private float secPerGranularBeat;
 
 	//queue
 	private List<Shot> queue = new List<Shot>();
 
 	//events
-	public static event Action<int> OnBeat;
+	public static event Action<int> OnSet;
+	public static event Action<int> OnWhole;
+	public static event Action<int> OnHalf;
+	public static event Action<int> OnQuarter;
+	public static event Action<int> OnEighth;
+	public static event Action<int> OnSixteenth;
 
 	[Header("Atmosphere Sounds")]
 	public EventReference ambienceEvent;
@@ -101,8 +104,7 @@ public class Sound : MonoBehaviour {
 		rhythmState.setParameterByName("Volume", 0);
 
 		//beat tracking
-		secPerBeat = 60f / bpm;
-		secPerGranularBeat = 60f / temporalResolution / bpm;
+		secPerBeat = 60f / bpm / 4; //16th notes
 		musicStart = (float) AudioSettings.dspTime;
 	}
 
@@ -121,25 +123,26 @@ public class Sound : MonoBehaviour {
 
 		//standard beats
 		int computedBeat = (int) Mathf.Floor(musicPosition / secPerBeat);
-		if (beat != computedBeat % 16) {
-			beat = computedBeat % 16;
-			OnBeat?.Invoke(beat);
-		}
+		if (beat != computedBeat % 64) {
+			beat = computedBeat % 64;
+			playQueue(); //play queued shots to the rhythm
 
-		//granular beats
-		computedBeat = (int) Mathf.Floor(musicPosition / secPerGranularBeat);
-		if (granularBeat != computedBeat % (16 * temporalResolution)) {
-			granularBeat = 	computedBeat % (16 * temporalResolution);
-			playQueue();
+			//events pass the count of their specific subdivision
+			OnSixteenth?.Invoke(beat);
+			if (beat % 2 == 0) OnEighth?.Invoke(beat / 2);
+			if (beat % 4 == 0) OnQuarter?.Invoke(beat / 4);
+			if (beat % 8 == 0) OnHalf?.Invoke(beat / 8);
+			if (beat % 16 == 0) OnWhole?.Invoke(beat / 8);
+			if (beat % 64 == 0) OnSet?.Invoke(beat / 64);
 		}
 	}
 	
 	public void queueShot(string name, EventReference fmodEvent, params(string name, float value)[] parameters) {
 		//if shot is closer to the previous beat than the next, just play it to avoid undesireable delay
 		float musicPosition = (float) (AudioSettings.dspTime - musicStart);
-		float present = (float) musicPosition / secPerGranularBeat;
-		float previousBeat = (int) Mathf.Floor(musicPosition / secPerGranularBeat);
-		float nextBeat = (int) Mathf.Ceil(musicPosition / secPerGranularBeat);
+		float present = (float) musicPosition / secPerBeat;
+		float previousBeat = (int) Mathf.Floor(musicPosition / secPerBeat);
+		float nextBeat = (int) Mathf.Ceil(musicPosition / secPerBeat);
 
 		if (present - previousBeat < nextBeat - present) {
 			playOneShotWithParameters(fmodEvent, parameters);

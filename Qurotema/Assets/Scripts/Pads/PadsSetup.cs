@@ -7,7 +7,7 @@ public class PadsSetup : MonoBehaviour {
 
 	//definition
 	private int rows = 3;
-	private int columns = 16;
+	private int columns = 32;
 	private float distanceBetweenPads = 14f;
 
 	void Start() {
