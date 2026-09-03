@@ -4,6 +4,7 @@ Manages rings instrument.
 
 */
 
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,7 +26,11 @@ public class RingsBehavior: MonoBehaviour {
 
 	//state
 	private bool resizing = false;
+	private bool playing = false;
 	private RaycastHit hit = new RaycastHit();
+
+	//coroutine
+	private Coroutine playRoutine;
 
 	void Start() {
 		cursorAction = InputSystem.actions.FindAction("Cursor");
@@ -61,12 +66,25 @@ public class RingsBehavior: MonoBehaviour {
 						float playSpeed = Mathf.Abs(look.mouseX) + Mathf.Abs(look.mouseY);
 
 						if (playSpeed >= playSpeedMinimum && playSpeed <= playSpeedMaximum) {
+							if (!playing) {
+								playing = true;
+								
+								if (playRoutine != null) StopCoroutine(playRoutine);
+								playRoutine = StartCoroutine(PlayWait());
+
+								Nox.Instance.ringPlayed();
+							}
+							
 							hit.collider.gameObject.GetComponent<RingsInstrument>().resonate();
-							Nox.Instance.ringPlayed();
 						}
 					}
 				}
 			}
 		}
+	}
+
+	IEnumerator PlayWait() {
+		yield return new WaitForSeconds(1f);
+		playing = false;
 	}
 }
