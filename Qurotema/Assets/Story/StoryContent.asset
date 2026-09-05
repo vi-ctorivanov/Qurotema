@@ -20,48 +20,54 @@ MonoBehaviour:
   - 'Stable comms. Gates forcing one-way channel.
 
     Expected.'
-  - All set. We'll be observing Qurotema alongside you, Operator.
-  - Initiating vessel control.
-  - And, Di? Make Sino proud.
-  monolithText:
+  - 'Data channels active.
+
+    We''ll be studying Qurotema alongside you, Operator.'
+  - Initiating vessel control soon.
+  - And, Di? Finish Sino's work.
+  monolithFirstText:
   - 'Confirming i-tema characters on visual feed.
 
-    Loading local translations
-    to compare.'
-  - 'Huh, this is our only translated entry. Seems unlikely.
+    This seems familiar. Loading
+    local translations to compare.'
+  - 'Yes, it''s our only translated entry. Strange coincidence.
 
     "The night will
     flow when black time''s sand knows foreign touch."'
-  - 'The gates share two of those words, "Quro" and "Tema". Black time.
+  - 'Gates should share two of those words, "Quro" and "Tema". "Black time".
 
-    No gates
-    visible though. Odd.'
+    No
+    gates visible though.'
   - 'Anyways, this isn''t new information.
 
     Find more monoliths, we''ll fill
     the database for linguistic analysis.'
+  monolithSecondText:
+  - Another mon.lith. Uploading t.xt back home.
+  - We'll st.rt transl.t.ons once you'.e back.
   instrumentText:
-  - 'Som.thing happen.d!
+  - 'H.gh activ.ty on sonic dat. chan.els!
 
-    Faint s.gnal n.ar your vessel''s current pos.tion.'
-  - 'An.ther click.
+    Pi.king up faint s.gnal n.arby. Cont.nue
+    expl.ration.'
+  - 'M.re aud.o. Mus.c?
 
-    L.st v.sual fe.d, st.ll getting a.l oth.r r.adings. Just
-    ke.p up the research.'
+    L.st v.sual fe.d, st.ll getting a.l oth.r r.adings.
+    Just ke.p .p t.e rese.rch.'
   - 'Th.s .sn''t r..ht.
 
-    Con.ection is bec.m.ng too unrel..ble. I''m begin..ng
+    Con.ection is bec.m.ng too unst.bl.. I''m begin..ng
     a pull.'
   endText:
-  - Lo.ing co..ection fas.! RO, wh.t's ..ing on?
-  - RO? Di? B.dy ......  ..resp.n.ive. ...... ret.r. pro.ocol ...... .....cit.te.
-  - No p.ng on Qur..ema? ...... ves.el ...... vo.d.
-  - ...... ...... ......
+  - Co..ection st..ili.y drop..ng f.s.. Di, wh.t's ..ing on?
+  - Di! B.dy ......  ..resp.n.ive. ...... ret.r. pro.ocol ...... .....cit.te.
+  - No p.ng on Qur..em.. ...... ve..el ...... v...d.
+  - ......
   uniqueText:
-  - 'Monolith visual confirmed. Strange, there''s no writing on it.
+  - 'Monolith visual confirmed. But there''s no writing on it.
 
     Is it inactive?'
-  - 'Confirming new reading. Incredible! There''s nothing like this in Sino''s notes.
+  - 'Confirming new reading. Incredible! There''s nothing like this in Sino''s docs.
 
     Keep
     experimenting, maybe we can learn something.'

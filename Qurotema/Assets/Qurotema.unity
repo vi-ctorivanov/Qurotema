@@ -2404,6 +2404,59 @@ LineRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 3387228952963050144}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &201596767
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shader Graphs/DefaultCompositionGraph
+  m_Shader: {fileID: -6465566751694194690, guid: 054cd61f1e736ab45a595f7b32d2e2bc,
+    type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseLayer:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FlatUILayer:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _UILayer:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors: []
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1 &208825024
 GameObject:
   m_ObjectHideFlags: 0
@@ -5142,59 +5195,6 @@ Light:
   m_LightUnit: 2
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 0
---- !u!21 &486031776
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs/DefaultCompositionGraph
-  m_Shader: {fileID: -6465566751694194690, guid: 054cd61f1e736ab45a595f7b32d2e2bc,
-    type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BaseLayer:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _FlatUILayer:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _UILayer:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats: []
-    m_Colors: []
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!1 &495439603
 GameObject:
   m_ObjectHideFlags: 0
@@ -10600,7 +10600,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1283151636}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: dc09d232f88f6a1dda6f43c806628636, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: ead9c41ce28260603a76ddb6554c556d, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -10680,6 +10680,8 @@ PlayableDirector:
     value: {fileID: 1283151646}
   - key: {fileID: 5761193104437614837, guid: dc09d232f88f6a1dda6f43c806628636, type: 2}
     value: {fileID: 1846523916}
+  - key: {fileID: 6002496138816396232, guid: ead9c41ce28260603a76ddb6554c556d, type: 2}
+    value: {fileID: 1283151643}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &1283151643
@@ -10712,6 +10714,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 749fee822905ad941ab8c644f6ab5a6b, type: 2}
     - {fileID: 11400000, guid: 14bbd723fb92b98468e63b0348cd201b, type: 2}
     - {fileID: 11400000, guid: 431ad5b7f26e6ac4fa624759e7a36eff, type: 2}
+    - {fileID: 11400000, guid: 81b10a90b12ed6688802ea3dfd2c81e0, type: 2}
+    - {fileID: 11400000, guid: 28b244eede6a1b1698bb8d3438c32a43, type: 2}
+    - {fileID: 11400000, guid: 2132348412b82a642b6f5be5fae785a4, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -10822,7 +10827,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: monolith_0
+            m_StringArgument: monolithFirst_0
             m_BoolArgument: 0
           m_CallState: 2
     - m_PersistentCalls:
@@ -10836,7 +10841,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: monolith_1
+            m_StringArgument: monolithFirst_1
             m_BoolArgument: 0
           m_CallState: 2
     - m_PersistentCalls:
@@ -10850,7 +10855,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: monolith_2
+            m_StringArgument: monolithFirst_2
             m_BoolArgument: 0
           m_CallState: 2
     - m_PersistentCalls:
@@ -10864,7 +10869,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: monolith_3
+            m_StringArgument: monolithFirst_3
             m_BoolArgument: 0
           m_CallState: 2
     - m_PersistentCalls:
@@ -10937,6 +10942,48 @@ MonoBehaviour:
             m_StringArgument: end_3
             m_BoolArgument: 0
           m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1283151644}
+          m_TargetAssemblyTypeName: Nox, Assembly-CSharp
+          m_MethodName: playText
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: monolithSecond_0
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1283151644}
+          m_TargetAssemblyTypeName: Nox, Assembly-CSharp
+          m_MethodName: playText
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: monolithSecond_1
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1283151644}
+          m_TargetAssemblyTypeName: Nox, Assembly-CSharp
+          m_MethodName: quitApplication
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &1283151644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10951,7 +10998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Nox
   skipIntro: 1
   active: 1
-  debug: 1
+  debug: 0
   player: {fileID: 1450290456}
   cam: {fileID: 1297650280}
   terrain: {fileID: 1283151641}
@@ -10970,7 +11017,10 @@ MonoBehaviour:
     type: 2}
   introductionEndTimeline: {fileID: 11400000, guid: 9bbfc0cf7558cad4097f1c0bf2220088,
     type: 2}
-  monolithTimeline: {fileID: 11400000, guid: 218c47ff2851e9c468db9b7c45035ece, type: 2}
+  monolithFirstTimeline: {fileID: 11400000, guid: 218c47ff2851e9c468db9b7c45035ece,
+    type: 2}
+  monolithSecondTimeline: {fileID: 11400000, guid: ead9c41ce28260603a76ddb6554c556d,
+    type: 2}
   gatesTimeline: {fileID: 11400000, guid: 7ec08ac83a361c048a81b1370450813e, type: 2}
   endTimeline: {fileID: 11400000, guid: 0ef3f353fb9e36a4fb85532f496c590e, type: 2}
   monolithsRead: 0
@@ -14485,7 +14535,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.Compositor.CompositionManager
   m_Enable: 1
-  m_Material: {fileID: 486031776}
+  m_Material: {fileID: 201596767}
   m_OutputDisplay: 0
   m_InputLayers:
   - m_LayerName: _FlatUILayer

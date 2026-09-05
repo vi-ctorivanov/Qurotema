@@ -6,7 +6,10 @@ public class StoryContent : ScriptableObject {
 	public string[] introductionText;
 
 	[TextAreaAttribute]
-	public string[] monolithText;
+	public string[] monolithFirstText;
+
+	[TextAreaAttribute]
+	public string[] monolithSecondText;
 
 	[TextAreaAttribute]
 	public string[] instrumentText;

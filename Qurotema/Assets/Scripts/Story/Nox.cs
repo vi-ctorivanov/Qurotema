@@ -44,7 +44,8 @@ public class Nox : MonoBehaviour {
 	public PlayableAsset menuTimeline;
 	public PlayableAsset introductionTimeline;
 	public PlayableAsset introductionEndTimeline;
-	public PlayableAsset monolithTimeline;
+	public PlayableAsset monolithFirstTimeline;
+	public PlayableAsset monolithSecondTimeline;
 	public PlayableAsset gatesTimeline;
 	public PlayableAsset endTimeline;
 
@@ -108,7 +109,8 @@ public class Nox : MonoBehaviour {
 
 	public void monolithActivated() {
 		OnFlashFeedback?.Invoke(3f);
-		if (monolithsRead == 0) directorPlay(monolithTimeline);
+		if (monolithsRead == 0) directorPlay(monolithFirstTimeline);
+		if (monolithsRead == 1) directorPlay(monolithSecondTimeline);
 		monolithsRead++;
 		OnActivateMonolith?.Invoke(monolithsRead);
 	}
@@ -196,8 +198,12 @@ public class Nox : MonoBehaviour {
 				text = content.introductionText[index];
 				break;
 
-			case "monolith":
-				text = content.monolithText[index];
+			case "monolithFirst":
+				text = content.monolithFirstText[index];
+				break;
+
+			case "monolithSecond":
+				text = content.monolithSecondText[index];
 				break;
 
 			case "instrument":
@@ -230,7 +236,7 @@ public class Nox : MonoBehaviour {
 				case '?':
 				case '!':
 				case '\n':
-				seconds = 0.75f;
+				seconds = 0.8f;
 					break;
 			}
 			seconds += word.Length * 0.05f;
@@ -289,5 +295,9 @@ public class Nox : MonoBehaviour {
 
 	public void loadMenu() {
 		SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+	}
+
+	public void quitApplication() {
+		Application.Quit();
 	}
 }
