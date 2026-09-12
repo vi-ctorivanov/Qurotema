@@ -14,6 +14,10 @@ TagManager:
   - GatesSphere
   - Terrain
   - Ring
+  - Beam
+  - Pads
+  - StringsPlatform
+  - RingsPlatform
   layers:
   - Default
   - TransparentFX

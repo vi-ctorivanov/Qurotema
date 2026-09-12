@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8701170145422327895
+--- !u!114 &-9095257191419712346
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Pad Cm/Cm
+  m_Name: parameter:/Drag/SunDragY
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: Cm
+  Name: SunDragY
   StudioPath: 
   Min: 0
   Max: 1
   Default: 0
   ID:
-    data1: 3641645680
-    data2: 1839768566
-  Type: 1
-  IsGlobal: 1
+    data1: 1509416385
+    data2: 3526921194
+  Type: 0
+  IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-8622123528125724170
+--- !u!114 &-8870096969263873403
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -34,55 +34,107 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Player/Movement/Slow Ed
+  m_Name: event:/World/Sun/Enlarge
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Player/Movement/Slow Ed
+  Path: event:/World/Sun/Enlarge
   Guid:
-    Data1: -259480413
-    Data2: 1123926092
-    Data3: 257902015
-    Data4: 2084426302
-  Banks:
-  - {fileID: -3523979449146760070}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: 8813658396464622803}
-  - {fileID: 3894461106008268851}
-  - {fileID: -2584602979431717149}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 150000
---- !u!114 &-8447189166820018634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/World/Bass/Bass Ed
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/World/Bass/Bass Ed
-  Guid:
-    Data1: 1460527107
-    Data2: 1224585917
-    Data3: -1459140967
-    Data4: -1940984612
+    Data1: 1295924953
+    Data2: 1142091210
+    Data3: 1851759003
+    Data4: 1842666561
   Banks:
   - {fileID: 6150068757637642828}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 8321713390122820687}
-  - {fileID: 7484074357572593632}
+  - {fileID: -3989029439500395103}
+  - {fileID: -1484587186277386173}
   MinDistance: 1
   MaxDistance: 20
-  Length: 296000
+  Length: 152000
+--- !u!114 &-8861255583231069527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/Movement/Sprint Cm
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Player/Movement/Sprint Cm
+  Guid:
+    Data1: 308000442
+    Data2: 1134770574
+    Data3: 917188782
+    Data4: -861841183
+  Banks:
+  - {fileID: -3523979449146760070}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 6896432852191676369}
+  - {fileID: -5776375769723630303}
+  - {fileID: 1277178633210307711}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 392000
+--- !u!114 &-8651684026343945783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/World/Counterpoint/Counterpoint Cm
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/World/Counterpoint/Counterpoint Cm
+  Guid:
+    Data1: -1083714800
+    Data2: 1160688087
+    Data3: -81825142
+    Data4: 1237528801
+  Banks:
+  - {fileID: 6150068757637642828}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 7760792743265489092}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 656000
+--- !u!114 &-8638755281425009421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Slow Cm/Sprint
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Sprint
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 156535276
+    data2: 746251767
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-8438106393887271911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,7 +162,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 8000
---- !u!114 &-7977124118271412731
+--- !u!114 &-8360816868506894799
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,26 +172,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Player/UI/Control/Control
+  m_Name: event:/World/Bass/Bass Cm
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Player/UI/Control/Control
+  Path: event:/World/Bass/Bass Cm
   Guid:
-    Data1: 1049641941
-    Data2: 1318492373
-    Data3: 700542106
-    Data4: -1797676506
+    Data1: -981961121
+    Data2: 1253632801
+    Data3: 724072615
+    Data4: 748559173
   Banks:
-  - {fileID: -3523979449146760070}
+  - {fileID: 6150068757637642828}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -2717282562148786718}
-  - {fileID: -3576065328831750350}
+  - {fileID: 5622487258236091086}
+  - {fileID: 7949211430335615939}
   MinDistance: 1
   MaxDistance: 20
-  Length: 44000
---- !u!114 &-7566112296820044421
+  Length: 296000
+--- !u!114 &-7757541636470192715
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,24 +201,47 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Player/UI/Mark/Marker
+  m_Name: event:/World/Tempo
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Player/UI/Mark/Marker
+  Path: event:/World/Tempo
   Guid:
-    Data1: -981247200
-    Data2: 1255557060
-    Data3: -781757815
-    Data4: -2102891550
+    Data1: 1314485616
+    Data2: 1249834124
+    Data3: -1654301312
+    Data4: 1533127081
   Banks:
-  - {fileID: -3523979449146760070}
-  IsStream: 1
+  - {fileID: 6150068757637642828}
+  IsStream: 0
   Is3D: 0
   IsOneShot: 0
-  Parameters:
-  - {fileID: 5368113530504518618}
+  Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 48000
+  Length: 8000
+--- !u!114 &-7686323449058887798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Bass Ed/SunHeight
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: SunHeight
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3054225948
+    data2: 420708799
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-7557419819934704184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,30 +264,6 @@ MonoBehaviour:
     data2: 1946876197
   Type: 0
   IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &-7490573489318428261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Bass Cm/Cm
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: Cm
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3641645680
-    data2: 1839768566
-  Type: 1
-  IsGlobal: 1
   Labels: []
   Exists: 1
 --- !u!114 &-7469320911189509816
@@ -239,37 +290,7 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-7278620271795385414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Player/Movement/Sprint Cm
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Player/Movement/Sprint Cm
-  Guid:
-    Data1: 308000442
-    Data2: 1134770574
-    Data3: 917188782
-    Data4: -861841183
-  Banks:
-  - {fileID: -3523979449146760070}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -6758760554247985246}
-  - {fileID: -2737751689825329406}
-  - {fileID: 5923801576590357205}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 392000
---- !u!114 &-7212979226212860746
+--- !u!114 &-7394217312559791552
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -279,31 +300,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Drag/SunDragY
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: SunDragY
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 1509416385
-    data2: 3526921194
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &-6979087311081025459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Sprint Start/Cm
+  m_Name: parameter:/Fly/Cm
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
   Name: Cm
   StudioPath: 
@@ -317,7 +314,7 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &-6879618600618958159
+--- !u!114 &-7193410758917404032
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -341,13 +338,13 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -5391029755895874091}
-  - {fileID: 3624501987223430349}
-  - {fileID: 3244694743004802872}
+  - {fileID: 4443927344743416383}
+  - {fileID: -4867172138034866749}
+  - {fileID: -7131027345854586998}
   MinDistance: 1
   MaxDistance: 20
   Length: 376000
---- !u!114 &-6776263143209516399
+--- !u!114 &-7131027345854586998
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -357,31 +354,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Enlarge/SoundOn
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: SoundOn
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3434183781
-    data2: 866175258
-  Type: 1
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &-6758760554247985246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Sprint Cm/MoveSpeed
+  m_Name: parameter:/Sprint Ed/MoveSpeed
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
   Name: MoveSpeed
   StudioPath: 
@@ -395,6 +368,35 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-7085782782132725952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/World/Key
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/World/Key
+  Guid:
+    Data1: -926726001
+    Data2: 1120993368
+    Data3: -554499176
+    Data4: -353468290
+  Banks:
+  - {fileID: 6150068757637642828}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 1376529813119234897}
+  - {fileID: -3717180977624227459}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4000
 --- !u!114 &-6481461871747958809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,6 +421,34 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-6445036718524106876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/UI/Mark/Marker
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Player/UI/Mark/Marker
+  Guid:
+    Data1: -981247200
+    Data2: 1255557060
+    Data3: -781757815
+    Data4: -2102891550
+  Banks:
+  - {fileID: -3523979449146760070}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 5629863659224793487}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 48000
 --- !u!114 &-6245189046111031459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,7 +473,7 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-6223533207359347158
+--- !u!114 &-6144590929597168750
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -467,12 +497,60 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 2882181030004516938}
-  - {fileID: 7013142328613442743}
-  - {fileID: 1636601545625307899}
+  - {fileID: -8638755281425009421}
+  - {fileID: -5579324364641041512}
+  - {fileID: 7640277065850654953}
   MinDistance: 1
   MaxDistance: 20
   Length: 292000
+--- !u!114 &-5776375769723630303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Sprint Cm/Cm
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Cm
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3641645680
+    data2: 1839768566
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-5579324364641041512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Slow Cm/Cm
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Cm
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3641645680
+    data2: 1839768566
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-5392590558569290160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,7 +575,7 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &-5391029755895874091
+--- !u!114 &-5030966859779915540
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -507,21 +585,53 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Sprint Ed/Sprint
+  m_Name: parameter:/Look/Look
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: Sprint
+  Name: Look
+  StudioPath: 
+  Min: 0
+  Max: 7
+  Default: 0
+  ID:
+    data1: 2226180774
+    data2: 3565230281
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - None
+  - Sun
+  - Monolith
+  - Pads
+  - Strings
+  - Rings
+  - Gates
+  - Beam
+  Exists: 1
+--- !u!114 &-4893985999182736545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Fly/FlyHeight
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: FlyHeight
   StudioPath: 
   Min: 0
   Max: 1
   Default: 0
   ID:
-    data1: 156535276
-    data2: 746251767
-  Type: 1
-  IsGlobal: 1
+    data1: 1129620435
+    data2: 3620254288
+  Type: 0
+  IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-4467735408885080690
+--- !u!114 &-4867172138034866749
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -531,7 +641,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Key/Cm
+  m_Name: parameter:/Sprint Ed/Cm
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
   Name: Cm
   StudioPath: 
@@ -543,6 +653,30 @@ MonoBehaviour:
     data2: 1839768566
   Type: 1
   IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-4438679783614340305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Sprint Start/SprintX
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: SprintX
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 516843624
+    data2: 994299721
+  Type: 0
+  IsGlobal: 0
   Labels: []
   Exists: 1
 --- !u!114 &-4234424362918940516
@@ -566,14 +700,14 @@ MonoBehaviour:
   Banks:
   - {fileID: -239381038373440179}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters:
   - {fileID: -7469320911189509816}
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
---- !u!114 &-3919300130543060548
+--- !u!114 &-3989029439500395103
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -583,50 +717,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Fly/FlyX
+  m_Name: parameter:/Enlarge/SoundOn
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: FlyX
+  Name: SoundOn
   StudioPath: 
   Min: 0
   Max: 1
   Default: 0
   ID:
-    data1: 1112402910
-    data2: 3392690379
-  Type: 0
+    data1: 3434183781
+    data2: 866175258
+  Type: 1
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-3609819604726655274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/World/Key
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/World/Key
-  Guid:
-    Data1: -926726001
-    Data2: 1120993368
-    Data3: -554499176
-    Data4: -353468290
-  Banks:
-  - {fileID: 6150068757637642828}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: 4309108163201285944}
-  - {fileID: -4467735408885080690}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4000
---- !u!114 &-3576065328831750350
+--- !u!114 &-3717180977624227459
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -636,18 +741,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Control/ControlCursor
+  m_Name: parameter:/Key/Cm
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: ControlCursor
+  Name: Cm
   StudioPath: 
   Min: 0
   Max: 1
   Default: 0
   ID:
-    data1: 2345315058
-    data2: 1999936946
+    data1: 3641645680
+    data2: 1839768566
   Type: 1
-  IsGlobal: 0
+  IsGlobal: 1
   Labels: []
   Exists: 1
 --- !u!114 &-3523979449146760070
@@ -665,39 +770,9 @@ MonoBehaviour:
   Path: ../fmod/export/Desktop/Player.bank
   Name: Player
   StudioPath: bank:/Player
-  lastModified: 639247663153560410
+  lastModified: 639247876612471137
   FileSizes: []
   Exists: 1
---- !u!114 &-3427771987168202570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Player/Movement/Sprint Start
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Player/Movement/Sprint Start
-  Guid:
-    Data1: -81693077
-    Data2: 1339849267
-    Data3: -832610415
-    Data4: 956914154
-  Banks:
-  - {fileID: -3523979449146760070}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters:
-  - {fileID: 8703682367130475075}
-  - {fileID: 5253479420960856905}
-  - {fileID: -6979087311081025459}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 16000
 --- !u!114 &-3348377862965834709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -713,10 +788,39 @@ MonoBehaviour:
   Path: ../fmod/export/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639247647521360290
+  lastModified: 639247871040871096
   FileSizes: []
   Exists: 1
---- !u!114 &-3309288618228573498
+--- !u!114 &-3111263135093830935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/World/Bass/Bass Ed
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/World/Bass/Bass Ed
+  Guid:
+    Data1: 1460527107
+    Data2: 1224585917
+    Data3: -1459140967
+    Data4: -1940984612
+  Banks:
+  - {fileID: 6150068757637642828}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -7686323449058887798}
+  - {fileID: 7959031255260681736}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 296000
+--- !u!114 &-3104263930643107889
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -726,18 +830,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Teleport/Cm
+  m_Name: parameter:/Control/SoundOn
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: Cm
+  Name: SoundOn
   StudioPath: 
   Min: 0
   Max: 1
   Default: 0
   ID:
-    data1: 3641645680
-    data2: 1839768566
+    data1: 3434183781
+    data2: 866175258
   Type: 1
-  IsGlobal: 1
+  IsGlobal: 0
   Labels: []
   Exists: 1
 --- !u!114 &-3086676707377952114
@@ -762,12 +866,12 @@ MonoBehaviour:
   - {fileID: 3178926095581949605}
   IsStream: 0
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
   Length: 125
---- !u!114 &-2737751689825329406
+--- !u!114 &-2784101263580151730
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -777,93 +881,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Sprint Cm/Cm
+  m_Name: parameter:/Teleport/TeleportDistance
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: Cm
+  Name: TeleportDistance
   StudioPath: 
   Min: 0
   Max: 1
   Default: 0
   ID:
-    data1: 3641645680
-    data2: 1839768566
-  Type: 1
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
---- !u!114 &-2717282562148786718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Control/SoundOn
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: SoundOn
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3434183781
-    data2: 866175258
-  Type: 1
+    data1: 4002455032
+    data2: 3574256453
+  Type: 0
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-2584602979431717149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Slow Ed/Sprint
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: Sprint
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 156535276
-    data2: 746251767
-  Type: 1
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
---- !u!114 &-2236753353814261827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Enlarge/Cm
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: Cm
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3641645680
-    data2: 1839768566
-  Type: 1
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
---- !u!114 &-2169632779914311744
+--- !u!114 &-2425083421735418436
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -873,25 +905,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/World/Bass/Bass Cm
+  m_Name: event:/World/Pad/Pad Ed
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/World/Bass/Bass Cm
+  Path: event:/World/Pad/Pad Ed
   Guid:
-    Data1: -981961121
-    Data2: 1253632801
-    Data3: 724072615
-    Data4: 748559173
+    Data1: 309418718
+    Data2: 1317384060
+    Data3: 1909800382
+    Data4: 1296668562
   Banks:
   - {fileID: 6150068757637642828}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -1963208063469856637}
-  - {fileID: -7490573489318428261}
+  - {fileID: 6947004703393806709}
   MinDistance: 1
   MaxDistance: 20
-  Length: 296000
+  Length: 180000
 --- !u!114 &-2014237069487979921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -916,7 +947,7 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &-1963208063469856637
+--- !u!114 &-1977486213887968237
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -926,17 +957,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Bass Cm/SunHeight
+  m_Name: parameter:/Pad Cm/Cm
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: SunHeight
+  Name: Cm
   StudioPath: 
   Min: 0
   Max: 1
   Default: 0
   ID:
-    data1: 3054225948
-    data2: 420708799
-  Type: 0
+    data1: 3641645680
+    data2: 1839768566
+  Type: 1
   IsGlobal: 1
   Labels: []
   Exists: 1
@@ -960,6 +991,30 @@ MonoBehaviour:
   ID:
     data1: 156535276
     data2: 746251767
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-1756923560449532031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambience Cm/Cm
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Cm
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3641645680
+    data2: 1839768566
   Type: 1
   IsGlobal: 1
   Labels: []
@@ -991,6 +1046,102 @@ MonoBehaviour:
   - Snare
   - Hat
   Exists: 1
+--- !u!114 &-1484587186277386173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Enlarge/Cm
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Cm
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3641645680
+    data2: 1839768566
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-1296340336997256870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Slow Ed/Sprint
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Sprint
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 156535276
+    data2: 746251767
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-1229979354461734890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Sprint Start/SprintZ
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: SprintZ
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2415530647
+    data2: 2231192905
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-1064134711519192005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Slow Ed/Cm
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Cm
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3641645680
+    data2: 1839768566
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-425957650506603410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1013,7 +1164,7 @@ MonoBehaviour:
   - {fileID: 3178926095581949605}
   IsStream: 0
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters:
   - {fileID: -6245189046111031459}
   - {fileID: 4084838783385360547}
@@ -1047,59 +1198,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 9320
---- !u!114 &-352250098847645287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/World/Sun/Enlarge
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/World/Sun/Enlarge
-  Guid:
-    Data1: 1295924953
-    Data2: 1142091210
-    Data3: 1851759003
-    Data4: 1842666561
-  Banks:
-  - {fileID: 6150068757637642828}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -2236753353814261827}
-  - {fileID: -6776263143209516399}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 152000
---- !u!114 &-311692085780079285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Teleport/TeleportDistance
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: TeleportDistance
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 4002455032
-    data2: 3574256453
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
 --- !u!114 &-239381038373440179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1115,7 +1213,7 @@ MonoBehaviour:
   Path: ../fmod/export/Desktop/Story.bank
   Name: Story
   StudioPath: bank:/Story
-  lastModified: 639247678838857783
+  lastModified: 639247876616811176
   FileSizes: []
   Exists: 1
 --- !u!114 &11400000
@@ -1146,29 +1244,30 @@ MonoBehaviour:
   - {fileID: 7679656691977041172}
   - {fileID: 7617712575321668923}
   - {fileID: 4108501523804229763}
-  - {fileID: 7278798892235620593}
-  - {fileID: 351223317007329438}
-  - {fileID: -7566112296820044421}
-  - {fileID: -6879618600618958159}
-  - {fileID: 861406410108365031}
-  - {fileID: -3427771987168202570}
-  - {fileID: -8622123528125724170}
-  - {fileID: -7278620271795385414}
-  - {fileID: -7977124118271412731}
-  - {fileID: -6223533207359347158}
   - {fileID: -4234424362918940516}
   - {fileID: 492299065275061987}
   - {fileID: -409718380326549290}
   - {fileID: -8438106393887271911}
-  - {fileID: -8447189166820018634}
-  - {fileID: 6019510941833625193}
-  - {fileID: 7878705512142066530}
-  - {fileID: -2169632779914311744}
-  - {fileID: -3609819604726655274}
-  - {fileID: 1494339779515260651}
-  - {fileID: 5233708231608033522}
-  - {fileID: -352250098847645287}
-  - {fileID: 6730736400124949097}
+  - {fileID: 6526834307740850406}
+  - {fileID: 3931901102772851426}
+  - {fileID: -6445036718524106876}
+  - {fileID: -7193410758917404032}
+  - {fileID: 6544387111155591850}
+  - {fileID: 6480254344483697202}
+  - {fileID: 8103373040026638732}
+  - {fileID: -8861255583231069527}
+  - {fileID: 1161285307310737180}
+  - {fileID: -6144590929597168750}
+  - {fileID: -3111263135093830935}
+  - {fileID: -8651684026343945783}
+  - {fileID: 3445520524558781227}
+  - {fileID: -8360816868506894799}
+  - {fileID: -7757541636470192715}
+  - {fileID: -7085782782132725952}
+  - {fileID: 1416806152574863919}
+  - {fileID: 769098073137310121}
+  - {fileID: -8870096969263873403}
+  - {fileID: -2425083421735418436}
   EditorParameters:
   - {fileID: 4631038566496277195}
   - {fileID: 7888846484654927975}
@@ -1183,7 +1282,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 4105969798136695125}
   cacheVersion: 131858
-  cacheTime: 639247709330134907
+  cacheTime: 639247878933811986
   SerializableEventsDict:
   - key: event:/Instruments/Rings/Rescale
     index: 0
@@ -1201,53 +1300,35 @@ MonoBehaviour:
     index: 6
   - key: event:/Instruments/Rings/Rings
     index: 7
-  - key: event:/Player/UI/Fly/Fly
-    index: 8
-  - key: event:/Player/UI/Mark/Teleport
-    index: 9
-  - key: event:/Player/UI/Mark/Marker
-    index: 10
-  - key: event:/Player/Movement/Sprint Ed
-    index: 11
-  - key: event:/Player/Look
-    index: 12
-  - key: event:/Player/Movement/Sprint Start
-    index: 13
-  - key: event:/Player/Movement/Slow Ed
-    index: 14
-  - key: event:/Player/Movement/Sprint Cm
-    index: 15
-  - key: event:/Player/UI/Control/Control
-    index: 16
-  - key: event:/Player/Movement/Slow Cm
-    index: 17
   - key: event:/Story/Dialog
-    index: 18
+    index: 8
   - key: event:/Story/Gates
-    index: 19
+    index: 9
   - key: event:/Story/Progress
-    index: 20
+    index: 10
   - key: event:/Story/Title Card
-    index: 21
+    index: 11
   - key: event:/World/Bass/Bass Ed
-    index: 22
+    index: 12
   - key: event:/World/Counterpoint/Counterpoint Cm
-    index: 23
+    index: 13
   - key: event:/World/Pad/Pad Cm
-    index: 24
+    index: 14
   - key: event:/World/Bass/Bass Cm
-    index: 25
+    index: 15
+  - key: event:/World/Tempo
+    index: 16
   - key: event:/World/Key
-    index: 26
+    index: 17
   - key: event:/World/Ambience/Ambience Cm
-    index: 27
+    index: 18
   - key: event:/World/Sun/Drag
-    index: 28
+    index: 19
   - key: event:/World/Sun/Enlarge
-    index: 29
+    index: 20
   - key: event:/World/Pad/Pad Ed
-    index: 30
---- !u!114 &351223317007329438
+    index: 21
+--- !u!114 &72446489307568580
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1256,26 +1337,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Player/UI/Mark/Teleport
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Player/UI/Mark/Teleport
-  Guid:
-    Data1: -255429611
-    Data2: 1147380397
-    Data3: 477049760
-    Data4: -332452675
-  Banks:
-  - {fileID: -3523979449146760070}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters:
-  - {fileID: -311692085780079285}
-  - {fileID: -3309288618228573498}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 7641
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Monolith/Cm
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Cm
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3641645680
+    data2: 1839768566
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &380075640022885460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Teleport/Cm
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Cm
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3641645680
+    data2: 1839768566
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &492299065275061987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1303,63 +1403,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 36000
---- !u!114 &621594341246586974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Look/Look
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: Look
-  StudioPath: 
-  Min: 0
-  Max: 7
-  Default: 0
-  ID:
-    data1: 2226180774
-    data2: 3565230281
-  Type: 2
-  IsGlobal: 0
-  Labels:
-  - None
-  - Sun
-  - Monolith
-  - Pads
-  - Strings
-  - Rings
-  - Gates
-  - Beam
-  Exists: 1
---- !u!114 &851943565720505394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Drag/SunDragX
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: SunDragX
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3023253881
-    data2: 168582149
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &861406410108365031
+--- !u!114 &769098073137310121
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1369,25 +1413,56 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Player/Look
+  m_Name: event:/World/Sun/Drag
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Player/Look
+  Path: event:/World/Sun/Drag
   Guid:
-    Data1: 78528607
-    Data2: 1337053829
-    Data3: -24705860
-    Data4: 777324691
+    Data1: 860266652
+    Data2: 1165604625
+    Data3: 1344337566
+    Data4: 269304327
+  Banks:
+  - {fileID: 6150068757637642828}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 2055935264592070005}
+  - {fileID: -9095257191419712346}
+  - {fileID: 4950123596530548052}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 23500
+--- !u!114 &1161285307310737180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/UI/Control/Control
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Player/UI/Control/Control
+  Guid:
+    Data1: 1049641941
+    Data2: 1318492373
+    Data3: 700542106
+    Data4: -1797676506
   Banks:
   - {fileID: -3523979449146760070}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 621594341246586974}
+  - {fileID: -3104263930643107889}
+  - {fileID: 2769162872573386246}
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
---- !u!114 &909782495316040764
+  Length: 44000
+--- !u!114 &1277178633210307711
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1397,20 +1472,72 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Fly/FlyHeight
+  m_Name: parameter:/Sprint Cm/Sprint
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: FlyHeight
+  Name: Sprint
   StudioPath: 
   Min: 0
   Max: 1
   Default: 0
   ID:
-    data1: 1129620435
-    data2: 3620254288
-  Type: 0
-  IsGlobal: 0
+    data1: 156535276
+    data2: 746251767
+  Type: 1
+  IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &1376529813119234897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Key/SunAngle
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: SunAngle
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2034687726
+    data2: 1066232414
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &1416806152574863919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/World/Ambience/Ambience Cm
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/World/Ambience/Ambience Cm
+  Guid:
+    Data1: -1784511085
+    Data2: 1281237822
+    Data3: -1971745617
+    Data4: 1021062045
+  Banks:
+  - {fileID: 6150068757637642828}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -1756923560449532031}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 592000
 --- !u!114 &1485097882731967948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1435,35 +1562,7 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &1494339779515260651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/World/Ambience/Ambience Cm
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/World/Ambience/Ambience Cm
-  Guid:
-    Data1: -1784511085
-    Data2: 1281237822
-    Data3: -1971745617
-    Data4: 1021062045
-  Banks:
-  - {fileID: 6150068757637642828}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: 6245016626210718179}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 592000
---- !u!114 &1636601545625307899
+--- !u!114 &1962254308907932838
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1473,7 +1572,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Slow Cm/MoveSpeed
+  m_Name: parameter:/Slow Ed/MoveSpeed
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
   Name: MoveSpeed
   StudioPath: 
@@ -1487,7 +1586,7 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &1852262931539930636
+--- !u!114 &2055935264592070005
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1497,66 +1596,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Fly/FlyZ
+  m_Name: parameter:/Drag/SunDragVelocity
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: FlyZ
+  Name: SunDragVelocity
   StudioPath: 
   Min: 0
   Max: 1
   Default: 0
   ID:
-    data1: 2687336694
-    data2: 2195370311
+    data1: 2283300678
+    data2: 2297610981
   Type: 0
   IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &2196836650254616420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Fly/FlyDistance
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: FlyDistance
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 4247175263
-    data2: 152576903
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &2315641514645594757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Counterpoint Cm/Cm
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: Cm
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3641645680
-    data2: 1839768566
-  Type: 1
-  IsGlobal: 1
   Labels: []
   Exists: 1
 --- !u!114 &2617934853798195561
@@ -1583,7 +1634,7 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &2882181030004516938
+--- !u!114 &2769162872573386246
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1593,16 +1644,40 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Slow Cm/Sprint
+  m_Name: parameter:/Control/ControlCursor
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: Sprint
+  Name: ControlCursor
   StudioPath: 
   Min: 0
   Max: 1
   Default: 0
   ID:
-    data1: 156535276
-    data2: 746251767
+    data1: 2345315058
+    data2: 1999936946
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &2879911229539488604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Sprint Start/Cm
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Cm
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3641645680
+    data2: 1839768566
   Type: 1
   IsGlobal: 1
   Labels: []
@@ -1622,10 +1697,38 @@ MonoBehaviour:
   Path: ../fmod/export/Desktop/Instruments.bank
   Name: Instruments
   StudioPath: bank:/Instruments
-  lastModified: 639247709330134907
+  lastModified: 639247876585590895
   FileSizes: []
   Exists: 1
---- !u!114 &3244694743004802872
+--- !u!114 &3445520524558781227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/World/Pad/Pad Cm
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/World/Pad/Pad Cm
+  Guid:
+    Data1: -1338811575
+    Data2: 1113826031
+    Data3: 526943903
+    Data4: -270845537
+  Banks:
+  - {fileID: 6150068757637642828}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -1977486213887968237}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 180000
+--- !u!114 &3586197424725542360
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1635,42 +1738,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Sprint Ed/MoveSpeed
+  m_Name: parameter:/Fly/FlyZ
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: MoveSpeed
+  Name: FlyZ
   StudioPath: 
   Min: 0
   Max: 1
   Default: 0
   ID:
-    data1: 3313530868
-    data2: 747972962
+    data1: 2687336694
+    data2: 2195370311
   Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
---- !u!114 &3624501987223430349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Sprint Ed/Cm
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: Cm
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3641645680
-    data2: 1839768566
-  Type: 1
-  IsGlobal: 1
+  IsGlobal: 0
   Labels: []
   Exists: 1
 --- !u!114 &3654496328820597685
@@ -1721,7 +1800,7 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &3894461106008268851
+--- !u!114 &3931901102772851426
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1730,21 +1809,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Slow Ed/Cm
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: Cm
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3641645680
-    data2: 1839768566
-  Type: 1
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/UI/Mark/Teleport
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Player/UI/Mark/Teleport
+  Guid:
+    Data1: -255429611
+    Data2: 1147380397
+    Data3: 477049760
+    Data4: -332452675
+  Banks:
+  - {fileID: -3523979449146760070}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -2784101263580151730}
+  - {fileID: 380075640022885460}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 7641
 --- !u!114 &4084838783385360547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1784,10 +1868,10 @@ MonoBehaviour:
   Path: ../fmod/export/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639247647521360290
+  lastModified: 639247871040881096
   FileSizes:
   - Name: 
-    Value: 3598
+    Value: 3634
   Exists: 1
 --- !u!114 &4108501523804229763
 MonoBehaviour:
@@ -1818,7 +1902,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 14000
---- !u!114 &4309108163201285944
+--- !u!114 &4443927344743416383
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1828,17 +1912,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Key/SunAngle
+  m_Name: parameter:/Sprint Ed/Sprint
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: SunAngle
+  Name: Sprint
   StudioPath: 
   Min: 0
   Max: 1
   Default: 0
   ID:
-    data1: 2034687726
-    data2: 1066232414
-  Type: 0
+    data1: 156535276
+    data2: 746251767
+  Type: 1
   IsGlobal: 1
   Labels: []
   Exists: 1
@@ -1866,7 +1950,7 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &4938327382790580661
+--- !u!114 &4950123596530548052
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1876,99 +1960,45 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Pad Ed/Cm
+  m_Name: parameter:/Drag/SunDragX
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: Cm
+  Name: SunDragX
   StudioPath: 
   Min: 0
   Max: 1
   Default: 0
   ID:
-    data1: 3641645680
-    data2: 1839768566
-  Type: 1
+    data1: 3023253881
+    data2: 168582149
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &5622487258236091086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Bass Cm/SunHeight
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: SunHeight
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3054225948
+    data2: 420708799
+  Type: 0
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &4953346111079688529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Drag/SunDragVelocity
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: SunDragVelocity
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 2283300678
-    data2: 2297610981
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &5233708231608033522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/World/Sun/Drag
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/World/Sun/Drag
-  Guid:
-    Data1: 860266652
-    Data2: 1165604625
-    Data3: 1344337566
-    Data4: 269304327
-  Banks:
-  - {fileID: 6150068757637642828}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: 4953346111079688529}
-  - {fileID: -7212979226212860746}
-  - {fileID: 851943565720505394}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 23500
---- !u!114 &5253479420960856905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Sprint Start/SprintX
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: SprintX
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 516843624
-    data2: 994299721
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &5368113530504518618
+--- !u!114 &5629863659224793487
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2016,58 +2046,6 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &5923801576590357205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Sprint Cm/Sprint
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: Sprint
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 156535276
-    data2: 746251767
-  Type: 1
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
---- !u!114 &6019510941833625193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/World/Counterpoint/Counterpoint Cm
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/World/Counterpoint/Counterpoint Cm
-  Guid:
-    Data1: -1083714800
-    Data2: 1160688087
-    Data3: -81825142
-    Data4: 1237528801
-  Banks:
-  - {fileID: 6150068757637642828}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: 2315641514645594757}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 656000
 --- !u!114 &6150068757637642828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2083,58 +2061,10 @@ MonoBehaviour:
   Path: ../fmod/export/Desktop/World.bank
   Name: World
   StudioPath: bank:/World
-  lastModified: 639247653159370016
+  lastModified: 639247878933811986
   FileSizes: []
   Exists: 1
---- !u!114 &6245016626210718179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Ambience Cm/Cm
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: Cm
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3641645680
-    data2: 1839768566
-  Type: 1
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
---- !u!114 &6651695661875554057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Fly/Cm
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: Cm
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3641645680
-    data2: 1839768566
-  Type: 1
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
---- !u!114 &6730736400124949097
+--- !u!114 &6480254344483697202
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2144,25 +2074,87 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/World/Pad/Pad Ed
+  m_Name: event:/Player/Movement/Sprint Start
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/World/Pad/Pad Ed
+  Path: event:/Player/Movement/Sprint Start
   Guid:
-    Data1: 309418718
-    Data2: 1317384060
-    Data3: 1909800382
-    Data4: 1296668562
+    Data1: -81693077
+    Data2: 1339849267
+    Data3: -832610415
+    Data4: 956914154
   Banks:
-  - {fileID: 6150068757637642828}
+  - {fileID: -3523979449146760070}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 4938327382790580661}
+  - {fileID: -1229979354461734890}
+  - {fileID: -4438679783614340305}
+  - {fileID: 2879911229539488604}
   MinDistance: 1
   MaxDistance: 20
-  Length: 180000
---- !u!114 &7013142328613442743
+  Length: 16000
+--- !u!114 &6526834307740850406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/UI/Fly/Fly
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Player/UI/Fly/Fly
+  Guid:
+    Data1: -907448049
+    Data2: 1252153637
+    Data3: 1679638667
+    Data4: 2003580228
+  Banks:
+  - {fileID: -3523979449146760070}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 8546836996792766588}
+  - {fileID: 3586197424725542360}
+  - {fileID: 8589142100544644692}
+  - {fileID: -4893985999182736545}
+  - {fileID: -7394217312559791552}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 26000
+--- !u!114 &6544387111155591850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/Look
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Player/Look
+  Guid:
+    Data1: 78528607
+    Data2: 1337053829
+    Data3: -24705860
+    Data4: 777324691
+  Banks:
+  - {fileID: -3523979449146760070}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -5030966859779915540}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &6896432852191676369
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2172,7 +2164,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Slow Cm/Cm
+  m_Name: parameter:/Sprint Cm/MoveSpeed
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: MoveSpeed
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3313530868
+    data2: 747972962
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &6947004703393806709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Pad Ed/Cm
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
   Name: Cm
   StudioPath: 
@@ -2208,68 +2224,12 @@ MonoBehaviour:
   - {fileID: 3178926095581949605}
   IsStream: 0
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters:
   - {fileID: -1508362300196212564}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &7278798892235620593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Player/UI/Fly/Fly
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Player/UI/Fly/Fly
-  Guid:
-    Data1: -907448049
-    Data2: 1252153637
-    Data3: 1679638667
-    Data4: 2003580228
-  Banks:
-  - {fileID: -3523979449146760070}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -3919300130543060548}
-  - {fileID: 1852262931539930636}
-  - {fileID: 2196836650254616420}
-  - {fileID: 909782495316040764}
-  - {fileID: 6651695661875554057}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 26000
---- !u!114 &7484074357572593632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Bass Ed/Cm
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: Cm
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3641645680
-    data2: 1839768566
-  Type: 1
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
 --- !u!114 &7617712575321668923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2292,11 +2252,35 @@ MonoBehaviour:
   - {fileID: 3178926095581949605}
   IsStream: 0
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
   Length: 1000
+--- !u!114 &7640277065850654953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Slow Cm/MoveSpeed
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: MoveSpeed
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3313530868
+    data2: 747972962
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &7679656691977041172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2323,9 +2307,10 @@ MonoBehaviour:
   Parameters:
   - {fileID: 2617934853798195561}
   - {fileID: 5862849348441030499}
+  - {fileID: 72446489307568580}
   MinDistance: 1
   MaxDistance: 20
-  Length: 8000
+  Length: 4000
 --- !u!114 &7718694750425183417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2348,12 +2333,12 @@ MonoBehaviour:
   - {fileID: 3178926095581949605}
   IsStream: 0
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
   Length: 10000
---- !u!114 &7878705512142066530
+--- !u!114 &7760792743265489092
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2362,25 +2347,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/World/Pad/Pad Cm
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/World/Pad/Pad Cm
-  Guid:
-    Data1: -1338811575
-    Data2: 1113826031
-    Data3: 526943903
-    Data4: -270845537
-  Banks:
-  - {fileID: 6150068757637642828}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -8701170145422327895}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 180000
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Counterpoint Cm/Cm
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Cm
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3641645680
+    data2: 1839768566
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &7888846484654927975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2405,7 +2386,7 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &8321713390122820687
+--- !u!114 &7949211430335615939
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2415,18 +2396,120 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Bass Ed/SunHeight
+  m_Name: parameter:/Bass Cm/Cm
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: SunHeight
+  Name: Cm
   StudioPath: 
   Min: 0
   Max: 1
   Default: 0
   ID:
-    data1: 3054225948
-    data2: 420708799
-  Type: 0
+    data1: 3641645680
+    data2: 1839768566
+  Type: 1
   IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &7959031255260681736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Bass Ed/Cm
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Cm
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3641645680
+    data2: 1839768566
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &8103373040026638732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/Movement/Slow Ed
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Player/Movement/Slow Ed
+  Guid:
+    Data1: -259480413
+    Data2: 1123926092
+    Data3: 257902015
+    Data4: 2084426302
+  Banks:
+  - {fileID: -3523979449146760070}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 1962254308907932838}
+  - {fileID: -1064134711519192005}
+  - {fileID: -1296340336997256870}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 150000
+--- !u!114 &8546836996792766588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Fly/FlyX
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: FlyX
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1112402910
+    data2: 3392690379
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &8589142100544644692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Fly/FlyDistance
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: FlyDistance
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 4247175263
+    data2: 152576903
+  Type: 0
+  IsGlobal: 0
   Labels: []
   Exists: 1
 --- !u!114 &8649720682645057591
@@ -2451,56 +2534,8 @@ MonoBehaviour:
   - {fileID: 3178926095581949605}
   IsStream: 0
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
   Length: 1000
---- !u!114 &8703682367130475075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Sprint Start/SprintZ
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: SprintZ
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 2415530647
-    data2: 2231192905
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &8813658396464622803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Slow Ed/MoveSpeed
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: MoveSpeed
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3313530868
-    data2: 747972962
-  Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1

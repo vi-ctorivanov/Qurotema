@@ -43,6 +43,7 @@ public class MainMenu : MonoBehaviour {
 	public void endGame() {
 		primedStart = false;
 		primedQuit = true;
+		FMODUnity.RuntimeManager.PlayOneShot(Sound.Instance.progressEvent);
 		directorPlay(menuEndTimeline);
 	}
 

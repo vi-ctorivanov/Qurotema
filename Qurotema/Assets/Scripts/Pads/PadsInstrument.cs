@@ -26,11 +26,11 @@ public class PadsInstrument : MonoBehaviour {
 	private Coroutine glowRoutine;
 
 	private void OnEnable() {
-		Sound.OnEighth += playBeat;
+		Sound.OnQuarter += playBeat;
 	}
 
 	private void OnDisable() {
-		Sound.OnEighth -= playBeat;
+		Sound.OnQuarter -= playBeat;
 	}
 
 	void Start() {

@@ -2209,6 +2209,13 @@ MonoBehaviour:
       Data3: -554499176
       Data4: -353468290
     Path: event:/World/Key
+  tempoEvent:
+    Guid:
+      Data1: 1314485616
+      Data2: 1249834124
+      Data3: -1654301312
+      Data4: 1533127081
+    Path: event:/World/Tempo
   ambienceCmEvent:
     Guid:
       Data1: -1784511085

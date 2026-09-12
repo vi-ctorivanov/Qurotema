@@ -554,8 +554,4 @@ MonoBehaviour:
       sizeInMegaBytes: 128
   m_CompositorCustomVolumeComponentsList:
     m_InjectionPoint: 1
-    m_CustomPostProcessTypesAsString:
-    - UnityEngine.Rendering.HighDefinition.Compositor.ChromaKeying, Unity.RenderPipelines.HighDefinition.Runtime,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-    - UnityEngine.Rendering.HighDefinition.Compositor.AlphaInjection, Unity.RenderPipelines.HighDefinition.Runtime,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_CustomPostProcessTypesAsString: []

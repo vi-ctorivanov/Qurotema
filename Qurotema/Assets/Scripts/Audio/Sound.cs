@@ -12,14 +12,10 @@ using UnityEngine;
 
 public class Sound : MonoBehaviour {
 
-	//timing
-	private float bpm = 120f; //time signature is 4/4
-
 	//tracking
-	private float musicStart;
-	// beats are 16th notes, smallest musical time unit in the game, played for 4 bars for a total of 64 beats
-	private int beat = 1;
-	private float secPerBeat;
+	private int beat = 0;
+	private double lastTickDspTime = 0f;
+	private double secPerSixteenth = 120f / 4f / 60f;
 
 	//queue
 	private List<Shot> queue = new List<Shot>();
@@ -37,6 +33,9 @@ public class Sound : MonoBehaviour {
 	[Header("Backend Sounds")]
 	public EventReference keyEvent;
 	public EventInstance keyState;
+
+	public EventReference tempoEvent;
+	public EventInstance tempoState;
 
 	[Header("World Sounds")]
 	public EventReference ambienceCmEvent;
@@ -126,8 +125,13 @@ public class Sound : MonoBehaviour {
 		//these fmod events run nonstop and handle their parameters like volume
 		//independently using internal parameters
 
-		//ambience
+		tempoState = RuntimeManager.CreateInstance(tempoEvent);
+        tempoState.setCallback(MarkerCallback, EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
+        tempoState.start();
+
 		keyState = CreateAndTrack(keyEvent);
+
+		//ambience
 		ambienceCmState = CreateAndTrack(ambienceCmEvent);
 		counterpointCmState = CreateAndTrack(counterpointCmEvent);
 		bassCmState = CreateAndTrack(bassCmEvent);
@@ -162,10 +166,25 @@ public class Sound : MonoBehaviour {
 
 		//story
 		gatesState = CreateAndTrack(gatesEvent, autoStart: false);
+	}
 
-		//beat tracking
-		secPerBeat = 60f / bpm / 4; //16th notes
-		musicStart = (float) AudioSettings.dspTime;
+	[AOT.MonoPInvokeCallback(typeof(EVENT_CALLBACK))]
+	static FMOD.RESULT MarkerCallback(EVENT_CALLBACK_TYPE type, IntPtr instancePtr, IntPtr paramPtr) {
+		Instance.beat++;
+		if (Instance.beat >= 64) Instance.beat = 0;
+
+		Instance.lastTickDspTime = AudioSettings.dspTime;
+		
+		OnSixteenth?.Invoke(Instance.beat);
+		if (Instance.beat % 2 == 0) OnEighth?.Invoke(Instance.beat / 2);
+		if (Instance.beat % 4 == 0) OnQuarter?.Invoke(Instance.beat / 4);
+		if (Instance.beat % 8 == 0) OnHalf?.Invoke(Instance.beat / 8);
+		if (Instance.beat % 16 == 0) OnWhole?.Invoke(Instance.beat / 16);
+		if (Instance.beat % 64 == 0) OnSet?.Invoke(Instance.beat / 64);
+
+		Instance.playQueue(); //play queued shots to the rhythm
+
+		return FMOD.RESULT.OK;
 	}
 
 	//FMOD events are not tied to gameobjects' lifecycles
@@ -177,34 +196,14 @@ public class Sound : MonoBehaviour {
 			}
 		}
 	}
-
-	void Update() {
-		float musicPosition = (float) (AudioSettings.dspTime - musicStart);
-
-		//standard beats
-		int computedBeat = (int) Mathf.Floor(musicPosition / secPerBeat);
-		if (beat != computedBeat % 64) {
-			beat = computedBeat % 64;
-			playQueue(); //play queued shots to the rhythm
-
-			//events pass the count of their specific subdivision
-			OnSixteenth?.Invoke(beat);
-			if (beat % 2 == 0) OnEighth?.Invoke(beat / 2);
-			if (beat % 4 == 0) OnQuarter?.Invoke(beat / 4);
-			if (beat % 8 == 0) OnHalf?.Invoke(beat / 8);
-			if (beat % 16 == 0) OnWhole?.Invoke(beat / 8);
-			if (beat % 64 == 0) OnSet?.Invoke(beat / 64);
-		}
-	}
 	
 	public void queueShot(string name, EventReference fmodEvent, params(string name, float value)[] parameters) {
-		//if shot is closer to the previous beat than the next, just play it to avoid undesireable delay
-		float musicPosition = (float) (AudioSettings.dspTime - musicStart);
-		float present = (float) musicPosition / secPerBeat;
-		float previousBeat = (int) Mathf.Floor(musicPosition / secPerBeat);
-		float nextBeat = (int) Mathf.Ceil(musicPosition / secPerBeat);
+		double now = AudioSettings.dspTime;
+		double sinceLastTick = now - Instance.lastTickDspTime;
+		double untilNextTick = Instance.secPerSixteenth - sinceLastTick;
 
-		if (present - previousBeat < nextBeat - present) {
+		//if shot is closer to the previous beat than the next, just play it to avoid undesireable delay
+		if (sinceLastTick < untilNextTick) {
 			playOneShotWithParameters(fmodEvent, parameters);
 			return;
 		}
@@ -212,6 +211,8 @@ public class Sound : MonoBehaviour {
 		//only allow one slot for each shot of a specific name
 		if (!queue.Exists(x => x.name == name)) queue.Add(new Shot(name, fmodEvent, parameters));
 	}
+
+	
 
 	private void playQueue() {
 		foreach (Shot shot in queue) {
