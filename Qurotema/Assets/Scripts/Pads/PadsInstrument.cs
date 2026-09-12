@@ -66,7 +66,7 @@ public class PadsInstrument : MonoBehaviour {
 			case "hat": toneInt = 2; break;
 			default: toneInt = 0; break;
 		}
-		Sound.Instance.playOneShotWithParameters(Sound.Instance.padsEvent, ("PercussionNote", toneInt));
+		Sound.Instance.queueShot("pad", Sound.Instance.padsEvent, ("PadNote", toneInt));
 		Nox.Instance.terrain.addFeedback(1.0f);
 	}
 
@@ -85,6 +85,8 @@ public class PadsInstrument : MonoBehaviour {
 				mpb.SetFloat("_Alpha", 0f);
 				lightMat.SetPropertyBlock(mpb);
 			}
+
+			Sound.Instance.queueShot("step", Sound.Instance.padsStepEvent);
 		}
 	}
 

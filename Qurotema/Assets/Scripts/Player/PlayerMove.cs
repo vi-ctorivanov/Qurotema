@@ -134,8 +134,6 @@ public class PlayerMove : MonoBehaviour {
 				speedChangeSprint *= flightControlMultiplier;
 				speedChangeStop *= flightControlMultiplier;
 				directionChangeSpeed *= flightControlMultiplier;
-
-				Sound.Instance.flyPointState.setParameterByName("Volume", 1);
 			} else {
 				walkSpeed /= flightSpeedMultiplier;
 				sprintSpeed /= flightSpeedMultiplier;
@@ -144,22 +142,29 @@ public class PlayerMove : MonoBehaviour {
 				speedChangeSprint /= flightControlMultiplier;
 				speedChangeStop /= flightControlMultiplier;
 				directionChangeSpeed /= flightControlMultiplier;
-
-				Sound.Instance.flyPointState.setParameterByName("Volume", 0);
-				Sound.Instance.padState.setParameterByName("Volume", 0);
 			}
 		}
 	}
 
 	private void handleSound() {
-		if (sprintAction.WasPressedThisFrame()) Sound.Instance.percussionState.setParameterByName("Volume", 1);
-		if (sprintAction.WasReleasedThisFrame()) Sound.Instance.percussionState.setParameterByName("Volume", 0);
-
-		if (jumping) {
-			//todo
-		} else {
-			//todo
+		//sprint
+		if (sprintAction.WasPressedThisFrame()) {
+			sprinting = true;
+			float horizontal = Mathf.Abs(moveAction.ReadValue<Vector2>().x);
+			float vertical = Mathf.Abs(moveAction.ReadValue<Vector2>().y);
+			Sound.Instance.queueShot("sprintStart", Sound.Instance.sprintStartEvent, ("SprintX", horizontal), ("SprintZ", vertical));
 		}
+		if (sprintAction.WasReleasedThisFrame()) sprinting = false;
+
+		FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Sprint", sprinting ? 1 : 0);
+
+		//jump
+		if (jumping) FMODUnity.RuntimeManager.StudioSystem.setParameterByName("HiPass", 1f);
+		else FMODUnity.RuntimeManager.StudioSystem.setParameterByName("HiPass", 0f);
+
+		//speed
+		if (sprinting) FMODUnity.RuntimeManager.StudioSystem.setParameterByName("MoveSpeed", Nox.Instance.remap(targetSpeed, 0f, sprintSpeed, 0f, 1f));
+		else FMODUnity.RuntimeManager.StudioSystem.setParameterByName("MoveSpeed", Nox.Instance.remap(targetSpeed, 0f, walkSpeed, 0f, 1f));
 	}
 
 	private void move() {

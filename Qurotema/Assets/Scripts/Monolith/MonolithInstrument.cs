@@ -17,6 +17,8 @@ public class MonolithInstrument : MonoBehaviour {
 
 	private float ease = 1f;
 
+	public int id = 0;
+
 	void Start() {
 		ren = GetComponent<MeshRenderer>();
 		mpb = new MaterialPropertyBlock();
@@ -32,6 +34,10 @@ public class MonolithInstrument : MonoBehaviour {
 		mpb.SetFloat("_Emission_Value", value);
 
 		ren.SetPropertyBlock(mpb);
+
+		//audio
+		Sound.Instance.monolithStates[id].setParameterByName("MonolithResonance", Nox.Instance.remap(intensity, 0f, intensityMax, 0f, 1f));
+		Sound.Instance.monolithStates[id].setParameterByName("MonolithNote", Nox.Instance.remap(value, 0f, 1f, 0f, 1f));
 	}
 
 	public void play(float v) {

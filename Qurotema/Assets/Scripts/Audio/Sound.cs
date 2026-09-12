@@ -32,37 +32,85 @@ public class Sound : MonoBehaviour {
 	public static event Action<int> OnEighth;
 	public static event Action<int> OnSixteenth;
 
-	[Header("Atmosphere Sounds")]
-	public EventReference ambienceEvent;
-	public EventInstance ambienceState;
-	
+	private List<EventInstance> allInstances = new List<EventInstance>();
+
+	[Header("Backend Sounds")]
+	public EventReference keyEvent;
+	public EventInstance keyState;
+
+	[Header("World Sounds")]
+	public EventReference ambienceCmEvent;
+	public EventInstance ambienceCmState;
+
+	public EventReference counterpointCmEvent;
+	public EventInstance counterpointCmState;
+
+	public EventReference bassCmEvent;
+	public EventInstance bassCmState;
+	public EventReference bassEdEvent;
+	public EventInstance bassEdState;
+
+	public EventReference padCmEvent;
+	public EventInstance padCmState;
+	public EventReference padEdEvent;
+	public EventInstance padEdState;
+
+	public EventReference sunDragEvent;
+	public EventInstance sunDragState;
+
+	public EventReference sunEnlargeEvent;
+	public EventInstance sunEnlargeState;
+
+	[Header("Player Sounds")]
 	public EventReference lookEvent;
 	public EventInstance lookState;
 
-	public EventReference momentEvent;
-	
-	[Header("Movement Sounds")]
-	public EventReference flyPointEvent;
-	public EventInstance flyPointState;
+	public EventReference slowCmEvent;
+	public EventInstance slowCmState;
+	public EventReference slowEdEvent;
+	public EventInstance slowEdState;
 
-	public EventReference padEvent;
-	public EventInstance padState;
+	public EventReference sprintCmEvent;
+	public EventInstance sprintCmState;
+	public EventReference sprintEdEvent;
+	public EventInstance sprintEdState;
 
-	public EventReference percussionEvent;
-	public EventInstance percussionState;
+	public EventReference sprintStartEvent;
 
-	public EventReference dropletEvent;
-	public EventInstance dropletState;
+	[Header("UI Sounds")]
+	public EventReference controlEvent;
+	public EventInstance controlState;
 
-	public EventReference rhythmEvent;
-	public EventInstance rhythmState;
+	public EventReference flyEvent;
+	public EventInstance flyState;
 
-	public EventReference whipEvent;
+	public EventReference markerEvent;
+	public EventInstance markerState;
+	public EventReference teleportEvent;
 
 	[Header("Instrument Sounds")]
 	public EventReference stringsEvent;
+	public EventReference stringsStringEvent;
+
 	public EventReference ringsEvent;
+	public EventInstance[] ringsStates;
+	public EventReference ringsRescaleEvent;
+
 	public EventReference padsEvent;
+	public EventReference padsStepEvent;
+
+	public EventReference terrainEvent;
+
+	public EventReference monolithEvent;
+	public EventInstance[] monolithStates;
+
+	[Header("Story")]
+	public EventReference gatesEvent;
+	public EventInstance gatesState;
+
+	public EventReference progressEvent;
+	public EventReference dialogEvent;
+	public EventReference titleCardEvent;
 
 	//create static singleton to act as a globally accessible Sound
 	//if instance is null (it is at first), set it to this object so all references point to it
@@ -75,33 +123,45 @@ public class Sound : MonoBehaviour {
 	}
 
 	void Start() {
-		//activate ambient sound events
-		ambienceState = RuntimeManager.CreateInstance(ambienceEvent);
-		ambienceState.start();
-	
-		lookState = RuntimeManager.CreateInstance(lookEvent);
-		lookState.start();
+		//these fmod events run nonstop and handle their parameters like volume
+		//independently using internal parameters
+
+		//ambience
+		keyState = CreateAndTrack(keyEvent);
+		ambienceCmState = CreateAndTrack(ambienceCmEvent);
+		counterpointCmState = CreateAndTrack(counterpointCmEvent);
+		bassCmState = CreateAndTrack(bassCmEvent);
+		bassEdState = CreateAndTrack(bassEdEvent);
+		padCmState = CreateAndTrack(padCmEvent);
+		padEdState = CreateAndTrack(padEdEvent);
+		sunDragState = CreateAndTrack(sunDragEvent);
+		sunEnlargeState = CreateAndTrack(sunEnlargeEvent);
+
+		//player
+		lookState = CreateAndTrack(lookEvent);
 		lookState.setParameterByName("Look", 0);
 
-		flyPointState = RuntimeManager.CreateInstance(flyPointEvent);
-		flyPointState.start();
-		flyPointState.setParameterByName("Volume", 0);
+		slowCmState = CreateAndTrack(slowCmEvent);
+		slowEdState = CreateAndTrack(slowEdEvent);
+		sprintCmState = CreateAndTrack(sprintCmEvent);
+		sprintEdState = CreateAndTrack(sprintEdEvent);
 
-		padState = RuntimeManager.CreateInstance(padEvent);
-		padState.start();
-		padState.setParameterByName("Volume", 0);
+		//ui
+		controlState = CreateAndTrack(controlEvent);
+		flyState = CreateAndTrack(flyEvent);
+		markerState = CreateAndTrack(markerEvent);
 
-		percussionState = RuntimeManager.CreateInstance(percussionEvent);
-		percussionState.start();
-		percussionState.setParameterByName("Volume", 0);
+		//instruments
+		ringsStates = new EventInstance[5];
+		for (int i = 0; i < ringsStates.Length; i++)
+			ringsStates[i] = CreateAndTrack(ringsEvent);
 
-		dropletState = RuntimeManager.CreateInstance(dropletEvent);
-		dropletState.start();
-		dropletState.setParameterByName("Volume", 0);
+		monolithStates = new EventInstance[8];
+		for (int i = 0; i < monolithStates.Length; i++)
+			monolithStates[i] = CreateAndTrack(monolithEvent);
 
-		rhythmState = RuntimeManager.CreateInstance(rhythmEvent);
-		rhythmState.start();
-		rhythmState.setParameterByName("Volume", 0);
+		//story
+		gatesState = CreateAndTrack(gatesEvent, autoStart: false);
 
 		//beat tracking
 		secPerBeat = 60f / bpm / 4; //16th notes
@@ -110,13 +170,13 @@ public class Sound : MonoBehaviour {
 
 	//FMOD events are not tied to gameobjects' lifecycles
 	void OnDestroy() {
-		foreach(EventInstance i in new[]{ambienceState, lookState, flyPointState, padState, percussionState, dropletState, rhythmState}) {
+		foreach(EventInstance i in allInstances) {
 			if (i.isValid()) {
-            	i.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            	i.release();
-        	}
+				i.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+				i.release();
+			}
 		}
-    }
+	}
 
 	void Update() {
 		float musicPosition = (float) (AudioSettings.dspTime - musicStart);
@@ -169,5 +229,12 @@ public class Sound : MonoBehaviour {
 
 		instance.start();
 		instance.release();
+	}
+
+	private EventInstance CreateAndTrack(EventReference evt, bool autoStart = true) {
+		EventInstance instance = RuntimeManager.CreateInstance(evt);
+		if (autoStart) instance.start();
+		allInstances.Add(instance);
+		return instance;
 	}
 }

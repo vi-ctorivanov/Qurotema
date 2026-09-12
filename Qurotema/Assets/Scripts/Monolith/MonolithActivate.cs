@@ -24,7 +24,7 @@ public class MonolithActivate : MonoBehaviour {
 		Nox.Instance.monolithActivated();
 		image.sprite = t;
 
-		FMODUnity.RuntimeManager.PlayOneShot(Sound.Instance.momentEvent);
+		FMODUnity.RuntimeManager.PlayOneShot(Sound.Instance.progressEvent);
 
 		//use animation system in favor of easier maintenacne
 		//despite losing on a small performance benefit of material property blocks to keep material batching intact

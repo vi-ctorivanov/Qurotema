@@ -24,6 +24,9 @@ public class FlyPointBehavior : MonoBehaviour {
 	}
 
 	void Update() {
+		//move flypoint upwards for fading effect
+		if (flyPoint.transform.position.y < 1000f) flyPoint.transform.Translate(Vector3.up * 50f * Time.deltaTime);
+
 		if (Nox.Instance.player) {
 			if (Nox.Instance.player.GetComponent<PlayerMove>().flying && interactAction.IsPressed()) {
 				RaycastHit hit;
@@ -36,13 +39,10 @@ public class FlyPointBehavior : MonoBehaviour {
 			}
 
 			//audio
-			if (Nox.Instance.player.GetComponent<PlayerMove>().flying && interactAction.WasPressedThisFrame()) {
-				Sound.Instance.padState.setParameterByName("Volume", 1);
-			}
-
-			if (Nox.Instance.player.GetComponent<PlayerMove>().flying && interactAction.WasReleasedThisFrame()) {
-				Sound.Instance.padState.setParameterByName("Volume", 0);
-			}
+			Sound.Instance.flyState.setParameterByName("FlyX", Nox.Instance.remap(Mathf.Abs(flyPoint.transform.position.x), 0f, 3000f, 1f, 0f));
+			Sound.Instance.flyState.setParameterByName("FlyZ", Nox.Instance.remap(Mathf.Abs(flyPoint.transform.position.z), 0f, 3000f, 1f, 0f));
+			Sound.Instance.flyState.setParameterByName("FlyHeight", Nox.Instance.remap(Mathf.Abs(flyPoint.transform.position.y - targetPoint.y), 0f, 1000f, 0f, 1f));
+			Sound.Instance.flyState.setParameterByName("FlyDistance", Nox.Instance.remap(Vector3.Distance(flyPoint.transform.position, Nox.Instance.player.transform.position), 0f, 250f, 0f, 1f));
 		}
 	}
 }

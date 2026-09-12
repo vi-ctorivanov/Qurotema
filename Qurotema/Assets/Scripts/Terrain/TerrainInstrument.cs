@@ -24,5 +24,6 @@ public class TerrainInstrument : MonoBehaviour {
 	public void play(float v) {
 		playHead = 0f;
 		value = v;
+		Sound.Instance.queueShot("terrain", Sound.Instance.terrainEvent);
 	}
 }

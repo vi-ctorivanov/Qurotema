@@ -137,7 +137,7 @@ public class Nox : MonoBehaviour {
 	}
 
 	private void instrumentMastered() {
-		FMODUnity.RuntimeManager.PlayOneShot(Sound.Instance.momentEvent);
+		FMODUnity.RuntimeManager.PlayOneShot(Sound.Instance.progressEvent);
 		OnFlashFeedback?.Invoke(3f);
 		playText("instrument" + "_" + instrumentsMastered);
 		targetPillarSize = new Vector3(pillar.transform.localScale.x * 0.5f, pillar.transform.localScale.y, pillar.transform.localScale.z * 0.5f);
@@ -251,13 +251,14 @@ public class Nox : MonoBehaviour {
 
 		float opacity = 1f;
 		storyTextCanvas.GetComponent<CanvasGroup>().alpha = opacity;
-		flash.SetFloat("_Alpha", opacity * 4f);
+		flash.SetFloat("_Alpha", opacity * 2f);
+		Sound.Instance.playOneShotWithParameters(Sound.Instance.dialogEvent, ("DialogNox", 0));
 
 		while (opacity > 0.01f) {
 			yield return new WaitForSeconds(0.01f);
 			opacity -= opacityChangeSpeed;
 			storyTextCanvas.GetComponent<CanvasGroup>().alpha = opacity;
-			flash.SetFloat("_Alpha", opacity * 4f);
+			flash.SetFloat("_Alpha", opacity * 2f);
 		}
 
 		storyTextCanvas.GetComponent<CanvasGroup>().alpha = 0f;
@@ -274,6 +275,7 @@ public class Nox : MonoBehaviour {
 	}
 
 	public void makeGatesVisible() {
+		Sound.Instance.gatesState.start();
 		directorPlay(gatesTimeline);
 		OnGatesAppear?.Invoke();
 	}

@@ -91,6 +91,7 @@ public class StringsBehavior : MonoBehaviour {
 
 	private void startString(Vector3 s) {
 		stringing = true;
+		Sound.Instance.queueShot("stringing", Sound.Instance.stringsStringEvent);
 	}
 
 	private void endString(Vector3 e) {

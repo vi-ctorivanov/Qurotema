@@ -2146,6 +2146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Nox
   skipIntro: 0
   active: 0
+  debug: 0
   player: {fileID: 0}
   cam: {fileID: 0}
   terrain: {fileID: 0}
@@ -2162,7 +2163,8 @@ MonoBehaviour:
   menuTimeline: {fileID: 0}
   introductionTimeline: {fileID: 0}
   introductionEndTimeline: {fileID: 0}
-  monolithTimeline: {fileID: 0}
+  monolithFirstTimeline: {fileID: 0}
+  monolithSecondTimeline: {fileID: 0}
   gatesTimeline: {fileID: 0}
   endTimeline: {fileID: 0}
   monolithsRead: 0
@@ -2200,92 +2202,223 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced8db6f5b1040843aa9b3bd7a040ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Sound
-  beat: 1
-  granularBeat: 1
-  ambienceEvent:
+  keyEvent:
     Guid:
-      Data1: -672166750
-      Data2: 1239194855
-      Data3: -397402461
-      Data4: -612538270
-    Path: event:/Atmosphere/Ambience
+      Data1: -926726001
+      Data2: 1120993368
+      Data3: -554499176
+      Data4: -353468290
+    Path: event:/World/Key
+  ambienceCmEvent:
+    Guid:
+      Data1: -1784511085
+      Data2: 1281237822
+      Data3: -1971745617
+      Data4: 1021062045
+    Path: event:/World/Ambience/Ambience Cm
+  counterpointCmEvent:
+    Guid:
+      Data1: -1083714800
+      Data2: 1160688087
+      Data3: -81825142
+      Data4: 1237528801
+    Path: event:/World/Counterpoint/Counterpoint Cm
+  bassCmEvent:
+    Guid:
+      Data1: -981961121
+      Data2: 1253632801
+      Data3: 724072615
+      Data4: 748559173
+    Path: event:/World/Bass/Bass Cm
+  bassEdEvent:
+    Guid:
+      Data1: 1460527107
+      Data2: 1224585917
+      Data3: -1459140967
+      Data4: -1940984612
+    Path: event:/World/Bass/Bass Ed
+  padCmEvent:
+    Guid:
+      Data1: -1338811575
+      Data2: 1113826031
+      Data3: 526943903
+      Data4: -270845537
+    Path: event:/World/Pad/Pad Cm
+  padEdEvent:
+    Guid:
+      Data1: 309418718
+      Data2: 1317384060
+      Data3: 1909800382
+      Data4: 1296668562
+    Path: event:/World/Pad/Pad Ed
+  sunDragEvent:
+    Guid:
+      Data1: 860266652
+      Data2: 1165604625
+      Data3: 1344337566
+      Data4: 269304327
+    Path: event:/World/Sun/Drag
+  sunEnlargeEvent:
+    Guid:
+      Data1: 1295924953
+      Data2: 1142091210
+      Data3: 1851759003
+      Data4: 1842666561
+    Path: event:/World/Sun/Enlarge
   lookEvent:
     Guid:
       Data1: 78528607
       Data2: 1337053829
       Data3: -24705860
       Data4: 777324691
-    Path: event:/Atmosphere/Look
-  momentEvent:
+    Path: event:/Player/Look
+  slowCmEvent:
     Guid:
-      Data1: 1658908501
-      Data2: 1144606098
-      Data3: -274575475
-      Data4: 854462908
-    Path: event:/Atmosphere/Moment
-  flyPointEvent:
+      Data1: -1755445795
+      Data2: 1156176109
+      Data3: 661978270
+      Data4: 1807922202
+    Path: event:/Player/Movement/Slow Cm
+  slowEdEvent:
     Guid:
-      Data1: -346462333
-      Data2: 1167088177
-      Data3: 150162333
-      Data4: -1021086607
-    Path: event:/Movement/FlyPoint
-  padEvent:
+      Data1: -259480413
+      Data2: 1123926092
+      Data3: 257902015
+      Data4: 2084426302
+    Path: event:/Player/Movement/Slow Ed
+  sprintCmEvent:
     Guid:
-      Data1: 900407012
-      Data2: 1317038245
-      Data3: 1414088609
-      Data4: 399726664
-    Path: event:/Movement/Pad
-  percussionEvent:
+      Data1: 308000442
+      Data2: 1134770574
+      Data3: 917188782
+      Data4: -861841183
+    Path: event:/Player/Movement/Sprint Cm
+  sprintEdEvent:
     Guid:
-      Data1: 799873926
-      Data2: 1284338175
-      Data3: -1706998612
-      Data4: 972101660
-    Path: event:/Movement/Percussion
-  dropletEvent:
+      Data1: -1254495929
+      Data2: 1249375703
+      Data3: -908953464
+      Data4: 731186880
+    Path: event:/Player/Movement/Sprint Ed
+  sprintStartEvent:
     Guid:
-      Data1: -702228009
-      Data2: 1149308628
-      Data3: 1551132566
-      Data4: -128886025
-    Path: event:/Movement/Droplet
-  rhythmEvent:
+      Data1: -81693077
+      Data2: 1339849267
+      Data3: -832610415
+      Data4: 956914154
+    Path: event:/Player/Movement/Sprint Start
+  controlEvent:
     Guid:
-      Data1: 1176987659
-      Data2: 1296517665
-      Data3: -999080277
-      Data4: 1919622262
-    Path: event:/Movement/Rhythm
-  whipEvent:
+      Data1: 1049641941
+      Data2: 1318492373
+      Data3: 700542106
+      Data4: -1797676506
+    Path: event:/Player/UI/Control/Control
+  flyEvent:
     Guid:
-      Data1: -1506225492
-      Data2: 1257449333
-      Data3: 1823329197
-      Data4: 1476462627
-    Path: event:/Movement/Whip
+      Data1: -907448049
+      Data2: 1252153637
+      Data3: 1679638667
+      Data4: 2003580228
+    Path: event:/Player/UI/Fly/Fly
+  markerEvent:
+    Guid:
+      Data1: -981247200
+      Data2: 1255557060
+      Data3: -781757815
+      Data4: -2102891550
+    Path: event:/Player/UI/Mark/Marker
+  teleportEvent:
+    Guid:
+      Data1: -255429611
+      Data2: 1147380397
+      Data3: 477049760
+      Data4: -332452675
+    Path: event:/Player/UI/Mark/Teleport
   stringsEvent:
     Guid:
       Data1: 303911587
       Data2: 1335617900
       Data3: -229279343
       Data4: -672613748
-    Path: event:/Instruments/Strings
+    Path: event:/Instruments/Strings/Strings
+  stringsStringEvent:
+    Guid:
+      Data1: 678951050
+      Data2: 1302691683
+      Data3: -1324293697
+      Data4: 892378827
+    Path: event:/Instruments/Strings/String
   ringsEvent:
     Guid:
       Data1: 1364612323
       Data2: 1296136277
       Data3: -90353483
       Data4: -859062
-    Path: event:/Instruments/Rings
+    Path: event:/Instruments/Rings/Rings
+  ringsRescaleEvent:
+    Guid:
+      Data1: -249994237
+      Data2: 1307931204
+      Data3: 844195743
+      Data4: 1390968507
+    Path: event:/Instruments/Rings/Rescale
   padsEvent:
     Guid:
       Data1: -1473508572
       Data2: 1160549003
       Data3: -898048340
       Data4: 543073151
-    Path: event:/Instruments/Pads
+    Path: event:/Instruments/Pads/Pads
+  padsStepEvent:
+    Guid:
+      Data1: 1094714761
+      Data2: 1086248963
+      Data3: 479165586
+      Data4: -670561426
+    Path: event:/Instruments/Pads/Step
+  terrainEvent:
+    Guid:
+      Data1: -453174053
+      Data2: 1289102248
+      Data3: -1612908393
+      Data4: 582099609
+    Path: event:/Instruments/Terrain/Terrain
+  monolithEvent:
+    Guid:
+      Data1: -1949461333
+      Data2: 1300927262
+      Data3: 120757439
+      Data4: 850967835
+    Path: event:/Instruments/Monolith/Monolith
+  gatesEvent:
+    Guid:
+      Data1: 161886476
+      Data2: 1319684911
+      Data3: -2092631400
+      Data4: -1171719370
+    Path: event:/Story/Gates
+  progressEvent:
+    Guid:
+      Data1: -203910537
+      Data2: 1169096829
+      Data3: -397125717
+      Data4: 1503405702
+    Path: event:/Story/Progress
+  dialogEvent:
+    Guid:
+      Data1: -1270851065
+      Data2: 1121622606
+      Data3: -90946928
+      Data4: -620222582
+    Path: event:/Story/Dialog
+  titleCardEvent:
+    Guid:
+      Data1: -446773084
+      Data2: 1186362769
+      Data3: 1673982643
+      Data4: -335971290
+    Path: event:/Story/Title Card
 --- !u!114 &1283151652
 MonoBehaviour:
   m_ObjectHideFlags: 0

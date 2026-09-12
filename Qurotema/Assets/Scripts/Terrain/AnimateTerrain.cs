@@ -37,9 +37,6 @@ public class AnimateTerrain : MonoBehaviour {
 	}
 
 	void Update() {
-		//move flypoint upwards for fading effect
-		if (flyPoint.position.y < 1000) flyPoint.Translate((Vector3.up * 50) * Time.deltaTime);
-
 		//communicate flypoint to terrain shader
 		terrainMaterial.SetVector("Fly_Point", flyPoint.position);
 

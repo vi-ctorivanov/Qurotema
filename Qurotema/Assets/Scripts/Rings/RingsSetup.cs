@@ -14,6 +14,7 @@ public class RingsSetup: MonoBehaviour {
 		for (int i = 0; i < count; i++) {
 			GameObject p = Instantiate(ring, transform, false);
 			p.transform.localPosition = new Vector3(((i / (count - 1f) - 0.5f) * 2f) * distanceBetweenRings, height, 0f);
+			p.GetComponent<RingsInstrument>().id = i;
 		}
 	}
 }

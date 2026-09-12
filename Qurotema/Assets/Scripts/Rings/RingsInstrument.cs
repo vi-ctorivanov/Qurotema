@@ -14,6 +14,8 @@ public class RingsInstrument : MonoBehaviour {
 	private float minimumAlpha = 0.2f;
 
 	//state
+	public int id = 0;
+
 	private float defaultMeshRadius;
 	private float radius;
 	private float targetRadius;
@@ -43,8 +45,9 @@ public class RingsInstrument : MonoBehaviour {
 		//play resonance
 		resonance -= resonanceDecay * Time.deltaTime;
 		resonance = Mathf.Clamp(resonance, 0f, resonanceMax);
-		//radius determines pitch,
-		//Sound.Instance.playAppropriateSound
+		
+		Sound.Instance.ringsStates[id].setParameterByName("RingResonance", resonance);
+		Sound.Instance.ringsStates[id].setParameterByName("RingNote", Nox.Instance.remap(radius, minimumRadius, maximumRadius, 1f, 0f)); //radius determines pitch
 
 		//visual feedback
 		mpb.SetFloat("_Alpha", Nox.Instance.remap(resonance, 0f, resonanceMax, minimumAlpha, 1f));

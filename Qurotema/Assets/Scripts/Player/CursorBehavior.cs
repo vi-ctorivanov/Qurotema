@@ -86,11 +86,13 @@ public class CursorBehavior : MonoBehaviour {
 	private void makeActive() {
 		cursorTransparent.SetColor("_Color", red);
 		cursorOpaque.SetColor("_Color", red);
+		Sound.Instance.controlState.setParameterByName("ControlCursor", 1f);
 	}
 
 	private void makePassive() {
 		cursorTransparent.SetColor("_Color", purple);
 		cursorOpaque.SetColor("_Color", purple);
+		Sound.Instance.controlState.setParameterByName("ControlCursor", 0f);
 	}
 
 	private void toggleCursor(bool on) {
@@ -99,8 +101,7 @@ public class CursorBehavior : MonoBehaviour {
 	}
 
 	IEnumerator toggle(bool t) {
-		int boolInt = t ? 1 : 0;
-		Sound.Instance.rhythmState.setParameterByName("Volume", boolInt);
+		Sound.Instance.controlState.setParameterByName("SoundOn", t ? 1 : 0);
 
 		on = t;
 

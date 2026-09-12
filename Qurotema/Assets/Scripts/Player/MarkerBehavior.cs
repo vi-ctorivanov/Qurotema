@@ -63,7 +63,7 @@ public class MarkerBehavior : MonoBehaviour {
 
 				if (!playing) {
 					playing = true;
-					Sound.Instance.dropletState.setParameterByName("Volume", 1);
+					Sound.Instance.markerState.setParameterByName("SoundOn", 1);
 				}
 
 				if (interactAction.WasPressedThisFrame()) {
@@ -73,10 +73,11 @@ public class MarkerBehavior : MonoBehaviour {
 					else d = Nox.Instance.remap(d, teleportFOVDistances.y, teleportFOVDistances.z, 0f, maxTeleportFOV);
 					Nox.Instance.cam.GetComponent<MouseLook>().targetFOV += d;
 
+					Sound.Instance.queueShot("teleport", Sound.Instance.teleportEvent, ("TeleportDistance", Nox.Instance.remap(Vector3.Distance(Nox.Instance.player.transform.position, hit.point), 0f, 500f, 0f, 1f)));
+
 					Nox.Instance.player.GetComponent<PlayerMove>().verticalForce = 0f;
 					Nox.Instance.player.GetComponent<PlayerMove>().targetDirection = Vector2.zero;
 					Nox.Instance.player.transform.position = new Vector3(hit.point.x, hit.point.y + 2f, hit.point.z);
-					FMODUnity.RuntimeManager.PlayOneShot(Sound.Instance.whipEvent);
 				}
 			}
 		}
@@ -84,7 +85,7 @@ public class MarkerBehavior : MonoBehaviour {
 		//override with control state
 		if (playing && (markerAction.WasReleasedThisFrame() || cursorAction.IsPressed() || Nox.Instance.player.GetComponent<PlayerMove>().flying)) {
 			playing = false;
-			Sound.Instance.dropletState.setParameterByName("Volume", 0);
+			Sound.Instance.markerState.setParameterByName("SoundOn", 0);
 		}
 	}
 }

@@ -49,7 +49,6 @@ public class MenuCursorBehavior : MonoBehaviour {
 		Vector2 screenPos = Mouse.current.position.ReadValue();
 		Vector3 targetPosition = Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, distanceFromCamera));
 		transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime); 
-		Debug.Log(screenPos);
 	}
 
 	private void makeActive() {

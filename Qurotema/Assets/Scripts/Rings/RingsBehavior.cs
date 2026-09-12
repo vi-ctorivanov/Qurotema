@@ -60,7 +60,10 @@ public class RingsBehavior: MonoBehaviour {
 				if (Physics.Raycast(transform.position, (cursor.position - transform.position).normalized, out hit, Mathf.Infinity, ~mask)) {
 					if (hit.collider.tag == "Ring") {
 						//resize toggle
-						if (interactAction.IsPressed()) resizing = true;
+						if (interactAction.IsPressed()) {
+							resizing = true;
+							Sound.Instance.queueShot("rescale", Sound.Instance.ringsRescaleEvent);
+						}
 
 						//resonate
 						float playSpeed = Mathf.Abs(look.mouseX) + Mathf.Abs(look.mouseY);

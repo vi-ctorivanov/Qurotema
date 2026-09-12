@@ -91,6 +91,7 @@ public class MouseLook : MonoBehaviour {
 
 	void Update() {
 		handleInput();
+		handleSound();
 		rotate();
 		follow();
 		shake();
@@ -120,6 +121,11 @@ public class MouseLook : MonoBehaviour {
 		rotY += mouseX * mouseSensitivity;
 		rotX += mouseY * mouseSensitivity;
 		rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
+	}
+
+	private void handleSound() {
+		float mouseSpeed = Mathf.Abs(lookAction.ReadValue<Vector2>().x) + Mathf.Abs(lookAction.ReadValue<Vector2>().y);
+		FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Distortion", mouseSpeed / 2f);
 	}
 
 	private void rotate() {
