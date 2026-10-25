@@ -23,7 +23,7 @@ public class RingsInstrument : MonoBehaviour {
 
 	private float resonance = 0f;
 	private float resonanceMax = 1f;
-	private float resonanceAccumulation = 0.5f;
+	private float resonanceAccumulation = 1f;
 	private float resonanceDecay; 
 
 	void Start() {

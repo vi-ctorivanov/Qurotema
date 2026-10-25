@@ -22,7 +22,7 @@ public class RingsBehavior: MonoBehaviour {
 	public LayerMask mask;
 	private float scalingFactor = 2.5f; //related to some scaling stuff on the rings, don't worry it just works
 	private float playSpeedMinimum = 2f;
-	private float playSpeedMaximum = 4f;
+	private float playSpeedMaximum = 6f;
 
 	//state
 	private bool resizing = false;
