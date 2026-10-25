@@ -18,7 +18,7 @@ public class GatesStory : MonoBehaviour {
 		m.SetFloat("_Glow_Intensity", glowIntensity);
 	}
 
-	private void OnTriggerEnter(Collider other) {
+	private void OnTriggerStay(Collider other) {
 		if (other.tag == "Player") Nox.Instance.endGame();
 	}
 }

@@ -62,6 +62,11 @@ public class Nox : MonoBehaviour {
 	private int ringsPlayed = 0;
 	private int padsPlayed = 0;
 
+	[Header("Dynamics")]
+	private int stringsMaster = 30;
+	private int ringsMaster = 60;
+	private int padsMaster = 30;
+
 	[Header("Coroutines")]
 	private Coroutine textRoutine;
 	private Coroutine wordRoutine;
@@ -119,21 +124,21 @@ public class Nox : MonoBehaviour {
 		terrain.addFeedback(2.0f);
 		checkForInstrumentDiscovery();
 		stringsPlayed++;
-		if (stringsPlayed == 30) instrumentMastered();
+		if (stringsPlayed == stringsMaster) instrumentMastered();
 	}
 
 	public void ringPlayed() {
 		terrain.addFeedback(2.0f);
 		checkForInstrumentDiscovery();
 		ringsPlayed++;
-		if (ringsPlayed == 30) instrumentMastered();
+		if (ringsPlayed == ringsMaster) instrumentMastered();
 	}
 
 	public void padPlayed() {
 		terrain.addFeedback(2.0f);
 		checkForInstrumentDiscovery();
 		padsPlayed++;
-		if (padsPlayed == 30) instrumentMastered();
+		if (padsPlayed == padsMaster) instrumentMastered();
 	}
 
 	private void instrumentMastered() {
@@ -154,7 +159,7 @@ public class Nox : MonoBehaviour {
 	}
 
 	public void endGame() {
-		directorPlay(endTimeline);
+		if (director.playableAsset != endTimeline) directorPlay(endTimeline);
 	}
 
 	public float remap(float val, float min1, float max1, float min2, float max2) {

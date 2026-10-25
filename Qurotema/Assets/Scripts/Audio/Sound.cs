@@ -128,6 +128,7 @@ public class Sound : MonoBehaviour {
 		tempoState = RuntimeManager.CreateInstance(tempoEvent);
         tempoState.setCallback(MarkerCallback, EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
         tempoState.start();
+		allInstances.Add(tempoState);
 
 		keyState = CreateAndTrack(keyEvent);
 
