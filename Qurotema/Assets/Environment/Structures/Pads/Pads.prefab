@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6797789220153840115}
   - component: {fileID: 8505757515315139994}
+  - component: {fileID: 7187840893233637428}
   m_Layer: 0
   m_Name: Pads
   m_TagString: Untagged
@@ -45,6 +46,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PadSetup
   pad: {fileID: 5537877987212639737, guid: b8df9594506ecfe43ae4e03ae6c4db20, type: 3}
-  rows: 3
-  columns: 16
-  distanceBetweenPads: 14
+--- !u!114 &7187840893233637428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6797789220153840114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 767575bb5d43ee0faa84ff2672fc1598, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InstrumentMastered
+  instrument: pads
+  mastered: 0

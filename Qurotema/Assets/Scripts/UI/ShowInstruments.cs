@@ -19,7 +19,7 @@ public class ShowInstruments : MonoBehaviour {
 		Nox.OnMasterInstrument -= updateInstrumentUI;
 	}
 
-	void updateInstrumentUI(int instrumentsMastered) {
+	void updateInstrumentUI(int instrumentsMastered, string instrument) {
 		for (int i = 0; i < instrumentsUI.Length; i++) {
 			if (i < instrumentsMastered) {
 				instrumentsUI[i].sprite = discoveredInstrument;

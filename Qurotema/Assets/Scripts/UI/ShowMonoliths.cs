@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ShowMonoliths : MonoBehaviour {
+	
 	private Image[] monolithsUI;
 	public Sprite undiscoveredMonolith;
 	public Sprite discoveredMonolith;

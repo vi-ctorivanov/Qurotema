@@ -15,6 +15,17 @@ public class Compass : MonoBehaviour {
 		Transform nearest = POIs[0];
 		float smallestDistance = 9999f;
 		foreach(Transform POITransform in POIs) {
+			
+			//exclude activated monoliths
+			if (POITransform.gameObject.TryGetComponent(out MonolithInstrument mi)) {
+				if (POITransform.Find("Eye").GetComponent<MonolithActivate>().active) continue;
+			}
+
+			//exclude mastered instruments
+			if (POITransform.gameObject.TryGetComponent(out InstrumentMastered im)) {
+				if (im.mastered) continue;
+			}
+
 			float distance = Vector2.Distance(
 				new Vector2(POITransform.position.x, POITransform.position.z),
 				new Vector2(transform.position.x, transform.position.z)
@@ -25,9 +36,9 @@ public class Compass : MonoBehaviour {
 			}
 		}
 
-		//if near, show here
+		//if near, show here. if none, show nothing
 		if (smallestDistance < 20f) directionsUI[4].color = new Color(1f, 1f, 1f, 1f);
-		else {
+		else if (smallestDistance < 9999f) {
 			//compute direction
 			Vector2 playerToPOI = new Vector2((nearest.position - transform.position).normalized.x, (nearest.position - transform.position).normalized.z);
 			Vector3 flatForward = new Vector3(Camera.main.transform.forward.x, 0f, Camera.main.transform.forward.z).normalized;

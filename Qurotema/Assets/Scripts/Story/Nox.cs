@@ -33,7 +33,7 @@ public class Nox : MonoBehaviour {
 	public TMP_Text storyText;
 	public StoryContent content;
 	public static event Action<int> OnActivateMonolith;
-	public static event Action<int> OnMasterInstrument;
+	public static event Action<int, string> OnMasterInstrument;
 	public static event Action<float> OnFlashFeedback;
 	public static event Action OnIntroductionFinished;
 	public static event Action OnMovementStop;
@@ -124,24 +124,24 @@ public class Nox : MonoBehaviour {
 		terrain.addFeedback(2.0f);
 		checkForInstrumentDiscovery();
 		stringsPlayed++;
-		if (stringsPlayed == stringsMaster) instrumentMastered();
+		if (stringsPlayed == stringsMaster) instrumentMastered("strings");
 	}
 
 	public void ringPlayed() {
 		terrain.addFeedback(2.0f);
 		checkForInstrumentDiscovery();
 		ringsPlayed++;
-		if (ringsPlayed == ringsMaster) instrumentMastered();
+		if (ringsPlayed == ringsMaster) instrumentMastered("rings");
 	}
 
 	public void padPlayed() {
 		terrain.addFeedback(2.0f);
 		checkForInstrumentDiscovery();
 		padsPlayed++;
-		if (padsPlayed == padsMaster) instrumentMastered();
+		if (padsPlayed == padsMaster) instrumentMastered("pads");
 	}
 
-	private void instrumentMastered() {
+	private void instrumentMastered(string instrument) {
 		FMODUnity.RuntimeManager.PlayOneShot(Sound.Instance.progressEvent);
 		OnFlashFeedback?.Invoke(3f);
 		playText("instrument" + "_" + instrumentsMastered);
@@ -151,7 +151,7 @@ public class Nox : MonoBehaviour {
 			makeGatesVisible();
 		}
 		instrumentsMastered++;
-		OnMasterInstrument?.Invoke(instrumentsMastered);
+		OnMasterInstrument?.Invoke(instrumentsMastered, instrument);
 	}
 
 	private void checkForInstrumentDiscovery() {

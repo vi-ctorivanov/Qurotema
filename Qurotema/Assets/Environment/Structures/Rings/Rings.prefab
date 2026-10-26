@@ -64,12 +64,13 @@ GameObject:
   m_Component:
   - component: {fileID: 5535789088724422376}
   - component: {fileID: 590562375136757635}
+  - component: {fileID: 208721806693118292}
   m_Layer: 0
   m_Name: Rings
   m_TagString: RingsPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5535789088724422376
 Transform:
@@ -101,6 +102,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RingsSpawn
   ring: {fileID: 7698271040295532894, guid: 1d99c9dcd4257f291bf779c04ea3928b, type: 3}
+--- !u!114 &208721806693118292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5535789088724422379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 767575bb5d43ee0faa84ff2672fc1598, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InstrumentMastered
+  instrument: rings
+  mastered: 0
 --- !u!1 &5535789089313972833
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +132,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5535789089313972838
 Transform:
