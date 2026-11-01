@@ -10269,7 +10269,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1283151636}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 0ef3f353fb9e36a4fb85532f496c590e, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 218c47ff2851e9c468db9b7c45035ece, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -10351,6 +10351,8 @@ PlayableDirector:
     value: {fileID: 1846523916}
   - key: {fileID: 6002496138816396232, guid: ead9c41ce28260603a76ddb6554c556d, type: 2}
     value: {fileID: 1283151643}
+  - key: {fileID: 8220835822514211755, guid: 218c47ff2851e9c468db9b7c45035ece, type: 2}
+    value: {fileID: 586664323}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &1283151643
@@ -14144,7 +14146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.Compositor.CompositionManager
   m_Enable: 1
-  m_Material: {fileID: 1723926019}
+  m_Material: {fileID: 1731354811}
   m_OutputDisplay: 0
   m_InputLayers:
   - m_LayerName: _FlatUILayer
@@ -15339,7 +15341,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1722046854}
   m_CullTransparentMesh: 0
---- !u!21 &1723926019
+--- !u!21 &1731354811
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
