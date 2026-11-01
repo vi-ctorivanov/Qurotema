@@ -755,6 +755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41188d23afcb0991393760892f6f861e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonolithInstrument
+  id: 0
 --- !u!1 &5348334090686235920
 GameObject:
   m_ObjectHideFlags: 0
